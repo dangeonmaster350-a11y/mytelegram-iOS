@@ -424,6 +424,7 @@ final class PeerInfoScreenData {
     let webAppPermissions: WebAppPermissionsState?
     let savedMusicContext: ProfileSavedMusicContext?
     let savedMusicState: ProfileSavedMusicContext.State?
+    let managedByBot: EnginePeer?
     
     let _isContact: Bool
     var forceIsContact: Bool = false
@@ -478,7 +479,8 @@ final class PeerInfoScreenData {
         premiumGiftOptions: [PremiumGiftCodeOption],
         webAppPermissions: WebAppPermissionsState?,
         savedMusicContext: ProfileSavedMusicContext?,
-        savedMusicState: ProfileSavedMusicContext.State?
+        savedMusicState: ProfileSavedMusicContext.State?,
+        managedByBot: EnginePeer?
     ) {
         self.peer = peer
         self.chatPeer = chatPeer
@@ -522,6 +524,7 @@ final class PeerInfoScreenData {
         self.webAppPermissions = webAppPermissions
         self.savedMusicContext = savedMusicContext
         self.savedMusicState = savedMusicState
+        self.managedByBot = managedByBot
     }
 }
 
@@ -599,7 +602,8 @@ private func peerInfoAvailableMediaPanes(context: AccountContext, peerId: PeerId
             (.music, .music),
             (.voiceOrInstantVideo, .voice),
             (.webPage, .links),
-            (.gif, .gifs)
+            (.gif, .gifs),
+            (.polls, .polls)
         ]
     }
     enum PaneState {
@@ -882,7 +886,6 @@ func peerInfoScreenSettingsData(context: AccountContext, peerId: EnginePeer.Id, 
     let botsKey = ValueBoxKey(length: 8)
     botsKey.setInt64(0, value: 0)
     
-    //let iconLoaded = Atomic<[EnginePeer.Id: Bool]>(value: [:])
     let bots = context.engine.data.subscribe(TelegramEngine.EngineData.Item.ItemCache.Item(collectionId: Namespaces.CachedItemCollection.attachMenuBots, id: botsKey))
     |> mapToSignal { entry -> Signal<[AttachMenuBot], NoError> in
         let bots: [AttachMenuBots.Bot] = entry?.get(AttachMenuBots.self)?.bots ?? []
@@ -1044,7 +1047,8 @@ func peerInfoScreenSettingsData(context: AccountContext, peerId: EnginePeer.Id, 
             premiumGiftOptions: [],
             webAppPermissions: nil,
             savedMusicContext: nil,
-            savedMusicState: nil
+            savedMusicState: nil,
+            managedByBot: nil
         )
     }
 }
@@ -1115,7 +1119,8 @@ func peerInfoScreenData(
                 premiumGiftOptions: [],
                 webAppPermissions: nil,
                 savedMusicContext: nil,
-                savedMusicState: nil
+                savedMusicState: nil,
+                managedByBot: nil
             ))
         case let .user(userPeerId, secretChatId, kind):
             let groupsInCommon: GroupsInCommonContext?
@@ -1535,6 +1540,13 @@ func peerInfoScreenData(
                 
                 let peer = peerView.peers[userPeerId]
                 
+                var managedByBot: EnginePeer?
+                if let cachedData = peerView.cachedData as? CachedUserData, let botManagerId = cachedData.botManagerId {
+                    if let peer = peerView.peers[botManagerId] {
+                        managedByBot = EnginePeer(peer)
+                    }
+                }
+                
                 var globalSettings: TelegramGlobalSettings?
                 if let privacySettings {
                     globalSettings = TelegramGlobalSettings(
@@ -1603,7 +1615,8 @@ func peerInfoScreenData(
                     premiumGiftOptions: premiumGiftOptions,
                     webAppPermissions: webAppPermissions,
                     savedMusicContext: savedMusicContext,
-                    savedMusicState: savedMusicState
+                    savedMusicState: savedMusicState,
+                    managedByBot: managedByBot
                 )
             }
         case .channel:
@@ -1848,7 +1861,8 @@ func peerInfoScreenData(
                     premiumGiftOptions: [],
                     webAppPermissions: nil,
                     savedMusicContext: nil,
-                    savedMusicState: nil
+                    savedMusicState: nil,
+                    managedByBot: nil
                 )
             }
         case let .group(groupId):
@@ -2184,11 +2198,22 @@ func peerInfoScreenData(
                     premiumGiftOptions: [],
                     webAppPermissions: nil,
                     savedMusicContext: nil,
-                    savedMusicState: nil
+                    savedMusicState: nil,
+                    managedByBot: nil
                 ))
             }
         }
     }
+}
+
+func peerInfoIsCopyProtected(data: PeerInfoScreenData) -> Bool {
+    var isCopyProtected = false
+    if let cachedUserData = data.cachedData as? CachedUserData, cachedUserData.flags.contains(.copyProtectionEnabled) || cachedUserData.flags.contains(.myCopyProtectionEnabled) {
+        isCopyProtected = true
+    } else if let peer = data.peer, peer.isCopyProtectionEnabled {
+        isCopyProtected = true
+    }
+    return isCopyProtected
 }
 
 func canEditPeerInfo(context: AccountContext, peer: Peer?, chatLocation: ChatLocation, threadData: MessageHistoryThreadData?) -> Bool {
@@ -2237,6 +2262,7 @@ struct PeerInfoMemberActions: OptionSet {
     static let restrict = PeerInfoMemberActions(rawValue: 1 << 0)
     static let promote = PeerInfoMemberActions(rawValue: 1 << 1)
     static let logout = PeerInfoMemberActions(rawValue: 1 << 2)
+    static let editRank = PeerInfoMemberActions(rawValue: 1 << 3)
 }
 
 func availableActionsForMemberOfPeer(accountPeerId: PeerId, peer: Peer?, member: PeerInfoMember) -> PeerInfoMemberActions {
@@ -2244,13 +2270,24 @@ func availableActionsForMemberOfPeer(accountPeerId: PeerId, peer: Peer?, member:
     
     if peer == nil {
         result.insert(.logout)
-    } else if member.id != accountPeerId {
+    } else if member.id == accountPeerId {
+        if let channel = peer as? TelegramChannel {
+            if channel.hasPermission(.editRank) {
+                result.insert(.editRank)
+            }
+        } else if let group = peer as? TelegramGroup {
+            if !group.hasBannedPermission(.banEditRank) {
+                result.insert(.editRank)
+            }
+        }
+    } else {
         if let channel = peer as? TelegramChannel {
             if channel.flags.contains(.isCreator) {
                 if !channel.flags.contains(.isGigagroup) {
                     result.insert(.restrict)
                 }
                 result.insert(.promote)
+                result.insert(.editRank)
             } else {
                 switch member {
                 case let .channelMember(channelMember, _):
@@ -2266,6 +2303,9 @@ func availableActionsForMemberOfPeer(accountPeerId: PeerId, peer: Peer?, member:
                                 if channel.hasPermission(.addAdmins) {
                                     result.insert(.promote)
                                 }
+                                if channel.hasPermission(.manageRanks) {
+                                    result.insert(.editRank)
+                                }
                             }
                         } else {
                             if channel.hasPermission(.banMembers) && !channel.flags.contains(.isGigagroup) {
@@ -2273,6 +2313,9 @@ func availableActionsForMemberOfPeer(accountPeerId: PeerId, peer: Peer?, member:
                             }
                             if channel.hasPermission(.addAdmins) {
                                 result.insert(.promote)
+                            }
+                            if channel.hasPermission(.manageRanks) {
+                                result.insert(.editRank)
                             }
                         }
                     }
@@ -2287,12 +2330,14 @@ func availableActionsForMemberOfPeer(accountPeerId: PeerId, peer: Peer?, member:
             case .creator:
                 result.insert(.restrict)
                 result.insert(.promote)
+                result.insert(.editRank)
             case .admin:
                 switch member {
-                case let .legacyGroupMember(_, _, invitedBy, _, _):
+                case let .legacyGroupMember(_, _, invitedBy, _, _, _):
                     result.insert(.restrict)
                     if invitedBy == accountPeerId {
                         result.insert(.promote)
+                        result.insert(.editRank)
                     }
                 case .channelMember:
                     break
@@ -2301,9 +2346,10 @@ func availableActionsForMemberOfPeer(accountPeerId: PeerId, peer: Peer?, member:
                 }
             case .member:
                 switch member {
-                case let .legacyGroupMember(_, _, invitedBy, _, _):
+                case let .legacyGroupMember(_, _, invitedBy, _, _, _):
                     if invitedBy == accountPeerId {
                         result.insert(.restrict)
+                        result.insert(.editRank)
                     }
                 case .channelMember:
                     break

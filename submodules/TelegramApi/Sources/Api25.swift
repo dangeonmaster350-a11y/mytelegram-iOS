@@ -1,6 +1,6 @@
 public extension Api {
     enum ShippingOption: TypeConstructorDescription {
-        public class Cons_shippingOption {
+        public class Cons_shippingOption: TypeConstructorDescription {
             public var id: String
             public var title: String
             public var prices: [Api.LabeledPrice]
@@ -8,6 +8,9 @@ public extension Api {
                 self.id = id
                 self.title = title
                 self.prices = prices
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("shippingOption", [("id", ConstructorParameterDescription(self.id)), ("title", ConstructorParameterDescription(self.title)), ("prices", ConstructorParameterDescription(self.prices))])
             }
         }
         case shippingOption(Cons_shippingOption)
@@ -29,10 +32,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .shippingOption(let _data):
-                return ("shippingOption", [("id", _data.id as Any), ("title", _data.title as Any), ("prices", _data.prices as Any)])
+                return ("shippingOption", [("id", ConstructorParameterDescription(_data.id)), ("title", ConstructorParameterDescription(_data.title)), ("prices", ConstructorParameterDescription(_data.prices))])
             }
         }
 
@@ -59,7 +62,7 @@ public extension Api {
 }
 public extension Api {
     enum SmsJob: TypeConstructorDescription {
-        public class Cons_smsJob {
+        public class Cons_smsJob: TypeConstructorDescription {
             public var jobId: String
             public var phoneNumber: String
             public var text: String
@@ -67,6 +70,9 @@ public extension Api {
                 self.jobId = jobId
                 self.phoneNumber = phoneNumber
                 self.text = text
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("smsJob", [("jobId", ConstructorParameterDescription(self.jobId)), ("phoneNumber", ConstructorParameterDescription(self.phoneNumber)), ("text", ConstructorParameterDescription(self.text))])
             }
         }
         case smsJob(Cons_smsJob)
@@ -84,10 +90,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .smsJob(let _data):
-                return ("smsJob", [("jobId", _data.jobId as Any), ("phoneNumber", _data.phoneNumber as Any), ("text", _data.text as Any)])
+                return ("smsJob", [("jobId", ConstructorParameterDescription(_data.jobId)), ("phoneNumber", ConstructorParameterDescription(_data.phoneNumber)), ("text", ConstructorParameterDescription(_data.text))])
             }
         }
 
@@ -112,7 +118,7 @@ public extension Api {
 }
 public extension Api {
     indirect enum SponsoredMessage: TypeConstructorDescription {
-        public class Cons_sponsoredMessage {
+        public class Cons_sponsoredMessage: TypeConstructorDescription {
             public var flags: Int32
             public var randomId: Buffer
             public var url: String
@@ -142,6 +148,9 @@ public extension Api {
                 self.additionalInfo = additionalInfo
                 self.minDisplayDuration = minDisplayDuration
                 self.maxDisplayDuration = maxDisplayDuration
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sponsoredMessage", [("flags", ConstructorParameterDescription(self.flags)), ("randomId", ConstructorParameterDescription(self.randomId)), ("url", ConstructorParameterDescription(self.url)), ("title", ConstructorParameterDescription(self.title)), ("message", ConstructorParameterDescription(self.message)), ("entities", ConstructorParameterDescription(self.entities)), ("photo", ConstructorParameterDescription(self.photo)), ("media", ConstructorParameterDescription(self.media)), ("color", ConstructorParameterDescription(self.color)), ("buttonText", ConstructorParameterDescription(self.buttonText)), ("sponsorInfo", ConstructorParameterDescription(self.sponsorInfo)), ("additionalInfo", ConstructorParameterDescription(self.additionalInfo)), ("minDisplayDuration", ConstructorParameterDescription(self.minDisplayDuration)), ("maxDisplayDuration", ConstructorParameterDescription(self.maxDisplayDuration))])
             }
         }
         case sponsoredMessage(Cons_sponsoredMessage)
@@ -190,10 +199,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sponsoredMessage(let _data):
-                return ("sponsoredMessage", [("flags", _data.flags as Any), ("randomId", _data.randomId as Any), ("url", _data.url as Any), ("title", _data.title as Any), ("message", _data.message as Any), ("entities", _data.entities as Any), ("photo", _data.photo as Any), ("media", _data.media as Any), ("color", _data.color as Any), ("buttonText", _data.buttonText as Any), ("sponsorInfo", _data.sponsorInfo as Any), ("additionalInfo", _data.additionalInfo as Any), ("minDisplayDuration", _data.minDisplayDuration as Any), ("maxDisplayDuration", _data.maxDisplayDuration as Any)])
+                return ("sponsoredMessage", [("flags", ConstructorParameterDescription(_data.flags)), ("randomId", ConstructorParameterDescription(_data.randomId)), ("url", ConstructorParameterDescription(_data.url)), ("title", ConstructorParameterDescription(_data.title)), ("message", ConstructorParameterDescription(_data.message)), ("entities", ConstructorParameterDescription(_data.entities)), ("photo", ConstructorParameterDescription(_data.photo)), ("media", ConstructorParameterDescription(_data.media)), ("color", ConstructorParameterDescription(_data.color)), ("buttonText", ConstructorParameterDescription(_data.buttonText)), ("sponsorInfo", ConstructorParameterDescription(_data.sponsorInfo)), ("additionalInfo", ConstructorParameterDescription(_data.additionalInfo)), ("minDisplayDuration", ConstructorParameterDescription(_data.minDisplayDuration)), ("maxDisplayDuration", ConstructorParameterDescription(_data.maxDisplayDuration))])
             }
         }
 
@@ -275,12 +284,15 @@ public extension Api {
 }
 public extension Api {
     enum SponsoredMessageReportOption: TypeConstructorDescription {
-        public class Cons_sponsoredMessageReportOption {
+        public class Cons_sponsoredMessageReportOption: TypeConstructorDescription {
             public var text: String
             public var option: Buffer
             public init(text: String, option: Buffer) {
                 self.text = text
                 self.option = option
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sponsoredMessageReportOption", [("text", ConstructorParameterDescription(self.text)), ("option", ConstructorParameterDescription(self.option))])
             }
         }
         case sponsoredMessageReportOption(Cons_sponsoredMessageReportOption)
@@ -297,10 +309,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sponsoredMessageReportOption(let _data):
-                return ("sponsoredMessageReportOption", [("text", _data.text as Any), ("option", _data.option as Any)])
+                return ("sponsoredMessageReportOption", [("text", ConstructorParameterDescription(_data.text)), ("option", ConstructorParameterDescription(_data.option))])
             }
         }
 
@@ -322,7 +334,7 @@ public extension Api {
 }
 public extension Api {
     enum SponsoredPeer: TypeConstructorDescription {
-        public class Cons_sponsoredPeer {
+        public class Cons_sponsoredPeer: TypeConstructorDescription {
             public var flags: Int32
             public var randomId: Buffer
             public var peer: Api.Peer
@@ -334,6 +346,9 @@ public extension Api {
                 self.peer = peer
                 self.sponsorInfo = sponsorInfo
                 self.additionalInfo = additionalInfo
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sponsoredPeer", [("flags", ConstructorParameterDescription(self.flags)), ("randomId", ConstructorParameterDescription(self.randomId)), ("peer", ConstructorParameterDescription(self.peer)), ("sponsorInfo", ConstructorParameterDescription(self.sponsorInfo)), ("additionalInfo", ConstructorParameterDescription(self.additionalInfo))])
             }
         }
         case sponsoredPeer(Cons_sponsoredPeer)
@@ -357,10 +372,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sponsoredPeer(let _data):
-                return ("sponsoredPeer", [("flags", _data.flags as Any), ("randomId", _data.randomId as Any), ("peer", _data.peer as Any), ("sponsorInfo", _data.sponsorInfo as Any), ("additionalInfo", _data.additionalInfo as Any)])
+                return ("sponsoredPeer", [("flags", ConstructorParameterDescription(_data.flags)), ("randomId", ConstructorParameterDescription(_data.randomId)), ("peer", ConstructorParameterDescription(_data.peer)), ("sponsorInfo", ConstructorParameterDescription(_data.sponsorInfo)), ("additionalInfo", ConstructorParameterDescription(_data.additionalInfo))])
             }
         }
 
@@ -397,7 +412,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGift: TypeConstructorDescription {
-        public class Cons_starGift {
+        public class Cons_starGift: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int64
             public var sticker: Api.Document
@@ -444,8 +459,11 @@ public extension Api {
                 self.upgradeVariants = upgradeVariants
                 self.background = background
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGift", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("sticker", ConstructorParameterDescription(self.sticker)), ("stars", ConstructorParameterDescription(self.stars)), ("availabilityRemains", ConstructorParameterDescription(self.availabilityRemains)), ("availabilityTotal", ConstructorParameterDescription(self.availabilityTotal)), ("availabilityResale", ConstructorParameterDescription(self.availabilityResale)), ("convertStars", ConstructorParameterDescription(self.convertStars)), ("firstSaleDate", ConstructorParameterDescription(self.firstSaleDate)), ("lastSaleDate", ConstructorParameterDescription(self.lastSaleDate)), ("upgradeStars", ConstructorParameterDescription(self.upgradeStars)), ("resellMinStars", ConstructorParameterDescription(self.resellMinStars)), ("title", ConstructorParameterDescription(self.title)), ("releasedBy", ConstructorParameterDescription(self.releasedBy)), ("perUserTotal", ConstructorParameterDescription(self.perUserTotal)), ("perUserRemains", ConstructorParameterDescription(self.perUserRemains)), ("lockedUntilDate", ConstructorParameterDescription(self.lockedUntilDate)), ("auctionSlug", ConstructorParameterDescription(self.auctionSlug)), ("giftsPerRound", ConstructorParameterDescription(self.giftsPerRound)), ("auctionStartDate", ConstructorParameterDescription(self.auctionStartDate)), ("upgradeVariants", ConstructorParameterDescription(self.upgradeVariants)), ("background", ConstructorParameterDescription(self.background))])
+            }
         }
-        public class Cons_starGiftUnique {
+        public class Cons_starGiftUnique: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int64
             public var giftId: Int64
@@ -493,6 +511,9 @@ public extension Api {
                 self.hostId = hostId
                 self.offerMinStars = offerMinStars
                 self.craftChancePermille = craftChancePermille
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftUnique", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("giftId", ConstructorParameterDescription(self.giftId)), ("title", ConstructorParameterDescription(self.title)), ("slug", ConstructorParameterDescription(self.slug)), ("num", ConstructorParameterDescription(self.num)), ("ownerId", ConstructorParameterDescription(self.ownerId)), ("ownerName", ConstructorParameterDescription(self.ownerName)), ("ownerAddress", ConstructorParameterDescription(self.ownerAddress)), ("attributes", ConstructorParameterDescription(self.attributes)), ("availabilityIssued", ConstructorParameterDescription(self.availabilityIssued)), ("availabilityTotal", ConstructorParameterDescription(self.availabilityTotal)), ("giftAddress", ConstructorParameterDescription(self.giftAddress)), ("resellAmount", ConstructorParameterDescription(self.resellAmount)), ("releasedBy", ConstructorParameterDescription(self.releasedBy)), ("valueAmount", ConstructorParameterDescription(self.valueAmount)), ("valueCurrency", ConstructorParameterDescription(self.valueCurrency)), ("valueUsdAmount", ConstructorParameterDescription(self.valueUsdAmount)), ("themePeer", ConstructorParameterDescription(self.themePeer)), ("peerColor", ConstructorParameterDescription(self.peerColor)), ("hostId", ConstructorParameterDescription(self.hostId)), ("offerMinStars", ConstructorParameterDescription(self.offerMinStars)), ("craftChancePermille", ConstructorParameterDescription(self.craftChancePermille))])
             }
         }
         case starGift(Cons_starGift)
@@ -628,12 +649,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGift(let _data):
-                return ("starGift", [("flags", _data.flags as Any), ("id", _data.id as Any), ("sticker", _data.sticker as Any), ("stars", _data.stars as Any), ("availabilityRemains", _data.availabilityRemains as Any), ("availabilityTotal", _data.availabilityTotal as Any), ("availabilityResale", _data.availabilityResale as Any), ("convertStars", _data.convertStars as Any), ("firstSaleDate", _data.firstSaleDate as Any), ("lastSaleDate", _data.lastSaleDate as Any), ("upgradeStars", _data.upgradeStars as Any), ("resellMinStars", _data.resellMinStars as Any), ("title", _data.title as Any), ("releasedBy", _data.releasedBy as Any), ("perUserTotal", _data.perUserTotal as Any), ("perUserRemains", _data.perUserRemains as Any), ("lockedUntilDate", _data.lockedUntilDate as Any), ("auctionSlug", _data.auctionSlug as Any), ("giftsPerRound", _data.giftsPerRound as Any), ("auctionStartDate", _data.auctionStartDate as Any), ("upgradeVariants", _data.upgradeVariants as Any), ("background", _data.background as Any)])
+                return ("starGift", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("sticker", ConstructorParameterDescription(_data.sticker)), ("stars", ConstructorParameterDescription(_data.stars)), ("availabilityRemains", ConstructorParameterDescription(_data.availabilityRemains)), ("availabilityTotal", ConstructorParameterDescription(_data.availabilityTotal)), ("availabilityResale", ConstructorParameterDescription(_data.availabilityResale)), ("convertStars", ConstructorParameterDescription(_data.convertStars)), ("firstSaleDate", ConstructorParameterDescription(_data.firstSaleDate)), ("lastSaleDate", ConstructorParameterDescription(_data.lastSaleDate)), ("upgradeStars", ConstructorParameterDescription(_data.upgradeStars)), ("resellMinStars", ConstructorParameterDescription(_data.resellMinStars)), ("title", ConstructorParameterDescription(_data.title)), ("releasedBy", ConstructorParameterDescription(_data.releasedBy)), ("perUserTotal", ConstructorParameterDescription(_data.perUserTotal)), ("perUserRemains", ConstructorParameterDescription(_data.perUserRemains)), ("lockedUntilDate", ConstructorParameterDescription(_data.lockedUntilDate)), ("auctionSlug", ConstructorParameterDescription(_data.auctionSlug)), ("giftsPerRound", ConstructorParameterDescription(_data.giftsPerRound)), ("auctionStartDate", ConstructorParameterDescription(_data.auctionStartDate)), ("upgradeVariants", ConstructorParameterDescription(_data.upgradeVariants)), ("background", ConstructorParameterDescription(_data.background))])
             case .starGiftUnique(let _data):
-                return ("starGiftUnique", [("flags", _data.flags as Any), ("id", _data.id as Any), ("giftId", _data.giftId as Any), ("title", _data.title as Any), ("slug", _data.slug as Any), ("num", _data.num as Any), ("ownerId", _data.ownerId as Any), ("ownerName", _data.ownerName as Any), ("ownerAddress", _data.ownerAddress as Any), ("attributes", _data.attributes as Any), ("availabilityIssued", _data.availabilityIssued as Any), ("availabilityTotal", _data.availabilityTotal as Any), ("giftAddress", _data.giftAddress as Any), ("resellAmount", _data.resellAmount as Any), ("releasedBy", _data.releasedBy as Any), ("valueAmount", _data.valueAmount as Any), ("valueCurrency", _data.valueCurrency as Any), ("valueUsdAmount", _data.valueUsdAmount as Any), ("themePeer", _data.themePeer as Any), ("peerColor", _data.peerColor as Any), ("hostId", _data.hostId as Any), ("offerMinStars", _data.offerMinStars as Any), ("craftChancePermille", _data.craftChancePermille as Any)])
+                return ("starGiftUnique", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("giftId", ConstructorParameterDescription(_data.giftId)), ("title", ConstructorParameterDescription(_data.title)), ("slug", ConstructorParameterDescription(_data.slug)), ("num", ConstructorParameterDescription(_data.num)), ("ownerId", ConstructorParameterDescription(_data.ownerId)), ("ownerName", ConstructorParameterDescription(_data.ownerName)), ("ownerAddress", ConstructorParameterDescription(_data.ownerAddress)), ("attributes", ConstructorParameterDescription(_data.attributes)), ("availabilityIssued", ConstructorParameterDescription(_data.availabilityIssued)), ("availabilityTotal", ConstructorParameterDescription(_data.availabilityTotal)), ("giftAddress", ConstructorParameterDescription(_data.giftAddress)), ("resellAmount", ConstructorParameterDescription(_data.resellAmount)), ("releasedBy", ConstructorParameterDescription(_data.releasedBy)), ("valueAmount", ConstructorParameterDescription(_data.valueAmount)), ("valueCurrency", ConstructorParameterDescription(_data.valueCurrency)), ("valueUsdAmount", ConstructorParameterDescription(_data.valueUsdAmount)), ("themePeer", ConstructorParameterDescription(_data.themePeer)), ("peerColor", ConstructorParameterDescription(_data.peerColor)), ("hostId", ConstructorParameterDescription(_data.hostId)), ("offerMinStars", ConstructorParameterDescription(_data.offerMinStars)), ("craftChancePermille", ConstructorParameterDescription(_data.craftChancePermille))])
             }
         }
 
@@ -874,7 +895,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftActiveAuctionState: TypeConstructorDescription {
-        public class Cons_starGiftActiveAuctionState {
+        public class Cons_starGiftActiveAuctionState: TypeConstructorDescription {
             public var gift: Api.StarGift
             public var state: Api.StarGiftAuctionState
             public var userState: Api.StarGiftAuctionUserState
@@ -882,6 +903,9 @@ public extension Api {
                 self.gift = gift
                 self.state = state
                 self.userState = userState
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftActiveAuctionState", [("gift", ConstructorParameterDescription(self.gift)), ("state", ConstructorParameterDescription(self.state)), ("userState", ConstructorParameterDescription(self.userState))])
             }
         }
         case starGiftActiveAuctionState(Cons_starGiftActiveAuctionState)
@@ -899,10 +923,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftActiveAuctionState(let _data):
-                return ("starGiftActiveAuctionState", [("gift", _data.gift as Any), ("state", _data.state as Any), ("userState", _data.userState as Any)])
+                return ("starGiftActiveAuctionState", [("gift", ConstructorParameterDescription(_data.gift)), ("state", ConstructorParameterDescription(_data.state)), ("userState", ConstructorParameterDescription(_data.userState))])
             }
         }
 
@@ -933,7 +957,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAttribute: TypeConstructorDescription {
-        public class Cons_starGiftAttributeBackdrop {
+        public class Cons_starGiftAttributeBackdrop: TypeConstructorDescription {
             public var name: String
             public var backdropId: Int32
             public var centerColor: Int32
@@ -950,8 +974,11 @@ public extension Api {
                 self.textColor = textColor
                 self.rarity = rarity
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeBackdrop", [("name", ConstructorParameterDescription(self.name)), ("backdropId", ConstructorParameterDescription(self.backdropId)), ("centerColor", ConstructorParameterDescription(self.centerColor)), ("edgeColor", ConstructorParameterDescription(self.edgeColor)), ("patternColor", ConstructorParameterDescription(self.patternColor)), ("textColor", ConstructorParameterDescription(self.textColor)), ("rarity", ConstructorParameterDescription(self.rarity))])
+            }
         }
-        public class Cons_starGiftAttributeModel {
+        public class Cons_starGiftAttributeModel: TypeConstructorDescription {
             public var flags: Int32
             public var name: String
             public var document: Api.Document
@@ -962,8 +989,11 @@ public extension Api {
                 self.document = document
                 self.rarity = rarity
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeModel", [("flags", ConstructorParameterDescription(self.flags)), ("name", ConstructorParameterDescription(self.name)), ("document", ConstructorParameterDescription(self.document)), ("rarity", ConstructorParameterDescription(self.rarity))])
+            }
         }
-        public class Cons_starGiftAttributeOriginalDetails {
+        public class Cons_starGiftAttributeOriginalDetails: TypeConstructorDescription {
             public var flags: Int32
             public var senderId: Api.Peer?
             public var recipientId: Api.Peer
@@ -976,8 +1006,11 @@ public extension Api {
                 self.date = date
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeOriginalDetails", [("flags", ConstructorParameterDescription(self.flags)), ("senderId", ConstructorParameterDescription(self.senderId)), ("recipientId", ConstructorParameterDescription(self.recipientId)), ("date", ConstructorParameterDescription(self.date)), ("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_starGiftAttributePattern {
+        public class Cons_starGiftAttributePattern: TypeConstructorDescription {
             public var name: String
             public var document: Api.Document
             public var rarity: Api.StarGiftAttributeRarity
@@ -985,6 +1018,9 @@ public extension Api {
                 self.name = name
                 self.document = document
                 self.rarity = rarity
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributePattern", [("name", ConstructorParameterDescription(self.name)), ("document", ConstructorParameterDescription(self.document)), ("rarity", ConstructorParameterDescription(self.rarity))])
             }
         }
         case starGiftAttributeBackdrop(Cons_starGiftAttributeBackdrop)
@@ -1040,16 +1076,16 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAttributeBackdrop(let _data):
-                return ("starGiftAttributeBackdrop", [("name", _data.name as Any), ("backdropId", _data.backdropId as Any), ("centerColor", _data.centerColor as Any), ("edgeColor", _data.edgeColor as Any), ("patternColor", _data.patternColor as Any), ("textColor", _data.textColor as Any), ("rarity", _data.rarity as Any)])
+                return ("starGiftAttributeBackdrop", [("name", ConstructorParameterDescription(_data.name)), ("backdropId", ConstructorParameterDescription(_data.backdropId)), ("centerColor", ConstructorParameterDescription(_data.centerColor)), ("edgeColor", ConstructorParameterDescription(_data.edgeColor)), ("patternColor", ConstructorParameterDescription(_data.patternColor)), ("textColor", ConstructorParameterDescription(_data.textColor)), ("rarity", ConstructorParameterDescription(_data.rarity))])
             case .starGiftAttributeModel(let _data):
-                return ("starGiftAttributeModel", [("flags", _data.flags as Any), ("name", _data.name as Any), ("document", _data.document as Any), ("rarity", _data.rarity as Any)])
+                return ("starGiftAttributeModel", [("flags", ConstructorParameterDescription(_data.flags)), ("name", ConstructorParameterDescription(_data.name)), ("document", ConstructorParameterDescription(_data.document)), ("rarity", ConstructorParameterDescription(_data.rarity))])
             case .starGiftAttributeOriginalDetails(let _data):
-                return ("starGiftAttributeOriginalDetails", [("flags", _data.flags as Any), ("senderId", _data.senderId as Any), ("recipientId", _data.recipientId as Any), ("date", _data.date as Any), ("message", _data.message as Any)])
+                return ("starGiftAttributeOriginalDetails", [("flags", ConstructorParameterDescription(_data.flags)), ("senderId", ConstructorParameterDescription(_data.senderId)), ("recipientId", ConstructorParameterDescription(_data.recipientId)), ("date", ConstructorParameterDescription(_data.date)), ("message", ConstructorParameterDescription(_data.message))])
             case .starGiftAttributePattern(let _data):
-                return ("starGiftAttributePattern", [("name", _data.name as Any), ("document", _data.document as Any), ("rarity", _data.rarity as Any)])
+                return ("starGiftAttributePattern", [("name", ConstructorParameterDescription(_data.name)), ("document", ConstructorParameterDescription(_data.document)), ("rarity", ConstructorParameterDescription(_data.rarity))])
             }
         }
 
@@ -1166,12 +1202,15 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAttributeCounter: TypeConstructorDescription {
-        public class Cons_starGiftAttributeCounter {
+        public class Cons_starGiftAttributeCounter: TypeConstructorDescription {
             public var attribute: Api.StarGiftAttributeId
             public var count: Int32
             public init(attribute: Api.StarGiftAttributeId, count: Int32) {
                 self.attribute = attribute
                 self.count = count
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeCounter", [("attribute", ConstructorParameterDescription(self.attribute)), ("count", ConstructorParameterDescription(self.count))])
             }
         }
         case starGiftAttributeCounter(Cons_starGiftAttributeCounter)
@@ -1188,10 +1227,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAttributeCounter(let _data):
-                return ("starGiftAttributeCounter", [("attribute", _data.attribute as Any), ("count", _data.count as Any)])
+                return ("starGiftAttributeCounter", [("attribute", ConstructorParameterDescription(_data.attribute)), ("count", ConstructorParameterDescription(_data.count))])
             }
         }
 
@@ -1215,22 +1254,31 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAttributeId: TypeConstructorDescription {
-        public class Cons_starGiftAttributeIdBackdrop {
+        public class Cons_starGiftAttributeIdBackdrop: TypeConstructorDescription {
             public var backdropId: Int32
             public init(backdropId: Int32) {
                 self.backdropId = backdropId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeIdBackdrop", [("backdropId", ConstructorParameterDescription(self.backdropId))])
+            }
         }
-        public class Cons_starGiftAttributeIdModel {
+        public class Cons_starGiftAttributeIdModel: TypeConstructorDescription {
             public var documentId: Int64
             public init(documentId: Int64) {
                 self.documentId = documentId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeIdModel", [("documentId", ConstructorParameterDescription(self.documentId))])
+            }
         }
-        public class Cons_starGiftAttributeIdPattern {
+        public class Cons_starGiftAttributeIdPattern: TypeConstructorDescription {
             public var documentId: Int64
             public init(documentId: Int64) {
                 self.documentId = documentId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeIdPattern", [("documentId", ConstructorParameterDescription(self.documentId))])
             }
         }
         case starGiftAttributeIdBackdrop(Cons_starGiftAttributeIdBackdrop)
@@ -1260,14 +1308,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAttributeIdBackdrop(let _data):
-                return ("starGiftAttributeIdBackdrop", [("backdropId", _data.backdropId as Any)])
+                return ("starGiftAttributeIdBackdrop", [("backdropId", ConstructorParameterDescription(_data.backdropId))])
             case .starGiftAttributeIdModel(let _data):
-                return ("starGiftAttributeIdModel", [("documentId", _data.documentId as Any)])
+                return ("starGiftAttributeIdModel", [("documentId", ConstructorParameterDescription(_data.documentId))])
             case .starGiftAttributeIdPattern(let _data):
-                return ("starGiftAttributeIdPattern", [("documentId", _data.documentId as Any)])
+                return ("starGiftAttributeIdPattern", [("documentId", ConstructorParameterDescription(_data.documentId))])
             }
         }
 
@@ -1308,10 +1356,13 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAttributeRarity: TypeConstructorDescription {
-        public class Cons_starGiftAttributeRarity {
+        public class Cons_starGiftAttributeRarity: TypeConstructorDescription {
             public var permille: Int32
             public init(permille: Int32) {
                 self.permille = permille
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAttributeRarity", [("permille", ConstructorParameterDescription(self.permille))])
             }
         }
         case starGiftAttributeRarity(Cons_starGiftAttributeRarity)
@@ -1351,10 +1402,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAttributeRarity(let _data):
-                return ("starGiftAttributeRarity", [("permille", _data.permille as Any)])
+                return ("starGiftAttributeRarity", [("permille", ConstructorParameterDescription(_data.permille))])
             case .starGiftAttributeRarityEpic:
                 return ("starGiftAttributeRarityEpic", [])
             case .starGiftAttributeRarityLegendary:
@@ -1393,7 +1444,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAuctionAcquiredGift: TypeConstructorDescription {
-        public class Cons_starGiftAuctionAcquiredGift {
+        public class Cons_starGiftAuctionAcquiredGift: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var date: Int32
@@ -1411,6 +1462,9 @@ public extension Api {
                 self.pos = pos
                 self.message = message
                 self.giftNum = giftNum
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAuctionAcquiredGift", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("date", ConstructorParameterDescription(self.date)), ("bidAmount", ConstructorParameterDescription(self.bidAmount)), ("round", ConstructorParameterDescription(self.round)), ("pos", ConstructorParameterDescription(self.pos)), ("message", ConstructorParameterDescription(self.message)), ("giftNum", ConstructorParameterDescription(self.giftNum))])
             }
         }
         case starGiftAuctionAcquiredGift(Cons_starGiftAuctionAcquiredGift)
@@ -1437,10 +1491,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAuctionAcquiredGift(let _data):
-                return ("starGiftAuctionAcquiredGift", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("date", _data.date as Any), ("bidAmount", _data.bidAmount as Any), ("round", _data.round as Any), ("pos", _data.pos as Any), ("message", _data.message as Any), ("giftNum", _data.giftNum as Any)])
+                return ("starGiftAuctionAcquiredGift", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("date", ConstructorParameterDescription(_data.date)), ("bidAmount", ConstructorParameterDescription(_data.bidAmount)), ("round", ConstructorParameterDescription(_data.round)), ("pos", ConstructorParameterDescription(_data.pos)), ("message", ConstructorParameterDescription(_data.message)), ("giftNum", ConstructorParameterDescription(_data.giftNum))])
             }
         }
 
@@ -1488,15 +1542,18 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAuctionRound: TypeConstructorDescription {
-        public class Cons_starGiftAuctionRound {
+        public class Cons_starGiftAuctionRound: TypeConstructorDescription {
             public var num: Int32
             public var duration: Int32
             public init(num: Int32, duration: Int32) {
                 self.num = num
                 self.duration = duration
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAuctionRound", [("num", ConstructorParameterDescription(self.num)), ("duration", ConstructorParameterDescription(self.duration))])
+            }
         }
-        public class Cons_starGiftAuctionRoundExtendable {
+        public class Cons_starGiftAuctionRoundExtendable: TypeConstructorDescription {
             public var num: Int32
             public var duration: Int32
             public var extendTop: Int32
@@ -1506,6 +1563,9 @@ public extension Api {
                 self.duration = duration
                 self.extendTop = extendTop
                 self.extendWindow = extendWindow
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAuctionRoundExtendable", [("num", ConstructorParameterDescription(self.num)), ("duration", ConstructorParameterDescription(self.duration)), ("extendTop", ConstructorParameterDescription(self.extendTop)), ("extendWindow", ConstructorParameterDescription(self.extendWindow))])
             }
         }
         case starGiftAuctionRound(Cons_starGiftAuctionRound)
@@ -1532,12 +1592,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAuctionRound(let _data):
-                return ("starGiftAuctionRound", [("num", _data.num as Any), ("duration", _data.duration as Any)])
+                return ("starGiftAuctionRound", [("num", ConstructorParameterDescription(_data.num)), ("duration", ConstructorParameterDescription(_data.duration))])
             case .starGiftAuctionRoundExtendable(let _data):
-                return ("starGiftAuctionRoundExtendable", [("num", _data.num as Any), ("duration", _data.duration as Any), ("extendTop", _data.extendTop as Any), ("extendWindow", _data.extendWindow as Any)])
+                return ("starGiftAuctionRoundExtendable", [("num", ConstructorParameterDescription(_data.num)), ("duration", ConstructorParameterDescription(_data.duration)), ("extendTop", ConstructorParameterDescription(_data.extendTop)), ("extendWindow", ConstructorParameterDescription(_data.extendWindow))])
             }
         }
 
@@ -1579,7 +1639,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAuctionState: TypeConstructorDescription {
-        public class Cons_starGiftAuctionState {
+        public class Cons_starGiftAuctionState: TypeConstructorDescription {
             public var version: Int32
             public var startDate: Int32
             public var endDate: Int32
@@ -1606,8 +1666,11 @@ public extension Api {
                 self.totalRounds = totalRounds
                 self.rounds = rounds
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAuctionState", [("version", ConstructorParameterDescription(self.version)), ("startDate", ConstructorParameterDescription(self.startDate)), ("endDate", ConstructorParameterDescription(self.endDate)), ("minBidAmount", ConstructorParameterDescription(self.minBidAmount)), ("bidLevels", ConstructorParameterDescription(self.bidLevels)), ("topBidders", ConstructorParameterDescription(self.topBidders)), ("nextRoundAt", ConstructorParameterDescription(self.nextRoundAt)), ("lastGiftNum", ConstructorParameterDescription(self.lastGiftNum)), ("giftsLeft", ConstructorParameterDescription(self.giftsLeft)), ("currentRound", ConstructorParameterDescription(self.currentRound)), ("totalRounds", ConstructorParameterDescription(self.totalRounds)), ("rounds", ConstructorParameterDescription(self.rounds))])
+            }
         }
-        public class Cons_starGiftAuctionStateFinished {
+        public class Cons_starGiftAuctionStateFinished: TypeConstructorDescription {
             public var flags: Int32
             public var startDate: Int32
             public var endDate: Int32
@@ -1623,6 +1686,9 @@ public extension Api {
                 self.listedCount = listedCount
                 self.fragmentListedCount = fragmentListedCount
                 self.fragmentListedUrl = fragmentListedUrl
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAuctionStateFinished", [("flags", ConstructorParameterDescription(self.flags)), ("startDate", ConstructorParameterDescription(self.startDate)), ("endDate", ConstructorParameterDescription(self.endDate)), ("averagePrice", ConstructorParameterDescription(self.averagePrice)), ("listedCount", ConstructorParameterDescription(self.listedCount)), ("fragmentListedCount", ConstructorParameterDescription(self.fragmentListedCount)), ("fragmentListedUrl", ConstructorParameterDescription(self.fragmentListedUrl))])
             }
         }
         case starGiftAuctionState(Cons_starGiftAuctionState)
@@ -1686,12 +1752,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAuctionState(let _data):
-                return ("starGiftAuctionState", [("version", _data.version as Any), ("startDate", _data.startDate as Any), ("endDate", _data.endDate as Any), ("minBidAmount", _data.minBidAmount as Any), ("bidLevels", _data.bidLevels as Any), ("topBidders", _data.topBidders as Any), ("nextRoundAt", _data.nextRoundAt as Any), ("lastGiftNum", _data.lastGiftNum as Any), ("giftsLeft", _data.giftsLeft as Any), ("currentRound", _data.currentRound as Any), ("totalRounds", _data.totalRounds as Any), ("rounds", _data.rounds as Any)])
+                return ("starGiftAuctionState", [("version", ConstructorParameterDescription(_data.version)), ("startDate", ConstructorParameterDescription(_data.startDate)), ("endDate", ConstructorParameterDescription(_data.endDate)), ("minBidAmount", ConstructorParameterDescription(_data.minBidAmount)), ("bidLevels", ConstructorParameterDescription(_data.bidLevels)), ("topBidders", ConstructorParameterDescription(_data.topBidders)), ("nextRoundAt", ConstructorParameterDescription(_data.nextRoundAt)), ("lastGiftNum", ConstructorParameterDescription(_data.lastGiftNum)), ("giftsLeft", ConstructorParameterDescription(_data.giftsLeft)), ("currentRound", ConstructorParameterDescription(_data.currentRound)), ("totalRounds", ConstructorParameterDescription(_data.totalRounds)), ("rounds", ConstructorParameterDescription(_data.rounds))])
             case .starGiftAuctionStateFinished(let _data):
-                return ("starGiftAuctionStateFinished", [("flags", _data.flags as Any), ("startDate", _data.startDate as Any), ("endDate", _data.endDate as Any), ("averagePrice", _data.averagePrice as Any), ("listedCount", _data.listedCount as Any), ("fragmentListedCount", _data.fragmentListedCount as Any), ("fragmentListedUrl", _data.fragmentListedUrl as Any)])
+                return ("starGiftAuctionStateFinished", [("flags", ConstructorParameterDescription(_data.flags)), ("startDate", ConstructorParameterDescription(_data.startDate)), ("endDate", ConstructorParameterDescription(_data.endDate)), ("averagePrice", ConstructorParameterDescription(_data.averagePrice)), ("listedCount", ConstructorParameterDescription(_data.listedCount)), ("fragmentListedCount", ConstructorParameterDescription(_data.fragmentListedCount)), ("fragmentListedUrl", ConstructorParameterDescription(_data.fragmentListedUrl))])
             case .starGiftAuctionStateNotModified:
                 return ("starGiftAuctionStateNotModified", [])
             }
@@ -1789,7 +1855,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftAuctionUserState: TypeConstructorDescription {
-        public class Cons_starGiftAuctionUserState {
+        public class Cons_starGiftAuctionUserState: TypeConstructorDescription {
             public var flags: Int32
             public var bidAmount: Int64?
             public var bidDate: Int32?
@@ -1803,6 +1869,9 @@ public extension Api {
                 self.minBidAmount = minBidAmount
                 self.bidPeer = bidPeer
                 self.acquiredCount = acquiredCount
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftAuctionUserState", [("flags", ConstructorParameterDescription(self.flags)), ("bidAmount", ConstructorParameterDescription(self.bidAmount)), ("bidDate", ConstructorParameterDescription(self.bidDate)), ("minBidAmount", ConstructorParameterDescription(self.minBidAmount)), ("bidPeer", ConstructorParameterDescription(self.bidPeer)), ("acquiredCount", ConstructorParameterDescription(self.acquiredCount))])
             }
         }
         case starGiftAuctionUserState(Cons_starGiftAuctionUserState)
@@ -1831,10 +1900,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftAuctionUserState(let _data):
-                return ("starGiftAuctionUserState", [("flags", _data.flags as Any), ("bidAmount", _data.bidAmount as Any), ("bidDate", _data.bidDate as Any), ("minBidAmount", _data.minBidAmount as Any), ("bidPeer", _data.bidPeer as Any), ("acquiredCount", _data.acquiredCount as Any)])
+                return ("starGiftAuctionUserState", [("flags", ConstructorParameterDescription(_data.flags)), ("bidAmount", ConstructorParameterDescription(_data.bidAmount)), ("bidDate", ConstructorParameterDescription(_data.bidDate)), ("minBidAmount", ConstructorParameterDescription(_data.minBidAmount)), ("bidPeer", ConstructorParameterDescription(_data.bidPeer)), ("acquiredCount", ConstructorParameterDescription(_data.acquiredCount))])
             }
         }
 
@@ -1878,7 +1947,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftBackground: TypeConstructorDescription {
-        public class Cons_starGiftBackground {
+        public class Cons_starGiftBackground: TypeConstructorDescription {
             public var centerColor: Int32
             public var edgeColor: Int32
             public var textColor: Int32
@@ -1886,6 +1955,9 @@ public extension Api {
                 self.centerColor = centerColor
                 self.edgeColor = edgeColor
                 self.textColor = textColor
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftBackground", [("centerColor", ConstructorParameterDescription(self.centerColor)), ("edgeColor", ConstructorParameterDescription(self.edgeColor)), ("textColor", ConstructorParameterDescription(self.textColor))])
             }
         }
         case starGiftBackground(Cons_starGiftBackground)
@@ -1903,10 +1975,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftBackground(let _data):
-                return ("starGiftBackground", [("centerColor", _data.centerColor as Any), ("edgeColor", _data.edgeColor as Any), ("textColor", _data.textColor as Any)])
+                return ("starGiftBackground", [("centerColor", ConstructorParameterDescription(_data.centerColor)), ("edgeColor", ConstructorParameterDescription(_data.edgeColor)), ("textColor", ConstructorParameterDescription(_data.textColor))])
             }
         }
 
@@ -1931,7 +2003,7 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftCollection: TypeConstructorDescription {
-        public class Cons_starGiftCollection {
+        public class Cons_starGiftCollection: TypeConstructorDescription {
             public var flags: Int32
             public var collectionId: Int32
             public var title: String
@@ -1945,6 +2017,9 @@ public extension Api {
                 self.icon = icon
                 self.giftsCount = giftsCount
                 self.hash = hash
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftCollection", [("flags", ConstructorParameterDescription(self.flags)), ("collectionId", ConstructorParameterDescription(self.collectionId)), ("title", ConstructorParameterDescription(self.title)), ("icon", ConstructorParameterDescription(self.icon)), ("giftsCount", ConstructorParameterDescription(self.giftsCount)), ("hash", ConstructorParameterDescription(self.hash))])
             }
         }
         case starGiftCollection(Cons_starGiftCollection)
@@ -1967,10 +2042,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftCollection(let _data):
-                return ("starGiftCollection", [("flags", _data.flags as Any), ("collectionId", _data.collectionId as Any), ("title", _data.title as Any), ("icon", _data.icon as Any), ("giftsCount", _data.giftsCount as Any), ("hash", _data.hash as Any)])
+                return ("starGiftCollection", [("flags", ConstructorParameterDescription(_data.flags)), ("collectionId", ConstructorParameterDescription(_data.collectionId)), ("title", ConstructorParameterDescription(_data.title)), ("icon", ConstructorParameterDescription(_data.icon)), ("giftsCount", ConstructorParameterDescription(_data.giftsCount)), ("hash", ConstructorParameterDescription(_data.hash))])
             }
         }
 
@@ -2008,12 +2083,15 @@ public extension Api {
 }
 public extension Api {
     enum StarGiftUpgradePrice: TypeConstructorDescription {
-        public class Cons_starGiftUpgradePrice {
+        public class Cons_starGiftUpgradePrice: TypeConstructorDescription {
             public var date: Int32
             public var upgradeStars: Int64
             public init(date: Int32, upgradeStars: Int64) {
                 self.date = date
                 self.upgradeStars = upgradeStars
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starGiftUpgradePrice", [("date", ConstructorParameterDescription(self.date)), ("upgradeStars", ConstructorParameterDescription(self.upgradeStars))])
             }
         }
         case starGiftUpgradePrice(Cons_starGiftUpgradePrice)
@@ -2030,10 +2108,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starGiftUpgradePrice(let _data):
-                return ("starGiftUpgradePrice", [("date", _data.date as Any), ("upgradeStars", _data.upgradeStars as Any)])
+                return ("starGiftUpgradePrice", [("date", ConstructorParameterDescription(_data.date)), ("upgradeStars", ConstructorParameterDescription(_data.upgradeStars))])
             }
         }
 
@@ -2055,7 +2133,7 @@ public extension Api {
 }
 public extension Api {
     enum StarRefProgram: TypeConstructorDescription {
-        public class Cons_starRefProgram {
+        public class Cons_starRefProgram: TypeConstructorDescription {
             public var flags: Int32
             public var botId: Int64
             public var commissionPermille: Int32
@@ -2069,6 +2147,9 @@ public extension Api {
                 self.durationMonths = durationMonths
                 self.endDate = endDate
                 self.dailyRevenuePerUser = dailyRevenuePerUser
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("starRefProgram", [("flags", ConstructorParameterDescription(self.flags)), ("botId", ConstructorParameterDescription(self.botId)), ("commissionPermille", ConstructorParameterDescription(self.commissionPermille)), ("durationMonths", ConstructorParameterDescription(self.durationMonths)), ("endDate", ConstructorParameterDescription(self.endDate)), ("dailyRevenuePerUser", ConstructorParameterDescription(self.dailyRevenuePerUser))])
             }
         }
         case starRefProgram(Cons_starRefProgram)
@@ -2095,10 +2176,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .starRefProgram(let _data):
-                return ("starRefProgram", [("flags", _data.flags as Any), ("botId", _data.botId as Any), ("commissionPermille", _data.commissionPermille as Any), ("durationMonths", _data.durationMonths as Any), ("endDate", _data.endDate as Any), ("dailyRevenuePerUser", _data.dailyRevenuePerUser as Any)])
+                return ("starRefProgram", [("flags", ConstructorParameterDescription(_data.flags)), ("botId", ConstructorParameterDescription(_data.botId)), ("commissionPermille", ConstructorParameterDescription(_data.commissionPermille)), ("durationMonths", ConstructorParameterDescription(_data.durationMonths)), ("endDate", ConstructorParameterDescription(_data.endDate)), ("dailyRevenuePerUser", ConstructorParameterDescription(_data.dailyRevenuePerUser))])
             }
         }
 

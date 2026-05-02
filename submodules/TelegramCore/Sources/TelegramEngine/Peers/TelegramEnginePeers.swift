@@ -486,12 +486,12 @@ public extension TelegramEngine {
             return _internal_channelMembers(postbox: self.account.postbox, network: self.account.network, accountPeerId: self.account.peerId, peerId: peerId, category: category, offset: offset, limit: limit, hash: hash)
         }
 
-        public func checkOwnershipTranfserAvailability(memberId: PeerId) -> Signal<Never, ChannelOwnershipTransferError> {
+        public func checkOwnershipTranfserAvailability(memberId: PeerId) -> Signal<Never, ChatOwnershipTransferError> {
             return _internal_checkOwnershipTranfserAvailability(postbox: self.account.postbox, network: self.account.network, accountStateManager: self.account.stateManager, memberId: memberId)
         }
 
-        public func updateChannelOwnership(channelId: PeerId, memberId: PeerId, password: String) -> Signal<[(ChannelParticipant?, RenderedChannelParticipant)], ChannelOwnershipTransferError> {
-            return _internal_updateChannelOwnership(account: self.account, channelId: channelId, memberId: memberId, password: password)
+        public func updateChatOwnership(peerId: PeerId, memberId: PeerId, password: String) -> Signal<[(ChannelParticipant?, RenderedChannelParticipant)], ChatOwnershipTransferError> {
+            return _internal_updateChatOwnership(account: self.account, peerId: peerId, memberId: memberId, password: password)
         }
 
         public func searchGroupMembers(peerId: PeerId, query: String) -> Signal<[EnginePeer], NoError> {
@@ -505,8 +505,8 @@ public extension TelegramEngine {
             return _internal_toggleShouldChannelMessagesSignatures(account: self.account, peerId: peerId, signaturesEnabled: signaturesEnabled, profilesEnabled: profilesEnabled)
         }
 
-        public func toggleMessageCopyProtection(peerId: PeerId, enabled: Bool) -> Signal<Void, NoError> {
-            return _internal_toggleMessageCopyProtection(account: self.account, peerId: peerId, enabled: enabled)
+        public func toggleMessageCopyProtection(peerId: PeerId, enabled: Bool, requestMessageId: EngineMessage.Id? = nil) -> Signal<CopyProtectionResult, NoError> {
+            return _internal_toggleMessageCopyProtection(account: self.account, peerId: peerId, enabled: enabled, requestMessageId: requestMessageId)
         }
         
         public func toggleChannelJoinToSend(peerId: PeerId, enabled: Bool) -> Signal<Never, UpdateChannelJoinToSendError> {
@@ -616,6 +616,10 @@ public extension TelegramEngine {
         public func getFutureCreatorAfterLeave(peerId: EnginePeer.Id) -> Signal<EnginePeer?, NoError> {
             return _internal_getFutureCreatorAfterLeave(account: self.account, peerId: peerId)
         }
+                
+        public func updateChatRank(peerId: PeerId, userId: PeerId, messageId: MessageId? = nil, rank: String?) -> Signal<(ChannelParticipant?, RenderedChannelParticipant)?, UpdateChatRankError> {
+            return _internal_updateChatRank(account: account, peerId: peerId, userId: userId, messageId: messageId, rank: rank)
+        }
 
         public func terminateSecretChat(peerId: PeerId, requestRemoteHistoryRemoval: Bool) -> Signal<Never, NoError> {
             return self.account.postbox.transaction { transaction -> Void in
@@ -633,7 +637,19 @@ public extension TelegramEngine {
         }
         
         public func sendBotRequestedPeer(messageId: MessageId, buttonId: Int32, requestedPeerIds: [PeerId]) -> Signal<Void, SendBotRequestedPeerError> {
-            return _internal_sendBotRequestedPeer(account: self.account, peerId: messageId.peerId, messageId: messageId, buttonId: buttonId, requestedPeerIds: requestedPeerIds)
+            return _internal_sendBotRequestedPeer(account: self.account, peerId: messageId.peerId, messageId: messageId, requestId: nil, buttonId: buttonId, requestedPeerIds: requestedPeerIds)
+        }
+
+        public func sendBotRequestedPeer(peerId: PeerId, requestId: String, buttonId: Int32, requestedPeerIds: [PeerId]) -> Signal<Void, SendBotRequestedPeerError> {
+            return _internal_sendBotRequestedPeer(account: self.account, peerId: peerId, messageId: nil, requestId: requestId, buttonId: buttonId, requestedPeerIds: requestedPeerIds)
+        }
+
+        public func createBot(name: String, username: String, managerPeerId: PeerId, viaDeeplink: Bool) -> Signal<EnginePeer, CreateBotError> {
+            return _internal_createBot(account: self.account, name: name, username: username, managerPeerId: managerPeerId, viaDeeplink: viaDeeplink)
+        }
+
+        public func getRequestedWebViewButton(botId: PeerId, requestId: String) -> Signal<ReplyMarkupButton, GetRequestedWebViewButtonError> {
+            return _internal_getRequestedWebViewButton(account: self.account, botId: botId, requestId: requestId)
         }
 
         public func addChannelMembers(peerId: PeerId, memberIds: [PeerId]) -> Signal<TelegramInvitePeersResult, AddChannelMemberError> {

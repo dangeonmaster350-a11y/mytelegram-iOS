@@ -8,7 +8,6 @@ import DeleteChatPeerActionSheetItem
 import PeerListItemComponent
 import LegacyComponents
 import LegacyUI
-import WebSearchUI
 import MapResourceToAvatarSizes
 import LegacyMediaPickerUI
 import AvatarNode
@@ -316,8 +315,8 @@ extension VideoChatScreenComponent.View {
             ]
             
             let videoQualityTitle = qualityList.first(where: { $0.0 == self.maxVideoQuality })?.1 ?? ""
-            items.append(.action(ContextMenuActionItem(text: environment.strings.VideoChat_IncomingVideoQuality_Title, textColor: .primary, textLayout: .secondLineWithValue(videoQualityTitle), icon: { _ in
-                return nil
+            items.append(.action(ContextMenuActionItem(text: environment.strings.VideoChat_IncomingVideoQuality_Title, textColor: .primary, textLayout: .secondLineWithValue(videoQualityTitle), icon: { theme in
+                return generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Settings"), color: theme.actionSheet.primaryTextColor)
             }, action: { [weak self] c, _ in
                 guard let self else {
                     c?.dismiss(completion: nil)
@@ -338,7 +337,7 @@ extension VideoChatScreenComponent.View {
                         if isSelected {
                             return generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: .white)
                         } else {
-                            return nil
+                            return UIImage()
                         }
                     }, action: { [weak self] _, f in
                         f(.default)
@@ -730,7 +729,7 @@ extension VideoChatScreenComponent.View {
                 if output == currentOutput {
                     return generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.actionSheet.primaryTextColor)
                 } else {
-                    return nil
+                    return UIImage()
                 }
             }, action: { [weak self] _, f in
                 f(.default)
@@ -763,7 +762,7 @@ extension VideoChatScreenComponent.View {
             items.append(.separator)
             items.append(.action(ContextMenuActionItem(text: environment.strings.VoiceChat_SpeakPermissionEveryone, icon: { theme in
                 if isMuted {
-                    return nil
+                    return UIImage()
                 } else {
                     return generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.actionSheet.primaryTextColor)
                 }
@@ -777,7 +776,7 @@ extension VideoChatScreenComponent.View {
             })))
             items.append(.action(ContextMenuActionItem(text: environment.strings.VoiceChat_SpeakPermissionAdmin, icon: { theme in
                 if !isMuted {
-                    return nil
+                    return UIImage()
                 } else {
                     return generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.actionSheet.primaryTextColor)
                 }

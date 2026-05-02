@@ -601,6 +601,8 @@ public final class ChatTextInputPanelComponent: Component {
                     sendSticker: { _, _, _, _, _, _ in
                         return false
                     },
+                    editSticker: { _ in
+                    },
                     unblockPeer: {
                     },
                     pinMessage: { _, _ in
@@ -649,6 +651,8 @@ public final class ChatTextInputPanelComponent: Component {
                     unarchiveChat: {
                     },
                     openLinkEditing: {
+                    },
+                    openDateEditing: {
                     },
                     displaySlowmodeTooltip: { _, _ in
                     },
@@ -752,7 +756,13 @@ public final class ChatTextInputPanelComponent: Component {
                     },
                     displayUndo: { _ in
                     },
+                    presentInputTextTranslation: { _, _ in
+                    },
                     sendEmoji: { _, _, _ in
+                    },
+                    openAICompose: {
+                    },
+                    openSetPeerAvatar: {
                     },
                     updateHistoryFilter: { _ in
                     },

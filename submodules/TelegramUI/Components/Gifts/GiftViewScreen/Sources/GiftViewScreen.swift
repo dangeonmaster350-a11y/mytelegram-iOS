@@ -934,73 +934,75 @@ private final class GiftViewSheetContent: CombinedComponent {
             let link = "https://t.me/nft/\(gift.slug)"
             let shareController = self.context.sharedContext.makeShareController(
                 context: self.context,
-                subject: .url(link),
-                forceExternal: false,
-                shareStory: shareStoryImpl,
-                enqueued: { [weak self, weak controller] peerIds, _ in
-                    guard let self else {
-                        return
-                    }
-                    let _ = (self.context.engine.data.get(
-                        EngineDataList(
-                            peerIds.map(TelegramEngine.EngineData.Item.Peer.Peer.init)
-                        )
-                    )
-                    |> deliverOnMainQueue).startStandalone(next: { [weak self, weak controller] peerList in
+                params: ShareControllerParams(
+                    subject: .url(link),
+                    externalShare: false,
+                    actionCompleted: { [weak controller] in
+                        controller?.present(UndoOverlayController(presentationData: presentationData, content: .linkCopied(title: nil, text: presentationData.strings.Conversation_LinkCopied), elevatedLayout: false, animateInAsReplacement: false, action: { _ in return false }), in: .current)
+                    },
+                    enqueued: { [weak self, weak controller] peerIds, _ in
                         guard let self else {
                             return
                         }
-                        let peers = peerList.compactMap { $0 }
-                        let presentationData = self.context.sharedContext.currentPresentationData.with { $0 }
-                        let text: String
-                        var savedMessages = false
-                        if peerIds.count == 1, let peerId = peerIds.first, peerId == context.account.peerId {
-                            text = presentationData.strings.Conversation_ForwardTooltip_SavedMessages_One
-                            savedMessages = true
-                        } else {
-                            if peers.count == 1, let peer = peers.first {
-                                var peerName = peer.id == context.account.peerId ? presentationData.strings.DialogList_SavedMessages : peer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
-                                peerName = peerName.replacingOccurrences(of: "**", with: "")
-                                text = presentationData.strings.Conversation_ForwardTooltip_Chat_One(peerName).string
-                            } else if peers.count == 2, let firstPeer = peers.first, let secondPeer = peers.last {
-                                var firstPeerName = firstPeer.id == context.account.peerId ? presentationData.strings.DialogList_SavedMessages : firstPeer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
-                                firstPeerName = firstPeerName.replacingOccurrences(of: "**", with: "")
-                                var secondPeerName = secondPeer.id == context.account.peerId ? presentationData.strings.DialogList_SavedMessages : secondPeer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
-                                secondPeerName = secondPeerName.replacingOccurrences(of: "**", with: "")
-                                text = presentationData.strings.Conversation_ForwardTooltip_TwoChats_One(firstPeerName, secondPeerName).string
-                            } else if let peer = peers.first {
-                                var peerName = peer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
-                                peerName = peerName.replacingOccurrences(of: "**", with: "")
-                                text = presentationData.strings.Conversation_ForwardTooltip_ManyChats_One(peerName, "\(peers.count - 1)").string
+                        let _ = (self.context.engine.data.get(
+                            EngineDataList(
+                                peerIds.map(TelegramEngine.EngineData.Item.Peer.Peer.init)
+                            )
+                        )
+                        |> deliverOnMainQueue).startStandalone(next: { [weak self, weak controller] peerList in
+                            guard let self else {
+                                return
+                            }
+                            let peers = peerList.compactMap { $0 }
+                            let presentationData = self.context.sharedContext.currentPresentationData.with { $0 }
+                            let text: String
+                            var savedMessages = false
+                            if peerIds.count == 1, let peerId = peerIds.first, peerId == context.account.peerId {
+                                text = presentationData.strings.Conversation_ForwardTooltip_SavedMessages_One
+                                savedMessages = true
                             } else {
-                                text = ""
+                                if peers.count == 1, let peer = peers.first {
+                                    var peerName = peer.id == context.account.peerId ? presentationData.strings.DialogList_SavedMessages : peer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
+                                    peerName = peerName.replacingOccurrences(of: "**", with: "")
+                                    text = presentationData.strings.Conversation_ForwardTooltip_Chat_One(peerName).string
+                                } else if peers.count == 2, let firstPeer = peers.first, let secondPeer = peers.last {
+                                    var firstPeerName = firstPeer.id == context.account.peerId ? presentationData.strings.DialogList_SavedMessages : firstPeer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
+                                    firstPeerName = firstPeerName.replacingOccurrences(of: "**", with: "")
+                                    var secondPeerName = secondPeer.id == context.account.peerId ? presentationData.strings.DialogList_SavedMessages : secondPeer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
+                                    secondPeerName = secondPeerName.replacingOccurrences(of: "**", with: "")
+                                    text = presentationData.strings.Conversation_ForwardTooltip_TwoChats_One(firstPeerName, secondPeerName).string
+                                } else if let peer = peers.first {
+                                    var peerName = peer.displayTitle(strings: presentationData.strings, displayOrder: presentationData.nameDisplayOrder)
+                                    peerName = peerName.replacingOccurrences(of: "**", with: "")
+                                    text = presentationData.strings.Conversation_ForwardTooltip_ManyChats_One(peerName, "\(peers.count - 1)").string
+                                } else {
+                                    text = ""
+                                }
                             }
-                        }
-                        
-                        controller?.present(UndoOverlayController(presentationData: presentationData, content: .forward(savedMessages: savedMessages, text: text), elevatedLayout: false, animateInAsReplacement: false, action: { [weak self, weak controller] action in
-                            if let self, savedMessages, action == .info {
-                                let _ = (self.context.engine.data.get(TelegramEngine.EngineData.Item.Peer.Peer(id: self.context.account.peerId))
-                                |> deliverOnMainQueue).start(next: { [weak self, weak controller] peer in
-                                    guard let peer else {
-                                        return
-                                    }
-                                    self?.openPeer(peer)
-                                    Queue.mainQueue().after(0.6) {
-                                        controller?.dismiss(animated: false, completion: nil)
-                                    }
-                                })
-                            }
-                            return false
-                        }, additionalView: nil), in: .current)
-                    })
-                },
-                actionCompleted: { [weak controller] in
-                    controller?.present(UndoOverlayController(presentationData: presentationData, content: .linkCopied(title: nil, text: presentationData.strings.Conversation_LinkCopied), elevatedLayout: false, animateInAsReplacement: false, action: { _ in return false }), in: .current)
-                }
+
+                            controller?.present(UndoOverlayController(presentationData: presentationData, content: .forward(savedMessages: savedMessages, text: text), elevatedLayout: false, animateInAsReplacement: false, action: { [weak self, weak controller] action in
+                                if let self, savedMessages, action == .info {
+                                    let _ = (self.context.engine.data.get(TelegramEngine.EngineData.Item.Peer.Peer(id: self.context.account.peerId))
+                                    |> deliverOnMainQueue).start(next: { [weak self, weak controller] peer in
+                                        guard let peer else {
+                                            return
+                                        }
+                                        self?.openPeer(peer)
+                                        Queue.mainQueue().after(0.6) {
+                                            controller?.dismiss(animated: false, completion: nil)
+                                        }
+                                    })
+                                }
+                                return false
+                            }, additionalView: nil), in: .current)
+                        })
+                    },
+                    shareStory: shareStoryImpl
+                )
             )
             controller.present(shareController, in: .window(.root))
         }
-        
+
         func setAsGiftTheme() {
             guard let arguments = self.subject.arguments, let controller = self.getController() as? GiftViewScreen, let navigationController = controller.navigationController as? NavigationController, case let .unique(gift) = arguments.gift else {
                 return
@@ -1103,17 +1105,40 @@ private final class GiftViewSheetContent: CombinedComponent {
             controller.present(alertController, in: .window(.root))
         }
         
+        func presentGiftUnavailableForCraftingFirst(gift: StarGift.UniqueGift) {
+            guard let controller = self.getController() as? GiftViewScreen else {
+                return
+            }
+            let context = self.context
+            let presentationData = context.sharedContext.currentPresentationData.with { $0 }
+            let alertController = textAlertController(
+                context: context,
+                title: presentationData.strings.Gift_Craft_UnavailableBlockchain_Title,
+                text: presentationData.strings.Gift_Craft_UnavailableBlockchain_Text,
+                actions: [
+                    TextAlertAction(type: .defaultAction, title: presentationData.strings.Common_OK, action: {})
+                ],
+                actionLayout: .vertical
+            )
+            controller.present(alertController, in: .window(.root))
+        }
+        
         func craftGift() {
             guard let arguments = self.subject.arguments, let controller = self.getController() as? GiftViewScreen, case let .unique(gift) = arguments.gift else {
                 return
             }
             
+            controller.dismissAllTooltips()
+            
             guard gift.hostPeerId == nil else {
                 self.presentActionLockedForHostedGift(gift: gift)
                 return
             }
-            
-            controller.dismissAllTooltips()
+                        
+            guard gift.giftAddress == nil else {
+                self.presentGiftUnavailableForCraftingFirst(gift: gift)
+                return
+            }
             
             let presentationData = self.context.sharedContext.currentPresentationData.with { $0 }
             
@@ -1300,86 +1325,111 @@ private final class GiftViewSheetContent: CombinedComponent {
                 )
                 controller.present(alertController, in: .window(.root))
             } else {
+                let context = self.context
+                var dismissImpl: (() -> Void)?
                 let resellController = self.context.sharedContext.makeStarGiftResellScreen(context: self.context, gift: gift, update: update, completion: { [weak self, weak controller] price in
                     guard let self, let controller else {
                         return
                     }
-                                    
-                    let _ = ((controller.updateResellStars?(reference, price) ?? self.context.engine.payments.updateStarGiftResalePrice(reference: reference, price: price))
-                    |> deliverOnMainQueue).startStandalone(error: { [weak self, weak controller] error in
-                        guard let self else {
-                            return
-                        }
-                        
-                        let title: String?
-                        let text: String
-                        switch error {
-                        case .generic:
-                            title = nil
-                            text = presentationData.strings.Gift_Send_ErrorUnknown
-                        case let .starGiftResellTooEarly(canResaleDate):
-                            let dateString = stringForFullDate(timestamp: currentTime + canResaleDate, strings: presentationData.strings, dateTimeFormat: presentationData.dateTimeFormat)
-                            title = presentationData.strings.Gift_Resale_Unavailable_Title
-                            text = presentationData.strings.Gift_Resale_Unavailable_Text(dateString).string
-                        }
-                        
-                        let alertController = textAlertController(
-                            context: self.context,
-                            title: title,
-                            text: text,
-                            actions: [
-                                TextAlertAction(type: .defaultAction, title: presentationData.strings.Common_OK, action: {})
-                            ],
-                            parseMarkdown: true
-                        )
-                        controller?.present(alertController, in: .window(.root))
-                    }, completed: { [weak self, weak controller] in
+                    controller.view.window?.endEditing(true)
+                    let action = { [weak self, weak controller] in
                         guard let self, let controller else {
                             return
                         }
-                        
-                        switch self.subject {
-                        case let .profileGift(peerId, currentSubject):
-                            self.subject = .profileGift(peerId, currentSubject.withGift(.unique(gift.withResellAmounts([price]).withResellForTonOnly(price.currency == .ton))))
-                        case let .uniqueGift(_, recipientPeerId):
-                            self.subject = .uniqueGift(gift.withResellAmounts([price]).withResellForTonOnly(price.currency == .ton), recipientPeerId)
-                        default:
-                            break
-                        }
-                        self.updated(transition: .easeInOut(duration: 0.2))
-                        
-                        var text = presentationData.strings.Gift_View_Resale_List_Success(giftTitle).string
-                        if update {
-                            let priceString: String
-                            switch price.currency {
-                            case .stars:
-                                priceString = presentationData.strings.Gift_View_Resale_Relist_Success_Stars(Int32(clamping: price.amount.value))
-                            case .ton:
-                                priceString = formatTonAmountText(price.amount.value, dateTimeFormat: presentationData.dateTimeFormat, maxDecimalPositions: nil) + " TON"
+                        let _ = ((controller.updateResellStars?(reference, price) ?? context.engine.payments.updateStarGiftResalePrice(reference: reference, price: price))
+                        |> deliverOnMainQueue).startStandalone(error: { [weak self, weak controller] error in
+                            guard let self else {
+                                return
                             }
-                            text = presentationData.strings.Gift_View_Resale_Relist_Success(giftTitle, priceString).string
-                        }
-                                         
-                        let tooltipController = UndoOverlayController(
-                            presentationData: presentationData,
-                            content: .universalImage(
-                                image: generateTintedImage(image: UIImage(bundleImageName: "Premium/Collectible/Sell"), color: .white)!,
-                                size: nil,
-                                title: nil,
+                            
+                            let title: String?
+                            let text: String
+                            switch error {
+                            case .generic:
+                                title = nil
+                                text = presentationData.strings.Gift_Send_ErrorUnknown
+                            case let .starGiftResellTooEarly(canResaleDate):
+                                let dateString = stringForFullDate(timestamp: currentTime + canResaleDate, strings: presentationData.strings, dateTimeFormat: presentationData.dateTimeFormat)
+                                title = presentationData.strings.Gift_Resale_Unavailable_Title
+                                text = presentationData.strings.Gift_Resale_Unavailable_Text(dateString).string
+                            }
+                            
+                            let alertController = textAlertController(
+                                context: self.context,
+                                title: title,
                                 text: text,
-                                customUndoText: nil,
-                                timeout: 3.0
-                            ),
-                            position: .bottom,
-                            animateInAsReplacement: false,
-                            appearance: isTablet ? nil : UndoOverlayController.Appearance(sideInset: 16.0, bottomInset: 62.0),
-                            action: { action in
-                                return false
+                                actions: [
+                                    TextAlertAction(type: .defaultAction, title: presentationData.strings.Common_OK, action: {})
+                                ],
+                                parseMarkdown: true
+                            )
+                            controller?.present(alertController, in: .window(.root))
+                        }, completed: { [weak self, weak controller] in
+                            guard let self, let controller else {
+                                return
                             }
-                        )
-                        controller.present(tooltipController, in: isTablet ? .current : .window(.root))
-                    })
+                            
+                            switch self.subject {
+                            case let .profileGift(peerId, currentSubject):
+                                self.subject = .profileGift(peerId, currentSubject.withGift(.unique(gift.withResellAmounts([price]).withResellForTonOnly(price.currency == .ton))))
+                            case let .uniqueGift(_, recipientPeerId):
+                                self.subject = .uniqueGift(gift.withResellAmounts([price]).withResellForTonOnly(price.currency == .ton), recipientPeerId)
+                            default:
+                                break
+                            }
+                            self.updated(transition: .easeInOut(duration: 0.2))
+                            
+                            var text = presentationData.strings.Gift_View_Resale_List_Success(giftTitle).string
+                            if update {
+                                let priceString: String
+                                switch price.currency {
+                                case .stars:
+                                    priceString = presentationData.strings.Gift_View_Resale_Relist_Success_Stars(Int32(clamping: price.amount.value))
+                                case .ton:
+                                    priceString = formatTonAmountText(price.amount.value, dateTimeFormat: presentationData.dateTimeFormat, maxDecimalPositions: nil) + " TON"
+                                }
+                                text = presentationData.strings.Gift_View_Resale_Relist_Success(giftTitle, priceString).string
+                            }
+                                             
+                            let tooltipController = UndoOverlayController(
+                                presentationData: presentationData,
+                                content: .universalImage(
+                                    image: generateTintedImage(image: UIImage(bundleImageName: "Premium/Collectible/Sell"), color: .white)!,
+                                    size: nil,
+                                    title: nil,
+                                    text: text,
+                                    customUndoText: nil,
+                                    timeout: 3.0
+                                ),
+                                position: .bottom,
+                                animateInAsReplacement: false,
+                                appearance: isTablet ? nil : UndoOverlayController.Appearance(sideInset: 16.0, bottomInset: 62.0),
+                                action: { action in
+                                    return false
+                                }
+                            )
+                            controller.present(tooltipController, in: isTablet ? .current : .window(.root))
+                        })
+                        
+                        dismissImpl?()
+                    }
+                    
+                    let alertController = giftSaleAlertController(
+                        context: context,
+                        gift: gift,
+                        resellAmount: price,
+                        commit: {
+                            action()
+                        },
+                        dismissed: {
+                            
+                        }
+                    )
+                    controller.present(alertController, in: .window(.root))
                 })
+                dismissImpl = { [weak resellController] in
+                    resellController?.dismiss(animated: true)
+                }
                 controller.push(resellController)
             }
         }
@@ -3191,7 +3241,7 @@ private final class GiftViewSheetContent: CombinedComponent {
                 var hasDescriptionButton = false
                 if let uniqueGift {
                     titleString = uniqueGift.title + " **#\(formatCollectibleNumber(uniqueGift.number, dateTimeFormat: environment.dateTimeFormat))**"
-                    descriptionText = "\(strings.Gift_Unique_Collectible) #\(formatCollectibleNumber(uniqueGift.number, dateTimeFormat: environment.dateTimeFormat))"
+                    descriptionText = "\(strings.Gift_Unique_Collectible)"
                     for attribute in uniqueGift.attributes {
                         if case let .model(name, _, _, _) = attribute {
                             descriptionText = name
@@ -3472,7 +3522,7 @@ private final class GiftViewSheetContent: CombinedComponent {
                     }
                     
                     var descriptionSize = CGSize()
-                    if state.justUpgraded {
+                    if !"".isEmpty, state.justUpgraded {
                         var items: [AnyComponentWithIdentity<Empty>] = [
                             AnyComponentWithIdentity(id: "label", component: AnyComponent(Text(text: "\(strings.Gift_Unique_Collectible) #", font: textFont, color: .white, tintColor: textColor)))
                         ]
@@ -4677,7 +4727,26 @@ private final class GiftViewSheetContent: CombinedComponent {
             )
                         
             let buttonChild: _UpdatedChildComponent
-            if state.canSkip {
+            if let controller = controller() as? GiftViewScreen, let customAction = controller.customAction {
+                buttonChild = button.update(
+                    component: ButtonComponent(
+                        background: buttonBackground,
+                        content: AnyComponentWithIdentity(
+                            id: AnyHashable("custom"),
+                            component: AnyComponent(MultilineTextComponent(text: .plain(NSAttributedString(string: customAction.title, font: Font.semibold(17.0), textColor: theme.list.itemCheckColors.foregroundColor, paragraphAlignment: .center))))
+                        ),
+                        isEnabled: true,
+                        displaysProgress: state.inProgress,
+                        action: { [weak state] in
+                            if let state {
+                                customAction.action()
+                                state.dismiss(animated: true)
+                            }
+                        }),
+                    availableSize: buttonSize,
+                    transition: context.transition
+                )
+            } else if state.canSkip {
                 buttonChild = button.update(
                     component: ButtonComponent(
                         background: buttonBackground,
@@ -5630,6 +5699,16 @@ public class GiftViewScreen: ViewControllerComponentContainer {
         }
     }
     
+    public struct CustomAction {
+        public let title: String
+        public let action: () -> Void
+        
+        public init(title: String, action: @escaping () -> Void) {
+            self.title = title
+            self.action = action
+        }
+    }
+    
     private let context: AccountContext
     private let subject: GiftViewScreen.Subject
     
@@ -5671,6 +5750,7 @@ public class GiftViewScreen: ViewControllerComponentContainer {
     fileprivate let togglePinnedToTop: ((StarGiftReference, Bool) -> Bool)?
     fileprivate let shareStory: ((StarGift.UniqueGift) -> Void)?
     fileprivate let openChatTheme: (() -> Void)?
+    fileprivate let customAction: CustomAction?
     
     public var disposed: () -> Void = {}
     
@@ -5690,7 +5770,8 @@ public class GiftViewScreen: ViewControllerComponentContainer {
         updateResellStars: ((StarGiftReference, CurrencyAmount?) -> Signal<Never, UpdateStarGiftPriceError>)? = nil,
         togglePinnedToTop: ((StarGiftReference, Bool) -> Bool)? = nil,
         shareStory: ((StarGift.UniqueGift) -> Void)? = nil,
-        openChatTheme: (() -> Void)? = nil
+        openChatTheme: (() -> Void)? = nil,
+        customAction: CustomAction? = nil
     ) {
         self.context = context
         self.subject = subject
@@ -5706,6 +5787,7 @@ public class GiftViewScreen: ViewControllerComponentContainer {
         self.togglePinnedToTop = togglePinnedToTop
         self.shareStory = shareStory
         self.openChatTheme = openChatTheme
+        self.customAction = customAction
         
         if case let .unique(gift) = subject.arguments?.gift, gift.resellForTonOnly {
             self.balanceCurrency = .ton
@@ -6336,80 +6418,6 @@ private final class HeaderButtonComponent: Component {
     func update(view: View, availableSize: CGSize, state: EmptyComponentState, environment: Environment<Empty>, transition: ComponentTransition) -> CGSize {
         return view.update(component: self, availableSize: availableSize, state: state, environment: environment, transition: transition)
     }
-    
-//    static var body: Body {
-//        let background = Child(RoundedRectangle.self)
-//        let title = Child(MultilineTextComponent.self)
-//        let icon = Child(BundleIconComponent.self)
-//        let lockIcon = Child(BundleIconComponent.self)
-//        
-//        return { context in
-//            let component = context.component
-//            
-//            let background = background.update(
-//                component: RoundedRectangle(
-//                    color: UIColor.white.withAlphaComponent(0.16),
-//                    cornerRadius: 16.0
-//                ),
-//                availableSize: context.availableSize,
-//                transition: .immediate
-//            )
-//            context.add(background
-//                .position(CGPoint(x: context.availableSize.width / 2.0, y: context.availableSize.height / 2.0))
-//            )
-//            
-//            let icon = icon.update(
-//                component: BundleIconComponent(
-//                    name: component.iconName,
-//                    tintColor: UIColor.white
-//                ),
-//                availableSize: context.availableSize,
-//                transition: .immediate
-//            )
-//            context.add(icon
-//                .position(CGPoint(x: context.availableSize.width / 2.0, y: 22.0))
-//            )
-//            
-//            let title = title.update(
-//                component: MultilineTextComponent(
-//                    text: .plain(NSAttributedString(
-//                        string: component.title,
-//                        font: Font.regular(11.0),
-//                        textColor: UIColor.white,
-//                        paragraphAlignment: .natural
-//                    )),
-//                    horizontalAlignment: .center,
-//                    maximumNumberOfLines: 1
-//                ),
-//                availableSize: CGSize(width: context.availableSize.width - 16.0, height: context.availableSize.height),
-//                transition: .immediate
-//            )
-//            var totalTitleWidth = title.size.width
-//            var titleOriginX = context.availableSize.width / 2.0 - totalTitleWidth / 2.0
-//            if component.isLocked {
-//                let titleSpacing: CGFloat = 3.0
-//                let lockIcon = lockIcon.update(
-//                    component: BundleIconComponent(
-//                        name: "Chat List/StatusLockIcon",
-//                        tintColor: UIColor.white
-//                    ),
-//                    availableSize: context.availableSize,
-//                    transition: .immediate
-//                )
-//                totalTitleWidth += lockIcon.size.width + titleSpacing
-//                titleOriginX = context.availableSize.width / 2.0 - totalTitleWidth / 2.0
-//                context.add(lockIcon
-//                    .position(CGPoint(x: titleOriginX + lockIcon.size.width / 2.0, y: 42.0))
-//                )
-//                titleOriginX += lockIcon.size.width + titleSpacing
-//            }
-//            context.add(title
-//                .position(CGPoint(x: titleOriginX + title.size.width / 2.0, y: 42.0))
-//            )
-//            
-//            return context.availableSize
-//        }
-//    }
 }
 
 private struct GiftViewConfiguration {

@@ -310,6 +310,8 @@ public class GlassBackgroundView: UIView {
     }
     
     private let legacyView: LegacyGlassView?
+    private let legacyHighlightContainerView: UIView?
+    private var glassHighlightRecognizer: GlassHighlightGestureRecognizer?
     
     private let nativeView: UIVisualEffectView?
     private let nativeViewClippingContext: ClippingShapeContext?
@@ -339,6 +341,7 @@ public class GlassBackgroundView: UIView {
     public override init(frame: CGRect) {
         if #available(iOS 26.0, *), !GlassBackgroundView.useCustomGlassImpl {
             self.legacyView = nil
+            self.legacyHighlightContainerView = nil
             
             let glassEffect = UIGlassEffect(style: .regular)
             glassEffect.isInteractive = false
@@ -355,6 +358,10 @@ public class GlassBackgroundView: UIView {
             self.shadowView = nil
         } else {
             self.legacyView = LegacyGlassView(frame: CGRect())
+            let legacyHighlightContainerView = UIView()
+            legacyHighlightContainerView.isUserInteractionEnabled = false
+            legacyHighlightContainerView.clipsToBounds = true
+            self.legacyHighlightContainerView = legacyHighlightContainerView
             self.nativeView = nil
             self.nativeViewClippingContext = nil
             self.nativeParamsView = nil
@@ -384,16 +391,27 @@ public class GlassBackgroundView: UIView {
         }
         if let legacyView = self.legacyView {
             self.addSubview(legacyView)
+            let glassHighlightRecognizer = GlassHighlightGestureRecognizer(target: self, action: #selector(self.onHighlightGesture(_:)))
+            glassHighlightRecognizer.highlightContainerView = self.legacyHighlightContainerView
+            self.glassHighlightRecognizer = glassHighlightRecognizer
+            self.addGestureRecognizer(glassHighlightRecognizer)
+            glassHighlightRecognizer.isEnabled = false
         }
         if let foregroundView = self.foregroundView {
             self.addSubview(foregroundView)
             foregroundView.mask = self.maskContainerView
         }
         self.addSubview(self.contentContainer)
+        if let legacyHighlightContainerView = self.legacyHighlightContainerView {
+            self.addSubview(legacyHighlightContainerView)
+        }
     }
     
     required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc private func onHighlightGesture(_ recognizer: GlassHighlightGestureRecognizer) {
     }
     
     override public func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -421,6 +439,10 @@ public class GlassBackgroundView: UIView {
     public func update(size: CGSize, cornerRadius: CGFloat, isDark: Bool, tintColor: TintColor, isInteractive: Bool = false, isVisible: Bool = true, transition: ComponentTransition) {
         let shape: Shape = .roundedRect(cornerRadius: cornerRadius)
         
+        if let glassHighlightRecognizer = self.glassHighlightRecognizer {
+            glassHighlightRecognizer.isEnabled = isInteractive
+        }
+        
         if let nativeView = self.nativeView, let nativeViewClippingContext = self.nativeViewClippingContext, (nativeView.bounds.size != size || nativeViewClippingContext.shape != shape) {
             
             nativeViewClippingContext.update(shape: shape, size: size, transition: transition)
@@ -437,10 +459,34 @@ public class GlassBackgroundView: UIView {
         if let legacyView = self.legacyView {
             switch shape {
             case let .roundedRect(cornerRadius):
-                legacyView.update(size: size, cornerRadius: cornerRadius, transition: transition)
+                let style: LegacyGlassView.Style
+                switch tintColor.kind {
+                case .panel:
+                    style = .normal
+                case .clear:
+                    style = .clear
+                case let .custom(styleValue, _):
+                    switch styleValue {
+                    case .clear:
+                        style = .clear
+                    case .default:
+                        style = .normal
+                    }
+                }
+                legacyView.update(size: size, cornerRadius: cornerRadius, style: style, transition: transition)
             }
             transition.setFrame(view: legacyView, frame: CGRect(origin: CGPoint(), size: size))
             transition.setAlpha(view: legacyView, alpha: isVisible ? 1.0 : 0.0)
+            
+            transition.setPosition(view: self.contentView, position: CGPoint(x: size.width * 0.5, y: size.height * 0.5))
+            transition.setBounds(view: self.contentView, bounds: CGRect(origin: CGPoint(), size: size))
+        }
+        if let legacyHighlightContainerView = self.legacyHighlightContainerView {
+            transition.setFrame(view: legacyHighlightContainerView, frame: CGRect(origin: CGPoint(), size: size))
+            switch shape {
+            case let .roundedRect(cornerRadius):
+                transition.setCornerRadius(layer: legacyHighlightContainerView.layer, cornerRadius: cornerRadius)
+            }
         }
         
         let shadowInset: CGFloat = 32.0
@@ -512,19 +558,31 @@ public class GlassBackgroundView: UIView {
             
             if let foregroundView = self.foregroundView {
                 let fillColor: UIColor
+                let borderWidthFactor: CGFloat
                 switch tintColor.kind {
                 case .panel:
+                    borderWidthFactor = 1.0
                     if isDark {
                         fillColor = UIColor(white: 1.0, alpha: 1.0).mixedWith(.black, alpha: 1.0 - 0.11).withAlphaComponent(0.85)
                     } else {
                         fillColor = UIColor(white: 1.0, alpha: 0.7)
                     }
                 case .clear:
+                    borderWidthFactor = 2.0
                     fillColor = UIColor(white: 1.0, alpha: 0.0)
-                case let .custom(_, color):
+                case let .custom(style, color):
                     fillColor = color
+                    switch style {
+                    case .clear:
+                        borderWidthFactor = 2.0
+                    case .default:
+                        borderWidthFactor = 1.0
+                    }
                 }
-                foregroundView.image = GlassBackgroundView.generateLegacyGlassImage(size: CGSize(width: outerCornerRadius * 2.0, height: outerCornerRadius * 2.0), inset: shadowInset, isDark: isDark, fillColor: fillColor)
+                foregroundView.image = GlassBackgroundView.generateLegacyGlassImage(size: CGSize(width: outerCornerRadius * 2.0, height: outerCornerRadius * 2.0), inset: shadowInset, borderWidthFactor: borderWidthFactor, isDark: isDark, fillColor: fillColor)
+                #if DEBUG
+                //foregroundView.image = nil
+                #endif
                 transition.setAlpha(view: foregroundView, alpha: isVisible ? 1.0 : 0.0)
             } else {
                 if let nativeParamsView = self.nativeParamsView, let nativeView = self.nativeView {
@@ -565,11 +623,21 @@ public class GlassBackgroundView: UIView {
                         
                         if glassEffect == nil {
                             if nativeView.effect is UIGlassEffect {
-                                if transition.animation.isImmediate {
-                                    nativeView.effect = nil
-                                } else {
-                                    transition.animateView {
+                                if #available(iOS 26.1, *) {
+                                    if transition.animation.isImmediate {
                                         nativeView.effect = nil
+                                    } else {
+                                        transition.animateView {
+                                            nativeView.effect = nil
+                                        }
+                                    }
+                                } else {
+                                    if transition.animation.isImmediate {
+                                        nativeView.effect = UIVisualEffect()
+                                    } else {
+                                        transition.animateView {
+                                            nativeView.effect = UIVisualEffect()
+                                        }
                                     }
                                 }
                             }
@@ -598,6 +666,9 @@ public class GlassBackgroundView: UIView {
             }
         }
         
+        if let nativeParamsView = self.nativeParamsView {
+            transition.setFrame(view: nativeParamsView, frame: CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: size))
+        }
         transition.setFrame(view: self.maskContainerView, frame: CGRect(origin: CGPoint(), size: CGSize(width: size.width + shadowInset * 2.0, height: size.height + shadowInset * 2.0)))
         transition.setFrame(view: self.maskContentView, frame: CGRect(origin: CGPoint(x: shadowInset, y: shadowInset), size: size))
         if let foregroundView = self.foregroundView {
@@ -630,10 +701,10 @@ public final class GlassBackgroundContainerView: UIView {
         }
     }
     
-    public override init(frame: CGRect) {
-        if #available(iOS 26.0, *) {
+    public init(spacing: CGFloat = 7.0) {
+        if #available(iOS 26.0, *), !GlassBackgroundView.useCustomGlassImpl {
             let effect = UIGlassContainerEffect()
-            effect.spacing = 7.0
+            effect.spacing = spacing
             let nativeView = UIVisualEffectView(effect: effect)
             self.nativeView = nativeView
             
@@ -648,7 +719,7 @@ public final class GlassBackgroundContainerView: UIView {
             self.legacyView = ContentView()
         }
         
-        super.init(frame: frame)
+        super.init(frame: CGRect())
         
         if let nativeParamsView = self.nativeParamsView {
             self.addSubview(nativeParamsView)
@@ -681,6 +752,31 @@ public final class GlassBackgroundContainerView: UIView {
         }
         for view in self.contentView.subviews.reversed() {
             if let result = view.hitTest(self.convert(point, to: view), with: event), result.isUserInteractionEnabled {
+                
+                #if DEBUG
+                func findMatrix(layer: CALayer) -> AnyObject? {
+                    for filter in layer.filters ?? [] {
+                        if "\(filter)".contains("vibrantColorMatrix") {
+                            return filter as AnyObject
+                        }
+                    }
+                    
+                    for sublayer in layer.sublayers ?? [] {
+                        if let result = findMatrix(layer: sublayer) {
+                            return result
+                        }
+                    }
+                    return nil
+                }
+                
+                /*if let filter = findMatrix(layer: self.layer) as? NSObject {
+                    var matrix: [Float32] = .init(repeating: 0, count: 20)
+                    let matrixValues = filter.value(forKey: "inputColorMatrix") as! NSValue
+                    matrixValues.getValue(&matrix, size: 4 * 20)
+                    assert(true)
+                }*/
+                #endif
+                
                 return result
             }
         }
@@ -706,6 +802,9 @@ public final class GlassBackgroundContainerView: UIView {
             } else {
                 nativeParamsView.lumaMin = 0.8
                 nativeParamsView.lumaMax = 0.801
+            }
+            if let nativeParamsView = self.nativeParamsView {
+                transition.setFrame(view: nativeParamsView, frame: CGRect(origin: CGPoint(x: 0.0, y: 0.0), size: size))
             }
             
             transition.animateView {
@@ -768,7 +867,7 @@ private extension CGContext {
 }
 
 public extension GlassBackgroundView {
-    static func generateLegacyGlassImage(size: CGSize, inset: CGFloat, isDark: Bool, fillColor: UIColor) -> UIImage {
+    static func generateLegacyGlassImage(size: CGSize, inset: CGFloat, borderWidthFactor: CGFloat = 1.0, isDark: Bool, fillColor: UIColor) -> UIImage {
         var size = size
         if size == .zero {
             size = CGSize(width: 2.0, height: 2.0)
@@ -908,7 +1007,7 @@ public extension GlassBackgroundView {
                 var ellipseRect = CGRect(origin: CGPoint(), size: size).insetBy(dx: inset, dy: inset)
                 context.fillEllipse(in: ellipseRect)
                 
-                let lineWidth: CGFloat = isDark ? 0.8 : 0.8
+                let lineWidth: CGFloat = (isDark ? 0.8 : 0.8) * borderWidthFactor
                 let strokeColor: UIColor
                 let blendMode: CGBlendMode
                 let baseAlpha: CGFloat = isDark ? 0.3 : 0.6
@@ -956,20 +1055,6 @@ public extension GlassBackgroundView {
                 
                 context.resetClip()
                 context.setBlendMode(.normal)
-                
-                //let image = makeInnerShadowPillImageExact(size: CGSize(width: size.width - inset * 2.0, height: size.height - inset * 2.0), scale: UIScreenScale, glossColor: UIColor(white: 1.0, alpha: 1.0), borderWidth: 1.33)
-                /*let image = generateCircleImage(diameter: size.width - inset * 2.0, lineWidth: 0.5, color: UIColor(white: 1.0, alpha: 1.0))!
-                
-                if s == 0.0 && abs(a - 0.7) < 0.1 && !isDark {
-                    image.draw(in: CGRect(origin: CGPoint(), size: size).insetBy(dx: inset, dy: inset), blendMode: .normal, alpha: 1.0)
-                } else if s <= 0.3 && !isDark {
-                    image.draw(in: CGRect(origin: CGPoint(), size: size).insetBy(dx: inset, dy: inset), blendMode: .normal, alpha: 0.7)
-                } else if b >= 0.2 {
-                    let maxAlpha: CGFloat = isDark ? 0.7 : 0.8
-                    image.draw(in: CGRect(origin: CGPoint(), size: size).insetBy(dx: inset, dy: inset), blendMode: .overlay, alpha: max(0.5, min(1.0, maxAlpha * s)))
-                } else {
-                    image.draw(in: CGRect(origin: CGPoint(), size: size).insetBy(dx: inset, dy: inset), blendMode: .normal, alpha: 0.5)
-                }*/
             }
             innerImage.draw(in: CGRect(origin: CGPoint(), size: size))
         }.stretchableImage(withLeftCapWidth: Int(size.width * 0.5), topCapHeight: Int(size.height * 0.5))
@@ -1200,16 +1285,17 @@ public final class GlassContextExtractableContainer: UIView, ContextExtractableC
         self.normalParams = normalParams
         
         if case .normal = self.state {
-            self.applyState(transition: .transition(transition.containedViewLayoutTransition), completion: nil)
+            self.applyState(previousState: self.state, transition: .transition(transition.containedViewLayoutTransition), completion: nil)
         }
     }
     
     public func updateState(state: State, transition: Transition, completion: ((Bool) -> Void)?) {
+        let previousState = self.state
         self.state = state
-        self.applyState(transition: transition, completion: completion)
+        self.applyState(previousState: previousState, transition: transition, completion: completion)
     }
     
-    private func applyState(transition: Transition, completion: ((Bool) -> Void)?) {
+    private func applyState(previousState: State?, transition: Transition, completion: ((Bool) -> Void)?) {
         guard let normalParams = self.normalParams else {
             completion?(true)
             return
@@ -1261,15 +1347,54 @@ public final class GlassContextExtractableContainer: UIView, ContextExtractableC
                     completion?(completed)
                 })
                 
-                self.glassView.update(
-                    size: size,
-                    cornerRadius: cornerRadius,
-                    isDark: normalParams.isDark,
-                    tintColor: normalParams.tintColor,
-                    isInteractive: normalParams.isInteractive,
-                    isVisible: normalParams.isVisible,
-                    transition: mappedTransition
-                )
+                if case let .curve(duration, curve) = mappedTransition.animation, case .spring = curve, let previousState, case let .extracted(_, previousCornerRadius, previousExtractedState) = previousState, case .animatedOut = previousExtractedState {
+                    self.glassView.update(
+                        size: size,
+                        cornerRadius: previousCornerRadius,
+                        isDark: normalParams.isDark,
+                        tintColor: normalParams.tintColor,
+                        isInteractive: normalParams.isInteractive,
+                        isVisible: normalParams.isVisible,
+                        transition: mappedTransition
+                    )
+                    let firstPartDuration: Double = 0.35
+                    self.glassView.update(
+                        size: size,
+                        cornerRadius: min(size.width, size.height) * 0.5,
+                        isDark: normalParams.isDark,
+                        tintColor: normalParams.tintColor,
+                        isInteractive: normalParams.isInteractive,
+                        isVisible: normalParams.isVisible,
+                        transition: .easeInOut(duration: duration * firstPartDuration)
+                    )
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + UIView.animationDurationFactor() * duration * firstPartDuration, execute: { [weak self] in
+                        guard let self, let normalParams = self.normalParams else {
+                            return
+                        }
+                        guard case let .extracted(newSize, newCornerRadius, newExtractionState) = self.state, newSize == size, newCornerRadius == cornerRadius, newExtractionState == extractionState else {
+                            return
+                        }
+                        self.glassView.update(
+                            size: size,
+                            cornerRadius: cornerRadius,
+                            isDark: normalParams.isDark,
+                            tintColor: normalParams.tintColor,
+                            isInteractive: normalParams.isInteractive,
+                            isVisible: normalParams.isVisible,
+                            transition: .spring(duration: duration * (1.0 - firstPartDuration))
+                        )
+                    })
+                } else {
+                    self.glassView.update(
+                        size: size,
+                        cornerRadius: cornerRadius,
+                        isDark: normalParams.isDark,
+                        tintColor: normalParams.tintColor,
+                        isInteractive: normalParams.isInteractive,
+                        isVisible: normalParams.isVisible,
+                        transition: mappedTransition
+                    )
+                }
             }
         }
     }

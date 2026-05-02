@@ -864,6 +864,46 @@ public class PremiumLimitsListScreen: ViewController {
                     )
                 )
                 
+                availableItems[.copyProtection] = DemoPagerComponent.Item(
+                    AnyComponentWithIdentity(
+                        id: PremiumDemoScreen.Subject.copyProtection,
+                        component: AnyComponent(
+                            PageComponent(
+                                content: AnyComponent(PhoneDemoComponent(
+                                    context: context,
+                                    position: .top,
+                                    model: .island,
+                                    videoFile: videos["pm_noforwards"],
+                                    decoration: .badgeStars
+                                )),
+                                title: strings.Premium_CopyProtection,
+                                text: strings.Premium_CopyProtectionInfo,
+                                textColor: textColor
+                            )
+                        )
+                    )
+                )
+                
+                availableItems[.aiTools] = DemoPagerComponent.Item(
+                    AnyComponentWithIdentity(
+                        id: PremiumDemoScreen.Subject.aiTools,
+                        component: AnyComponent(
+                            PageComponent(
+                                content: AnyComponent(PhoneDemoComponent(
+                                    context: context,
+                                    position: .top,
+                                    model: .island,
+                                    videoFile: videos["ai_compose"],
+                                    decoration: .badgeStars
+                                )),
+                                title: strings.Premium_AiTools,
+                                text: strings.Premium_AiToolsInfo,
+                                textColor: textColor
+                            )
+                        )
+                    )
+                )
+                
                 availableItems[.business] = DemoPagerComponent.Item(
                     AnyComponentWithIdentity(
                         id: PremiumDemoScreen.Subject.business,

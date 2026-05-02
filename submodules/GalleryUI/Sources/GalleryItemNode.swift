@@ -14,6 +14,7 @@ open class GalleryItemNode: ASDisplayNode {
     public enum ActiveEdge {
         case left
         case right
+        case middle
     }
     
     private var _index: Int?
@@ -94,7 +95,7 @@ open class GalleryItemNode: ASDisplayNode {
     open func visibilityUpdated(isVisible: Bool) {
     }
     
-    open func controlsVisibilityUpdated(isVisible: Bool) {
+    open func controlsVisibilityUpdated(isVisible: Bool, animated: Bool) {
     }
     
     open func adjustForPreviewing() {

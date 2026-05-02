@@ -1,9 +1,12 @@
 public extension Api {
     enum EmojiURL: TypeConstructorDescription {
-        public class Cons_emojiURL {
+        public class Cons_emojiURL: TypeConstructorDescription {
             public var url: String
             public init(url: String) {
                 self.url = url
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiURL", [("url", ConstructorParameterDescription(self.url))])
             }
         }
         case emojiURL(Cons_emojiURL)
@@ -19,10 +22,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emojiURL(let _data):
-                return ("emojiURL", [("url", _data.url as Any)])
+                return ("emojiURL", [("url", ConstructorParameterDescription(_data.url))])
             }
         }
 
@@ -41,7 +44,7 @@ public extension Api {
 }
 public extension Api {
     enum EncryptedChat: TypeConstructorDescription {
-        public class Cons_encryptedChat {
+        public class Cons_encryptedChat: TypeConstructorDescription {
             public var id: Int32
             public var accessHash: Int64
             public var date: Int32
@@ -58,22 +61,31 @@ public extension Api {
                 self.gAOrB = gAOrB
                 self.keyFingerprint = keyFingerprint
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedChat", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("date", ConstructorParameterDescription(self.date)), ("adminId", ConstructorParameterDescription(self.adminId)), ("participantId", ConstructorParameterDescription(self.participantId)), ("gAOrB", ConstructorParameterDescription(self.gAOrB)), ("keyFingerprint", ConstructorParameterDescription(self.keyFingerprint))])
+            }
         }
-        public class Cons_encryptedChatDiscarded {
+        public class Cons_encryptedChatDiscarded: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int32
             public init(flags: Int32, id: Int32) {
                 self.flags = flags
                 self.id = id
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedChatDiscarded", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id))])
+            }
         }
-        public class Cons_encryptedChatEmpty {
+        public class Cons_encryptedChatEmpty: TypeConstructorDescription {
             public var id: Int32
             public init(id: Int32) {
                 self.id = id
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedChatEmpty", [("id", ConstructorParameterDescription(self.id))])
+            }
         }
-        public class Cons_encryptedChatRequested {
+        public class Cons_encryptedChatRequested: TypeConstructorDescription {
             public var flags: Int32
             public var folderId: Int32?
             public var id: Int32
@@ -92,8 +104,11 @@ public extension Api {
                 self.participantId = participantId
                 self.gA = gA
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedChatRequested", [("flags", ConstructorParameterDescription(self.flags)), ("folderId", ConstructorParameterDescription(self.folderId)), ("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("date", ConstructorParameterDescription(self.date)), ("adminId", ConstructorParameterDescription(self.adminId)), ("participantId", ConstructorParameterDescription(self.participantId)), ("gA", ConstructorParameterDescription(self.gA))])
+            }
         }
-        public class Cons_encryptedChatWaiting {
+        public class Cons_encryptedChatWaiting: TypeConstructorDescription {
             public var id: Int32
             public var accessHash: Int64
             public var date: Int32
@@ -105,6 +120,9 @@ public extension Api {
                 self.date = date
                 self.adminId = adminId
                 self.participantId = participantId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedChatWaiting", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("date", ConstructorParameterDescription(self.date)), ("adminId", ConstructorParameterDescription(self.adminId)), ("participantId", ConstructorParameterDescription(self.participantId))])
             }
         }
         case encryptedChat(Cons_encryptedChat)
@@ -168,18 +186,18 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .encryptedChat(let _data):
-                return ("encryptedChat", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("date", _data.date as Any), ("adminId", _data.adminId as Any), ("participantId", _data.participantId as Any), ("gAOrB", _data.gAOrB as Any), ("keyFingerprint", _data.keyFingerprint as Any)])
+                return ("encryptedChat", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("date", ConstructorParameterDescription(_data.date)), ("adminId", ConstructorParameterDescription(_data.adminId)), ("participantId", ConstructorParameterDescription(_data.participantId)), ("gAOrB", ConstructorParameterDescription(_data.gAOrB)), ("keyFingerprint", ConstructorParameterDescription(_data.keyFingerprint))])
             case .encryptedChatDiscarded(let _data):
-                return ("encryptedChatDiscarded", [("flags", _data.flags as Any), ("id", _data.id as Any)])
+                return ("encryptedChatDiscarded", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id))])
             case .encryptedChatEmpty(let _data):
-                return ("encryptedChatEmpty", [("id", _data.id as Any)])
+                return ("encryptedChatEmpty", [("id", ConstructorParameterDescription(_data.id))])
             case .encryptedChatRequested(let _data):
-                return ("encryptedChatRequested", [("flags", _data.flags as Any), ("folderId", _data.folderId as Any), ("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("date", _data.date as Any), ("adminId", _data.adminId as Any), ("participantId", _data.participantId as Any), ("gA", _data.gA as Any)])
+                return ("encryptedChatRequested", [("flags", ConstructorParameterDescription(_data.flags)), ("folderId", ConstructorParameterDescription(_data.folderId)), ("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("date", ConstructorParameterDescription(_data.date)), ("adminId", ConstructorParameterDescription(_data.adminId)), ("participantId", ConstructorParameterDescription(_data.participantId)), ("gA", ConstructorParameterDescription(_data.gA))])
             case .encryptedChatWaiting(let _data):
-                return ("encryptedChatWaiting", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("date", _data.date as Any), ("adminId", _data.adminId as Any), ("participantId", _data.participantId as Any)])
+                return ("encryptedChatWaiting", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("date", ConstructorParameterDescription(_data.date)), ("adminId", ConstructorParameterDescription(_data.adminId)), ("participantId", ConstructorParameterDescription(_data.participantId))])
             }
         }
 
@@ -298,7 +316,7 @@ public extension Api {
 }
 public extension Api {
     enum EncryptedFile: TypeConstructorDescription {
-        public class Cons_encryptedFile {
+        public class Cons_encryptedFile: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public var size: Int64
@@ -310,6 +328,9 @@ public extension Api {
                 self.size = size
                 self.dcId = dcId
                 self.keyFingerprint = keyFingerprint
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedFile", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("size", ConstructorParameterDescription(self.size)), ("dcId", ConstructorParameterDescription(self.dcId)), ("keyFingerprint", ConstructorParameterDescription(self.keyFingerprint))])
             }
         }
         case encryptedFile(Cons_encryptedFile)
@@ -335,10 +356,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .encryptedFile(let _data):
-                return ("encryptedFile", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("size", _data.size as Any), ("dcId", _data.dcId as Any), ("keyFingerprint", _data.keyFingerprint as Any)])
+                return ("encryptedFile", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("size", ConstructorParameterDescription(_data.size)), ("dcId", ConstructorParameterDescription(_data.dcId)), ("keyFingerprint", ConstructorParameterDescription(_data.keyFingerprint))])
             case .encryptedFileEmpty:
                 return ("encryptedFileEmpty", [])
             }
@@ -374,7 +395,7 @@ public extension Api {
 }
 public extension Api {
     enum EncryptedMessage: TypeConstructorDescription {
-        public class Cons_encryptedMessage {
+        public class Cons_encryptedMessage: TypeConstructorDescription {
             public var randomId: Int64
             public var chatId: Int32
             public var date: Int32
@@ -387,8 +408,11 @@ public extension Api {
                 self.bytes = bytes
                 self.file = file
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedMessage", [("randomId", ConstructorParameterDescription(self.randomId)), ("chatId", ConstructorParameterDescription(self.chatId)), ("date", ConstructorParameterDescription(self.date)), ("bytes", ConstructorParameterDescription(self.bytes)), ("file", ConstructorParameterDescription(self.file))])
+            }
         }
-        public class Cons_encryptedMessageService {
+        public class Cons_encryptedMessageService: TypeConstructorDescription {
             public var randomId: Int64
             public var chatId: Int32
             public var date: Int32
@@ -398,6 +422,9 @@ public extension Api {
                 self.chatId = chatId
                 self.date = date
                 self.bytes = bytes
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("encryptedMessageService", [("randomId", ConstructorParameterDescription(self.randomId)), ("chatId", ConstructorParameterDescription(self.chatId)), ("date", ConstructorParameterDescription(self.date)), ("bytes", ConstructorParameterDescription(self.bytes))])
             }
         }
         case encryptedMessage(Cons_encryptedMessage)
@@ -427,12 +454,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .encryptedMessage(let _data):
-                return ("encryptedMessage", [("randomId", _data.randomId as Any), ("chatId", _data.chatId as Any), ("date", _data.date as Any), ("bytes", _data.bytes as Any), ("file", _data.file as Any)])
+                return ("encryptedMessage", [("randomId", ConstructorParameterDescription(_data.randomId)), ("chatId", ConstructorParameterDescription(_data.chatId)), ("date", ConstructorParameterDescription(_data.date)), ("bytes", ConstructorParameterDescription(_data.bytes)), ("file", ConstructorParameterDescription(_data.file))])
             case .encryptedMessageService(let _data):
-                return ("encryptedMessageService", [("randomId", _data.randomId as Any), ("chatId", _data.chatId as Any), ("date", _data.date as Any), ("bytes", _data.bytes as Any)])
+                return ("encryptedMessageService", [("randomId", ConstructorParameterDescription(_data.randomId)), ("chatId", ConstructorParameterDescription(_data.chatId)), ("date", ConstructorParameterDescription(_data.date)), ("bytes", ConstructorParameterDescription(_data.bytes))])
             }
         }
 
@@ -485,7 +512,7 @@ public extension Api {
 }
 public extension Api {
     enum ExportedChatInvite: TypeConstructorDescription {
-        public class Cons_chatInviteExported {
+        public class Cons_chatInviteExported: TypeConstructorDescription {
             public var flags: Int32
             public var link: String
             public var adminId: Int64
@@ -511,6 +538,9 @@ public extension Api {
                 self.subscriptionExpired = subscriptionExpired
                 self.title = title
                 self.subscriptionPricing = subscriptionPricing
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("chatInviteExported", [("flags", ConstructorParameterDescription(self.flags)), ("link", ConstructorParameterDescription(self.link)), ("adminId", ConstructorParameterDescription(self.adminId)), ("date", ConstructorParameterDescription(self.date)), ("startDate", ConstructorParameterDescription(self.startDate)), ("expireDate", ConstructorParameterDescription(self.expireDate)), ("usageLimit", ConstructorParameterDescription(self.usageLimit)), ("usage", ConstructorParameterDescription(self.usage)), ("requested", ConstructorParameterDescription(self.requested)), ("subscriptionExpired", ConstructorParameterDescription(self.subscriptionExpired)), ("title", ConstructorParameterDescription(self.title)), ("subscriptionPricing", ConstructorParameterDescription(self.subscriptionPricing))])
             }
         }
         case chatInviteExported(Cons_chatInviteExported)
@@ -559,10 +589,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .chatInviteExported(let _data):
-                return ("chatInviteExported", [("flags", _data.flags as Any), ("link", _data.link as Any), ("adminId", _data.adminId as Any), ("date", _data.date as Any), ("startDate", _data.startDate as Any), ("expireDate", _data.expireDate as Any), ("usageLimit", _data.usageLimit as Any), ("usage", _data.usage as Any), ("requested", _data.requested as Any), ("subscriptionExpired", _data.subscriptionExpired as Any), ("title", _data.title as Any), ("subscriptionPricing", _data.subscriptionPricing as Any)])
+                return ("chatInviteExported", [("flags", ConstructorParameterDescription(_data.flags)), ("link", ConstructorParameterDescription(_data.link)), ("adminId", ConstructorParameterDescription(_data.adminId)), ("date", ConstructorParameterDescription(_data.date)), ("startDate", ConstructorParameterDescription(_data.startDate)), ("expireDate", ConstructorParameterDescription(_data.expireDate)), ("usageLimit", ConstructorParameterDescription(_data.usageLimit)), ("usage", ConstructorParameterDescription(_data.usage)), ("requested", ConstructorParameterDescription(_data.requested)), ("subscriptionExpired", ConstructorParameterDescription(_data.subscriptionExpired)), ("title", ConstructorParameterDescription(_data.title)), ("subscriptionPricing", ConstructorParameterDescription(_data.subscriptionPricing))])
             case .chatInvitePublicJoinRequests:
                 return ("chatInvitePublicJoinRequests", [])
             }
@@ -637,7 +667,7 @@ public extension Api {
 }
 public extension Api {
     enum ExportedChatlistInvite: TypeConstructorDescription {
-        public class Cons_exportedChatlistInvite {
+        public class Cons_exportedChatlistInvite: TypeConstructorDescription {
             public var flags: Int32
             public var title: String
             public var url: String
@@ -647,6 +677,9 @@ public extension Api {
                 self.title = title
                 self.url = url
                 self.peers = peers
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("exportedChatlistInvite", [("flags", ConstructorParameterDescription(self.flags)), ("title", ConstructorParameterDescription(self.title)), ("url", ConstructorParameterDescription(self.url)), ("peers", ConstructorParameterDescription(self.peers))])
             }
         }
         case exportedChatlistInvite(Cons_exportedChatlistInvite)
@@ -669,10 +702,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .exportedChatlistInvite(let _data):
-                return ("exportedChatlistInvite", [("flags", _data.flags as Any), ("title", _data.title as Any), ("url", _data.url as Any), ("peers", _data.peers as Any)])
+                return ("exportedChatlistInvite", [("flags", ConstructorParameterDescription(_data.flags)), ("title", ConstructorParameterDescription(_data.title)), ("url", ConstructorParameterDescription(_data.url)), ("peers", ConstructorParameterDescription(_data.peers))])
             }
         }
 
@@ -702,12 +735,15 @@ public extension Api {
 }
 public extension Api {
     enum ExportedContactToken: TypeConstructorDescription {
-        public class Cons_exportedContactToken {
+        public class Cons_exportedContactToken: TypeConstructorDescription {
             public var url: String
             public var expires: Int32
             public init(url: String, expires: Int32) {
                 self.url = url
                 self.expires = expires
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("exportedContactToken", [("url", ConstructorParameterDescription(self.url)), ("expires", ConstructorParameterDescription(self.expires))])
             }
         }
         case exportedContactToken(Cons_exportedContactToken)
@@ -724,10 +760,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .exportedContactToken(let _data):
-                return ("exportedContactToken", [("url", _data.url as Any), ("expires", _data.expires as Any)])
+                return ("exportedContactToken", [("url", ConstructorParameterDescription(_data.url)), ("expires", ConstructorParameterDescription(_data.expires))])
             }
         }
 
@@ -749,12 +785,15 @@ public extension Api {
 }
 public extension Api {
     enum ExportedMessageLink: TypeConstructorDescription {
-        public class Cons_exportedMessageLink {
+        public class Cons_exportedMessageLink: TypeConstructorDescription {
             public var link: String
             public var html: String
             public init(link: String, html: String) {
                 self.link = link
                 self.html = html
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("exportedMessageLink", [("link", ConstructorParameterDescription(self.link)), ("html", ConstructorParameterDescription(self.html))])
             }
         }
         case exportedMessageLink(Cons_exportedMessageLink)
@@ -771,10 +810,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .exportedMessageLink(let _data):
-                return ("exportedMessageLink", [("link", _data.link as Any), ("html", _data.html as Any)])
+                return ("exportedMessageLink", [("link", ConstructorParameterDescription(_data.link)), ("html", ConstructorParameterDescription(_data.html))])
             }
         }
 
@@ -796,10 +835,13 @@ public extension Api {
 }
 public extension Api {
     enum ExportedStoryLink: TypeConstructorDescription {
-        public class Cons_exportedStoryLink {
+        public class Cons_exportedStoryLink: TypeConstructorDescription {
             public var link: String
             public init(link: String) {
                 self.link = link
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("exportedStoryLink", [("link", ConstructorParameterDescription(self.link))])
             }
         }
         case exportedStoryLink(Cons_exportedStoryLink)
@@ -815,10 +857,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .exportedStoryLink(let _data):
-                return ("exportedStoryLink", [("link", _data.link as Any)])
+                return ("exportedStoryLink", [("link", ConstructorParameterDescription(_data.link))])
             }
         }
 
@@ -837,7 +879,7 @@ public extension Api {
 }
 public extension Api {
     enum FactCheck: TypeConstructorDescription {
-        public class Cons_factCheck {
+        public class Cons_factCheck: TypeConstructorDescription {
             public var flags: Int32
             public var country: String?
             public var text: Api.TextWithEntities?
@@ -847,6 +889,9 @@ public extension Api {
                 self.country = country
                 self.text = text
                 self.hash = hash
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("factCheck", [("flags", ConstructorParameterDescription(self.flags)), ("country", ConstructorParameterDescription(self.country)), ("text", ConstructorParameterDescription(self.text)), ("hash", ConstructorParameterDescription(self.hash))])
             }
         }
         case factCheck(Cons_factCheck)
@@ -869,10 +914,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .factCheck(let _data):
-                return ("factCheck", [("flags", _data.flags as Any), ("country", _data.country as Any), ("text", _data.text as Any), ("hash", _data.hash as Any)])
+                return ("factCheck", [("flags", ConstructorParameterDescription(_data.flags)), ("country", ConstructorParameterDescription(_data.country)), ("text", ConstructorParameterDescription(_data.text)), ("hash", ConstructorParameterDescription(_data.hash))])
             }
         }
 
@@ -906,7 +951,7 @@ public extension Api {
 }
 public extension Api {
     enum FileHash: TypeConstructorDescription {
-        public class Cons_fileHash {
+        public class Cons_fileHash: TypeConstructorDescription {
             public var offset: Int64
             public var limit: Int32
             public var hash: Buffer
@@ -914,6 +959,9 @@ public extension Api {
                 self.offset = offset
                 self.limit = limit
                 self.hash = hash
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("fileHash", [("offset", ConstructorParameterDescription(self.offset)), ("limit", ConstructorParameterDescription(self.limit)), ("hash", ConstructorParameterDescription(self.hash))])
             }
         }
         case fileHash(Cons_fileHash)
@@ -931,10 +979,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .fileHash(let _data):
-                return ("fileHash", [("offset", _data.offset as Any), ("limit", _data.limit as Any), ("hash", _data.hash as Any)])
+                return ("fileHash", [("offset", ConstructorParameterDescription(_data.offset)), ("limit", ConstructorParameterDescription(_data.limit)), ("hash", ConstructorParameterDescription(_data.hash))])
             }
         }
 
@@ -959,7 +1007,7 @@ public extension Api {
 }
 public extension Api {
     enum Folder: TypeConstructorDescription {
-        public class Cons_folder {
+        public class Cons_folder: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int32
             public var title: String
@@ -969,6 +1017,9 @@ public extension Api {
                 self.id = id
                 self.title = title
                 self.photo = photo
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("folder", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("title", ConstructorParameterDescription(self.title)), ("photo", ConstructorParameterDescription(self.photo))])
             }
         }
         case folder(Cons_folder)
@@ -989,10 +1040,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .folder(let _data):
-                return ("folder", [("flags", _data.flags as Any), ("id", _data.id as Any), ("title", _data.title as Any), ("photo", _data.photo as Any)])
+                return ("folder", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("title", ConstructorParameterDescription(_data.title)), ("photo", ConstructorParameterDescription(_data.photo))])
             }
         }
 
@@ -1024,12 +1075,15 @@ public extension Api {
 }
 public extension Api {
     enum FolderPeer: TypeConstructorDescription {
-        public class Cons_folderPeer {
+        public class Cons_folderPeer: TypeConstructorDescription {
             public var peer: Api.Peer
             public var folderId: Int32
             public init(peer: Api.Peer, folderId: Int32) {
                 self.peer = peer
                 self.folderId = folderId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("folderPeer", [("peer", ConstructorParameterDescription(self.peer)), ("folderId", ConstructorParameterDescription(self.folderId))])
             }
         }
         case folderPeer(Cons_folderPeer)
@@ -1046,10 +1100,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .folderPeer(let _data):
-                return ("folderPeer", [("peer", _data.peer as Any), ("folderId", _data.folderId as Any)])
+                return ("folderPeer", [("peer", ConstructorParameterDescription(_data.peer)), ("folderId", ConstructorParameterDescription(_data.folderId))])
             }
         }
 
@@ -1073,7 +1127,7 @@ public extension Api {
 }
 public extension Api {
     indirect enum ForumTopic: TypeConstructorDescription {
-        public class Cons_forumTopic {
+        public class Cons_forumTopic: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int32
             public var date: Int32
@@ -1087,10 +1141,11 @@ public extension Api {
             public var unreadCount: Int32
             public var unreadMentionsCount: Int32
             public var unreadReactionsCount: Int32
+            public var unreadPollVotesCount: Int32
             public var fromId: Api.Peer
             public var notifySettings: Api.PeerNotifySettings
             public var draft: Api.DraftMessage?
-            public init(flags: Int32, id: Int32, date: Int32, peer: Api.Peer, title: String, iconColor: Int32, iconEmojiId: Int64?, topMessage: Int32, readInboxMaxId: Int32, readOutboxMaxId: Int32, unreadCount: Int32, unreadMentionsCount: Int32, unreadReactionsCount: Int32, fromId: Api.Peer, notifySettings: Api.PeerNotifySettings, draft: Api.DraftMessage?) {
+            public init(flags: Int32, id: Int32, date: Int32, peer: Api.Peer, title: String, iconColor: Int32, iconEmojiId: Int64?, topMessage: Int32, readInboxMaxId: Int32, readOutboxMaxId: Int32, unreadCount: Int32, unreadMentionsCount: Int32, unreadReactionsCount: Int32, unreadPollVotesCount: Int32, fromId: Api.Peer, notifySettings: Api.PeerNotifySettings, draft: Api.DraftMessage?) {
                 self.flags = flags
                 self.id = id
                 self.date = date
@@ -1104,15 +1159,22 @@ public extension Api {
                 self.unreadCount = unreadCount
                 self.unreadMentionsCount = unreadMentionsCount
                 self.unreadReactionsCount = unreadReactionsCount
+                self.unreadPollVotesCount = unreadPollVotesCount
                 self.fromId = fromId
                 self.notifySettings = notifySettings
                 self.draft = draft
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("forumTopic", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("date", ConstructorParameterDescription(self.date)), ("peer", ConstructorParameterDescription(self.peer)), ("title", ConstructorParameterDescription(self.title)), ("iconColor", ConstructorParameterDescription(self.iconColor)), ("iconEmojiId", ConstructorParameterDescription(self.iconEmojiId)), ("topMessage", ConstructorParameterDescription(self.topMessage)), ("readInboxMaxId", ConstructorParameterDescription(self.readInboxMaxId)), ("readOutboxMaxId", ConstructorParameterDescription(self.readOutboxMaxId)), ("unreadCount", ConstructorParameterDescription(self.unreadCount)), ("unreadMentionsCount", ConstructorParameterDescription(self.unreadMentionsCount)), ("unreadReactionsCount", ConstructorParameterDescription(self.unreadReactionsCount)), ("unreadPollVotesCount", ConstructorParameterDescription(self.unreadPollVotesCount)), ("fromId", ConstructorParameterDescription(self.fromId)), ("notifySettings", ConstructorParameterDescription(self.notifySettings)), ("draft", ConstructorParameterDescription(self.draft))])
+            }
         }
-        public class Cons_forumTopicDeleted {
+        public class Cons_forumTopicDeleted: TypeConstructorDescription {
             public var id: Int32
             public init(id: Int32) {
                 self.id = id
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("forumTopicDeleted", [("id", ConstructorParameterDescription(self.id))])
             }
         }
         case forumTopic(Cons_forumTopic)
@@ -1122,7 +1184,7 @@ public extension Api {
             switch self {
             case .forumTopic(let _data):
                 if boxed {
-                    buffer.appendInt32(-838922550)
+                    buffer.appendInt32(-52766699)
                 }
                 serializeInt32(_data.flags, buffer: buffer, boxed: false)
                 serializeInt32(_data.id, buffer: buffer, boxed: false)
@@ -1139,6 +1201,7 @@ public extension Api {
                 serializeInt32(_data.unreadCount, buffer: buffer, boxed: false)
                 serializeInt32(_data.unreadMentionsCount, buffer: buffer, boxed: false)
                 serializeInt32(_data.unreadReactionsCount, buffer: buffer, boxed: false)
+                serializeInt32(_data.unreadPollVotesCount, buffer: buffer, boxed: false)
                 _data.fromId.serialize(buffer, true)
                 _data.notifySettings.serialize(buffer, true)
                 if Int(_data.flags) & Int(1 << 4) != 0 {
@@ -1154,12 +1217,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .forumTopic(let _data):
-                return ("forumTopic", [("flags", _data.flags as Any), ("id", _data.id as Any), ("date", _data.date as Any), ("peer", _data.peer as Any), ("title", _data.title as Any), ("iconColor", _data.iconColor as Any), ("iconEmojiId", _data.iconEmojiId as Any), ("topMessage", _data.topMessage as Any), ("readInboxMaxId", _data.readInboxMaxId as Any), ("readOutboxMaxId", _data.readOutboxMaxId as Any), ("unreadCount", _data.unreadCount as Any), ("unreadMentionsCount", _data.unreadMentionsCount as Any), ("unreadReactionsCount", _data.unreadReactionsCount as Any), ("fromId", _data.fromId as Any), ("notifySettings", _data.notifySettings as Any), ("draft", _data.draft as Any)])
+                return ("forumTopic", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("date", ConstructorParameterDescription(_data.date)), ("peer", ConstructorParameterDescription(_data.peer)), ("title", ConstructorParameterDescription(_data.title)), ("iconColor", ConstructorParameterDescription(_data.iconColor)), ("iconEmojiId", ConstructorParameterDescription(_data.iconEmojiId)), ("topMessage", ConstructorParameterDescription(_data.topMessage)), ("readInboxMaxId", ConstructorParameterDescription(_data.readInboxMaxId)), ("readOutboxMaxId", ConstructorParameterDescription(_data.readOutboxMaxId)), ("unreadCount", ConstructorParameterDescription(_data.unreadCount)), ("unreadMentionsCount", ConstructorParameterDescription(_data.unreadMentionsCount)), ("unreadReactionsCount", ConstructorParameterDescription(_data.unreadReactionsCount)), ("unreadPollVotesCount", ConstructorParameterDescription(_data.unreadPollVotesCount)), ("fromId", ConstructorParameterDescription(_data.fromId)), ("notifySettings", ConstructorParameterDescription(_data.notifySettings)), ("draft", ConstructorParameterDescription(_data.draft))])
             case .forumTopicDeleted(let _data):
-                return ("forumTopicDeleted", [("id", _data.id as Any)])
+                return ("forumTopicDeleted", [("id", ConstructorParameterDescription(_data.id))])
             }
         }
 
@@ -1194,18 +1257,20 @@ public extension Api {
             _12 = reader.readInt32()
             var _13: Int32?
             _13 = reader.readInt32()
-            var _14: Api.Peer?
+            var _14: Int32?
+            _14 = reader.readInt32()
+            var _15: Api.Peer?
             if let signature = reader.readInt32() {
-                _14 = Api.parse(reader, signature: signature) as? Api.Peer
+                _15 = Api.parse(reader, signature: signature) as? Api.Peer
             }
-            var _15: Api.PeerNotifySettings?
+            var _16: Api.PeerNotifySettings?
             if let signature = reader.readInt32() {
-                _15 = Api.parse(reader, signature: signature) as? Api.PeerNotifySettings
+                _16 = Api.parse(reader, signature: signature) as? Api.PeerNotifySettings
             }
-            var _16: Api.DraftMessage?
+            var _17: Api.DraftMessage?
             if Int(_1!) & Int(1 << 4) != 0 {
                 if let signature = reader.readInt32() {
-                    _16 = Api.parse(reader, signature: signature) as? Api.DraftMessage
+                    _17 = Api.parse(reader, signature: signature) as? Api.DraftMessage
                 }
             }
             let _c1 = _1 != nil
@@ -1223,9 +1288,10 @@ public extension Api {
             let _c13 = _13 != nil
             let _c14 = _14 != nil
             let _c15 = _15 != nil
-            let _c16 = (Int(_1!) & Int(1 << 4) == 0) || _16 != nil
-            if _c1 && _c2 && _c3 && _c4 && _c5 && _c6 && _c7 && _c8 && _c9 && _c10 && _c11 && _c12 && _c13 && _c14 && _c15 && _c16 {
-                return Api.ForumTopic.forumTopic(Cons_forumTopic(flags: _1!, id: _2!, date: _3!, peer: _4!, title: _5!, iconColor: _6!, iconEmojiId: _7, topMessage: _8!, readInboxMaxId: _9!, readOutboxMaxId: _10!, unreadCount: _11!, unreadMentionsCount: _12!, unreadReactionsCount: _13!, fromId: _14!, notifySettings: _15!, draft: _16))
+            let _c16 = _16 != nil
+            let _c17 = (Int(_1!) & Int(1 << 4) == 0) || _17 != nil
+            if _c1 && _c2 && _c3 && _c4 && _c5 && _c6 && _c7 && _c8 && _c9 && _c10 && _c11 && _c12 && _c13 && _c14 && _c15 && _c16 && _c17 {
+                return Api.ForumTopic.forumTopic(Cons_forumTopic(flags: _1!, id: _2!, date: _3!, peer: _4!, title: _5!, iconColor: _6!, iconEmojiId: _7, topMessage: _8!, readInboxMaxId: _9!, readOutboxMaxId: _10!, unreadCount: _11!, unreadMentionsCount: _12!, unreadReactionsCount: _13!, unreadPollVotesCount: _14!, fromId: _15!, notifySettings: _16!, draft: _17))
             }
             else {
                 return nil
@@ -1246,12 +1312,15 @@ public extension Api {
 }
 public extension Api {
     indirect enum FoundStory: TypeConstructorDescription {
-        public class Cons_foundStory {
+        public class Cons_foundStory: TypeConstructorDescription {
             public var peer: Api.Peer
             public var story: Api.StoryItem
             public init(peer: Api.Peer, story: Api.StoryItem) {
                 self.peer = peer
                 self.story = story
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("foundStory", [("peer", ConstructorParameterDescription(self.peer)), ("story", ConstructorParameterDescription(self.story))])
             }
         }
         case foundStory(Cons_foundStory)
@@ -1268,10 +1337,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .foundStory(let _data):
-                return ("foundStory", [("peer", _data.peer as Any), ("story", _data.story as Any)])
+                return ("foundStory", [("peer", ConstructorParameterDescription(_data.peer)), ("story", ConstructorParameterDescription(_data.story))])
             }
         }
 
@@ -1297,7 +1366,7 @@ public extension Api {
 }
 public extension Api {
     enum Game: TypeConstructorDescription {
-        public class Cons_game {
+        public class Cons_game: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int64
             public var accessHash: Int64
@@ -1315,6 +1384,9 @@ public extension Api {
                 self.description = description
                 self.photo = photo
                 self.document = document
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("game", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("shortName", ConstructorParameterDescription(self.shortName)), ("title", ConstructorParameterDescription(self.title)), ("description", ConstructorParameterDescription(self.description)), ("photo", ConstructorParameterDescription(self.photo)), ("document", ConstructorParameterDescription(self.document))])
             }
         }
         case game(Cons_game)
@@ -1339,10 +1411,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .game(let _data):
-                return ("game", [("flags", _data.flags as Any), ("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("shortName", _data.shortName as Any), ("title", _data.title as Any), ("description", _data.description as Any), ("photo", _data.photo as Any), ("document", _data.document as Any)])
+                return ("game", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("shortName", ConstructorParameterDescription(_data.shortName)), ("title", ConstructorParameterDescription(_data.title)), ("description", ConstructorParameterDescription(_data.description)), ("photo", ConstructorParameterDescription(_data.photo)), ("document", ConstructorParameterDescription(_data.document))])
             }
         }
 
@@ -1388,7 +1460,7 @@ public extension Api {
 }
 public extension Api {
     enum GeoPoint: TypeConstructorDescription {
-        public class Cons_geoPoint {
+        public class Cons_geoPoint: TypeConstructorDescription {
             public var flags: Int32
             public var long: Double
             public var lat: Double
@@ -1400,6 +1472,9 @@ public extension Api {
                 self.lat = lat
                 self.accessHash = accessHash
                 self.accuracyRadius = accuracyRadius
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("geoPoint", [("flags", ConstructorParameterDescription(self.flags)), ("long", ConstructorParameterDescription(self.long)), ("lat", ConstructorParameterDescription(self.lat)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("accuracyRadius", ConstructorParameterDescription(self.accuracyRadius))])
             }
         }
         case geoPoint(Cons_geoPoint)
@@ -1427,10 +1502,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .geoPoint(let _data):
-                return ("geoPoint", [("flags", _data.flags as Any), ("long", _data.long as Any), ("lat", _data.lat as Any), ("accessHash", _data.accessHash as Any), ("accuracyRadius", _data.accuracyRadius as Any)])
+                return ("geoPoint", [("flags", ConstructorParameterDescription(_data.flags)), ("long", ConstructorParameterDescription(_data.long)), ("lat", ConstructorParameterDescription(_data.lat)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("accuracyRadius", ConstructorParameterDescription(_data.accuracyRadius))])
             case .geoPointEmpty:
                 return ("geoPointEmpty", [])
             }
@@ -1468,7 +1543,7 @@ public extension Api {
 }
 public extension Api {
     enum GeoPointAddress: TypeConstructorDescription {
-        public class Cons_geoPointAddress {
+        public class Cons_geoPointAddress: TypeConstructorDescription {
             public var flags: Int32
             public var countryIso2: String
             public var state: String?
@@ -1480,6 +1555,9 @@ public extension Api {
                 self.state = state
                 self.city = city
                 self.street = street
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("geoPointAddress", [("flags", ConstructorParameterDescription(self.flags)), ("countryIso2", ConstructorParameterDescription(self.countryIso2)), ("state", ConstructorParameterDescription(self.state)), ("city", ConstructorParameterDescription(self.city)), ("street", ConstructorParameterDescription(self.street))])
             }
         }
         case geoPointAddress(Cons_geoPointAddress)
@@ -1505,10 +1583,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .geoPointAddress(let _data):
-                return ("geoPointAddress", [("flags", _data.flags as Any), ("countryIso2", _data.countryIso2 as Any), ("state", _data.state as Any), ("city", _data.city as Any), ("street", _data.street as Any)])
+                return ("geoPointAddress", [("flags", ConstructorParameterDescription(_data.flags)), ("countryIso2", ConstructorParameterDescription(_data.countryIso2)), ("state", ConstructorParameterDescription(_data.state)), ("city", ConstructorParameterDescription(_data.city)), ("street", ConstructorParameterDescription(_data.street))])
             }
         }
 
@@ -1545,7 +1623,7 @@ public extension Api {
 }
 public extension Api {
     enum GlobalPrivacySettings: TypeConstructorDescription {
-        public class Cons_globalPrivacySettings {
+        public class Cons_globalPrivacySettings: TypeConstructorDescription {
             public var flags: Int32
             public var noncontactPeersPaidStars: Int64?
             public var disallowedGifts: Api.DisallowedGiftsSettings?
@@ -1553,6 +1631,9 @@ public extension Api {
                 self.flags = flags
                 self.noncontactPeersPaidStars = noncontactPeersPaidStars
                 self.disallowedGifts = disallowedGifts
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("globalPrivacySettings", [("flags", ConstructorParameterDescription(self.flags)), ("noncontactPeersPaidStars", ConstructorParameterDescription(self.noncontactPeersPaidStars)), ("disallowedGifts", ConstructorParameterDescription(self.disallowedGifts))])
             }
         }
         case globalPrivacySettings(Cons_globalPrivacySettings)
@@ -1574,10 +1655,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .globalPrivacySettings(let _data):
-                return ("globalPrivacySettings", [("flags", _data.flags as Any), ("noncontactPeersPaidStars", _data.noncontactPeersPaidStars as Any), ("disallowedGifts", _data.disallowedGifts as Any)])
+                return ("globalPrivacySettings", [("flags", ConstructorParameterDescription(_data.flags)), ("noncontactPeersPaidStars", ConstructorParameterDescription(_data.noncontactPeersPaidStars)), ("disallowedGifts", ConstructorParameterDescription(_data.disallowedGifts))])
             }
         }
 
@@ -1608,7 +1689,7 @@ public extension Api {
 }
 public extension Api {
     enum GroupCall: TypeConstructorDescription {
-        public class Cons_groupCall {
+        public class Cons_groupCall: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int64
             public var accessHash: Int64
@@ -1639,8 +1720,11 @@ public extension Api {
                 self.sendPaidMessagesStars = sendPaidMessagesStars
                 self.defaultSendAs = defaultSendAs
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("groupCall", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("participantsCount", ConstructorParameterDescription(self.participantsCount)), ("title", ConstructorParameterDescription(self.title)), ("streamDcId", ConstructorParameterDescription(self.streamDcId)), ("recordStartDate", ConstructorParameterDescription(self.recordStartDate)), ("scheduleDate", ConstructorParameterDescription(self.scheduleDate)), ("unmutedVideoCount", ConstructorParameterDescription(self.unmutedVideoCount)), ("unmutedVideoLimit", ConstructorParameterDescription(self.unmutedVideoLimit)), ("version", ConstructorParameterDescription(self.version)), ("inviteLink", ConstructorParameterDescription(self.inviteLink)), ("sendPaidMessagesStars", ConstructorParameterDescription(self.sendPaidMessagesStars)), ("defaultSendAs", ConstructorParameterDescription(self.defaultSendAs))])
+            }
         }
-        public class Cons_groupCallDiscarded {
+        public class Cons_groupCallDiscarded: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public var duration: Int32
@@ -1648,6 +1732,9 @@ public extension Api {
                 self.id = id
                 self.accessHash = accessHash
                 self.duration = duration
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("groupCallDiscarded", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("duration", ConstructorParameterDescription(self.duration))])
             }
         }
         case groupCall(Cons_groupCall)
@@ -1701,12 +1788,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .groupCall(let _data):
-                return ("groupCall", [("flags", _data.flags as Any), ("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("participantsCount", _data.participantsCount as Any), ("title", _data.title as Any), ("streamDcId", _data.streamDcId as Any), ("recordStartDate", _data.recordStartDate as Any), ("scheduleDate", _data.scheduleDate as Any), ("unmutedVideoCount", _data.unmutedVideoCount as Any), ("unmutedVideoLimit", _data.unmutedVideoLimit as Any), ("version", _data.version as Any), ("inviteLink", _data.inviteLink as Any), ("sendPaidMessagesStars", _data.sendPaidMessagesStars as Any), ("defaultSendAs", _data.defaultSendAs as Any)])
+                return ("groupCall", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("participantsCount", ConstructorParameterDescription(_data.participantsCount)), ("title", ConstructorParameterDescription(_data.title)), ("streamDcId", ConstructorParameterDescription(_data.streamDcId)), ("recordStartDate", ConstructorParameterDescription(_data.recordStartDate)), ("scheduleDate", ConstructorParameterDescription(_data.scheduleDate)), ("unmutedVideoCount", ConstructorParameterDescription(_data.unmutedVideoCount)), ("unmutedVideoLimit", ConstructorParameterDescription(_data.unmutedVideoLimit)), ("version", ConstructorParameterDescription(_data.version)), ("inviteLink", ConstructorParameterDescription(_data.inviteLink)), ("sendPaidMessagesStars", ConstructorParameterDescription(_data.sendPaidMessagesStars)), ("defaultSendAs", ConstructorParameterDescription(_data.defaultSendAs))])
             case .groupCallDiscarded(let _data):
-                return ("groupCallDiscarded", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("duration", _data.duration as Any)])
+                return ("groupCallDiscarded", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("duration", ConstructorParameterDescription(_data.duration))])
             }
         }
 
@@ -1799,7 +1886,7 @@ public extension Api {
 }
 public extension Api {
     enum GroupCallDonor: TypeConstructorDescription {
-        public class Cons_groupCallDonor {
+        public class Cons_groupCallDonor: TypeConstructorDescription {
             public var flags: Int32
             public var peerId: Api.Peer?
             public var stars: Int64
@@ -1807,6 +1894,9 @@ public extension Api {
                 self.flags = flags
                 self.peerId = peerId
                 self.stars = stars
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("groupCallDonor", [("flags", ConstructorParameterDescription(self.flags)), ("peerId", ConstructorParameterDescription(self.peerId)), ("stars", ConstructorParameterDescription(self.stars))])
             }
         }
         case groupCallDonor(Cons_groupCallDonor)
@@ -1826,10 +1916,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .groupCallDonor(let _data):
-                return ("groupCallDonor", [("flags", _data.flags as Any), ("peerId", _data.peerId as Any), ("stars", _data.stars as Any)])
+                return ("groupCallDonor", [("flags", ConstructorParameterDescription(_data.flags)), ("peerId", ConstructorParameterDescription(_data.peerId)), ("stars", ConstructorParameterDescription(_data.stars))])
             }
         }
 
@@ -1858,7 +1948,7 @@ public extension Api {
 }
 public extension Api {
     enum GroupCallMessage: TypeConstructorDescription {
-        public class Cons_groupCallMessage {
+        public class Cons_groupCallMessage: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int32
             public var fromId: Api.Peer
@@ -1872,6 +1962,9 @@ public extension Api {
                 self.date = date
                 self.message = message
                 self.paidMessageStars = paidMessageStars
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("groupCallMessage", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("fromId", ConstructorParameterDescription(self.fromId)), ("date", ConstructorParameterDescription(self.date)), ("message", ConstructorParameterDescription(self.message)), ("paidMessageStars", ConstructorParameterDescription(self.paidMessageStars))])
             }
         }
         case groupCallMessage(Cons_groupCallMessage)
@@ -1894,10 +1987,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .groupCallMessage(let _data):
-                return ("groupCallMessage", [("flags", _data.flags as Any), ("id", _data.id as Any), ("fromId", _data.fromId as Any), ("date", _data.date as Any), ("message", _data.message as Any), ("paidMessageStars", _data.paidMessageStars as Any)])
+                return ("groupCallMessage", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("fromId", ConstructorParameterDescription(_data.fromId)), ("date", ConstructorParameterDescription(_data.date)), ("message", ConstructorParameterDescription(_data.message)), ("paidMessageStars", ConstructorParameterDescription(_data.paidMessageStars))])
             }
         }
 

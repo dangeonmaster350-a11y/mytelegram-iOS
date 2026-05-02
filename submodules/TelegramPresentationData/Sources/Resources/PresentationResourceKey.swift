@@ -41,6 +41,7 @@ public enum PresentationResourceKey: Int32 {
     case itemListDisclosureArrow
     case disclosureOptionArrowsImage
     case itemListDisclosureLocked
+    case itemListDisclosureSwitchLock
     case itemListCheckIcon
     case itemListSecondaryCheckIcon
     case itemListDisabledCheckIcon
@@ -50,6 +51,7 @@ public enum PresentationResourceKey: Int32 {
     case itemListDeleteIcon
     case itemListDeleteIndicatorIcon
     case itemListReorderIndicatorIcon
+    case itemListAddIndicatorIcon
     case itemListLinkIcon
     case itemListAddPersonIcon
     case itemListCreateGroupIcon
@@ -78,6 +80,7 @@ public enum PresentationResourceKey: Int32 {
     case itemListResetIcon
     case itemListImageIcon
     case itemListCloudIcon
+    case itemListScanIcon
     case itemListTopicArrowIcon
     case itemListAddBoostsIcon
     case itemListPremiumIcon
@@ -128,6 +131,7 @@ public enum PresentationResourceKey: Int32 {
     case chatListStoryReplyIcon
     case chatListGiftIcon
     case chatListLocationIcon
+    case chatListPollIcon
     
     case chatListGeneralTopicIcon
     case chatListGeneralTopicTemplateIcon
@@ -177,6 +181,11 @@ public enum PresentationResourceKey: Int32 {
     case chatBubbleTodoDotOutgoingIcon
     case chatBubbleTodoCheckIncomingIcon
     case chatBubbleTodoCheckOutgoingIcon
+    
+    case chatBubblePollChevronLeftIncomingIcon
+    case chatBubblePollChevronLeftOutgoingIcon
+    case chatBubblePollChevronRightIncomingIcon
+    case chatBubblePollChevronRightOutgoingIcon
     
     case chatServiceMessageTodoCompletedIcon
     case chatServiceMessageTodoIncompletedIcon
@@ -247,6 +256,7 @@ public enum PresentationResourceKey: Int32 {
     case chatHistoryNavigationUpButtonImage
     case chatHistoryMentionsButtonImage
     case chatHistoryReactionsButtonImage
+    case chatHistoryPollVotesButtonImage
     case chatHistoryNavigationButtonBadgeImage
     
     case chatMessageAttachedContentButtonIncoming
@@ -296,11 +306,7 @@ public enum PresentationResourceKey: Int32 {
     case genericSearchBar
     
     case inAppNotificationBackground
-    
-    case groupInfoAdminsIcon
-    case groupInfoPermissionsIcon
-    case groupInfoMembersIcon
-    
+        
     case emptyChatListCheckIcon
 
     case chatFreeCommentButtonIcon
@@ -337,6 +343,8 @@ public enum PresentationResourceKey: Int32 {
     case chatReplyServiceBackgroundTemplateImage
     
     case chatBubbleCloseIcon
+    case chatAttachedContentCloseIcon
+    case chatPollAddIcon
     
     case chatEmptyStateStarIcon
     case chatPlaceholderStarIcon
@@ -387,6 +395,8 @@ public enum PresentationResourceParameterKey: Hashable {
     case chatListBadgeBackgroundMention(CGFloat)
     case badgeBackgroundReactions(CGFloat)
     case badgeBackgroundInactiveReactions(CGFloat)
+    case badgeBackgroundPollVotes(CGFloat)
+    case badgeBackgroundInactivePollVotes(CGFloat)
     case chatListBadgeBackgroundInactiveMention(CGFloat)
     case chatListBadgeBackgroundPinned(CGFloat)
     case badgeBackgroundBorder(CGFloat)
@@ -411,4 +421,5 @@ public enum PresentationResourceParameterKey: Hashable {
     
     case chatExpiredStoryIndicatorIcon(type: ChatExpiredStoryIndicatorType)
     case chatReplyStoryIndicatorIcon(type: ChatExpiredStoryIndicatorType)
+    case chatReplyPollIndicatorIcon(type: ChatExpiredStoryIndicatorType)
 }

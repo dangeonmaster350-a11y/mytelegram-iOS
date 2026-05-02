@@ -15,6 +15,7 @@ final class AccountSwitchComponent: Component {
     let theme: PresentationTheme
     let peer: EnginePeer
     let canSwitch: Bool
+    let isVisible: Bool
     let action: ((GlassContextExtractableContainer) -> Void)
 
     init(
@@ -22,12 +23,14 @@ final class AccountSwitchComponent: Component {
         theme: PresentationTheme,
         peer: EnginePeer,
         canSwitch: Bool,
+        isVisible: Bool,
         action: @escaping ((GlassContextExtractableContainer) -> Void)
     ) {
         self.context = context
         self.theme = theme
         self.peer = peer
         self.canSwitch = canSwitch
+        self.isVisible = isVisible
         self.action = action
     }
 
@@ -42,6 +45,9 @@ final class AccountSwitchComponent: Component {
             return false
         }
         if lhs.canSwitch != rhs.canSwitch {
+            return false
+        }
+        if lhs.isVisible != rhs.isVisible {
             return false
         }
         return true
@@ -75,6 +81,8 @@ final class AccountSwitchComponent: Component {
         
         func update(component: AccountSwitchComponent, availableSize: CGSize, state: EmptyComponentState, environment: Environment<Empty>, transition: ComponentTransition) -> CGSize {
             self.component = component
+            
+            self.button.isUserInteractionEnabled = component.canSwitch
             
             let size = CGSize(width: component.canSwitch ? 76.0 : 44.0, height: 44.0)
             
@@ -116,7 +124,7 @@ final class AccountSwitchComponent: Component {
                 transition.setAlpha(view: arrowView, alpha: component.canSwitch ? 1.0 : 0.0)
             }
             
-            self.backgroundView.update(size: size, cornerRadius: size.height * 0.5, isDark: component.theme.overallDarkAppearance, tintColor: .init(kind: .panel), isInteractive: component.canSwitch, transition: transition)
+            self.backgroundView.update(size: size, cornerRadius: size.height * 0.5, isDark: component.theme.overallDarkAppearance, tintColor: .init(kind: .panel), isInteractive: component.canSwitch, isVisible: component.isVisible, transition: transition)
             transition.setFrame(view: self.backgroundView, frame: CGRect(origin: .zero, size: size))
             transition.setFrame(view: self.button, frame: CGRect(origin: .zero, size: size))
             

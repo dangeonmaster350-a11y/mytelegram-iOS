@@ -129,7 +129,7 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
         self.panelButtonNode.setTitle(self.presentationData.strings.Channel_AdminLog_Settings, with: Font.regular(17.0), with: self.presentationData.theme.chat.inputPanel.panelControlAccentColor, for: [])
         self.panelInfoButtonNode = HighlightableButtonNode()
         
-        self.listNode = ListView()
+        self.listNode = ListViewImpl()
         self.listNode.transform = CATransform3DMakeRotation(CGFloat(Double.pi), 0.0, 0.0, 1.0)
         self.listNode.accessibilityPageScrolledString = { row, count in
             return presentationData.strings.VoiceOver_ScrollStatus(row, count).string
@@ -315,6 +315,7 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
                 let _ = context.sharedContext.navigateToForumThread(context: context, peerId: peerId, threadId: threadId, messageId: nil, navigationController: navigationController, activateInput: nil, scrollToEndIfExists: false, keepStack: .always, animated: true).startStandalone()
             }
         }, tapMessage: nil, clickThroughMessage: { _, _ in }, toggleMessagesSelection: { _, _ in }, sendCurrentMessage: { _, _ in }, sendMessage: { _ in }, sendSticker: { _, _, _, _, _, _, _, _, _ in return false }, sendEmoji: { _, _, _ in }, sendGif: { _, _, _, _, _ in return false }, sendBotContextResultAsGif: { _, _, _, _, _, _ in return false
+        }, editGif: { _, _ in
         }, requestMessageActionCallback: { [weak self] message, _, _, _, _ in
             guard let self else {
                 return
@@ -366,7 +367,10 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
                     strongSelf.pushController(searchController)
                 }
             }))
-            }, updateInputState: { _ in }, updateInputMode: { _ in }, openMessageShareMenu: { _ in
+        }, updateInputState: { _ in
+        }, updateInputMode: { _ in
+        }, updatePresentationState: { _ in
+        }, openMessageShareMenu: { _ in
         }, presentController: { _, _ in
         }, presentControllerInCurrent: { _, _ in
         }, navigationController: { [weak self] in
@@ -566,9 +570,12 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
                         strongSelf.presentController(actionSheet, .window(.root), nil)
                     case .bankCard:
                         break
+                    case .date:
+                        break
                 }
             }
         }, todoItemLongTap: { _, _ in
+        }, pollOptionLongTap: { _, _ in
         }, openCheckoutOrReceipt: { _, _ in
         }, openSearch: {
         }, setupReply: { _ in
@@ -581,6 +588,7 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
         }, addContact: { _ in
         }, rateCall: { _, _, _ in
         }, requestSelectMessagePollOptions: { _, _ in
+        }, requestAddMessagePollOption: { _, _, _, _, _ in
         }, requestOpenMessagePollResults: { _, _ in
         }, openAppStorePage: { [weak self] in
             if let strongSelf = self {
@@ -591,12 +599,13 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
         }, scheduleCurrentMessage: { _ in
         }, sendScheduledMessagesNow: { _ in
         }, editScheduledMessagesTime: { _ in
-        }, performTextSelectionAction: { _, _, _, _ in
+        }, performTextSelectionAction: { _, _, _, _, _ in
         }, displayImportedMessageTooltip: { _ in
         }, displaySwipeToReplyHint: {
         }, dismissReplyMarkupMessage: { _ in
         }, openMessagePollResults: { _, _ in
         }, openPollCreation: { _ in
+        }, openPollMedia: { _, _ in
         }, displayPollSolution: { _, _ in
         }, displayPsa: { _, _ in
         }, displayDiceTooltip: { _ in
@@ -650,7 +659,7 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
         }, requestToggleTodoMessageItem: { _, _, _ in
         }, displayTodoToggleUnavailable: { _ in
         }, openStarsPurchase: { _ in
-        }, automaticMediaDownloadSettings: self.automaticMediaDownloadSettings,
+        }, openRankInfo: { _, _, _ in }, openSetPeerAvatar: {}, automaticMediaDownloadSettings: self.automaticMediaDownloadSettings,
         pollActionState: ChatInterfacePollActionState(), stickerSettings: ChatInterfaceStickerSettings(), presentationContext: ChatPresentationContext(context: context, backgroundNode: self.backgroundNode))
         self.controllerInteraction = controllerInteraction
         
@@ -1463,7 +1472,7 @@ final class ChatRecentActionsControllerNode: ViewControllerTracingNode {
                         break
                     case .sendGift:
                         break
-                    case .chats, .contacts, .compose, .postStory, .settings, .unknownDeepLink, .oauth:
+                    case .chats, .contacts, .compose, .postStory, .settings, .unknownDeepLink, .oauth, .createBot:
                         break
                 }
             }

@@ -1,6 +1,6 @@
 public extension Api {
     enum InputBusinessBotRecipients: TypeConstructorDescription {
-        public class Cons_inputBusinessBotRecipients {
+        public class Cons_inputBusinessBotRecipients: TypeConstructorDescription {
             public var flags: Int32
             public var users: [Api.InputUser]?
             public var excludeUsers: [Api.InputUser]?
@@ -8,6 +8,9 @@ public extension Api {
                 self.flags = flags
                 self.users = users
                 self.excludeUsers = excludeUsers
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputBusinessBotRecipients", [("flags", ConstructorParameterDescription(self.flags)), ("users", ConstructorParameterDescription(self.users)), ("excludeUsers", ConstructorParameterDescription(self.excludeUsers))])
             }
         }
         case inputBusinessBotRecipients(Cons_inputBusinessBotRecipients)
@@ -37,10 +40,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputBusinessBotRecipients(let _data):
-                return ("inputBusinessBotRecipients", [("flags", _data.flags as Any), ("users", _data.users as Any), ("excludeUsers", _data.excludeUsers as Any)])
+                return ("inputBusinessBotRecipients", [("flags", ConstructorParameterDescription(_data.flags)), ("users", ConstructorParameterDescription(_data.users)), ("excludeUsers", ConstructorParameterDescription(_data.excludeUsers))])
             }
         }
 
@@ -73,7 +76,7 @@ public extension Api {
 }
 public extension Api {
     enum InputBusinessChatLink: TypeConstructorDescription {
-        public class Cons_inputBusinessChatLink {
+        public class Cons_inputBusinessChatLink: TypeConstructorDescription {
             public var flags: Int32
             public var message: String
             public var entities: [Api.MessageEntity]?
@@ -83,6 +86,9 @@ public extension Api {
                 self.message = message
                 self.entities = entities
                 self.title = title
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputBusinessChatLink", [("flags", ConstructorParameterDescription(self.flags)), ("message", ConstructorParameterDescription(self.message)), ("entities", ConstructorParameterDescription(self.entities)), ("title", ConstructorParameterDescription(self.title))])
             }
         }
         case inputBusinessChatLink(Cons_inputBusinessChatLink)
@@ -109,10 +115,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputBusinessChatLink(let _data):
-                return ("inputBusinessChatLink", [("flags", _data.flags as Any), ("message", _data.message as Any), ("entities", _data.entities as Any), ("title", _data.title as Any)])
+                return ("inputBusinessChatLink", [("flags", ConstructorParameterDescription(_data.flags)), ("message", ConstructorParameterDescription(_data.message)), ("entities", ConstructorParameterDescription(_data.entities)), ("title", ConstructorParameterDescription(_data.title))])
             }
         }
 
@@ -146,7 +152,7 @@ public extension Api {
 }
 public extension Api {
     enum InputBusinessGreetingMessage: TypeConstructorDescription {
-        public class Cons_inputBusinessGreetingMessage {
+        public class Cons_inputBusinessGreetingMessage: TypeConstructorDescription {
             public var shortcutId: Int32
             public var recipients: Api.InputBusinessRecipients
             public var noActivityDays: Int32
@@ -154,6 +160,9 @@ public extension Api {
                 self.shortcutId = shortcutId
                 self.recipients = recipients
                 self.noActivityDays = noActivityDays
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputBusinessGreetingMessage", [("shortcutId", ConstructorParameterDescription(self.shortcutId)), ("recipients", ConstructorParameterDescription(self.recipients)), ("noActivityDays", ConstructorParameterDescription(self.noActivityDays))])
             }
         }
         case inputBusinessGreetingMessage(Cons_inputBusinessGreetingMessage)
@@ -171,10 +180,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputBusinessGreetingMessage(let _data):
-                return ("inputBusinessGreetingMessage", [("shortcutId", _data.shortcutId as Any), ("recipients", _data.recipients as Any), ("noActivityDays", _data.noActivityDays as Any)])
+                return ("inputBusinessGreetingMessage", [("shortcutId", ConstructorParameterDescription(_data.shortcutId)), ("recipients", ConstructorParameterDescription(_data.recipients)), ("noActivityDays", ConstructorParameterDescription(_data.noActivityDays))])
             }
         }
 
@@ -201,7 +210,7 @@ public extension Api {
 }
 public extension Api {
     enum InputBusinessIntro: TypeConstructorDescription {
-        public class Cons_inputBusinessIntro {
+        public class Cons_inputBusinessIntro: TypeConstructorDescription {
             public var flags: Int32
             public var title: String
             public var description: String
@@ -211,6 +220,9 @@ public extension Api {
                 self.title = title
                 self.description = description
                 self.sticker = sticker
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputBusinessIntro", [("flags", ConstructorParameterDescription(self.flags)), ("title", ConstructorParameterDescription(self.title)), ("description", ConstructorParameterDescription(self.description)), ("sticker", ConstructorParameterDescription(self.sticker))])
             }
         }
         case inputBusinessIntro(Cons_inputBusinessIntro)
@@ -231,10 +243,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputBusinessIntro(let _data):
-                return ("inputBusinessIntro", [("flags", _data.flags as Any), ("title", _data.title as Any), ("description", _data.description as Any), ("sticker", _data.sticker as Any)])
+                return ("inputBusinessIntro", [("flags", ConstructorParameterDescription(_data.flags)), ("title", ConstructorParameterDescription(_data.title)), ("description", ConstructorParameterDescription(_data.description)), ("sticker", ConstructorParameterDescription(_data.sticker))])
             }
         }
 
@@ -266,12 +278,15 @@ public extension Api {
 }
 public extension Api {
     enum InputBusinessRecipients: TypeConstructorDescription {
-        public class Cons_inputBusinessRecipients {
+        public class Cons_inputBusinessRecipients: TypeConstructorDescription {
             public var flags: Int32
             public var users: [Api.InputUser]?
             public init(flags: Int32, users: [Api.InputUser]?) {
                 self.flags = flags
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputBusinessRecipients", [("flags", ConstructorParameterDescription(self.flags)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case inputBusinessRecipients(Cons_inputBusinessRecipients)
@@ -294,10 +309,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputBusinessRecipients(let _data):
-                return ("inputBusinessRecipients", [("flags", _data.flags as Any), ("users", _data.users as Any)])
+                return ("inputBusinessRecipients", [("flags", ConstructorParameterDescription(_data.flags)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -323,15 +338,18 @@ public extension Api {
 }
 public extension Api {
     indirect enum InputChannel: TypeConstructorDescription {
-        public class Cons_inputChannel {
+        public class Cons_inputChannel: TypeConstructorDescription {
             public var channelId: Int64
             public var accessHash: Int64
             public init(channelId: Int64, accessHash: Int64) {
                 self.channelId = channelId
                 self.accessHash = accessHash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputChannel", [("channelId", ConstructorParameterDescription(self.channelId)), ("accessHash", ConstructorParameterDescription(self.accessHash))])
+            }
         }
-        public class Cons_inputChannelFromMessage {
+        public class Cons_inputChannelFromMessage: TypeConstructorDescription {
             public var peer: Api.InputPeer
             public var msgId: Int32
             public var channelId: Int64
@@ -339,6 +357,9 @@ public extension Api {
                 self.peer = peer
                 self.msgId = msgId
                 self.channelId = channelId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputChannelFromMessage", [("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("channelId", ConstructorParameterDescription(self.channelId))])
             }
         }
         case inputChannel(Cons_inputChannel)
@@ -370,14 +391,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputChannel(let _data):
-                return ("inputChannel", [("channelId", _data.channelId as Any), ("accessHash", _data.accessHash as Any)])
+                return ("inputChannel", [("channelId", ConstructorParameterDescription(_data.channelId)), ("accessHash", ConstructorParameterDescription(_data.accessHash))])
             case .inputChannelEmpty:
                 return ("inputChannelEmpty", [])
             case .inputChannelFromMessage(let _data):
-                return ("inputChannelFromMessage", [("peer", _data.peer as Any), ("msgId", _data.msgId as Any), ("channelId", _data.channelId as Any)])
+                return ("inputChannelFromMessage", [("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("channelId", ConstructorParameterDescription(_data.channelId))])
             }
         }
 
@@ -421,13 +442,16 @@ public extension Api {
 }
 public extension Api {
     enum InputChatPhoto: TypeConstructorDescription {
-        public class Cons_inputChatPhoto {
+        public class Cons_inputChatPhoto: TypeConstructorDescription {
             public var id: Api.InputPhoto
             public init(id: Api.InputPhoto) {
                 self.id = id
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputChatPhoto", [("id", ConstructorParameterDescription(self.id))])
+            }
         }
-        public class Cons_inputChatUploadedPhoto {
+        public class Cons_inputChatUploadedPhoto: TypeConstructorDescription {
             public var flags: Int32
             public var file: Api.InputFile?
             public var video: Api.InputFile?
@@ -439,6 +463,9 @@ public extension Api {
                 self.video = video
                 self.videoStartTs = videoStartTs
                 self.videoEmojiMarkup = videoEmojiMarkup
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputChatUploadedPhoto", [("flags", ConstructorParameterDescription(self.flags)), ("file", ConstructorParameterDescription(self.file)), ("video", ConstructorParameterDescription(self.video)), ("videoStartTs", ConstructorParameterDescription(self.videoStartTs)), ("videoEmojiMarkup", ConstructorParameterDescription(self.videoEmojiMarkup))])
             }
         }
         case inputChatPhoto(Cons_inputChatPhoto)
@@ -479,14 +506,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputChatPhoto(let _data):
-                return ("inputChatPhoto", [("id", _data.id as Any)])
+                return ("inputChatPhoto", [("id", ConstructorParameterDescription(_data.id))])
             case .inputChatPhotoEmpty:
                 return ("inputChatPhotoEmpty", [])
             case .inputChatUploadedPhoto(let _data):
-                return ("inputChatUploadedPhoto", [("flags", _data.flags as Any), ("file", _data.file as Any), ("video", _data.video as Any), ("videoStartTs", _data.videoStartTs as Any), ("videoEmojiMarkup", _data.videoEmojiMarkup as Any)])
+                return ("inputChatUploadedPhoto", [("flags", ConstructorParameterDescription(_data.flags)), ("file", ConstructorParameterDescription(_data.file)), ("video", ConstructorParameterDescription(_data.video)), ("videoStartTs", ConstructorParameterDescription(_data.videoStartTs)), ("videoEmojiMarkup", ConstructorParameterDescription(_data.videoEmojiMarkup))])
             }
         }
 
@@ -547,16 +574,22 @@ public extension Api {
 }
 public extension Api {
     enum InputChatTheme: TypeConstructorDescription {
-        public class Cons_inputChatTheme {
+        public class Cons_inputChatTheme: TypeConstructorDescription {
             public var emoticon: String
             public init(emoticon: String) {
                 self.emoticon = emoticon
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputChatTheme", [("emoticon", ConstructorParameterDescription(self.emoticon))])
+            }
         }
-        public class Cons_inputChatThemeUniqueGift {
+        public class Cons_inputChatThemeUniqueGift: TypeConstructorDescription {
             public var slug: String
             public init(slug: String) {
                 self.slug = slug
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputChatThemeUniqueGift", [("slug", ConstructorParameterDescription(self.slug))])
             }
         }
         case inputChatTheme(Cons_inputChatTheme)
@@ -585,14 +618,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputChatTheme(let _data):
-                return ("inputChatTheme", [("emoticon", _data.emoticon as Any)])
+                return ("inputChatTheme", [("emoticon", ConstructorParameterDescription(_data.emoticon))])
             case .inputChatThemeEmpty:
                 return ("inputChatThemeEmpty", [])
             case .inputChatThemeUniqueGift(let _data):
-                return ("inputChatThemeUniqueGift", [("slug", _data.slug as Any)])
+                return ("inputChatThemeUniqueGift", [("slug", ConstructorParameterDescription(_data.slug))])
             }
         }
 
@@ -625,10 +658,13 @@ public extension Api {
 }
 public extension Api {
     enum InputChatlist: TypeConstructorDescription {
-        public class Cons_inputChatlistDialogFilter {
+        public class Cons_inputChatlistDialogFilter: TypeConstructorDescription {
             public var filterId: Int32
             public init(filterId: Int32) {
                 self.filterId = filterId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputChatlistDialogFilter", [("filterId", ConstructorParameterDescription(self.filterId))])
             }
         }
         case inputChatlistDialogFilter(Cons_inputChatlistDialogFilter)
@@ -644,10 +680,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputChatlistDialogFilter(let _data):
-                return ("inputChatlistDialogFilter", [("filterId", _data.filterId as Any)])
+                return ("inputChatlistDialogFilter", [("filterId", ConstructorParameterDescription(_data.filterId))])
             }
         }
 
@@ -666,7 +702,7 @@ public extension Api {
 }
 public extension Api {
     enum InputCheckPasswordSRP: TypeConstructorDescription {
-        public class Cons_inputCheckPasswordSRP {
+        public class Cons_inputCheckPasswordSRP: TypeConstructorDescription {
             public var srpId: Int64
             public var A: Buffer
             public var M1: Buffer
@@ -674,6 +710,9 @@ public extension Api {
                 self.srpId = srpId
                 self.A = A
                 self.M1 = M1
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputCheckPasswordSRP", [("srpId", ConstructorParameterDescription(self.srpId)), ("A", ConstructorParameterDescription(self.A)), ("M1", ConstructorParameterDescription(self.M1))])
             }
         }
         case inputCheckPasswordEmpty
@@ -697,12 +736,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputCheckPasswordEmpty:
                 return ("inputCheckPasswordEmpty", [])
             case .inputCheckPasswordSRP(let _data):
-                return ("inputCheckPasswordSRP", [("srpId", _data.srpId as Any), ("A", _data.A as Any), ("M1", _data.M1 as Any)])
+                return ("inputCheckPasswordSRP", [("srpId", ConstructorParameterDescription(_data.srpId)), ("A", ConstructorParameterDescription(_data.A)), ("M1", ConstructorParameterDescription(_data.M1))])
             }
         }
 
@@ -730,12 +769,15 @@ public extension Api {
 }
 public extension Api {
     enum InputClientProxy: TypeConstructorDescription {
-        public class Cons_inputClientProxy {
+        public class Cons_inputClientProxy: TypeConstructorDescription {
             public var address: String
             public var port: Int32
             public init(address: String, port: Int32) {
                 self.address = address
                 self.port = port
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputClientProxy", [("address", ConstructorParameterDescription(self.address)), ("port", ConstructorParameterDescription(self.port))])
             }
         }
         case inputClientProxy(Cons_inputClientProxy)
@@ -752,10 +794,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputClientProxy(let _data):
-                return ("inputClientProxy", [("address", _data.address as Any), ("port", _data.port as Any)])
+                return ("inputClientProxy", [("address", ConstructorParameterDescription(_data.address)), ("port", ConstructorParameterDescription(_data.port))])
             }
         }
 
@@ -777,16 +819,22 @@ public extension Api {
 }
 public extension Api {
     enum InputCollectible: TypeConstructorDescription {
-        public class Cons_inputCollectiblePhone {
+        public class Cons_inputCollectiblePhone: TypeConstructorDescription {
             public var phone: String
             public init(phone: String) {
                 self.phone = phone
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputCollectiblePhone", [("phone", ConstructorParameterDescription(self.phone))])
+            }
         }
-        public class Cons_inputCollectibleUsername {
+        public class Cons_inputCollectibleUsername: TypeConstructorDescription {
             public var username: String
             public init(username: String) {
                 self.username = username
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputCollectibleUsername", [("username", ConstructorParameterDescription(self.username))])
             }
         }
         case inputCollectiblePhone(Cons_inputCollectiblePhone)
@@ -809,12 +857,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputCollectiblePhone(let _data):
-                return ("inputCollectiblePhone", [("phone", _data.phone as Any)])
+                return ("inputCollectiblePhone", [("phone", ConstructorParameterDescription(_data.phone))])
             case .inputCollectibleUsername(let _data):
-                return ("inputCollectibleUsername", [("username", _data.username as Any)])
+                return ("inputCollectibleUsername", [("username", ConstructorParameterDescription(_data.username))])
             }
         }
 
@@ -844,7 +892,7 @@ public extension Api {
 }
 public extension Api {
     enum InputContact: TypeConstructorDescription {
-        public class Cons_inputPhoneContact {
+        public class Cons_inputPhoneContact: TypeConstructorDescription {
             public var flags: Int32
             public var clientId: Int64
             public var phone: String
@@ -858,6 +906,9 @@ public extension Api {
                 self.firstName = firstName
                 self.lastName = lastName
                 self.note = note
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputPhoneContact", [("flags", ConstructorParameterDescription(self.flags)), ("clientId", ConstructorParameterDescription(self.clientId)), ("phone", ConstructorParameterDescription(self.phone)), ("firstName", ConstructorParameterDescription(self.firstName)), ("lastName", ConstructorParameterDescription(self.lastName)), ("note", ConstructorParameterDescription(self.note))])
             }
         }
         case inputPhoneContact(Cons_inputPhoneContact)
@@ -880,10 +931,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputPhoneContact(let _data):
-                return ("inputPhoneContact", [("flags", _data.flags as Any), ("clientId", _data.clientId as Any), ("phone", _data.phone as Any), ("firstName", _data.firstName as Any), ("lastName", _data.lastName as Any), ("note", _data.note as Any)])
+                return ("inputPhoneContact", [("flags", ConstructorParameterDescription(_data.flags)), ("clientId", ConstructorParameterDescription(_data.clientId)), ("phone", ConstructorParameterDescription(_data.phone)), ("firstName", ConstructorParameterDescription(_data.firstName)), ("lastName", ConstructorParameterDescription(_data.lastName)), ("note", ConstructorParameterDescription(_data.note))])
             }
         }
 
@@ -921,16 +972,22 @@ public extension Api {
 }
 public extension Api {
     indirect enum InputDialogPeer: TypeConstructorDescription {
-        public class Cons_inputDialogPeer {
+        public class Cons_inputDialogPeer: TypeConstructorDescription {
             public var peer: Api.InputPeer
             public init(peer: Api.InputPeer) {
                 self.peer = peer
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputDialogPeer", [("peer", ConstructorParameterDescription(self.peer))])
+            }
         }
-        public class Cons_inputDialogPeerFolder {
+        public class Cons_inputDialogPeerFolder: TypeConstructorDescription {
             public var folderId: Int32
             public init(folderId: Int32) {
                 self.folderId = folderId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputDialogPeerFolder", [("folderId", ConstructorParameterDescription(self.folderId))])
             }
         }
         case inputDialogPeer(Cons_inputDialogPeer)
@@ -953,12 +1010,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputDialogPeer(let _data):
-                return ("inputDialogPeer", [("peer", _data.peer as Any)])
+                return ("inputDialogPeer", [("peer", ConstructorParameterDescription(_data.peer))])
             case .inputDialogPeerFolder(let _data):
-                return ("inputDialogPeerFolder", [("folderId", _data.folderId as Any)])
+                return ("inputDialogPeerFolder", [("folderId", ConstructorParameterDescription(_data.folderId))])
             }
         }
 
@@ -990,7 +1047,7 @@ public extension Api {
 }
 public extension Api {
     enum InputDocument: TypeConstructorDescription {
-        public class Cons_inputDocument {
+        public class Cons_inputDocument: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public var fileReference: Buffer
@@ -998,6 +1055,9 @@ public extension Api {
                 self.id = id
                 self.accessHash = accessHash
                 self.fileReference = fileReference
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputDocument", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("fileReference", ConstructorParameterDescription(self.fileReference))])
             }
         }
         case inputDocument(Cons_inputDocument)
@@ -1021,10 +1081,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputDocument(let _data):
-                return ("inputDocument", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("fileReference", _data.fileReference as Any)])
+                return ("inputDocument", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("fileReference", ConstructorParameterDescription(_data.fileReference))])
             case .inputDocumentEmpty:
                 return ("inputDocumentEmpty", [])
             }
@@ -1054,12 +1114,15 @@ public extension Api {
 }
 public extension Api {
     enum InputEncryptedChat: TypeConstructorDescription {
-        public class Cons_inputEncryptedChat {
+        public class Cons_inputEncryptedChat: TypeConstructorDescription {
             public var chatId: Int32
             public var accessHash: Int64
             public init(chatId: Int32, accessHash: Int64) {
                 self.chatId = chatId
                 self.accessHash = accessHash
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputEncryptedChat", [("chatId", ConstructorParameterDescription(self.chatId)), ("accessHash", ConstructorParameterDescription(self.accessHash))])
             }
         }
         case inputEncryptedChat(Cons_inputEncryptedChat)
@@ -1076,10 +1139,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputEncryptedChat(let _data):
-                return ("inputEncryptedChat", [("chatId", _data.chatId as Any), ("accessHash", _data.accessHash as Any)])
+                return ("inputEncryptedChat", [("chatId", ConstructorParameterDescription(_data.chatId)), ("accessHash", ConstructorParameterDescription(_data.accessHash))])
             }
         }
 
@@ -1101,15 +1164,18 @@ public extension Api {
 }
 public extension Api {
     enum InputEncryptedFile: TypeConstructorDescription {
-        public class Cons_inputEncryptedFile {
+        public class Cons_inputEncryptedFile: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public init(id: Int64, accessHash: Int64) {
                 self.id = id
                 self.accessHash = accessHash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputEncryptedFile", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash))])
+            }
         }
-        public class Cons_inputEncryptedFileBigUploaded {
+        public class Cons_inputEncryptedFileBigUploaded: TypeConstructorDescription {
             public var id: Int64
             public var parts: Int32
             public var keyFingerprint: Int32
@@ -1118,8 +1184,11 @@ public extension Api {
                 self.parts = parts
                 self.keyFingerprint = keyFingerprint
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputEncryptedFileBigUploaded", [("id", ConstructorParameterDescription(self.id)), ("parts", ConstructorParameterDescription(self.parts)), ("keyFingerprint", ConstructorParameterDescription(self.keyFingerprint))])
+            }
         }
-        public class Cons_inputEncryptedFileUploaded {
+        public class Cons_inputEncryptedFileUploaded: TypeConstructorDescription {
             public var id: Int64
             public var parts: Int32
             public var md5Checksum: String
@@ -1129,6 +1198,9 @@ public extension Api {
                 self.parts = parts
                 self.md5Checksum = md5Checksum
                 self.keyFingerprint = keyFingerprint
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputEncryptedFileUploaded", [("id", ConstructorParameterDescription(self.id)), ("parts", ConstructorParameterDescription(self.parts)), ("md5Checksum", ConstructorParameterDescription(self.md5Checksum)), ("keyFingerprint", ConstructorParameterDescription(self.keyFingerprint))])
             }
         }
         case inputEncryptedFile(Cons_inputEncryptedFile)
@@ -1170,16 +1242,16 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputEncryptedFile(let _data):
-                return ("inputEncryptedFile", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any)])
+                return ("inputEncryptedFile", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash))])
             case .inputEncryptedFileBigUploaded(let _data):
-                return ("inputEncryptedFileBigUploaded", [("id", _data.id as Any), ("parts", _data.parts as Any), ("keyFingerprint", _data.keyFingerprint as Any)])
+                return ("inputEncryptedFileBigUploaded", [("id", ConstructorParameterDescription(_data.id)), ("parts", ConstructorParameterDescription(_data.parts)), ("keyFingerprint", ConstructorParameterDescription(_data.keyFingerprint))])
             case .inputEncryptedFileEmpty:
                 return ("inputEncryptedFileEmpty", [])
             case .inputEncryptedFileUploaded(let _data):
-                return ("inputEncryptedFileUploaded", [("id", _data.id as Any), ("parts", _data.parts as Any), ("md5Checksum", _data.md5Checksum as Any), ("keyFingerprint", _data.keyFingerprint as Any)])
+                return ("inputEncryptedFileUploaded", [("id", ConstructorParameterDescription(_data.id)), ("parts", ConstructorParameterDescription(_data.parts)), ("md5Checksum", ConstructorParameterDescription(_data.md5Checksum)), ("keyFingerprint", ConstructorParameterDescription(_data.keyFingerprint))])
             }
         }
 
@@ -1241,7 +1313,7 @@ public extension Api {
 }
 public extension Api {
     enum InputFile: TypeConstructorDescription {
-        public class Cons_inputFile {
+        public class Cons_inputFile: TypeConstructorDescription {
             public var id: Int64
             public var parts: Int32
             public var name: String
@@ -1252,8 +1324,11 @@ public extension Api {
                 self.name = name
                 self.md5Checksum = md5Checksum
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputFile", [("id", ConstructorParameterDescription(self.id)), ("parts", ConstructorParameterDescription(self.parts)), ("name", ConstructorParameterDescription(self.name)), ("md5Checksum", ConstructorParameterDescription(self.md5Checksum))])
+            }
         }
-        public class Cons_inputFileBig {
+        public class Cons_inputFileBig: TypeConstructorDescription {
             public var id: Int64
             public var parts: Int32
             public var name: String
@@ -1262,11 +1337,17 @@ public extension Api {
                 self.parts = parts
                 self.name = name
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputFileBig", [("id", ConstructorParameterDescription(self.id)), ("parts", ConstructorParameterDescription(self.parts)), ("name", ConstructorParameterDescription(self.name))])
+            }
         }
-        public class Cons_inputFileStoryDocument {
+        public class Cons_inputFileStoryDocument: TypeConstructorDescription {
             public var id: Api.InputDocument
             public init(id: Api.InputDocument) {
                 self.id = id
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputFileStoryDocument", [("id", ConstructorParameterDescription(self.id))])
             }
         }
         case inputFile(Cons_inputFile)
@@ -1301,14 +1382,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputFile(let _data):
-                return ("inputFile", [("id", _data.id as Any), ("parts", _data.parts as Any), ("name", _data.name as Any), ("md5Checksum", _data.md5Checksum as Any)])
+                return ("inputFile", [("id", ConstructorParameterDescription(_data.id)), ("parts", ConstructorParameterDescription(_data.parts)), ("name", ConstructorParameterDescription(_data.name)), ("md5Checksum", ConstructorParameterDescription(_data.md5Checksum))])
             case .inputFileBig(let _data):
-                return ("inputFileBig", [("id", _data.id as Any), ("parts", _data.parts as Any), ("name", _data.name as Any)])
+                return ("inputFileBig", [("id", ConstructorParameterDescription(_data.id)), ("parts", ConstructorParameterDescription(_data.parts)), ("name", ConstructorParameterDescription(_data.name))])
             case .inputFileStoryDocument(let _data):
-                return ("inputFileStoryDocument", [("id", _data.id as Any)])
+                return ("inputFileStoryDocument", [("id", ConstructorParameterDescription(_data.id))])
             }
         }
 

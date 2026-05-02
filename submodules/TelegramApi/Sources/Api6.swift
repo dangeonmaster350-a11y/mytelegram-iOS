@@ -1,9 +1,12 @@
 public extension Api {
     enum DisallowedGiftsSettings: TypeConstructorDescription {
-        public class Cons_disallowedGiftsSettings {
+        public class Cons_disallowedGiftsSettings: TypeConstructorDescription {
             public var flags: Int32
             public init(flags: Int32) {
                 self.flags = flags
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("disallowedGiftsSettings", [("flags", ConstructorParameterDescription(self.flags))])
             }
         }
         case disallowedGiftsSettings(Cons_disallowedGiftsSettings)
@@ -19,10 +22,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .disallowedGiftsSettings(let _data):
-                return ("disallowedGiftsSettings", [("flags", _data.flags as Any)])
+                return ("disallowedGiftsSettings", [("flags", ConstructorParameterDescription(_data.flags))])
             }
         }
 
@@ -41,7 +44,7 @@ public extension Api {
 }
 public extension Api {
     enum Document: TypeConstructorDescription {
-        public class Cons_document {
+        public class Cons_document: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int64
             public var accessHash: Int64
@@ -66,11 +69,17 @@ public extension Api {
                 self.dcId = dcId
                 self.attributes = attributes
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("document", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("fileReference", ConstructorParameterDescription(self.fileReference)), ("date", ConstructorParameterDescription(self.date)), ("mimeType", ConstructorParameterDescription(self.mimeType)), ("size", ConstructorParameterDescription(self.size)), ("thumbs", ConstructorParameterDescription(self.thumbs)), ("videoThumbs", ConstructorParameterDescription(self.videoThumbs)), ("dcId", ConstructorParameterDescription(self.dcId)), ("attributes", ConstructorParameterDescription(self.attributes))])
+            }
         }
-        public class Cons_documentEmpty {
+        public class Cons_documentEmpty: TypeConstructorDescription {
             public var id: Int64
             public init(id: Int64) {
                 self.id = id
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("documentEmpty", [("id", ConstructorParameterDescription(self.id))])
             }
         }
         case document(Cons_document)
@@ -119,12 +128,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .document(let _data):
-                return ("document", [("flags", _data.flags as Any), ("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("fileReference", _data.fileReference as Any), ("date", _data.date as Any), ("mimeType", _data.mimeType as Any), ("size", _data.size as Any), ("thumbs", _data.thumbs as Any), ("videoThumbs", _data.videoThumbs as Any), ("dcId", _data.dcId as Any), ("attributes", _data.attributes as Any)])
+                return ("document", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("fileReference", ConstructorParameterDescription(_data.fileReference)), ("date", ConstructorParameterDescription(_data.date)), ("mimeType", ConstructorParameterDescription(_data.mimeType)), ("size", ConstructorParameterDescription(_data.size)), ("thumbs", ConstructorParameterDescription(_data.thumbs)), ("videoThumbs", ConstructorParameterDescription(_data.videoThumbs)), ("dcId", ConstructorParameterDescription(_data.dcId)), ("attributes", ConstructorParameterDescription(_data.attributes))])
             case .documentEmpty(let _data):
-                return ("documentEmpty", [("id", _data.id as Any)])
+                return ("documentEmpty", [("id", ConstructorParameterDescription(_data.id))])
             }
         }
 
@@ -194,7 +203,7 @@ public extension Api {
 }
 public extension Api {
     enum DocumentAttribute: TypeConstructorDescription {
-        public class Cons_documentAttributeAudio {
+        public class Cons_documentAttributeAudio: TypeConstructorDescription {
             public var flags: Int32
             public var duration: Int32
             public var title: String?
@@ -207,8 +216,11 @@ public extension Api {
                 self.performer = performer
                 self.waveform = waveform
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("documentAttributeAudio", [("flags", ConstructorParameterDescription(self.flags)), ("duration", ConstructorParameterDescription(self.duration)), ("title", ConstructorParameterDescription(self.title)), ("performer", ConstructorParameterDescription(self.performer)), ("waveform", ConstructorParameterDescription(self.waveform))])
+            }
         }
-        public class Cons_documentAttributeCustomEmoji {
+        public class Cons_documentAttributeCustomEmoji: TypeConstructorDescription {
             public var flags: Int32
             public var alt: String
             public var stickerset: Api.InputStickerSet
@@ -217,22 +229,31 @@ public extension Api {
                 self.alt = alt
                 self.stickerset = stickerset
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("documentAttributeCustomEmoji", [("flags", ConstructorParameterDescription(self.flags)), ("alt", ConstructorParameterDescription(self.alt)), ("stickerset", ConstructorParameterDescription(self.stickerset))])
+            }
         }
-        public class Cons_documentAttributeFilename {
+        public class Cons_documentAttributeFilename: TypeConstructorDescription {
             public var fileName: String
             public init(fileName: String) {
                 self.fileName = fileName
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("documentAttributeFilename", [("fileName", ConstructorParameterDescription(self.fileName))])
+            }
         }
-        public class Cons_documentAttributeImageSize {
+        public class Cons_documentAttributeImageSize: TypeConstructorDescription {
             public var w: Int32
             public var h: Int32
             public init(w: Int32, h: Int32) {
                 self.w = w
                 self.h = h
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("documentAttributeImageSize", [("w", ConstructorParameterDescription(self.w)), ("h", ConstructorParameterDescription(self.h))])
+            }
         }
-        public class Cons_documentAttributeSticker {
+        public class Cons_documentAttributeSticker: TypeConstructorDescription {
             public var flags: Int32
             public var alt: String
             public var stickerset: Api.InputStickerSet
@@ -243,8 +264,11 @@ public extension Api {
                 self.stickerset = stickerset
                 self.maskCoords = maskCoords
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("documentAttributeSticker", [("flags", ConstructorParameterDescription(self.flags)), ("alt", ConstructorParameterDescription(self.alt)), ("stickerset", ConstructorParameterDescription(self.stickerset)), ("maskCoords", ConstructorParameterDescription(self.maskCoords))])
+            }
         }
-        public class Cons_documentAttributeVideo {
+        public class Cons_documentAttributeVideo: TypeConstructorDescription {
             public var flags: Int32
             public var duration: Double
             public var w: Int32
@@ -260,6 +284,9 @@ public extension Api {
                 self.preloadPrefixSize = preloadPrefixSize
                 self.videoStartTs = videoStartTs
                 self.videoCodec = videoCodec
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("documentAttributeVideo", [("flags", ConstructorParameterDescription(self.flags)), ("duration", ConstructorParameterDescription(self.duration)), ("w", ConstructorParameterDescription(self.w)), ("h", ConstructorParameterDescription(self.h)), ("preloadPrefixSize", ConstructorParameterDescription(self.preloadPrefixSize)), ("videoStartTs", ConstructorParameterDescription(self.videoStartTs)), ("videoCodec", ConstructorParameterDescription(self.videoCodec))])
             }
         }
         case documentAttributeAnimated
@@ -352,24 +379,24 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .documentAttributeAnimated:
                 return ("documentAttributeAnimated", [])
             case .documentAttributeAudio(let _data):
-                return ("documentAttributeAudio", [("flags", _data.flags as Any), ("duration", _data.duration as Any), ("title", _data.title as Any), ("performer", _data.performer as Any), ("waveform", _data.waveform as Any)])
+                return ("documentAttributeAudio", [("flags", ConstructorParameterDescription(_data.flags)), ("duration", ConstructorParameterDescription(_data.duration)), ("title", ConstructorParameterDescription(_data.title)), ("performer", ConstructorParameterDescription(_data.performer)), ("waveform", ConstructorParameterDescription(_data.waveform))])
             case .documentAttributeCustomEmoji(let _data):
-                return ("documentAttributeCustomEmoji", [("flags", _data.flags as Any), ("alt", _data.alt as Any), ("stickerset", _data.stickerset as Any)])
+                return ("documentAttributeCustomEmoji", [("flags", ConstructorParameterDescription(_data.flags)), ("alt", ConstructorParameterDescription(_data.alt)), ("stickerset", ConstructorParameterDescription(_data.stickerset))])
             case .documentAttributeFilename(let _data):
-                return ("documentAttributeFilename", [("fileName", _data.fileName as Any)])
+                return ("documentAttributeFilename", [("fileName", ConstructorParameterDescription(_data.fileName))])
             case .documentAttributeHasStickers:
                 return ("documentAttributeHasStickers", [])
             case .documentAttributeImageSize(let _data):
-                return ("documentAttributeImageSize", [("w", _data.w as Any), ("h", _data.h as Any)])
+                return ("documentAttributeImageSize", [("w", ConstructorParameterDescription(_data.w)), ("h", ConstructorParameterDescription(_data.h))])
             case .documentAttributeSticker(let _data):
-                return ("documentAttributeSticker", [("flags", _data.flags as Any), ("alt", _data.alt as Any), ("stickerset", _data.stickerset as Any), ("maskCoords", _data.maskCoords as Any)])
+                return ("documentAttributeSticker", [("flags", ConstructorParameterDescription(_data.flags)), ("alt", ConstructorParameterDescription(_data.alt)), ("stickerset", ConstructorParameterDescription(_data.stickerset)), ("maskCoords", ConstructorParameterDescription(_data.maskCoords))])
             case .documentAttributeVideo(let _data):
-                return ("documentAttributeVideo", [("flags", _data.flags as Any), ("duration", _data.duration as Any), ("w", _data.w as Any), ("h", _data.h as Any), ("preloadPrefixSize", _data.preloadPrefixSize as Any), ("videoStartTs", _data.videoStartTs as Any), ("videoCodec", _data.videoCodec as Any)])
+                return ("documentAttributeVideo", [("flags", ConstructorParameterDescription(_data.flags)), ("duration", ConstructorParameterDescription(_data.duration)), ("w", ConstructorParameterDescription(_data.w)), ("h", ConstructorParameterDescription(_data.h)), ("preloadPrefixSize", ConstructorParameterDescription(_data.preloadPrefixSize)), ("videoStartTs", ConstructorParameterDescription(_data.videoStartTs)), ("videoCodec", ConstructorParameterDescription(_data.videoCodec))])
             }
         }
 
@@ -517,7 +544,7 @@ public extension Api {
 }
 public extension Api {
     indirect enum DraftMessage: TypeConstructorDescription {
-        public class Cons_draftMessage {
+        public class Cons_draftMessage: TypeConstructorDescription {
             public var flags: Int32
             public var replyTo: Api.InputReplyTo?
             public var message: String
@@ -536,13 +563,19 @@ public extension Api {
                 self.effect = effect
                 self.suggestedPost = suggestedPost
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("draftMessage", [("flags", ConstructorParameterDescription(self.flags)), ("replyTo", ConstructorParameterDescription(self.replyTo)), ("message", ConstructorParameterDescription(self.message)), ("entities", ConstructorParameterDescription(self.entities)), ("media", ConstructorParameterDescription(self.media)), ("date", ConstructorParameterDescription(self.date)), ("effect", ConstructorParameterDescription(self.effect)), ("suggestedPost", ConstructorParameterDescription(self.suggestedPost))])
+            }
         }
-        public class Cons_draftMessageEmpty {
+        public class Cons_draftMessageEmpty: TypeConstructorDescription {
             public var flags: Int32
             public var date: Int32?
             public init(flags: Int32, date: Int32?) {
                 self.flags = flags
                 self.date = date
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("draftMessageEmpty", [("flags", ConstructorParameterDescription(self.flags)), ("date", ConstructorParameterDescription(self.date))])
             }
         }
         case draftMessage(Cons_draftMessage)
@@ -589,12 +622,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .draftMessage(let _data):
-                return ("draftMessage", [("flags", _data.flags as Any), ("replyTo", _data.replyTo as Any), ("message", _data.message as Any), ("entities", _data.entities as Any), ("media", _data.media as Any), ("date", _data.date as Any), ("effect", _data.effect as Any), ("suggestedPost", _data.suggestedPost as Any)])
+                return ("draftMessage", [("flags", ConstructorParameterDescription(_data.flags)), ("replyTo", ConstructorParameterDescription(_data.replyTo)), ("message", ConstructorParameterDescription(_data.message)), ("entities", ConstructorParameterDescription(_data.entities)), ("media", ConstructorParameterDescription(_data.media)), ("date", ConstructorParameterDescription(_data.date)), ("effect", ConstructorParameterDescription(_data.effect)), ("suggestedPost", ConstructorParameterDescription(_data.suggestedPost))])
             case .draftMessageEmpty(let _data):
-                return ("draftMessageEmpty", [("flags", _data.flags as Any), ("date", _data.date as Any)])
+                return ("draftMessageEmpty", [("flags", ConstructorParameterDescription(_data.flags)), ("date", ConstructorParameterDescription(_data.date))])
             }
         }
 
@@ -668,22 +701,31 @@ public extension Api {
 }
 public extension Api {
     enum EmailVerification: TypeConstructorDescription {
-        public class Cons_emailVerificationApple {
+        public class Cons_emailVerificationApple: TypeConstructorDescription {
             public var token: String
             public init(token: String) {
                 self.token = token
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emailVerificationApple", [("token", ConstructorParameterDescription(self.token))])
+            }
         }
-        public class Cons_emailVerificationCode {
+        public class Cons_emailVerificationCode: TypeConstructorDescription {
             public var code: String
             public init(code: String) {
                 self.code = code
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emailVerificationCode", [("code", ConstructorParameterDescription(self.code))])
+            }
         }
-        public class Cons_emailVerificationGoogle {
+        public class Cons_emailVerificationGoogle: TypeConstructorDescription {
             public var token: String
             public init(token: String) {
                 self.token = token
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emailVerificationGoogle", [("token", ConstructorParameterDescription(self.token))])
             }
         }
         case emailVerificationApple(Cons_emailVerificationApple)
@@ -713,14 +755,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emailVerificationApple(let _data):
-                return ("emailVerificationApple", [("token", _data.token as Any)])
+                return ("emailVerificationApple", [("token", ConstructorParameterDescription(_data.token))])
             case .emailVerificationCode(let _data):
-                return ("emailVerificationCode", [("code", _data.code as Any)])
+                return ("emailVerificationCode", [("code", ConstructorParameterDescription(_data.code))])
             case .emailVerificationGoogle(let _data):
-                return ("emailVerificationGoogle", [("token", _data.token as Any)])
+                return ("emailVerificationGoogle", [("token", ConstructorParameterDescription(_data.token))])
             }
         }
 
@@ -761,12 +803,15 @@ public extension Api {
 }
 public extension Api {
     enum EmailVerifyPurpose: TypeConstructorDescription {
-        public class Cons_emailVerifyPurposeLoginSetup {
+        public class Cons_emailVerifyPurposeLoginSetup: TypeConstructorDescription {
             public var phoneNumber: String
             public var phoneCodeHash: String
             public init(phoneNumber: String, phoneCodeHash: String) {
                 self.phoneNumber = phoneNumber
                 self.phoneCodeHash = phoneCodeHash
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emailVerifyPurposeLoginSetup", [("phoneNumber", ConstructorParameterDescription(self.phoneNumber)), ("phoneCodeHash", ConstructorParameterDescription(self.phoneCodeHash))])
             }
         }
         case emailVerifyPurposeLoginChange
@@ -795,12 +840,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emailVerifyPurposeLoginChange:
                 return ("emailVerifyPurposeLoginChange", [])
             case .emailVerifyPurposeLoginSetup(let _data):
-                return ("emailVerifyPurposeLoginSetup", [("phoneNumber", _data.phoneNumber as Any), ("phoneCodeHash", _data.phoneCodeHash as Any)])
+                return ("emailVerifyPurposeLoginSetup", [("phoneNumber", ConstructorParameterDescription(_data.phoneNumber)), ("phoneCodeHash", ConstructorParameterDescription(_data.phoneCodeHash))])
             case .emailVerifyPurposePassport:
                 return ("emailVerifyPurposePassport", [])
             }
@@ -830,7 +875,7 @@ public extension Api {
 }
 public extension Api {
     enum EmojiGroup: TypeConstructorDescription {
-        public class Cons_emojiGroup {
+        public class Cons_emojiGroup: TypeConstructorDescription {
             public var title: String
             public var iconEmojiId: Int64
             public var emoticons: [String]
@@ -839,8 +884,11 @@ public extension Api {
                 self.iconEmojiId = iconEmojiId
                 self.emoticons = emoticons
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiGroup", [("title", ConstructorParameterDescription(self.title)), ("iconEmojiId", ConstructorParameterDescription(self.iconEmojiId)), ("emoticons", ConstructorParameterDescription(self.emoticons))])
+            }
         }
-        public class Cons_emojiGroupGreeting {
+        public class Cons_emojiGroupGreeting: TypeConstructorDescription {
             public var title: String
             public var iconEmojiId: Int64
             public var emoticons: [String]
@@ -849,13 +897,19 @@ public extension Api {
                 self.iconEmojiId = iconEmojiId
                 self.emoticons = emoticons
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiGroupGreeting", [("title", ConstructorParameterDescription(self.title)), ("iconEmojiId", ConstructorParameterDescription(self.iconEmojiId)), ("emoticons", ConstructorParameterDescription(self.emoticons))])
+            }
         }
-        public class Cons_emojiGroupPremium {
+        public class Cons_emojiGroupPremium: TypeConstructorDescription {
             public var title: String
             public var iconEmojiId: Int64
             public init(title: String, iconEmojiId: Int64) {
                 self.title = title
                 self.iconEmojiId = iconEmojiId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiGroupPremium", [("title", ConstructorParameterDescription(self.title)), ("iconEmojiId", ConstructorParameterDescription(self.iconEmojiId))])
             }
         }
         case emojiGroup(Cons_emojiGroup)
@@ -898,14 +952,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emojiGroup(let _data):
-                return ("emojiGroup", [("title", _data.title as Any), ("iconEmojiId", _data.iconEmojiId as Any), ("emoticons", _data.emoticons as Any)])
+                return ("emojiGroup", [("title", ConstructorParameterDescription(_data.title)), ("iconEmojiId", ConstructorParameterDescription(_data.iconEmojiId)), ("emoticons", ConstructorParameterDescription(_data.emoticons))])
             case .emojiGroupGreeting(let _data):
-                return ("emojiGroupGreeting", [("title", _data.title as Any), ("iconEmojiId", _data.iconEmojiId as Any), ("emoticons", _data.emoticons as Any)])
+                return ("emojiGroupGreeting", [("title", ConstructorParameterDescription(_data.title)), ("iconEmojiId", ConstructorParameterDescription(_data.iconEmojiId)), ("emoticons", ConstructorParameterDescription(_data.emoticons))])
             case .emojiGroupPremium(let _data):
-                return ("emojiGroupPremium", [("title", _data.title as Any), ("iconEmojiId", _data.iconEmojiId as Any)])
+                return ("emojiGroupPremium", [("title", ConstructorParameterDescription(_data.title)), ("iconEmojiId", ConstructorParameterDescription(_data.iconEmojiId))])
             }
         }
 
@@ -965,20 +1019,26 @@ public extension Api {
 }
 public extension Api {
     enum EmojiKeyword: TypeConstructorDescription {
-        public class Cons_emojiKeyword {
+        public class Cons_emojiKeyword: TypeConstructorDescription {
             public var keyword: String
             public var emoticons: [String]
             public init(keyword: String, emoticons: [String]) {
                 self.keyword = keyword
                 self.emoticons = emoticons
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiKeyword", [("keyword", ConstructorParameterDescription(self.keyword)), ("emoticons", ConstructorParameterDescription(self.emoticons))])
+            }
         }
-        public class Cons_emojiKeywordDeleted {
+        public class Cons_emojiKeywordDeleted: TypeConstructorDescription {
             public var keyword: String
             public var emoticons: [String]
             public init(keyword: String, emoticons: [String]) {
                 self.keyword = keyword
                 self.emoticons = emoticons
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiKeywordDeleted", [("keyword", ConstructorParameterDescription(self.keyword)), ("emoticons", ConstructorParameterDescription(self.emoticons))])
             }
         }
         case emojiKeyword(Cons_emojiKeyword)
@@ -1011,12 +1071,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emojiKeyword(let _data):
-                return ("emojiKeyword", [("keyword", _data.keyword as Any), ("emoticons", _data.emoticons as Any)])
+                return ("emojiKeyword", [("keyword", ConstructorParameterDescription(_data.keyword)), ("emoticons", ConstructorParameterDescription(_data.emoticons))])
             case .emojiKeywordDeleted(let _data):
-                return ("emojiKeywordDeleted", [("keyword", _data.keyword as Any), ("emoticons", _data.emoticons as Any)])
+                return ("emojiKeywordDeleted", [("keyword", ConstructorParameterDescription(_data.keyword)), ("emoticons", ConstructorParameterDescription(_data.emoticons))])
             }
         }
 
@@ -1056,7 +1116,7 @@ public extension Api {
 }
 public extension Api {
     enum EmojiKeywordsDifference: TypeConstructorDescription {
-        public class Cons_emojiKeywordsDifference {
+        public class Cons_emojiKeywordsDifference: TypeConstructorDescription {
             public var langCode: String
             public var fromVersion: Int32
             public var version: Int32
@@ -1066,6 +1126,9 @@ public extension Api {
                 self.fromVersion = fromVersion
                 self.version = version
                 self.keywords = keywords
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiKeywordsDifference", [("langCode", ConstructorParameterDescription(self.langCode)), ("fromVersion", ConstructorParameterDescription(self.fromVersion)), ("version", ConstructorParameterDescription(self.version)), ("keywords", ConstructorParameterDescription(self.keywords))])
             }
         }
         case emojiKeywordsDifference(Cons_emojiKeywordsDifference)
@@ -1088,10 +1151,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emojiKeywordsDifference(let _data):
-                return ("emojiKeywordsDifference", [("langCode", _data.langCode as Any), ("fromVersion", _data.fromVersion as Any), ("version", _data.version as Any), ("keywords", _data.keywords as Any)])
+                return ("emojiKeywordsDifference", [("langCode", ConstructorParameterDescription(_data.langCode)), ("fromVersion", ConstructorParameterDescription(_data.fromVersion)), ("version", ConstructorParameterDescription(_data.version)), ("keywords", ConstructorParameterDescription(_data.keywords))])
             }
         }
 
@@ -1121,10 +1184,13 @@ public extension Api {
 }
 public extension Api {
     enum EmojiLanguage: TypeConstructorDescription {
-        public class Cons_emojiLanguage {
+        public class Cons_emojiLanguage: TypeConstructorDescription {
             public var langCode: String
             public init(langCode: String) {
                 self.langCode = langCode
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiLanguage", [("langCode", ConstructorParameterDescription(self.langCode))])
             }
         }
         case emojiLanguage(Cons_emojiLanguage)
@@ -1140,10 +1206,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emojiLanguage(let _data):
-                return ("emojiLanguage", [("langCode", _data.langCode as Any)])
+                return ("emojiLanguage", [("langCode", ConstructorParameterDescription(_data.langCode))])
             }
         }
 
@@ -1162,12 +1228,15 @@ public extension Api {
 }
 public extension Api {
     enum EmojiList: TypeConstructorDescription {
-        public class Cons_emojiList {
+        public class Cons_emojiList: TypeConstructorDescription {
             public var hash: Int64
             public var documentId: [Int64]
             public init(hash: Int64, documentId: [Int64]) {
                 self.hash = hash
                 self.documentId = documentId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiList", [("hash", ConstructorParameterDescription(self.hash)), ("documentId", ConstructorParameterDescription(self.documentId))])
             }
         }
         case emojiList(Cons_emojiList)
@@ -1194,10 +1263,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emojiList(let _data):
-                return ("emojiList", [("hash", _data.hash as Any), ("documentId", _data.documentId as Any)])
+                return ("emojiList", [("hash", ConstructorParameterDescription(_data.hash)), ("documentId", ConstructorParameterDescription(_data.documentId))])
             case .emojiListNotModified:
                 return ("emojiListNotModified", [])
             }
@@ -1226,7 +1295,7 @@ public extension Api {
 }
 public extension Api {
     enum EmojiStatus: TypeConstructorDescription {
-        public class Cons_emojiStatus {
+        public class Cons_emojiStatus: TypeConstructorDescription {
             public var flags: Int32
             public var documentId: Int64
             public var until: Int32?
@@ -1235,8 +1304,11 @@ public extension Api {
                 self.documentId = documentId
                 self.until = until
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiStatus", [("flags", ConstructorParameterDescription(self.flags)), ("documentId", ConstructorParameterDescription(self.documentId)), ("until", ConstructorParameterDescription(self.until))])
+            }
         }
-        public class Cons_emojiStatusCollectible {
+        public class Cons_emojiStatusCollectible: TypeConstructorDescription {
             public var flags: Int32
             public var collectibleId: Int64
             public var documentId: Int64
@@ -1261,8 +1333,11 @@ public extension Api {
                 self.textColor = textColor
                 self.until = until
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("emojiStatusCollectible", [("flags", ConstructorParameterDescription(self.flags)), ("collectibleId", ConstructorParameterDescription(self.collectibleId)), ("documentId", ConstructorParameterDescription(self.documentId)), ("title", ConstructorParameterDescription(self.title)), ("slug", ConstructorParameterDescription(self.slug)), ("patternDocumentId", ConstructorParameterDescription(self.patternDocumentId)), ("centerColor", ConstructorParameterDescription(self.centerColor)), ("edgeColor", ConstructorParameterDescription(self.edgeColor)), ("patternColor", ConstructorParameterDescription(self.patternColor)), ("textColor", ConstructorParameterDescription(self.textColor)), ("until", ConstructorParameterDescription(self.until))])
+            }
         }
-        public class Cons_inputEmojiStatusCollectible {
+        public class Cons_inputEmojiStatusCollectible: TypeConstructorDescription {
             public var flags: Int32
             public var collectibleId: Int64
             public var until: Int32?
@@ -1270,6 +1345,9 @@ public extension Api {
                 self.flags = flags
                 self.collectibleId = collectibleId
                 self.until = until
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputEmojiStatusCollectible", [("flags", ConstructorParameterDescription(self.flags)), ("collectibleId", ConstructorParameterDescription(self.collectibleId)), ("until", ConstructorParameterDescription(self.until))])
             }
         }
         case emojiStatus(Cons_emojiStatus)
@@ -1325,16 +1403,16 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .emojiStatus(let _data):
-                return ("emojiStatus", [("flags", _data.flags as Any), ("documentId", _data.documentId as Any), ("until", _data.until as Any)])
+                return ("emojiStatus", [("flags", ConstructorParameterDescription(_data.flags)), ("documentId", ConstructorParameterDescription(_data.documentId)), ("until", ConstructorParameterDescription(_data.until))])
             case .emojiStatusCollectible(let _data):
-                return ("emojiStatusCollectible", [("flags", _data.flags as Any), ("collectibleId", _data.collectibleId as Any), ("documentId", _data.documentId as Any), ("title", _data.title as Any), ("slug", _data.slug as Any), ("patternDocumentId", _data.patternDocumentId as Any), ("centerColor", _data.centerColor as Any), ("edgeColor", _data.edgeColor as Any), ("patternColor", _data.patternColor as Any), ("textColor", _data.textColor as Any), ("until", _data.until as Any)])
+                return ("emojiStatusCollectible", [("flags", ConstructorParameterDescription(_data.flags)), ("collectibleId", ConstructorParameterDescription(_data.collectibleId)), ("documentId", ConstructorParameterDescription(_data.documentId)), ("title", ConstructorParameterDescription(_data.title)), ("slug", ConstructorParameterDescription(_data.slug)), ("patternDocumentId", ConstructorParameterDescription(_data.patternDocumentId)), ("centerColor", ConstructorParameterDescription(_data.centerColor)), ("edgeColor", ConstructorParameterDescription(_data.edgeColor)), ("patternColor", ConstructorParameterDescription(_data.patternColor)), ("textColor", ConstructorParameterDescription(_data.textColor)), ("until", ConstructorParameterDescription(_data.until))])
             case .emojiStatusEmpty:
                 return ("emojiStatusEmpty", [])
             case .inputEmojiStatusCollectible(let _data):
-                return ("inputEmojiStatusCollectible", [("flags", _data.flags as Any), ("collectibleId", _data.collectibleId as Any), ("until", _data.until as Any)])
+                return ("inputEmojiStatusCollectible", [("flags", ConstructorParameterDescription(_data.flags)), ("collectibleId", ConstructorParameterDescription(_data.collectibleId)), ("until", ConstructorParameterDescription(_data.until))])
             }
         }
 

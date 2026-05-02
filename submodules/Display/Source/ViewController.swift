@@ -699,6 +699,7 @@ public protocol CustomViewControllerNavigationDataSummary: AnyObject {
         } else {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         }
+        completion?()
     }
     
     public final func navigationNextSibling() -> UIViewController? {
@@ -736,6 +737,13 @@ public protocol CustomViewControllerNavigationDataSummary: AnyObject {
     open var tabBarItemContextActionType: TabBarItemContextActionType = .none
     
     open func tabBarItemContextAction(sourceView: ContextExtractedContentContainingView, gesture: ContextGesture) {
+    }
+    
+    open func tabBarItemHasDoubleTapAction() -> Bool {
+        return false
+    }
+    
+    open func tabBarItemPerformDoubleTapAction() {
     }
     
     open func tabBarDisabledAction() {

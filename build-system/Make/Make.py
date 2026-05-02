@@ -72,16 +72,12 @@ class BazelCommandLine:
         ]
 
         self.common_build_args = [
-            # https://github.com/bazelbuild/rules_swift
-            # If enabled the skip function bodies frontend flag is passed when using derived
-            # files generation.
-            '--features=swift.skip_function_bodies_for_derived_files',
-            
-            # Set the number of parallel processes to match the available CPU core count.
-            '--jobs={}'.format(os.cpu_count()),
         ]
 
+        num_threads = max(os.cpu_count() - 2, 2)
         self.common_debug_args = [
+            '--@build_bazel_rules_swift//swift:copt="-j"',
+            f'--@build_bazel_rules_swift//swift:copt="{num_threads}"',
         ]
 
         self.common_release_args = [
@@ -216,7 +212,6 @@ class BazelCommandLine:
     def get_define_arguments(self):
         return [
             '--define=buildNumber={}'.format(self.build_number),
-            '--define=telegramVersion={}'.format(self.build_environment.app_version)
         ]
 
     def get_project_generation_arguments(self):

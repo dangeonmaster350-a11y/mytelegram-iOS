@@ -1,6 +1,6 @@
 public extension Api {
     indirect enum MessageEntity: TypeConstructorDescription {
-        public class Cons_inputMessageEntityMentionName {
+        public class Cons_inputMessageEntityMentionName: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public var userId: Api.InputUser
@@ -9,16 +9,22 @@ public extension Api {
                 self.length = length
                 self.userId = userId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputMessageEntityMentionName", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length)), ("userId", ConstructorParameterDescription(self.userId))])
+            }
         }
-        public class Cons_messageEntityBankCard {
+        public class Cons_messageEntityBankCard: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityBankCard", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityBlockquote {
+        public class Cons_messageEntityBlockquote: TypeConstructorDescription {
             public var flags: Int32
             public var offset: Int32
             public var length: Int32
@@ -27,40 +33,55 @@ public extension Api {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityBlockquote", [("flags", ConstructorParameterDescription(self.flags)), ("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityBold {
+        public class Cons_messageEntityBold: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityBold", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityBotCommand {
+        public class Cons_messageEntityBotCommand: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityBotCommand", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityCashtag {
+        public class Cons_messageEntityCashtag: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityCashtag", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityCode {
+        public class Cons_messageEntityCode: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityCode", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityCustomEmoji {
+        public class Cons_messageEntityCustomEmoji: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public var documentId: Int64
@@ -69,40 +90,105 @@ public extension Api {
                 self.length = length
                 self.documentId = documentId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityCustomEmoji", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length)), ("documentId", ConstructorParameterDescription(self.documentId))])
+            }
         }
-        public class Cons_messageEntityEmail {
+        public class Cons_messageEntityDiffDelete: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityDiffDelete", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityHashtag {
+        public class Cons_messageEntityDiffInsert: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityDiffInsert", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityItalic {
+        public class Cons_messageEntityDiffReplace: TypeConstructorDescription {
+            public var offset: Int32
+            public var length: Int32
+            public var oldText: String
+            public init(offset: Int32, length: Int32, oldText: String) {
+                self.offset = offset
+                self.length = length
+                self.oldText = oldText
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityDiffReplace", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length)), ("oldText", ConstructorParameterDescription(self.oldText))])
+            }
+        }
+        public class Cons_messageEntityEmail: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityEmail", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityMention {
+        public class Cons_messageEntityFormattedDate: TypeConstructorDescription {
+            public var flags: Int32
+            public var offset: Int32
+            public var length: Int32
+            public var date: Int32
+            public init(flags: Int32, offset: Int32, length: Int32, date: Int32) {
+                self.flags = flags
+                self.offset = offset
+                self.length = length
+                self.date = date
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityFormattedDate", [("flags", ConstructorParameterDescription(self.flags)), ("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length)), ("date", ConstructorParameterDescription(self.date))])
+            }
+        }
+        public class Cons_messageEntityHashtag: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityHashtag", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityMentionName {
+        public class Cons_messageEntityItalic: TypeConstructorDescription {
+            public var offset: Int32
+            public var length: Int32
+            public init(offset: Int32, length: Int32) {
+                self.offset = offset
+                self.length = length
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityItalic", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
+        }
+        public class Cons_messageEntityMention: TypeConstructorDescription {
+            public var offset: Int32
+            public var length: Int32
+            public init(offset: Int32, length: Int32) {
+                self.offset = offset
+                self.length = length
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityMention", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
+        }
+        public class Cons_messageEntityMentionName: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public var userId: Int64
@@ -111,16 +197,22 @@ public extension Api {
                 self.length = length
                 self.userId = userId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityMentionName", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length)), ("userId", ConstructorParameterDescription(self.userId))])
+            }
         }
-        public class Cons_messageEntityPhone {
+        public class Cons_messageEntityPhone: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityPhone", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityPre {
+        public class Cons_messageEntityPre: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public var language: String
@@ -129,24 +221,33 @@ public extension Api {
                 self.length = length
                 self.language = language
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityPre", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length)), ("language", ConstructorParameterDescription(self.language))])
+            }
         }
-        public class Cons_messageEntitySpoiler {
+        public class Cons_messageEntitySpoiler: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntitySpoiler", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityStrike {
+        public class Cons_messageEntityStrike: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityStrike", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityTextUrl {
+        public class Cons_messageEntityTextUrl: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public var url: String
@@ -155,29 +256,41 @@ public extension Api {
                 self.length = length
                 self.url = url
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityTextUrl", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length)), ("url", ConstructorParameterDescription(self.url))])
+            }
         }
-        public class Cons_messageEntityUnderline {
+        public class Cons_messageEntityUnderline: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityUnderline", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityUnknown {
+        public class Cons_messageEntityUnknown: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityUnknown", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_messageEntityUrl {
+        public class Cons_messageEntityUrl: TypeConstructorDescription {
             public var offset: Int32
             public var length: Int32
             public init(offset: Int32, length: Int32) {
                 self.offset = offset
                 self.length = length
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageEntityUrl", [("offset", ConstructorParameterDescription(self.offset)), ("length", ConstructorParameterDescription(self.length))])
             }
         }
         case inputMessageEntityMentionName(Cons_inputMessageEntityMentionName)
@@ -188,7 +301,11 @@ public extension Api {
         case messageEntityCashtag(Cons_messageEntityCashtag)
         case messageEntityCode(Cons_messageEntityCode)
         case messageEntityCustomEmoji(Cons_messageEntityCustomEmoji)
+        case messageEntityDiffDelete(Cons_messageEntityDiffDelete)
+        case messageEntityDiffInsert(Cons_messageEntityDiffInsert)
+        case messageEntityDiffReplace(Cons_messageEntityDiffReplace)
         case messageEntityEmail(Cons_messageEntityEmail)
+        case messageEntityFormattedDate(Cons_messageEntityFormattedDate)
         case messageEntityHashtag(Cons_messageEntityHashtag)
         case messageEntityItalic(Cons_messageEntityItalic)
         case messageEntityMention(Cons_messageEntityMention)
@@ -263,12 +380,43 @@ public extension Api {
                 serializeInt32(_data.length, buffer: buffer, boxed: false)
                 serializeInt64(_data.documentId, buffer: buffer, boxed: false)
                 break
+            case .messageEntityDiffDelete(let _data):
+                if boxed {
+                    buffer.appendInt32(106086853)
+                }
+                serializeInt32(_data.offset, buffer: buffer, boxed: false)
+                serializeInt32(_data.length, buffer: buffer, boxed: false)
+                break
+            case .messageEntityDiffInsert(let _data):
+                if boxed {
+                    buffer.appendInt32(1903653142)
+                }
+                serializeInt32(_data.offset, buffer: buffer, boxed: false)
+                serializeInt32(_data.length, buffer: buffer, boxed: false)
+                break
+            case .messageEntityDiffReplace(let _data):
+                if boxed {
+                    buffer.appendInt32(-960371289)
+                }
+                serializeInt32(_data.offset, buffer: buffer, boxed: false)
+                serializeInt32(_data.length, buffer: buffer, boxed: false)
+                serializeString(_data.oldText, buffer: buffer, boxed: false)
+                break
             case .messageEntityEmail(let _data):
                 if boxed {
                     buffer.appendInt32(1692693954)
                 }
                 serializeInt32(_data.offset, buffer: buffer, boxed: false)
                 serializeInt32(_data.length, buffer: buffer, boxed: false)
+                break
+            case .messageEntityFormattedDate(let _data):
+                if boxed {
+                    buffer.appendInt32(-1874147385)
+                }
+                serializeInt32(_data.flags, buffer: buffer, boxed: false)
+                serializeInt32(_data.offset, buffer: buffer, boxed: false)
+                serializeInt32(_data.length, buffer: buffer, boxed: false)
+                serializeInt32(_data.date, buffer: buffer, boxed: false)
                 break
             case .messageEntityHashtag(let _data):
                 if boxed {
@@ -360,50 +508,58 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputMessageEntityMentionName(let _data):
-                return ("inputMessageEntityMentionName", [("offset", _data.offset as Any), ("length", _data.length as Any), ("userId", _data.userId as Any)])
+                return ("inputMessageEntityMentionName", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length)), ("userId", ConstructorParameterDescription(_data.userId))])
             case .messageEntityBankCard(let _data):
-                return ("messageEntityBankCard", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityBankCard", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityBlockquote(let _data):
-                return ("messageEntityBlockquote", [("flags", _data.flags as Any), ("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityBlockquote", [("flags", ConstructorParameterDescription(_data.flags)), ("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityBold(let _data):
-                return ("messageEntityBold", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityBold", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityBotCommand(let _data):
-                return ("messageEntityBotCommand", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityBotCommand", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityCashtag(let _data):
-                return ("messageEntityCashtag", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityCashtag", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityCode(let _data):
-                return ("messageEntityCode", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityCode", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityCustomEmoji(let _data):
-                return ("messageEntityCustomEmoji", [("offset", _data.offset as Any), ("length", _data.length as Any), ("documentId", _data.documentId as Any)])
+                return ("messageEntityCustomEmoji", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length)), ("documentId", ConstructorParameterDescription(_data.documentId))])
+            case .messageEntityDiffDelete(let _data):
+                return ("messageEntityDiffDelete", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
+            case .messageEntityDiffInsert(let _data):
+                return ("messageEntityDiffInsert", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
+            case .messageEntityDiffReplace(let _data):
+                return ("messageEntityDiffReplace", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length)), ("oldText", ConstructorParameterDescription(_data.oldText))])
             case .messageEntityEmail(let _data):
-                return ("messageEntityEmail", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityEmail", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
+            case .messageEntityFormattedDate(let _data):
+                return ("messageEntityFormattedDate", [("flags", ConstructorParameterDescription(_data.flags)), ("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length)), ("date", ConstructorParameterDescription(_data.date))])
             case .messageEntityHashtag(let _data):
-                return ("messageEntityHashtag", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityHashtag", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityItalic(let _data):
-                return ("messageEntityItalic", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityItalic", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityMention(let _data):
-                return ("messageEntityMention", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityMention", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityMentionName(let _data):
-                return ("messageEntityMentionName", [("offset", _data.offset as Any), ("length", _data.length as Any), ("userId", _data.userId as Any)])
+                return ("messageEntityMentionName", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length)), ("userId", ConstructorParameterDescription(_data.userId))])
             case .messageEntityPhone(let _data):
-                return ("messageEntityPhone", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityPhone", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityPre(let _data):
-                return ("messageEntityPre", [("offset", _data.offset as Any), ("length", _data.length as Any), ("language", _data.language as Any)])
+                return ("messageEntityPre", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length)), ("language", ConstructorParameterDescription(_data.language))])
             case .messageEntitySpoiler(let _data):
-                return ("messageEntitySpoiler", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntitySpoiler", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityStrike(let _data):
-                return ("messageEntityStrike", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityStrike", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityTextUrl(let _data):
-                return ("messageEntityTextUrl", [("offset", _data.offset as Any), ("length", _data.length as Any), ("url", _data.url as Any)])
+                return ("messageEntityTextUrl", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length)), ("url", ConstructorParameterDescription(_data.url))])
             case .messageEntityUnderline(let _data):
-                return ("messageEntityUnderline", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityUnderline", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityUnknown(let _data):
-                return ("messageEntityUnknown", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityUnknown", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             case .messageEntityUrl(let _data):
-                return ("messageEntityUrl", [("offset", _data.offset as Any), ("length", _data.length as Any)])
+                return ("messageEntityUrl", [("offset", ConstructorParameterDescription(_data.offset)), ("length", ConstructorParameterDescription(_data.length))])
             }
         }
 
@@ -530,6 +686,51 @@ public extension Api {
                 return nil
             }
         }
+        public static func parse_messageEntityDiffDelete(_ reader: BufferReader) -> MessageEntity? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: Int32?
+            _2 = reader.readInt32()
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            if _c1 && _c2 {
+                return Api.MessageEntity.messageEntityDiffDelete(Cons_messageEntityDiffDelete(offset: _1!, length: _2!))
+            }
+            else {
+                return nil
+            }
+        }
+        public static func parse_messageEntityDiffInsert(_ reader: BufferReader) -> MessageEntity? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: Int32?
+            _2 = reader.readInt32()
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            if _c1 && _c2 {
+                return Api.MessageEntity.messageEntityDiffInsert(Cons_messageEntityDiffInsert(offset: _1!, length: _2!))
+            }
+            else {
+                return nil
+            }
+        }
+        public static func parse_messageEntityDiffReplace(_ reader: BufferReader) -> MessageEntity? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: Int32?
+            _2 = reader.readInt32()
+            var _3: String?
+            _3 = parseString(reader)
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            if _c1 && _c2 && _c3 {
+                return Api.MessageEntity.messageEntityDiffReplace(Cons_messageEntityDiffReplace(offset: _1!, length: _2!, oldText: _3!))
+            }
+            else {
+                return nil
+            }
+        }
         public static func parse_messageEntityEmail(_ reader: BufferReader) -> MessageEntity? {
             var _1: Int32?
             _1 = reader.readInt32()
@@ -539,6 +740,26 @@ public extension Api {
             let _c2 = _2 != nil
             if _c1 && _c2 {
                 return Api.MessageEntity.messageEntityEmail(Cons_messageEntityEmail(offset: _1!, length: _2!))
+            }
+            else {
+                return nil
+            }
+        }
+        public static func parse_messageEntityFormattedDate(_ reader: BufferReader) -> MessageEntity? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: Int32?
+            _2 = reader.readInt32()
+            var _3: Int32?
+            _3 = reader.readInt32()
+            var _4: Int32?
+            _4 = reader.readInt32()
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            let _c4 = _4 != nil
+            if _c1 && _c2 && _c3 && _c4 {
+                return Api.MessageEntity.messageEntityFormattedDate(Cons_messageEntityFormattedDate(flags: _1!, offset: _2!, length: _3!, date: _4!))
             }
             else {
                 return nil
@@ -725,13 +946,16 @@ public extension Api {
 }
 public extension Api {
     indirect enum MessageExtendedMedia: TypeConstructorDescription {
-        public class Cons_messageExtendedMedia {
+        public class Cons_messageExtendedMedia: TypeConstructorDescription {
             public var media: Api.MessageMedia
             public init(media: Api.MessageMedia) {
                 self.media = media
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageExtendedMedia", [("media", ConstructorParameterDescription(self.media))])
+            }
         }
-        public class Cons_messageExtendedMediaPreview {
+        public class Cons_messageExtendedMediaPreview: TypeConstructorDescription {
             public var flags: Int32
             public var w: Int32?
             public var h: Int32?
@@ -743,6 +967,9 @@ public extension Api {
                 self.h = h
                 self.thumb = thumb
                 self.videoDuration = videoDuration
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageExtendedMediaPreview", [("flags", ConstructorParameterDescription(self.flags)), ("w", ConstructorParameterDescription(self.w)), ("h", ConstructorParameterDescription(self.h)), ("thumb", ConstructorParameterDescription(self.thumb)), ("videoDuration", ConstructorParameterDescription(self.videoDuration))])
             }
         }
         case messageExtendedMedia(Cons_messageExtendedMedia)
@@ -777,12 +1004,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .messageExtendedMedia(let _data):
-                return ("messageExtendedMedia", [("media", _data.media as Any)])
+                return ("messageExtendedMedia", [("media", ConstructorParameterDescription(_data.media))])
             case .messageExtendedMediaPreview(let _data):
-                return ("messageExtendedMediaPreview", [("flags", _data.flags as Any), ("w", _data.w as Any), ("h", _data.h as Any), ("thumb", _data.thumb as Any), ("videoDuration", _data.videoDuration as Any)])
+                return ("messageExtendedMediaPreview", [("flags", ConstructorParameterDescription(_data.flags)), ("w", ConstructorParameterDescription(_data.w)), ("h", ConstructorParameterDescription(_data.h)), ("thumb", ConstructorParameterDescription(_data.thumb)), ("videoDuration", ConstructorParameterDescription(_data.videoDuration))])
             }
         }
 
@@ -836,7 +1063,7 @@ public extension Api {
 }
 public extension Api {
     enum MessageFwdHeader: TypeConstructorDescription {
-        public class Cons_messageFwdHeader {
+        public class Cons_messageFwdHeader: TypeConstructorDescription {
             public var flags: Int32
             public var fromId: Api.Peer?
             public var fromName: String?
@@ -862,6 +1089,9 @@ public extension Api {
                 self.savedFromName = savedFromName
                 self.savedDate = savedDate
                 self.psaType = psaType
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageFwdHeader", [("flags", ConstructorParameterDescription(self.flags)), ("fromId", ConstructorParameterDescription(self.fromId)), ("fromName", ConstructorParameterDescription(self.fromName)), ("date", ConstructorParameterDescription(self.date)), ("channelPost", ConstructorParameterDescription(self.channelPost)), ("postAuthor", ConstructorParameterDescription(self.postAuthor)), ("savedFromPeer", ConstructorParameterDescription(self.savedFromPeer)), ("savedFromMsgId", ConstructorParameterDescription(self.savedFromMsgId)), ("savedFromId", ConstructorParameterDescription(self.savedFromId)), ("savedFromName", ConstructorParameterDescription(self.savedFromName)), ("savedDate", ConstructorParameterDescription(self.savedDate)), ("psaType", ConstructorParameterDescription(self.psaType))])
             }
         }
         case messageFwdHeader(Cons_messageFwdHeader)
@@ -908,10 +1138,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .messageFwdHeader(let _data):
-                return ("messageFwdHeader", [("flags", _data.flags as Any), ("fromId", _data.fromId as Any), ("fromName", _data.fromName as Any), ("date", _data.date as Any), ("channelPost", _data.channelPost as Any), ("postAuthor", _data.postAuthor as Any), ("savedFromPeer", _data.savedFromPeer as Any), ("savedFromMsgId", _data.savedFromMsgId as Any), ("savedFromId", _data.savedFromId as Any), ("savedFromName", _data.savedFromName as Any), ("savedDate", _data.savedDate as Any), ("psaType", _data.psaType as Any)])
+                return ("messageFwdHeader", [("flags", ConstructorParameterDescription(_data.flags)), ("fromId", ConstructorParameterDescription(_data.fromId)), ("fromName", ConstructorParameterDescription(_data.fromName)), ("date", ConstructorParameterDescription(_data.date)), ("channelPost", ConstructorParameterDescription(_data.channelPost)), ("postAuthor", ConstructorParameterDescription(_data.postAuthor)), ("savedFromPeer", ConstructorParameterDescription(_data.savedFromPeer)), ("savedFromMsgId", ConstructorParameterDescription(_data.savedFromMsgId)), ("savedFromId", ConstructorParameterDescription(_data.savedFromId)), ("savedFromName", ConstructorParameterDescription(_data.savedFromName)), ("savedDate", ConstructorParameterDescription(_data.savedDate)), ("psaType", ConstructorParameterDescription(_data.psaType))])
             }
         }
 
@@ -989,7 +1219,7 @@ public extension Api {
 }
 public extension Api {
     indirect enum MessageMedia: TypeConstructorDescription {
-        public class Cons_messageMediaContact {
+        public class Cons_messageMediaContact: TypeConstructorDescription {
             public var phoneNumber: String
             public var firstName: String
             public var lastName: String
@@ -1002,8 +1232,11 @@ public extension Api {
                 self.vcard = vcard
                 self.userId = userId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaContact", [("phoneNumber", ConstructorParameterDescription(self.phoneNumber)), ("firstName", ConstructorParameterDescription(self.firstName)), ("lastName", ConstructorParameterDescription(self.lastName)), ("vcard", ConstructorParameterDescription(self.vcard)), ("userId", ConstructorParameterDescription(self.userId))])
+            }
         }
-        public class Cons_messageMediaDice {
+        public class Cons_messageMediaDice: TypeConstructorDescription {
             public var flags: Int32
             public var value: Int32
             public var emoticon: String
@@ -1014,8 +1247,11 @@ public extension Api {
                 self.emoticon = emoticon
                 self.gameOutcome = gameOutcome
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaDice", [("flags", ConstructorParameterDescription(self.flags)), ("value", ConstructorParameterDescription(self.value)), ("emoticon", ConstructorParameterDescription(self.emoticon)), ("gameOutcome", ConstructorParameterDescription(self.gameOutcome))])
+            }
         }
-        public class Cons_messageMediaDocument {
+        public class Cons_messageMediaDocument: TypeConstructorDescription {
             public var flags: Int32
             public var document: Api.Document?
             public var altDocuments: [Api.Document]?
@@ -1030,20 +1266,29 @@ public extension Api {
                 self.videoTimestamp = videoTimestamp
                 self.ttlSeconds = ttlSeconds
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaDocument", [("flags", ConstructorParameterDescription(self.flags)), ("document", ConstructorParameterDescription(self.document)), ("altDocuments", ConstructorParameterDescription(self.altDocuments)), ("videoCover", ConstructorParameterDescription(self.videoCover)), ("videoTimestamp", ConstructorParameterDescription(self.videoTimestamp)), ("ttlSeconds", ConstructorParameterDescription(self.ttlSeconds))])
+            }
         }
-        public class Cons_messageMediaGame {
+        public class Cons_messageMediaGame: TypeConstructorDescription {
             public var game: Api.Game
             public init(game: Api.Game) {
                 self.game = game
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaGame", [("game", ConstructorParameterDescription(self.game))])
+            }
         }
-        public class Cons_messageMediaGeo {
+        public class Cons_messageMediaGeo: TypeConstructorDescription {
             public var geo: Api.GeoPoint
             public init(geo: Api.GeoPoint) {
                 self.geo = geo
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaGeo", [("geo", ConstructorParameterDescription(self.geo))])
+            }
         }
-        public class Cons_messageMediaGeoLive {
+        public class Cons_messageMediaGeoLive: TypeConstructorDescription {
             public var flags: Int32
             public var geo: Api.GeoPoint
             public var heading: Int32?
@@ -1056,8 +1301,11 @@ public extension Api {
                 self.period = period
                 self.proximityNotificationRadius = proximityNotificationRadius
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaGeoLive", [("flags", ConstructorParameterDescription(self.flags)), ("geo", ConstructorParameterDescription(self.geo)), ("heading", ConstructorParameterDescription(self.heading)), ("period", ConstructorParameterDescription(self.period)), ("proximityNotificationRadius", ConstructorParameterDescription(self.proximityNotificationRadius))])
+            }
         }
-        public class Cons_messageMediaGiveaway {
+        public class Cons_messageMediaGiveaway: TypeConstructorDescription {
             public var flags: Int32
             public var channels: [Int64]
             public var countriesIso2: [String]?
@@ -1076,8 +1324,11 @@ public extension Api {
                 self.stars = stars
                 self.untilDate = untilDate
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaGiveaway", [("flags", ConstructorParameterDescription(self.flags)), ("channels", ConstructorParameterDescription(self.channels)), ("countriesIso2", ConstructorParameterDescription(self.countriesIso2)), ("prizeDescription", ConstructorParameterDescription(self.prizeDescription)), ("quantity", ConstructorParameterDescription(self.quantity)), ("months", ConstructorParameterDescription(self.months)), ("stars", ConstructorParameterDescription(self.stars)), ("untilDate", ConstructorParameterDescription(self.untilDate))])
+            }
         }
-        public class Cons_messageMediaGiveawayResults {
+        public class Cons_messageMediaGiveawayResults: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var additionalPeersCount: Int32?
@@ -1102,8 +1353,11 @@ public extension Api {
                 self.prizeDescription = prizeDescription
                 self.untilDate = untilDate
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaGiveawayResults", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("additionalPeersCount", ConstructorParameterDescription(self.additionalPeersCount)), ("launchMsgId", ConstructorParameterDescription(self.launchMsgId)), ("winnersCount", ConstructorParameterDescription(self.winnersCount)), ("unclaimedCount", ConstructorParameterDescription(self.unclaimedCount)), ("winners", ConstructorParameterDescription(self.winners)), ("months", ConstructorParameterDescription(self.months)), ("stars", ConstructorParameterDescription(self.stars)), ("prizeDescription", ConstructorParameterDescription(self.prizeDescription)), ("untilDate", ConstructorParameterDescription(self.untilDate))])
+            }
         }
-        public class Cons_messageMediaInvoice {
+        public class Cons_messageMediaInvoice: TypeConstructorDescription {
             public var flags: Int32
             public var title: String
             public var description: String
@@ -1124,34 +1378,52 @@ public extension Api {
                 self.startParam = startParam
                 self.extendedMedia = extendedMedia
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaInvoice", [("flags", ConstructorParameterDescription(self.flags)), ("title", ConstructorParameterDescription(self.title)), ("description", ConstructorParameterDescription(self.description)), ("photo", ConstructorParameterDescription(self.photo)), ("receiptMsgId", ConstructorParameterDescription(self.receiptMsgId)), ("currency", ConstructorParameterDescription(self.currency)), ("totalAmount", ConstructorParameterDescription(self.totalAmount)), ("startParam", ConstructorParameterDescription(self.startParam)), ("extendedMedia", ConstructorParameterDescription(self.extendedMedia))])
+            }
         }
-        public class Cons_messageMediaPaidMedia {
+        public class Cons_messageMediaPaidMedia: TypeConstructorDescription {
             public var starsAmount: Int64
             public var extendedMedia: [Api.MessageExtendedMedia]
             public init(starsAmount: Int64, extendedMedia: [Api.MessageExtendedMedia]) {
                 self.starsAmount = starsAmount
                 self.extendedMedia = extendedMedia
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaPaidMedia", [("starsAmount", ConstructorParameterDescription(self.starsAmount)), ("extendedMedia", ConstructorParameterDescription(self.extendedMedia))])
+            }
         }
-        public class Cons_messageMediaPhoto {
+        public class Cons_messageMediaPhoto: TypeConstructorDescription {
             public var flags: Int32
             public var photo: Api.Photo?
             public var ttlSeconds: Int32?
-            public init(flags: Int32, photo: Api.Photo?, ttlSeconds: Int32?) {
+            public var video: Api.Document?
+            public init(flags: Int32, photo: Api.Photo?, ttlSeconds: Int32?, video: Api.Document?) {
                 self.flags = flags
                 self.photo = photo
                 self.ttlSeconds = ttlSeconds
+                self.video = video
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaPhoto", [("flags", ConstructorParameterDescription(self.flags)), ("photo", ConstructorParameterDescription(self.photo)), ("ttlSeconds", ConstructorParameterDescription(self.ttlSeconds)), ("video", ConstructorParameterDescription(self.video))])
             }
         }
-        public class Cons_messageMediaPoll {
+        public class Cons_messageMediaPoll: TypeConstructorDescription {
+            public var flags: Int32
             public var poll: Api.Poll
             public var results: Api.PollResults
-            public init(poll: Api.Poll, results: Api.PollResults) {
+            public var attachedMedia: Api.MessageMedia?
+            public init(flags: Int32, poll: Api.Poll, results: Api.PollResults, attachedMedia: Api.MessageMedia?) {
+                self.flags = flags
                 self.poll = poll
                 self.results = results
+                self.attachedMedia = attachedMedia
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaPoll", [("flags", ConstructorParameterDescription(self.flags)), ("poll", ConstructorParameterDescription(self.poll)), ("results", ConstructorParameterDescription(self.results)), ("attachedMedia", ConstructorParameterDescription(self.attachedMedia))])
             }
         }
-        public class Cons_messageMediaStory {
+        public class Cons_messageMediaStory: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var id: Int32
@@ -1162,8 +1434,11 @@ public extension Api {
                 self.id = id
                 self.story = story
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaStory", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("id", ConstructorParameterDescription(self.id)), ("story", ConstructorParameterDescription(self.story))])
+            }
         }
-        public class Cons_messageMediaToDo {
+        public class Cons_messageMediaToDo: TypeConstructorDescription {
             public var flags: Int32
             public var todo: Api.TodoList
             public var completions: [Api.TodoCompletion]?
@@ -1172,8 +1447,11 @@ public extension Api {
                 self.todo = todo
                 self.completions = completions
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaToDo", [("flags", ConstructorParameterDescription(self.flags)), ("todo", ConstructorParameterDescription(self.todo)), ("completions", ConstructorParameterDescription(self.completions))])
+            }
         }
-        public class Cons_messageMediaVenue {
+        public class Cons_messageMediaVenue: TypeConstructorDescription {
             public var geo: Api.GeoPoint
             public var title: String
             public var address: String
@@ -1188,21 +1466,30 @@ public extension Api {
                 self.venueId = venueId
                 self.venueType = venueType
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaVenue", [("geo", ConstructorParameterDescription(self.geo)), ("title", ConstructorParameterDescription(self.title)), ("address", ConstructorParameterDescription(self.address)), ("provider", ConstructorParameterDescription(self.provider)), ("venueId", ConstructorParameterDescription(self.venueId)), ("venueType", ConstructorParameterDescription(self.venueType))])
+            }
         }
-        public class Cons_messageMediaVideoStream {
+        public class Cons_messageMediaVideoStream: TypeConstructorDescription {
             public var flags: Int32
             public var call: Api.InputGroupCall
             public init(flags: Int32, call: Api.InputGroupCall) {
                 self.flags = flags
                 self.call = call
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaVideoStream", [("flags", ConstructorParameterDescription(self.flags)), ("call", ConstructorParameterDescription(self.call))])
+            }
         }
-        public class Cons_messageMediaWebPage {
+        public class Cons_messageMediaWebPage: TypeConstructorDescription {
             public var flags: Int32
             public var webpage: Api.WebPage
             public init(flags: Int32, webpage: Api.WebPage) {
                 self.flags = flags
                 self.webpage = webpage
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("messageMediaWebPage", [("flags", ConstructorParameterDescription(self.flags)), ("webpage", ConstructorParameterDescription(self.webpage))])
             }
         }
         case messageMediaContact(Cons_messageMediaContact)
@@ -1394,7 +1681,7 @@ public extension Api {
                 break
             case .messageMediaPhoto(let _data):
                 if boxed {
-                    buffer.appendInt32(1766936791)
+                    buffer.appendInt32(-501814429)
                 }
                 serializeInt32(_data.flags, buffer: buffer, boxed: false)
                 if Int(_data.flags) & Int(1 << 0) != 0 {
@@ -1403,13 +1690,20 @@ public extension Api {
                 if Int(_data.flags) & Int(1 << 2) != 0 {
                     serializeInt32(_data.ttlSeconds!, buffer: buffer, boxed: false)
                 }
+                if Int(_data.flags) & Int(1 << 4) != 0 {
+                    _data.video!.serialize(buffer, true)
+                }
                 break
             case .messageMediaPoll(let _data):
                 if boxed {
-                    buffer.appendInt32(1272375192)
+                    buffer.appendInt32(2000637542)
                 }
+                serializeInt32(_data.flags, buffer: buffer, boxed: false)
                 _data.poll.serialize(buffer, true)
                 _data.results.serialize(buffer, true)
+                if Int(_data.flags) & Int(1 << 0) != 0 {
+                    _data.attachedMedia!.serialize(buffer, true)
+                }
                 break
             case .messageMediaStory(let _data):
                 if boxed {
@@ -1469,46 +1763,46 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .messageMediaContact(let _data):
-                return ("messageMediaContact", [("phoneNumber", _data.phoneNumber as Any), ("firstName", _data.firstName as Any), ("lastName", _data.lastName as Any), ("vcard", _data.vcard as Any), ("userId", _data.userId as Any)])
+                return ("messageMediaContact", [("phoneNumber", ConstructorParameterDescription(_data.phoneNumber)), ("firstName", ConstructorParameterDescription(_data.firstName)), ("lastName", ConstructorParameterDescription(_data.lastName)), ("vcard", ConstructorParameterDescription(_data.vcard)), ("userId", ConstructorParameterDescription(_data.userId))])
             case .messageMediaDice(let _data):
-                return ("messageMediaDice", [("flags", _data.flags as Any), ("value", _data.value as Any), ("emoticon", _data.emoticon as Any), ("gameOutcome", _data.gameOutcome as Any)])
+                return ("messageMediaDice", [("flags", ConstructorParameterDescription(_data.flags)), ("value", ConstructorParameterDescription(_data.value)), ("emoticon", ConstructorParameterDescription(_data.emoticon)), ("gameOutcome", ConstructorParameterDescription(_data.gameOutcome))])
             case .messageMediaDocument(let _data):
-                return ("messageMediaDocument", [("flags", _data.flags as Any), ("document", _data.document as Any), ("altDocuments", _data.altDocuments as Any), ("videoCover", _data.videoCover as Any), ("videoTimestamp", _data.videoTimestamp as Any), ("ttlSeconds", _data.ttlSeconds as Any)])
+                return ("messageMediaDocument", [("flags", ConstructorParameterDescription(_data.flags)), ("document", ConstructorParameterDescription(_data.document)), ("altDocuments", ConstructorParameterDescription(_data.altDocuments)), ("videoCover", ConstructorParameterDescription(_data.videoCover)), ("videoTimestamp", ConstructorParameterDescription(_data.videoTimestamp)), ("ttlSeconds", ConstructorParameterDescription(_data.ttlSeconds))])
             case .messageMediaEmpty:
                 return ("messageMediaEmpty", [])
             case .messageMediaGame(let _data):
-                return ("messageMediaGame", [("game", _data.game as Any)])
+                return ("messageMediaGame", [("game", ConstructorParameterDescription(_data.game))])
             case .messageMediaGeo(let _data):
-                return ("messageMediaGeo", [("geo", _data.geo as Any)])
+                return ("messageMediaGeo", [("geo", ConstructorParameterDescription(_data.geo))])
             case .messageMediaGeoLive(let _data):
-                return ("messageMediaGeoLive", [("flags", _data.flags as Any), ("geo", _data.geo as Any), ("heading", _data.heading as Any), ("period", _data.period as Any), ("proximityNotificationRadius", _data.proximityNotificationRadius as Any)])
+                return ("messageMediaGeoLive", [("flags", ConstructorParameterDescription(_data.flags)), ("geo", ConstructorParameterDescription(_data.geo)), ("heading", ConstructorParameterDescription(_data.heading)), ("period", ConstructorParameterDescription(_data.period)), ("proximityNotificationRadius", ConstructorParameterDescription(_data.proximityNotificationRadius))])
             case .messageMediaGiveaway(let _data):
-                return ("messageMediaGiveaway", [("flags", _data.flags as Any), ("channels", _data.channels as Any), ("countriesIso2", _data.countriesIso2 as Any), ("prizeDescription", _data.prizeDescription as Any), ("quantity", _data.quantity as Any), ("months", _data.months as Any), ("stars", _data.stars as Any), ("untilDate", _data.untilDate as Any)])
+                return ("messageMediaGiveaway", [("flags", ConstructorParameterDescription(_data.flags)), ("channels", ConstructorParameterDescription(_data.channels)), ("countriesIso2", ConstructorParameterDescription(_data.countriesIso2)), ("prizeDescription", ConstructorParameterDescription(_data.prizeDescription)), ("quantity", ConstructorParameterDescription(_data.quantity)), ("months", ConstructorParameterDescription(_data.months)), ("stars", ConstructorParameterDescription(_data.stars)), ("untilDate", ConstructorParameterDescription(_data.untilDate))])
             case .messageMediaGiveawayResults(let _data):
-                return ("messageMediaGiveawayResults", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("additionalPeersCount", _data.additionalPeersCount as Any), ("launchMsgId", _data.launchMsgId as Any), ("winnersCount", _data.winnersCount as Any), ("unclaimedCount", _data.unclaimedCount as Any), ("winners", _data.winners as Any), ("months", _data.months as Any), ("stars", _data.stars as Any), ("prizeDescription", _data.prizeDescription as Any), ("untilDate", _data.untilDate as Any)])
+                return ("messageMediaGiveawayResults", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("additionalPeersCount", ConstructorParameterDescription(_data.additionalPeersCount)), ("launchMsgId", ConstructorParameterDescription(_data.launchMsgId)), ("winnersCount", ConstructorParameterDescription(_data.winnersCount)), ("unclaimedCount", ConstructorParameterDescription(_data.unclaimedCount)), ("winners", ConstructorParameterDescription(_data.winners)), ("months", ConstructorParameterDescription(_data.months)), ("stars", ConstructorParameterDescription(_data.stars)), ("prizeDescription", ConstructorParameterDescription(_data.prizeDescription)), ("untilDate", ConstructorParameterDescription(_data.untilDate))])
             case .messageMediaInvoice(let _data):
-                return ("messageMediaInvoice", [("flags", _data.flags as Any), ("title", _data.title as Any), ("description", _data.description as Any), ("photo", _data.photo as Any), ("receiptMsgId", _data.receiptMsgId as Any), ("currency", _data.currency as Any), ("totalAmount", _data.totalAmount as Any), ("startParam", _data.startParam as Any), ("extendedMedia", _data.extendedMedia as Any)])
+                return ("messageMediaInvoice", [("flags", ConstructorParameterDescription(_data.flags)), ("title", ConstructorParameterDescription(_data.title)), ("description", ConstructorParameterDescription(_data.description)), ("photo", ConstructorParameterDescription(_data.photo)), ("receiptMsgId", ConstructorParameterDescription(_data.receiptMsgId)), ("currency", ConstructorParameterDescription(_data.currency)), ("totalAmount", ConstructorParameterDescription(_data.totalAmount)), ("startParam", ConstructorParameterDescription(_data.startParam)), ("extendedMedia", ConstructorParameterDescription(_data.extendedMedia))])
             case .messageMediaPaidMedia(let _data):
-                return ("messageMediaPaidMedia", [("starsAmount", _data.starsAmount as Any), ("extendedMedia", _data.extendedMedia as Any)])
+                return ("messageMediaPaidMedia", [("starsAmount", ConstructorParameterDescription(_data.starsAmount)), ("extendedMedia", ConstructorParameterDescription(_data.extendedMedia))])
             case .messageMediaPhoto(let _data):
-                return ("messageMediaPhoto", [("flags", _data.flags as Any), ("photo", _data.photo as Any), ("ttlSeconds", _data.ttlSeconds as Any)])
+                return ("messageMediaPhoto", [("flags", ConstructorParameterDescription(_data.flags)), ("photo", ConstructorParameterDescription(_data.photo)), ("ttlSeconds", ConstructorParameterDescription(_data.ttlSeconds)), ("video", ConstructorParameterDescription(_data.video))])
             case .messageMediaPoll(let _data):
-                return ("messageMediaPoll", [("poll", _data.poll as Any), ("results", _data.results as Any)])
+                return ("messageMediaPoll", [("flags", ConstructorParameterDescription(_data.flags)), ("poll", ConstructorParameterDescription(_data.poll)), ("results", ConstructorParameterDescription(_data.results)), ("attachedMedia", ConstructorParameterDescription(_data.attachedMedia))])
             case .messageMediaStory(let _data):
-                return ("messageMediaStory", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("id", _data.id as Any), ("story", _data.story as Any)])
+                return ("messageMediaStory", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("id", ConstructorParameterDescription(_data.id)), ("story", ConstructorParameterDescription(_data.story))])
             case .messageMediaToDo(let _data):
-                return ("messageMediaToDo", [("flags", _data.flags as Any), ("todo", _data.todo as Any), ("completions", _data.completions as Any)])
+                return ("messageMediaToDo", [("flags", ConstructorParameterDescription(_data.flags)), ("todo", ConstructorParameterDescription(_data.todo)), ("completions", ConstructorParameterDescription(_data.completions))])
             case .messageMediaUnsupported:
                 return ("messageMediaUnsupported", [])
             case .messageMediaVenue(let _data):
-                return ("messageMediaVenue", [("geo", _data.geo as Any), ("title", _data.title as Any), ("address", _data.address as Any), ("provider", _data.provider as Any), ("venueId", _data.venueId as Any), ("venueType", _data.venueType as Any)])
+                return ("messageMediaVenue", [("geo", ConstructorParameterDescription(_data.geo)), ("title", ConstructorParameterDescription(_data.title)), ("address", ConstructorParameterDescription(_data.address)), ("provider", ConstructorParameterDescription(_data.provider)), ("venueId", ConstructorParameterDescription(_data.venueId)), ("venueType", ConstructorParameterDescription(_data.venueType))])
             case .messageMediaVideoStream(let _data):
-                return ("messageMediaVideoStream", [("flags", _data.flags as Any), ("call", _data.call as Any)])
+                return ("messageMediaVideoStream", [("flags", ConstructorParameterDescription(_data.flags)), ("call", ConstructorParameterDescription(_data.call))])
             case .messageMediaWebPage(let _data):
-                return ("messageMediaWebPage", [("flags", _data.flags as Any), ("webpage", _data.webpage as Any)])
+                return ("messageMediaWebPage", [("flags", ConstructorParameterDescription(_data.flags)), ("webpage", ConstructorParameterDescription(_data.webpage))])
             }
         }
 
@@ -1828,29 +2122,46 @@ public extension Api {
             if Int(_1!) & Int(1 << 2) != 0 {
                 _3 = reader.readInt32()
             }
+            var _4: Api.Document?
+            if Int(_1!) & Int(1 << 4) != 0 {
+                if let signature = reader.readInt32() {
+                    _4 = Api.parse(reader, signature: signature) as? Api.Document
+                }
+            }
             let _c1 = _1 != nil
             let _c2 = (Int(_1!) & Int(1 << 0) == 0) || _2 != nil
             let _c3 = (Int(_1!) & Int(1 << 2) == 0) || _3 != nil
-            if _c1 && _c2 && _c3 {
-                return Api.MessageMedia.messageMediaPhoto(Cons_messageMediaPhoto(flags: _1!, photo: _2, ttlSeconds: _3))
+            let _c4 = (Int(_1!) & Int(1 << 4) == 0) || _4 != nil
+            if _c1 && _c2 && _c3 && _c4 {
+                return Api.MessageMedia.messageMediaPhoto(Cons_messageMediaPhoto(flags: _1!, photo: _2, ttlSeconds: _3, video: _4))
             }
             else {
                 return nil
             }
         }
         public static func parse_messageMediaPoll(_ reader: BufferReader) -> MessageMedia? {
-            var _1: Api.Poll?
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: Api.Poll?
             if let signature = reader.readInt32() {
-                _1 = Api.parse(reader, signature: signature) as? Api.Poll
+                _2 = Api.parse(reader, signature: signature) as? Api.Poll
             }
-            var _2: Api.PollResults?
+            var _3: Api.PollResults?
             if let signature = reader.readInt32() {
-                _2 = Api.parse(reader, signature: signature) as? Api.PollResults
+                _3 = Api.parse(reader, signature: signature) as? Api.PollResults
+            }
+            var _4: Api.MessageMedia?
+            if Int(_1!) & Int(1 << 0) != 0 {
+                if let signature = reader.readInt32() {
+                    _4 = Api.parse(reader, signature: signature) as? Api.MessageMedia
+                }
             }
             let _c1 = _1 != nil
             let _c2 = _2 != nil
-            if _c1 && _c2 {
-                return Api.MessageMedia.messageMediaPoll(Cons_messageMediaPoll(poll: _1!, results: _2!))
+            let _c3 = _3 != nil
+            let _c4 = (Int(_1!) & Int(1 << 0) == 0) || _4 != nil
+            if _c1 && _c2 && _c3 && _c4 {
+                return Api.MessageMedia.messageMediaPoll(Cons_messageMediaPoll(flags: _1!, poll: _2!, results: _3!, attachedMedia: _4))
             }
             else {
                 return nil

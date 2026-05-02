@@ -1,6 +1,6 @@
 public extension Api {
     indirect enum InputFileLocation: TypeConstructorDescription {
-        public class Cons_inputDocumentFileLocation {
+        public class Cons_inputDocumentFileLocation: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public var fileReference: Buffer
@@ -11,16 +11,22 @@ public extension Api {
                 self.fileReference = fileReference
                 self.thumbSize = thumbSize
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputDocumentFileLocation", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("fileReference", ConstructorParameterDescription(self.fileReference)), ("thumbSize", ConstructorParameterDescription(self.thumbSize))])
+            }
         }
-        public class Cons_inputEncryptedFileLocation {
+        public class Cons_inputEncryptedFileLocation: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public init(id: Int64, accessHash: Int64) {
                 self.id = id
                 self.accessHash = accessHash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputEncryptedFileLocation", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash))])
+            }
         }
-        public class Cons_inputFileLocation {
+        public class Cons_inputFileLocation: TypeConstructorDescription {
             public var volumeId: Int64
             public var localId: Int32
             public var secret: Int64
@@ -31,8 +37,11 @@ public extension Api {
                 self.secret = secret
                 self.fileReference = fileReference
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputFileLocation", [("volumeId", ConstructorParameterDescription(self.volumeId)), ("localId", ConstructorParameterDescription(self.localId)), ("secret", ConstructorParameterDescription(self.secret)), ("fileReference", ConstructorParameterDescription(self.fileReference))])
+            }
         }
-        public class Cons_inputGroupCallStream {
+        public class Cons_inputGroupCallStream: TypeConstructorDescription {
             public var flags: Int32
             public var call: Api.InputGroupCall
             public var timeMs: Int64
@@ -47,8 +56,11 @@ public extension Api {
                 self.videoChannel = videoChannel
                 self.videoQuality = videoQuality
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputGroupCallStream", [("flags", ConstructorParameterDescription(self.flags)), ("call", ConstructorParameterDescription(self.call)), ("timeMs", ConstructorParameterDescription(self.timeMs)), ("scale", ConstructorParameterDescription(self.scale)), ("videoChannel", ConstructorParameterDescription(self.videoChannel)), ("videoQuality", ConstructorParameterDescription(self.videoQuality))])
+            }
         }
-        public class Cons_inputPeerPhotoFileLocation {
+        public class Cons_inputPeerPhotoFileLocation: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.InputPeer
             public var photoId: Int64
@@ -57,8 +69,11 @@ public extension Api {
                 self.peer = peer
                 self.photoId = photoId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputPeerPhotoFileLocation", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("photoId", ConstructorParameterDescription(self.photoId))])
+            }
         }
-        public class Cons_inputPhotoFileLocation {
+        public class Cons_inputPhotoFileLocation: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public var fileReference: Buffer
@@ -69,8 +84,11 @@ public extension Api {
                 self.fileReference = fileReference
                 self.thumbSize = thumbSize
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputPhotoFileLocation", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("fileReference", ConstructorParameterDescription(self.fileReference)), ("thumbSize", ConstructorParameterDescription(self.thumbSize))])
+            }
         }
-        public class Cons_inputPhotoLegacyFileLocation {
+        public class Cons_inputPhotoLegacyFileLocation: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public var fileReference: Buffer
@@ -85,21 +103,30 @@ public extension Api {
                 self.localId = localId
                 self.secret = secret
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputPhotoLegacyFileLocation", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash)), ("fileReference", ConstructorParameterDescription(self.fileReference)), ("volumeId", ConstructorParameterDescription(self.volumeId)), ("localId", ConstructorParameterDescription(self.localId)), ("secret", ConstructorParameterDescription(self.secret))])
+            }
         }
-        public class Cons_inputSecureFileLocation {
+        public class Cons_inputSecureFileLocation: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public init(id: Int64, accessHash: Int64) {
                 self.id = id
                 self.accessHash = accessHash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputSecureFileLocation", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash))])
+            }
         }
-        public class Cons_inputStickerSetThumb {
+        public class Cons_inputStickerSetThumb: TypeConstructorDescription {
             public var stickerset: Api.InputStickerSet
             public var thumbVersion: Int32
             public init(stickerset: Api.InputStickerSet, thumbVersion: Int32) {
                 self.stickerset = stickerset
                 self.thumbVersion = thumbVersion
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputStickerSetThumb", [("stickerset", ConstructorParameterDescription(self.stickerset)), ("thumbVersion", ConstructorParameterDescription(self.thumbVersion))])
             }
         }
         case inputDocumentFileLocation(Cons_inputDocumentFileLocation)
@@ -205,26 +232,26 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputDocumentFileLocation(let _data):
-                return ("inputDocumentFileLocation", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("fileReference", _data.fileReference as Any), ("thumbSize", _data.thumbSize as Any)])
+                return ("inputDocumentFileLocation", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("fileReference", ConstructorParameterDescription(_data.fileReference)), ("thumbSize", ConstructorParameterDescription(_data.thumbSize))])
             case .inputEncryptedFileLocation(let _data):
-                return ("inputEncryptedFileLocation", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any)])
+                return ("inputEncryptedFileLocation", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash))])
             case .inputFileLocation(let _data):
-                return ("inputFileLocation", [("volumeId", _data.volumeId as Any), ("localId", _data.localId as Any), ("secret", _data.secret as Any), ("fileReference", _data.fileReference as Any)])
+                return ("inputFileLocation", [("volumeId", ConstructorParameterDescription(_data.volumeId)), ("localId", ConstructorParameterDescription(_data.localId)), ("secret", ConstructorParameterDescription(_data.secret)), ("fileReference", ConstructorParameterDescription(_data.fileReference))])
             case .inputGroupCallStream(let _data):
-                return ("inputGroupCallStream", [("flags", _data.flags as Any), ("call", _data.call as Any), ("timeMs", _data.timeMs as Any), ("scale", _data.scale as Any), ("videoChannel", _data.videoChannel as Any), ("videoQuality", _data.videoQuality as Any)])
+                return ("inputGroupCallStream", [("flags", ConstructorParameterDescription(_data.flags)), ("call", ConstructorParameterDescription(_data.call)), ("timeMs", ConstructorParameterDescription(_data.timeMs)), ("scale", ConstructorParameterDescription(_data.scale)), ("videoChannel", ConstructorParameterDescription(_data.videoChannel)), ("videoQuality", ConstructorParameterDescription(_data.videoQuality))])
             case .inputPeerPhotoFileLocation(let _data):
-                return ("inputPeerPhotoFileLocation", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("photoId", _data.photoId as Any)])
+                return ("inputPeerPhotoFileLocation", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("photoId", ConstructorParameterDescription(_data.photoId))])
             case .inputPhotoFileLocation(let _data):
-                return ("inputPhotoFileLocation", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("fileReference", _data.fileReference as Any), ("thumbSize", _data.thumbSize as Any)])
+                return ("inputPhotoFileLocation", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("fileReference", ConstructorParameterDescription(_data.fileReference)), ("thumbSize", ConstructorParameterDescription(_data.thumbSize))])
             case .inputPhotoLegacyFileLocation(let _data):
-                return ("inputPhotoLegacyFileLocation", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any), ("fileReference", _data.fileReference as Any), ("volumeId", _data.volumeId as Any), ("localId", _data.localId as Any), ("secret", _data.secret as Any)])
+                return ("inputPhotoLegacyFileLocation", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash)), ("fileReference", ConstructorParameterDescription(_data.fileReference)), ("volumeId", ConstructorParameterDescription(_data.volumeId)), ("localId", ConstructorParameterDescription(_data.localId)), ("secret", ConstructorParameterDescription(_data.secret))])
             case .inputSecureFileLocation(let _data):
-                return ("inputSecureFileLocation", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any)])
+                return ("inputSecureFileLocation", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash))])
             case .inputStickerSetThumb(let _data):
-                return ("inputStickerSetThumb", [("stickerset", _data.stickerset as Any), ("thumbVersion", _data.thumbVersion as Any)])
+                return ("inputStickerSetThumb", [("stickerset", ConstructorParameterDescription(_data.stickerset)), ("thumbVersion", ConstructorParameterDescription(_data.thumbVersion))])
             case .inputTakeoutFileLocation:
                 return ("inputTakeoutFileLocation", [])
             }
@@ -418,12 +445,15 @@ public extension Api {
 }
 public extension Api {
     indirect enum InputFolderPeer: TypeConstructorDescription {
-        public class Cons_inputFolderPeer {
+        public class Cons_inputFolderPeer: TypeConstructorDescription {
             public var peer: Api.InputPeer
             public var folderId: Int32
             public init(peer: Api.InputPeer, folderId: Int32) {
                 self.peer = peer
                 self.folderId = folderId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputFolderPeer", [("peer", ConstructorParameterDescription(self.peer)), ("folderId", ConstructorParameterDescription(self.folderId))])
             }
         }
         case inputFolderPeer(Cons_inputFolderPeer)
@@ -440,10 +470,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputFolderPeer(let _data):
-                return ("inputFolderPeer", [("peer", _data.peer as Any), ("folderId", _data.folderId as Any)])
+                return ("inputFolderPeer", [("peer", ConstructorParameterDescription(_data.peer)), ("folderId", ConstructorParameterDescription(_data.folderId))])
             }
         }
 
@@ -467,20 +497,26 @@ public extension Api {
 }
 public extension Api {
     indirect enum InputGame: TypeConstructorDescription {
-        public class Cons_inputGameID {
+        public class Cons_inputGameID: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public init(id: Int64, accessHash: Int64) {
                 self.id = id
                 self.accessHash = accessHash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputGameID", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash))])
+            }
         }
-        public class Cons_inputGameShortName {
+        public class Cons_inputGameShortName: TypeConstructorDescription {
             public var botId: Api.InputUser
             public var shortName: String
             public init(botId: Api.InputUser, shortName: String) {
                 self.botId = botId
                 self.shortName = shortName
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputGameShortName", [("botId", ConstructorParameterDescription(self.botId)), ("shortName", ConstructorParameterDescription(self.shortName))])
             }
         }
         case inputGameID(Cons_inputGameID)
@@ -505,12 +541,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputGameID(let _data):
-                return ("inputGameID", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any)])
+                return ("inputGameID", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash))])
             case .inputGameShortName(let _data):
-                return ("inputGameShortName", [("botId", _data.botId as Any), ("shortName", _data.shortName as Any)])
+                return ("inputGameShortName", [("botId", ConstructorParameterDescription(_data.botId)), ("shortName", ConstructorParameterDescription(_data.shortName))])
             }
         }
 
@@ -548,7 +584,7 @@ public extension Api {
 }
 public extension Api {
     enum InputGeoPoint: TypeConstructorDescription {
-        public class Cons_inputGeoPoint {
+        public class Cons_inputGeoPoint: TypeConstructorDescription {
             public var flags: Int32
             public var lat: Double
             public var long: Double
@@ -558,6 +594,9 @@ public extension Api {
                 self.lat = lat
                 self.long = long
                 self.accuracyRadius = accuracyRadius
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputGeoPoint", [("flags", ConstructorParameterDescription(self.flags)), ("lat", ConstructorParameterDescription(self.lat)), ("long", ConstructorParameterDescription(self.long)), ("accuracyRadius", ConstructorParameterDescription(self.accuracyRadius))])
             }
         }
         case inputGeoPoint(Cons_inputGeoPoint)
@@ -584,10 +623,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputGeoPoint(let _data):
-                return ("inputGeoPoint", [("flags", _data.flags as Any), ("lat", _data.lat as Any), ("long", _data.long as Any), ("accuracyRadius", _data.accuracyRadius as Any)])
+                return ("inputGeoPoint", [("flags", ConstructorParameterDescription(_data.flags)), ("lat", ConstructorParameterDescription(_data.lat)), ("long", ConstructorParameterDescription(_data.long)), ("accuracyRadius", ConstructorParameterDescription(_data.accuracyRadius))])
             case .inputGeoPointEmpty:
                 return ("inputGeoPointEmpty", [])
             }
@@ -622,24 +661,33 @@ public extension Api {
 }
 public extension Api {
     enum InputGroupCall: TypeConstructorDescription {
-        public class Cons_inputGroupCall {
+        public class Cons_inputGroupCall: TypeConstructorDescription {
             public var id: Int64
             public var accessHash: Int64
             public init(id: Int64, accessHash: Int64) {
                 self.id = id
                 self.accessHash = accessHash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputGroupCall", [("id", ConstructorParameterDescription(self.id)), ("accessHash", ConstructorParameterDescription(self.accessHash))])
+            }
         }
-        public class Cons_inputGroupCallInviteMessage {
+        public class Cons_inputGroupCallInviteMessage: TypeConstructorDescription {
             public var msgId: Int32
             public init(msgId: Int32) {
                 self.msgId = msgId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputGroupCallInviteMessage", [("msgId", ConstructorParameterDescription(self.msgId))])
+            }
         }
-        public class Cons_inputGroupCallSlug {
+        public class Cons_inputGroupCallSlug: TypeConstructorDescription {
             public var slug: String
             public init(slug: String) {
                 self.slug = slug
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputGroupCallSlug", [("slug", ConstructorParameterDescription(self.slug))])
             }
         }
         case inputGroupCall(Cons_inputGroupCall)
@@ -670,14 +718,14 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputGroupCall(let _data):
-                return ("inputGroupCall", [("id", _data.id as Any), ("accessHash", _data.accessHash as Any)])
+                return ("inputGroupCall", [("id", ConstructorParameterDescription(_data.id)), ("accessHash", ConstructorParameterDescription(_data.accessHash))])
             case .inputGroupCallInviteMessage(let _data):
-                return ("inputGroupCallInviteMessage", [("msgId", _data.msgId as Any)])
+                return ("inputGroupCallInviteMessage", [("msgId", ConstructorParameterDescription(_data.msgId))])
             case .inputGroupCallSlug(let _data):
-                return ("inputGroupCallSlug", [("slug", _data.slug as Any)])
+                return ("inputGroupCallSlug", [("slug", ConstructorParameterDescription(_data.slug))])
             }
         }
 
@@ -721,43 +769,58 @@ public extension Api {
 }
 public extension Api {
     indirect enum InputInvoice: TypeConstructorDescription {
-        public class Cons_inputInvoiceBusinessBotTransferStars {
+        public class Cons_inputInvoiceBusinessBotTransferStars: TypeConstructorDescription {
             public var bot: Api.InputUser
             public var stars: Int64
             public init(bot: Api.InputUser, stars: Int64) {
                 self.bot = bot
                 self.stars = stars
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceBusinessBotTransferStars", [("bot", ConstructorParameterDescription(self.bot)), ("stars", ConstructorParameterDescription(self.stars))])
+            }
         }
-        public class Cons_inputInvoiceChatInviteSubscription {
+        public class Cons_inputInvoiceChatInviteSubscription: TypeConstructorDescription {
             public var hash: String
             public init(hash: String) {
                 self.hash = hash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceChatInviteSubscription", [("hash", ConstructorParameterDescription(self.hash))])
+            }
         }
-        public class Cons_inputInvoiceMessage {
+        public class Cons_inputInvoiceMessage: TypeConstructorDescription {
             public var peer: Api.InputPeer
             public var msgId: Int32
             public init(peer: Api.InputPeer, msgId: Int32) {
                 self.peer = peer
                 self.msgId = msgId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceMessage", [("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId))])
+            }
         }
-        public class Cons_inputInvoicePremiumAuthCode {
+        public class Cons_inputInvoicePremiumAuthCode: TypeConstructorDescription {
             public var purpose: Api.InputStorePaymentPurpose
             public init(purpose: Api.InputStorePaymentPurpose) {
                 self.purpose = purpose
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoicePremiumAuthCode", [("purpose", ConstructorParameterDescription(self.purpose))])
+            }
         }
-        public class Cons_inputInvoicePremiumGiftCode {
+        public class Cons_inputInvoicePremiumGiftCode: TypeConstructorDescription {
             public var purpose: Api.InputStorePaymentPurpose
             public var option: Api.PremiumGiftCodeOption
             public init(purpose: Api.InputStorePaymentPurpose, option: Api.PremiumGiftCodeOption) {
                 self.purpose = purpose
                 self.option = option
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoicePremiumGiftCode", [("purpose", ConstructorParameterDescription(self.purpose)), ("option", ConstructorParameterDescription(self.option))])
+            }
         }
-        public class Cons_inputInvoicePremiumGiftStars {
+        public class Cons_inputInvoicePremiumGiftStars: TypeConstructorDescription {
             public var flags: Int32
             public var userId: Api.InputUser
             public var months: Int32
@@ -768,14 +831,20 @@ public extension Api {
                 self.months = months
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoicePremiumGiftStars", [("flags", ConstructorParameterDescription(self.flags)), ("userId", ConstructorParameterDescription(self.userId)), ("months", ConstructorParameterDescription(self.months)), ("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_inputInvoiceSlug {
+        public class Cons_inputInvoiceSlug: TypeConstructorDescription {
             public var slug: String
             public init(slug: String) {
                 self.slug = slug
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceSlug", [("slug", ConstructorParameterDescription(self.slug))])
+            }
         }
-        public class Cons_inputInvoiceStarGift {
+        public class Cons_inputInvoiceStarGift: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.InputPeer
             public var giftId: Int64
@@ -786,8 +855,11 @@ public extension Api {
                 self.giftId = giftId
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStarGift", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("giftId", ConstructorParameterDescription(self.giftId)), ("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_inputInvoiceStarGiftAuctionBid {
+        public class Cons_inputInvoiceStarGiftAuctionBid: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.InputPeer?
             public var giftId: Int64
@@ -800,22 +872,31 @@ public extension Api {
                 self.bidAmount = bidAmount
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStarGiftAuctionBid", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("giftId", ConstructorParameterDescription(self.giftId)), ("bidAmount", ConstructorParameterDescription(self.bidAmount)), ("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_inputInvoiceStarGiftDropOriginalDetails {
+        public class Cons_inputInvoiceStarGiftDropOriginalDetails: TypeConstructorDescription {
             public var stargift: Api.InputSavedStarGift
             public init(stargift: Api.InputSavedStarGift) {
                 self.stargift = stargift
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStarGiftDropOriginalDetails", [("stargift", ConstructorParameterDescription(self.stargift))])
+            }
         }
-        public class Cons_inputInvoiceStarGiftPrepaidUpgrade {
+        public class Cons_inputInvoiceStarGiftPrepaidUpgrade: TypeConstructorDescription {
             public var peer: Api.InputPeer
             public var hash: String
             public init(peer: Api.InputPeer, hash: String) {
                 self.peer = peer
                 self.hash = hash
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStarGiftPrepaidUpgrade", [("peer", ConstructorParameterDescription(self.peer)), ("hash", ConstructorParameterDescription(self.hash))])
+            }
         }
-        public class Cons_inputInvoiceStarGiftResale {
+        public class Cons_inputInvoiceStarGiftResale: TypeConstructorDescription {
             public var flags: Int32
             public var slug: String
             public var toId: Api.InputPeer
@@ -824,27 +905,39 @@ public extension Api {
                 self.slug = slug
                 self.toId = toId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStarGiftResale", [("flags", ConstructorParameterDescription(self.flags)), ("slug", ConstructorParameterDescription(self.slug)), ("toId", ConstructorParameterDescription(self.toId))])
+            }
         }
-        public class Cons_inputInvoiceStarGiftTransfer {
+        public class Cons_inputInvoiceStarGiftTransfer: TypeConstructorDescription {
             public var stargift: Api.InputSavedStarGift
             public var toId: Api.InputPeer
             public init(stargift: Api.InputSavedStarGift, toId: Api.InputPeer) {
                 self.stargift = stargift
                 self.toId = toId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStarGiftTransfer", [("stargift", ConstructorParameterDescription(self.stargift)), ("toId", ConstructorParameterDescription(self.toId))])
+            }
         }
-        public class Cons_inputInvoiceStarGiftUpgrade {
+        public class Cons_inputInvoiceStarGiftUpgrade: TypeConstructorDescription {
             public var flags: Int32
             public var stargift: Api.InputSavedStarGift
             public init(flags: Int32, stargift: Api.InputSavedStarGift) {
                 self.flags = flags
                 self.stargift = stargift
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStarGiftUpgrade", [("flags", ConstructorParameterDescription(self.flags)), ("stargift", ConstructorParameterDescription(self.stargift))])
+            }
         }
-        public class Cons_inputInvoiceStars {
+        public class Cons_inputInvoiceStars: TypeConstructorDescription {
             public var purpose: Api.InputStorePaymentPurpose
             public init(purpose: Api.InputStorePaymentPurpose) {
                 self.purpose = purpose
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("inputInvoiceStars", [("purpose", ConstructorParameterDescription(self.purpose))])
             }
         }
         case inputInvoiceBusinessBotTransferStars(Cons_inputInvoiceBusinessBotTransferStars)
@@ -984,38 +1077,38 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .inputInvoiceBusinessBotTransferStars(let _data):
-                return ("inputInvoiceBusinessBotTransferStars", [("bot", _data.bot as Any), ("stars", _data.stars as Any)])
+                return ("inputInvoiceBusinessBotTransferStars", [("bot", ConstructorParameterDescription(_data.bot)), ("stars", ConstructorParameterDescription(_data.stars))])
             case .inputInvoiceChatInviteSubscription(let _data):
-                return ("inputInvoiceChatInviteSubscription", [("hash", _data.hash as Any)])
+                return ("inputInvoiceChatInviteSubscription", [("hash", ConstructorParameterDescription(_data.hash))])
             case .inputInvoiceMessage(let _data):
-                return ("inputInvoiceMessage", [("peer", _data.peer as Any), ("msgId", _data.msgId as Any)])
+                return ("inputInvoiceMessage", [("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId))])
             case .inputInvoicePremiumAuthCode(let _data):
-                return ("inputInvoicePremiumAuthCode", [("purpose", _data.purpose as Any)])
+                return ("inputInvoicePremiumAuthCode", [("purpose", ConstructorParameterDescription(_data.purpose))])
             case .inputInvoicePremiumGiftCode(let _data):
-                return ("inputInvoicePremiumGiftCode", [("purpose", _data.purpose as Any), ("option", _data.option as Any)])
+                return ("inputInvoicePremiumGiftCode", [("purpose", ConstructorParameterDescription(_data.purpose)), ("option", ConstructorParameterDescription(_data.option))])
             case .inputInvoicePremiumGiftStars(let _data):
-                return ("inputInvoicePremiumGiftStars", [("flags", _data.flags as Any), ("userId", _data.userId as Any), ("months", _data.months as Any), ("message", _data.message as Any)])
+                return ("inputInvoicePremiumGiftStars", [("flags", ConstructorParameterDescription(_data.flags)), ("userId", ConstructorParameterDescription(_data.userId)), ("months", ConstructorParameterDescription(_data.months)), ("message", ConstructorParameterDescription(_data.message))])
             case .inputInvoiceSlug(let _data):
-                return ("inputInvoiceSlug", [("slug", _data.slug as Any)])
+                return ("inputInvoiceSlug", [("slug", ConstructorParameterDescription(_data.slug))])
             case .inputInvoiceStarGift(let _data):
-                return ("inputInvoiceStarGift", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("giftId", _data.giftId as Any), ("message", _data.message as Any)])
+                return ("inputInvoiceStarGift", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("giftId", ConstructorParameterDescription(_data.giftId)), ("message", ConstructorParameterDescription(_data.message))])
             case .inputInvoiceStarGiftAuctionBid(let _data):
-                return ("inputInvoiceStarGiftAuctionBid", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("giftId", _data.giftId as Any), ("bidAmount", _data.bidAmount as Any), ("message", _data.message as Any)])
+                return ("inputInvoiceStarGiftAuctionBid", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("giftId", ConstructorParameterDescription(_data.giftId)), ("bidAmount", ConstructorParameterDescription(_data.bidAmount)), ("message", ConstructorParameterDescription(_data.message))])
             case .inputInvoiceStarGiftDropOriginalDetails(let _data):
-                return ("inputInvoiceStarGiftDropOriginalDetails", [("stargift", _data.stargift as Any)])
+                return ("inputInvoiceStarGiftDropOriginalDetails", [("stargift", ConstructorParameterDescription(_data.stargift))])
             case .inputInvoiceStarGiftPrepaidUpgrade(let _data):
-                return ("inputInvoiceStarGiftPrepaidUpgrade", [("peer", _data.peer as Any), ("hash", _data.hash as Any)])
+                return ("inputInvoiceStarGiftPrepaidUpgrade", [("peer", ConstructorParameterDescription(_data.peer)), ("hash", ConstructorParameterDescription(_data.hash))])
             case .inputInvoiceStarGiftResale(let _data):
-                return ("inputInvoiceStarGiftResale", [("flags", _data.flags as Any), ("slug", _data.slug as Any), ("toId", _data.toId as Any)])
+                return ("inputInvoiceStarGiftResale", [("flags", ConstructorParameterDescription(_data.flags)), ("slug", ConstructorParameterDescription(_data.slug)), ("toId", ConstructorParameterDescription(_data.toId))])
             case .inputInvoiceStarGiftTransfer(let _data):
-                return ("inputInvoiceStarGiftTransfer", [("stargift", _data.stargift as Any), ("toId", _data.toId as Any)])
+                return ("inputInvoiceStarGiftTransfer", [("stargift", ConstructorParameterDescription(_data.stargift)), ("toId", ConstructorParameterDescription(_data.toId))])
             case .inputInvoiceStarGiftUpgrade(let _data):
-                return ("inputInvoiceStarGiftUpgrade", [("flags", _data.flags as Any), ("stargift", _data.stargift as Any)])
+                return ("inputInvoiceStarGiftUpgrade", [("flags", ConstructorParameterDescription(_data.flags)), ("stargift", ConstructorParameterDescription(_data.stargift))])
             case .inputInvoiceStars(let _data):
-                return ("inputInvoiceStars", [("purpose", _data.purpose as Any)])
+                return ("inputInvoiceStars", [("purpose", ConstructorParameterDescription(_data.purpose))])
             }
         }
 

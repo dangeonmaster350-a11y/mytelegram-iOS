@@ -16,12 +16,17 @@ import TooltipUI
 import LegacyMessageInputPanelInputView
 import UndoUI
 import TelegramNotices
+import TextFormat
+import TelegramUIPreferences
+import Pasteboard
 
 public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
     private let context: AccountContext
     private let chatLocation: ChatLocation
     private let isScheduledMessages: Bool
     private let isFile: Bool
+    private let hasTimer: Bool
+    private let pushViewController: (ViewController) -> Void
     private let present: (ViewController) -> Void
     private let presentInGlobalOverlay:  (ViewController) -> Void
     private let makeEntityInputView: () -> LegacyMessageInputPanelInputView?
@@ -50,6 +55,8 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
     private weak var undoController: UndoOverlayController?
     private weak var tooltipController: TooltipScreen?
     
+    private var isAIEnabled: Bool = false
+    
     private var validLayout: (width: CGFloat, leftInset: CGFloat, rightInset: CGFloat, bottomInset: CGFloat, keyboardHeight: CGFloat, additionalSideInsets: UIEdgeInsets, maxHeight: CGFloat, isSecondary: Bool, metrics: LayoutMetrics)?
     
     public init(
@@ -57,6 +64,8 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
         chatLocation: ChatLocation,
         isScheduledMessages: Bool,
         isFile: Bool,
+        hasTimer: Bool,
+        pushViewController: @escaping (ViewController) -> Void,
         present: @escaping (ViewController) -> Void,
         presentInGlobalOverlay: @escaping (ViewController) -> Void,
         makeEntityInputView: @escaping () -> LegacyMessageInputPanelInputView?
@@ -65,11 +74,18 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
         self.chatLocation = chatLocation
         self.isScheduledMessages = isScheduledMessages
         self.isFile = isFile
+        self.hasTimer = hasTimer
+        self.pushViewController = pushViewController
         self.present = present
         self.presentInGlobalOverlay = presentInGlobalOverlay
         self.makeEntityInputView = makeEntityInputView
         
         super.init()
+        
+        if let data = context.currentAppConfiguration.with({ $0 }).data, let value = data["ios_disable_ai_attach"] as? Double, value == 1.0 {
+        } else if let peerId = chatLocation.peerId, peerId.namespace != Namespaces.Peer.SecretChat {
+            self.isAIEnabled = true
+        }
         
         self.state._updated = { [weak self] transition, _ in
             if let self {
@@ -198,7 +214,7 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
             self.scheduledMessageInput = nil
         }
         
-        var hasTimer = self.chatLocation.peerId?.namespace == Namespaces.Peer.CloudUser && !self.isScheduledMessages
+        var hasTimer = self.hasTimer && self.chatLocation.peerId?.namespace == Namespaces.Peer.CloudUser && !self.isScheduledMessages
         if self.chatLocation.peerId?.isRepliesOrSavedMessages(accountPeerId: self.context.account.peerId) == true {
             hasTimer = false
         }
@@ -291,7 +307,13 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
                     header: nil,
                     isChannel: false,
                     storyItem: nil,
-                    chatLocation: self.chatLocation
+                    chatLocation: self.chatLocation,
+                    aiCompose: self.isAIEnabled ? { [weak self] in
+                        guard let self else {
+                            return
+                        }
+                        self.openAICompose()
+                    } : nil
                 )
             ),
             environment: {},
@@ -316,6 +338,50 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
         }
         
         return inputPanelSize.height - 8.0
+    }
+    
+    private func openAICompose() {
+        Task { @MainActor [weak self] in
+            guard let self else {
+                return
+            }
+            
+            let effectiveInputText: NSAttributedString = self.caption()
+            if effectiveInputText.length == 0 {
+                return
+            }
+            
+            let inputText = trimChatInputText(effectiveInputText)
+            var entities: [MessageTextEntity] = []
+            if inputText.length != 0 {
+                entities = generateTextEntities(inputText.string, enabledTypes: .all, currentEntities: generateChatInputTextEntities(inputText, maxAnimatedEmojisInText: 0))
+            }
+            
+            self.pushViewController(await self.context.sharedContext.makeTextProcessingScreen(
+                context: self.context,
+                theme: defaultDarkColorPresentationTheme,
+                mode: .edit(
+                    saveRestoreStateId: self.chatLocation.peerId,
+                    completion: { [weak self] text in
+                        guard let self else {
+                            return
+                        }
+                        self.setCaption(chatInputStateStringWithAppliedEntities(text.text, entities: text.entities))
+                    },
+                    send: nil,
+                    sendContextActions: nil
+                ),
+                inputText: TextWithEntities(text: inputText.string, entities: entities),
+                copyResult: { [weak self] text in
+                    guard let self else {
+                        return
+                    }
+                    let _ = self
+                    storeMessageTextInPasteboard(text.text, entities: text.entities)
+                },
+                translateChat: nil
+            ))
+        }
     }
     
     private func toggleInputMode() {
@@ -408,7 +474,7 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
         items.append(.action(ContextMenuActionItem(text: title, textLayout: .multiline, textFont: .small, icon: { _ in return nil }, action: emptyAction)))
 
         items.append(.action(ContextMenuActionItem(text: presentationData.strings.MediaPicker_Timer_ViewOnce, icon: { theme in
-            return currentValue == viewOnceTimeout ? generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor) : nil
+            return currentValue == viewOnceTimeout ? generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor) : UIImage()
         }, action: { _, a in
             a(.default)
         
@@ -419,7 +485,7 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
         
         for value in values {
             items.append(.action(ContextMenuActionItem(text: presentationData.strings.MediaPicker_Timer_Seconds(value), icon: { theme in
-                return currentValue == value ? generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor) : nil
+                return currentValue == value ? generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor) : UIImage()
             }, action: { _, a in
                 a(.default)
                 
@@ -428,7 +494,7 @@ public class LegacyMessageInputPanelNode: ASDisplayNode, TGCaptionPanelView {
         }
             
         items.append(.action(ContextMenuActionItem(text: presentationData.strings.MediaPicker_Timer_DoNotDelete, icon: { theme in
-            return currentValue == nil ? generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor) : nil
+            return currentValue == nil ? generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor) : UIImage()
         }, action: { _, a in
             a(.default)
             

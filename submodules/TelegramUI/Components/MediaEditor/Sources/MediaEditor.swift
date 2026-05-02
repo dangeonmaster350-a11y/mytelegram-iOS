@@ -560,6 +560,7 @@ public final class MediaEditor {
                 cropOrientation: nil,
                 gradientColors: nil,
                 videoTrimRange: nil,
+                videoBounce: false,
                 videoIsMuted: false,
                 videoIsFullHd: false,
                 videoIsMirrored: false,
@@ -974,8 +975,6 @@ public final class MediaEditor {
                 
                 if let _ = textureSourceResult.player {
                     self.updateRenderChain()
-//                    let _ = image
-//                    self.maybeGeneratePersonSegmentation(image)
                 }
                 
                 if let _ = self.values.audioTrack {

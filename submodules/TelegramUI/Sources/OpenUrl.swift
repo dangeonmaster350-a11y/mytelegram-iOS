@@ -504,7 +504,12 @@ func openExternalUrlImpl(context: AccountContext, urlContext: OpenURLContext, ur
                     }
                 case "passport", "oauth", "resolve":
                     if isOAuthUrl(parsedUrl) {
-                        handleResolvedUrl(.oauth(url: url))
+                        switch urlContext {
+                        case .external:
+                            handleResolvedUrl(.oauth(url: url))
+                        default:
+                            break
+                        }
                         return
                     } else if let secureId = parseSecureIdUrl(parsedUrl) {
                         if case .chat = urlContext {
@@ -677,6 +682,16 @@ func openExternalUrlImpl(context: AccountContext, urlContext: OpenURLContext, ur
                         }
                     } else {
                         handleResolvedUrl(.sendGift(peerId: nil))
+                    }
+                case "newbot":
+                    if let managerBotName = params["manager"] {
+                        let _ = (context.engine.peers.resolvePeerByName(name: managerBotName, referrer: nil)
+                        |> deliverOnMainQueue).start(next: { result in
+                            guard case let .result(peer) = result, let peer else {
+                                return
+                            }
+                            handleResolvedUrl(.createBot(parentBot: peer.id, username: params["username"], title: params["name"]))
+                        })
                     }
                 default:
                     break
@@ -946,20 +961,24 @@ func openExternalUrlImpl(context: AccountContext, urlContext: OpenURLContext, ur
                     handleResolvedUrl(.postStory(section))
                 case "settings":
                     if let lastComponent = parsedUrl.pathComponents.last {
+                        let fullPath = parsedUrl.pathComponents.joined(separator: "/").replacingOccurrences(of: "//", with: "")
                         var section: ResolvedUrl.SettingsSection?
-                        switch lastComponent {
-                        case "themes":
-                            section = .legacy(.theme)
-                        case "devices":
-                            section = .legacy(.devices)
-                        case "enable_log":
-                            section = .legacy(.enableLog)
-                        case "phone_privacy":
-                            section = .legacy(.phonePrivacy)
-                        case "login_email":
-                            section = .legacy(.loginEmail)
-                        default:
-                            let fullPath = parsedUrl.pathComponents.joined(separator: "/").replacingOccurrences(of: "//", with: "")
+                        if parsedUrl.pathComponents.count == 2 {
+                            switch lastComponent {
+                            case "themes":
+                                section = .legacy(.theme)
+                            case "devices":
+                                section = .legacy(.devices)
+                            case "enable_log":
+                                section = .legacy(.enableLog)
+                            case "phone_privacy":
+                                section = .legacy(.phonePrivacy)
+                            case "login_email":
+                                section = .legacy(.loginEmail)
+                            default:
+                                section = .path(fullPath)
+                            }
+                        } else {
                             section = .path(fullPath)
                         }
                         if let section {

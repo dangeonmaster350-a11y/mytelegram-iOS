@@ -1,6 +1,6 @@
 public extension Api {
     enum BusinessGreetingMessage: TypeConstructorDescription {
-        public class Cons_businessGreetingMessage {
+        public class Cons_businessGreetingMessage: TypeConstructorDescription {
             public var shortcutId: Int32
             public var recipients: Api.BusinessRecipients
             public var noActivityDays: Int32
@@ -8,6 +8,9 @@ public extension Api {
                 self.shortcutId = shortcutId
                 self.recipients = recipients
                 self.noActivityDays = noActivityDays
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("businessGreetingMessage", [("shortcutId", ConstructorParameterDescription(self.shortcutId)), ("recipients", ConstructorParameterDescription(self.recipients)), ("noActivityDays", ConstructorParameterDescription(self.noActivityDays))])
             }
         }
         case businessGreetingMessage(Cons_businessGreetingMessage)
@@ -25,10 +28,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .businessGreetingMessage(let _data):
-                return ("businessGreetingMessage", [("shortcutId", _data.shortcutId as Any), ("recipients", _data.recipients as Any), ("noActivityDays", _data.noActivityDays as Any)])
+                return ("businessGreetingMessage", [("shortcutId", ConstructorParameterDescription(_data.shortcutId)), ("recipients", ConstructorParameterDescription(_data.recipients)), ("noActivityDays", ConstructorParameterDescription(_data.noActivityDays))])
             }
         }
 
@@ -55,7 +58,7 @@ public extension Api {
 }
 public extension Api {
     enum BusinessIntro: TypeConstructorDescription {
-        public class Cons_businessIntro {
+        public class Cons_businessIntro: TypeConstructorDescription {
             public var flags: Int32
             public var title: String
             public var description: String
@@ -65,6 +68,9 @@ public extension Api {
                 self.title = title
                 self.description = description
                 self.sticker = sticker
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("businessIntro", [("flags", ConstructorParameterDescription(self.flags)), ("title", ConstructorParameterDescription(self.title)), ("description", ConstructorParameterDescription(self.description)), ("sticker", ConstructorParameterDescription(self.sticker))])
             }
         }
         case businessIntro(Cons_businessIntro)
@@ -85,10 +91,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .businessIntro(let _data):
-                return ("businessIntro", [("flags", _data.flags as Any), ("title", _data.title as Any), ("description", _data.description as Any), ("sticker", _data.sticker as Any)])
+                return ("businessIntro", [("flags", ConstructorParameterDescription(_data.flags)), ("title", ConstructorParameterDescription(_data.title)), ("description", ConstructorParameterDescription(_data.description)), ("sticker", ConstructorParameterDescription(_data.sticker))])
             }
         }
 
@@ -120,7 +126,7 @@ public extension Api {
 }
 public extension Api {
     enum BusinessLocation: TypeConstructorDescription {
-        public class Cons_businessLocation {
+        public class Cons_businessLocation: TypeConstructorDescription {
             public var flags: Int32
             public var geoPoint: Api.GeoPoint?
             public var address: String
@@ -128,6 +134,9 @@ public extension Api {
                 self.flags = flags
                 self.geoPoint = geoPoint
                 self.address = address
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("businessLocation", [("flags", ConstructorParameterDescription(self.flags)), ("geoPoint", ConstructorParameterDescription(self.geoPoint)), ("address", ConstructorParameterDescription(self.address))])
             }
         }
         case businessLocation(Cons_businessLocation)
@@ -147,10 +156,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .businessLocation(let _data):
-                return ("businessLocation", [("flags", _data.flags as Any), ("geoPoint", _data.geoPoint as Any), ("address", _data.address as Any)])
+                return ("businessLocation", [("flags", ConstructorParameterDescription(_data.flags)), ("geoPoint", ConstructorParameterDescription(_data.geoPoint)), ("address", ConstructorParameterDescription(_data.address))])
             }
         }
 
@@ -179,12 +188,15 @@ public extension Api {
 }
 public extension Api {
     enum BusinessRecipients: TypeConstructorDescription {
-        public class Cons_businessRecipients {
+        public class Cons_businessRecipients: TypeConstructorDescription {
             public var flags: Int32
             public var users: [Int64]?
             public init(flags: Int32, users: [Int64]?) {
                 self.flags = flags
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("businessRecipients", [("flags", ConstructorParameterDescription(self.flags)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case businessRecipients(Cons_businessRecipients)
@@ -207,10 +219,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .businessRecipients(let _data):
-                return ("businessRecipients", [("flags", _data.flags as Any), ("users", _data.users as Any)])
+                return ("businessRecipients", [("flags", ConstructorParameterDescription(_data.flags)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -236,12 +248,15 @@ public extension Api {
 }
 public extension Api {
     enum BusinessWeeklyOpen: TypeConstructorDescription {
-        public class Cons_businessWeeklyOpen {
+        public class Cons_businessWeeklyOpen: TypeConstructorDescription {
             public var startMinute: Int32
             public var endMinute: Int32
             public init(startMinute: Int32, endMinute: Int32) {
                 self.startMinute = startMinute
                 self.endMinute = endMinute
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("businessWeeklyOpen", [("startMinute", ConstructorParameterDescription(self.startMinute)), ("endMinute", ConstructorParameterDescription(self.endMinute))])
             }
         }
         case businessWeeklyOpen(Cons_businessWeeklyOpen)
@@ -258,10 +273,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .businessWeeklyOpen(let _data):
-                return ("businessWeeklyOpen", [("startMinute", _data.startMinute as Any), ("endMinute", _data.endMinute as Any)])
+                return ("businessWeeklyOpen", [("startMinute", ConstructorParameterDescription(_data.startMinute)), ("endMinute", ConstructorParameterDescription(_data.endMinute))])
             }
         }
 
@@ -283,7 +298,7 @@ public extension Api {
 }
 public extension Api {
     enum BusinessWorkHours: TypeConstructorDescription {
-        public class Cons_businessWorkHours {
+        public class Cons_businessWorkHours: TypeConstructorDescription {
             public var flags: Int32
             public var timezoneId: String
             public var weeklyOpen: [Api.BusinessWeeklyOpen]
@@ -291,6 +306,9 @@ public extension Api {
                 self.flags = flags
                 self.timezoneId = timezoneId
                 self.weeklyOpen = weeklyOpen
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("businessWorkHours", [("flags", ConstructorParameterDescription(self.flags)), ("timezoneId", ConstructorParameterDescription(self.timezoneId)), ("weeklyOpen", ConstructorParameterDescription(self.weeklyOpen))])
             }
         }
         case businessWorkHours(Cons_businessWorkHours)
@@ -312,10 +330,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .businessWorkHours(let _data):
-                return ("businessWorkHours", [("flags", _data.flags as Any), ("timezoneId", _data.timezoneId as Any), ("weeklyOpen", _data.weeklyOpen as Any)])
+                return ("businessWorkHours", [("flags", ConstructorParameterDescription(_data.flags)), ("timezoneId", ConstructorParameterDescription(_data.timezoneId)), ("weeklyOpen", ConstructorParameterDescription(_data.weeklyOpen))])
             }
         }
 
@@ -342,10 +360,13 @@ public extension Api {
 }
 public extension Api {
     enum CdnConfig: TypeConstructorDescription {
-        public class Cons_cdnConfig {
+        public class Cons_cdnConfig: TypeConstructorDescription {
             public var publicKeys: [Api.CdnPublicKey]
             public init(publicKeys: [Api.CdnPublicKey]) {
                 self.publicKeys = publicKeys
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("cdnConfig", [("publicKeys", ConstructorParameterDescription(self.publicKeys))])
             }
         }
         case cdnConfig(Cons_cdnConfig)
@@ -365,10 +386,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .cdnConfig(let _data):
-                return ("cdnConfig", [("publicKeys", _data.publicKeys as Any)])
+                return ("cdnConfig", [("publicKeys", ConstructorParameterDescription(_data.publicKeys))])
             }
         }
 
@@ -389,12 +410,15 @@ public extension Api {
 }
 public extension Api {
     enum CdnPublicKey: TypeConstructorDescription {
-        public class Cons_cdnPublicKey {
+        public class Cons_cdnPublicKey: TypeConstructorDescription {
             public var dcId: Int32
             public var publicKey: String
             public init(dcId: Int32, publicKey: String) {
                 self.dcId = dcId
                 self.publicKey = publicKey
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("cdnPublicKey", [("dcId", ConstructorParameterDescription(self.dcId)), ("publicKey", ConstructorParameterDescription(self.publicKey))])
             }
         }
         case cdnPublicKey(Cons_cdnPublicKey)
@@ -411,10 +435,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .cdnPublicKey(let _data):
-                return ("cdnPublicKey", [("dcId", _data.dcId as Any), ("publicKey", _data.publicKey as Any)])
+                return ("cdnPublicKey", [("dcId", ConstructorParameterDescription(_data.dcId)), ("publicKey", ConstructorParameterDescription(_data.publicKey))])
             }
         }
 
@@ -436,7 +460,7 @@ public extension Api {
 }
 public extension Api {
     indirect enum ChannelAdminLogEvent: TypeConstructorDescription {
-        public class Cons_channelAdminLogEvent {
+        public class Cons_channelAdminLogEvent: TypeConstructorDescription {
             public var id: Int64
             public var date: Int32
             public var userId: Int64
@@ -446,6 +470,9 @@ public extension Api {
                 self.date = date
                 self.userId = userId
                 self.action = action
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEvent", [("id", ConstructorParameterDescription(self.id)), ("date", ConstructorParameterDescription(self.date)), ("userId", ConstructorParameterDescription(self.userId)), ("action", ConstructorParameterDescription(self.action))])
             }
         }
         case channelAdminLogEvent(Cons_channelAdminLogEvent)
@@ -464,10 +491,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .channelAdminLogEvent(let _data):
-                return ("channelAdminLogEvent", [("id", _data.id as Any), ("date", _data.date as Any), ("userId", _data.userId as Any), ("action", _data.action as Any)])
+                return ("channelAdminLogEvent", [("id", ConstructorParameterDescription(_data.id)), ("date", ConstructorParameterDescription(_data.date)), ("userId", ConstructorParameterDescription(_data.userId)), ("action", ConstructorParameterDescription(_data.action))])
             }
         }
 
@@ -497,259 +524,374 @@ public extension Api {
 }
 public extension Api {
     indirect enum ChannelAdminLogEventAction: TypeConstructorDescription {
-        public class Cons_channelAdminLogEventActionChangeAbout {
+        public class Cons_channelAdminLogEventActionChangeAbout: TypeConstructorDescription {
             public var prevValue: String
             public var newValue: String
             public init(prevValue: String, newValue: String) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeAbout", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeAvailableReactions {
+        public class Cons_channelAdminLogEventActionChangeAvailableReactions: TypeConstructorDescription {
             public var prevValue: Api.ChatReactions
             public var newValue: Api.ChatReactions
             public init(prevValue: Api.ChatReactions, newValue: Api.ChatReactions) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeAvailableReactions", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeEmojiStatus {
+        public class Cons_channelAdminLogEventActionChangeEmojiStatus: TypeConstructorDescription {
             public var prevValue: Api.EmojiStatus
             public var newValue: Api.EmojiStatus
             public init(prevValue: Api.EmojiStatus, newValue: Api.EmojiStatus) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeEmojiStatus", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeEmojiStickerSet {
+        public class Cons_channelAdminLogEventActionChangeEmojiStickerSet: TypeConstructorDescription {
             public var prevStickerset: Api.InputStickerSet
             public var newStickerset: Api.InputStickerSet
             public init(prevStickerset: Api.InputStickerSet, newStickerset: Api.InputStickerSet) {
                 self.prevStickerset = prevStickerset
                 self.newStickerset = newStickerset
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeEmojiStickerSet", [("prevStickerset", ConstructorParameterDescription(self.prevStickerset)), ("newStickerset", ConstructorParameterDescription(self.newStickerset))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeHistoryTTL {
+        public class Cons_channelAdminLogEventActionChangeHistoryTTL: TypeConstructorDescription {
             public var prevValue: Int32
             public var newValue: Int32
             public init(prevValue: Int32, newValue: Int32) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeHistoryTTL", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeLinkedChat {
+        public class Cons_channelAdminLogEventActionChangeLinkedChat: TypeConstructorDescription {
             public var prevValue: Int64
             public var newValue: Int64
             public init(prevValue: Int64, newValue: Int64) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeLinkedChat", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeLocation {
+        public class Cons_channelAdminLogEventActionChangeLocation: TypeConstructorDescription {
             public var prevValue: Api.ChannelLocation
             public var newValue: Api.ChannelLocation
             public init(prevValue: Api.ChannelLocation, newValue: Api.ChannelLocation) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeLocation", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangePeerColor {
+        public class Cons_channelAdminLogEventActionChangePeerColor: TypeConstructorDescription {
             public var prevValue: Api.PeerColor
             public var newValue: Api.PeerColor
             public init(prevValue: Api.PeerColor, newValue: Api.PeerColor) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangePeerColor", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangePhoto {
+        public class Cons_channelAdminLogEventActionChangePhoto: TypeConstructorDescription {
             public var prevPhoto: Api.Photo
             public var newPhoto: Api.Photo
             public init(prevPhoto: Api.Photo, newPhoto: Api.Photo) {
                 self.prevPhoto = prevPhoto
                 self.newPhoto = newPhoto
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangePhoto", [("prevPhoto", ConstructorParameterDescription(self.prevPhoto)), ("newPhoto", ConstructorParameterDescription(self.newPhoto))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeProfilePeerColor {
+        public class Cons_channelAdminLogEventActionChangeProfilePeerColor: TypeConstructorDescription {
             public var prevValue: Api.PeerColor
             public var newValue: Api.PeerColor
             public init(prevValue: Api.PeerColor, newValue: Api.PeerColor) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeProfilePeerColor", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeStickerSet {
+        public class Cons_channelAdminLogEventActionChangeStickerSet: TypeConstructorDescription {
             public var prevStickerset: Api.InputStickerSet
             public var newStickerset: Api.InputStickerSet
             public init(prevStickerset: Api.InputStickerSet, newStickerset: Api.InputStickerSet) {
                 self.prevStickerset = prevStickerset
                 self.newStickerset = newStickerset
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeStickerSet", [("prevStickerset", ConstructorParameterDescription(self.prevStickerset)), ("newStickerset", ConstructorParameterDescription(self.newStickerset))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeTitle {
+        public class Cons_channelAdminLogEventActionChangeTitle: TypeConstructorDescription {
             public var prevValue: String
             public var newValue: String
             public init(prevValue: String, newValue: String) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeTitle", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeUsername {
+        public class Cons_channelAdminLogEventActionChangeUsername: TypeConstructorDescription {
             public var prevValue: String
             public var newValue: String
             public init(prevValue: String, newValue: String) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeUsername", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeUsernames {
+        public class Cons_channelAdminLogEventActionChangeUsernames: TypeConstructorDescription {
             public var prevValue: [String]
             public var newValue: [String]
             public init(prevValue: [String], newValue: [String]) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeUsernames", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionChangeWallpaper {
+        public class Cons_channelAdminLogEventActionChangeWallpaper: TypeConstructorDescription {
             public var prevValue: Api.WallPaper
             public var newValue: Api.WallPaper
             public init(prevValue: Api.WallPaper, newValue: Api.WallPaper) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionChangeWallpaper", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionCreateTopic {
+        public class Cons_channelAdminLogEventActionCreateTopic: TypeConstructorDescription {
             public var topic: Api.ForumTopic
             public init(topic: Api.ForumTopic) {
                 self.topic = topic
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionCreateTopic", [("topic", ConstructorParameterDescription(self.topic))])
+            }
         }
-        public class Cons_channelAdminLogEventActionDefaultBannedRights {
+        public class Cons_channelAdminLogEventActionDefaultBannedRights: TypeConstructorDescription {
             public var prevBannedRights: Api.ChatBannedRights
             public var newBannedRights: Api.ChatBannedRights
             public init(prevBannedRights: Api.ChatBannedRights, newBannedRights: Api.ChatBannedRights) {
                 self.prevBannedRights = prevBannedRights
                 self.newBannedRights = newBannedRights
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionDefaultBannedRights", [("prevBannedRights", ConstructorParameterDescription(self.prevBannedRights)), ("newBannedRights", ConstructorParameterDescription(self.newBannedRights))])
+            }
         }
-        public class Cons_channelAdminLogEventActionDeleteMessage {
+        public class Cons_channelAdminLogEventActionDeleteMessage: TypeConstructorDescription {
             public var message: Api.Message
             public init(message: Api.Message) {
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionDeleteMessage", [("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_channelAdminLogEventActionDeleteTopic {
+        public class Cons_channelAdminLogEventActionDeleteTopic: TypeConstructorDescription {
             public var topic: Api.ForumTopic
             public init(topic: Api.ForumTopic) {
                 self.topic = topic
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionDeleteTopic", [("topic", ConstructorParameterDescription(self.topic))])
+            }
         }
-        public class Cons_channelAdminLogEventActionDiscardGroupCall {
+        public class Cons_channelAdminLogEventActionDiscardGroupCall: TypeConstructorDescription {
             public var call: Api.InputGroupCall
             public init(call: Api.InputGroupCall) {
                 self.call = call
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionDiscardGroupCall", [("call", ConstructorParameterDescription(self.call))])
+            }
         }
-        public class Cons_channelAdminLogEventActionEditMessage {
+        public class Cons_channelAdminLogEventActionEditMessage: TypeConstructorDescription {
             public var prevMessage: Api.Message
             public var newMessage: Api.Message
             public init(prevMessage: Api.Message, newMessage: Api.Message) {
                 self.prevMessage = prevMessage
                 self.newMessage = newMessage
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionEditMessage", [("prevMessage", ConstructorParameterDescription(self.prevMessage)), ("newMessage", ConstructorParameterDescription(self.newMessage))])
+            }
         }
-        public class Cons_channelAdminLogEventActionEditTopic {
+        public class Cons_channelAdminLogEventActionEditTopic: TypeConstructorDescription {
             public var prevTopic: Api.ForumTopic
             public var newTopic: Api.ForumTopic
             public init(prevTopic: Api.ForumTopic, newTopic: Api.ForumTopic) {
                 self.prevTopic = prevTopic
                 self.newTopic = newTopic
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionEditTopic", [("prevTopic", ConstructorParameterDescription(self.prevTopic)), ("newTopic", ConstructorParameterDescription(self.newTopic))])
+            }
         }
-        public class Cons_channelAdminLogEventActionExportedInviteDelete {
+        public class Cons_channelAdminLogEventActionExportedInviteDelete: TypeConstructorDescription {
             public var invite: Api.ExportedChatInvite
             public init(invite: Api.ExportedChatInvite) {
                 self.invite = invite
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionExportedInviteDelete", [("invite", ConstructorParameterDescription(self.invite))])
+            }
         }
-        public class Cons_channelAdminLogEventActionExportedInviteEdit {
+        public class Cons_channelAdminLogEventActionExportedInviteEdit: TypeConstructorDescription {
             public var prevInvite: Api.ExportedChatInvite
             public var newInvite: Api.ExportedChatInvite
             public init(prevInvite: Api.ExportedChatInvite, newInvite: Api.ExportedChatInvite) {
                 self.prevInvite = prevInvite
                 self.newInvite = newInvite
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionExportedInviteEdit", [("prevInvite", ConstructorParameterDescription(self.prevInvite)), ("newInvite", ConstructorParameterDescription(self.newInvite))])
+            }
         }
-        public class Cons_channelAdminLogEventActionExportedInviteRevoke {
+        public class Cons_channelAdminLogEventActionExportedInviteRevoke: TypeConstructorDescription {
             public var invite: Api.ExportedChatInvite
             public init(invite: Api.ExportedChatInvite) {
                 self.invite = invite
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionExportedInviteRevoke", [("invite", ConstructorParameterDescription(self.invite))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantInvite {
+        public class Cons_channelAdminLogEventActionParticipantEditRank: TypeConstructorDescription {
+            public var userId: Int64
+            public var prevRank: String
+            public var newRank: String
+            public init(userId: Int64, prevRank: String, newRank: String) {
+                self.userId = userId
+                self.prevRank = prevRank
+                self.newRank = newRank
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantEditRank", [("userId", ConstructorParameterDescription(self.userId)), ("prevRank", ConstructorParameterDescription(self.prevRank)), ("newRank", ConstructorParameterDescription(self.newRank))])
+            }
+        }
+        public class Cons_channelAdminLogEventActionParticipantInvite: TypeConstructorDescription {
             public var participant: Api.ChannelParticipant
             public init(participant: Api.ChannelParticipant) {
                 self.participant = participant
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantInvite", [("participant", ConstructorParameterDescription(self.participant))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantJoinByInvite {
+        public class Cons_channelAdminLogEventActionParticipantJoinByInvite: TypeConstructorDescription {
             public var flags: Int32
             public var invite: Api.ExportedChatInvite
             public init(flags: Int32, invite: Api.ExportedChatInvite) {
                 self.flags = flags
                 self.invite = invite
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantJoinByInvite", [("flags", ConstructorParameterDescription(self.flags)), ("invite", ConstructorParameterDescription(self.invite))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantJoinByRequest {
+        public class Cons_channelAdminLogEventActionParticipantJoinByRequest: TypeConstructorDescription {
             public var invite: Api.ExportedChatInvite
             public var approvedBy: Int64
             public init(invite: Api.ExportedChatInvite, approvedBy: Int64) {
                 self.invite = invite
                 self.approvedBy = approvedBy
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantJoinByRequest", [("invite", ConstructorParameterDescription(self.invite)), ("approvedBy", ConstructorParameterDescription(self.approvedBy))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantMute {
+        public class Cons_channelAdminLogEventActionParticipantMute: TypeConstructorDescription {
             public var participant: Api.GroupCallParticipant
             public init(participant: Api.GroupCallParticipant) {
                 self.participant = participant
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantMute", [("participant", ConstructorParameterDescription(self.participant))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantSubExtend {
+        public class Cons_channelAdminLogEventActionParticipantSubExtend: TypeConstructorDescription {
             public var prevParticipant: Api.ChannelParticipant
             public var newParticipant: Api.ChannelParticipant
             public init(prevParticipant: Api.ChannelParticipant, newParticipant: Api.ChannelParticipant) {
                 self.prevParticipant = prevParticipant
                 self.newParticipant = newParticipant
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantSubExtend", [("prevParticipant", ConstructorParameterDescription(self.prevParticipant)), ("newParticipant", ConstructorParameterDescription(self.newParticipant))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantToggleAdmin {
+        public class Cons_channelAdminLogEventActionParticipantToggleAdmin: TypeConstructorDescription {
             public var prevParticipant: Api.ChannelParticipant
             public var newParticipant: Api.ChannelParticipant
             public init(prevParticipant: Api.ChannelParticipant, newParticipant: Api.ChannelParticipant) {
                 self.prevParticipant = prevParticipant
                 self.newParticipant = newParticipant
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantToggleAdmin", [("prevParticipant", ConstructorParameterDescription(self.prevParticipant)), ("newParticipant", ConstructorParameterDescription(self.newParticipant))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantToggleBan {
+        public class Cons_channelAdminLogEventActionParticipantToggleBan: TypeConstructorDescription {
             public var prevParticipant: Api.ChannelParticipant
             public var newParticipant: Api.ChannelParticipant
             public init(prevParticipant: Api.ChannelParticipant, newParticipant: Api.ChannelParticipant) {
                 self.prevParticipant = prevParticipant
                 self.newParticipant = newParticipant
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantToggleBan", [("prevParticipant", ConstructorParameterDescription(self.prevParticipant)), ("newParticipant", ConstructorParameterDescription(self.newParticipant))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantUnmute {
+        public class Cons_channelAdminLogEventActionParticipantUnmute: TypeConstructorDescription {
             public var participant: Api.GroupCallParticipant
             public init(participant: Api.GroupCallParticipant) {
                 self.participant = participant
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantUnmute", [("participant", ConstructorParameterDescription(self.participant))])
+            }
         }
-        public class Cons_channelAdminLogEventActionParticipantVolume {
+        public class Cons_channelAdminLogEventActionParticipantVolume: TypeConstructorDescription {
             public var participant: Api.GroupCallParticipant
             public init(participant: Api.GroupCallParticipant) {
                 self.participant = participant
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionParticipantVolume", [("participant", ConstructorParameterDescription(self.participant))])
+            }
         }
-        public class Cons_channelAdminLogEventActionPinTopic {
+        public class Cons_channelAdminLogEventActionPinTopic: TypeConstructorDescription {
             public var flags: Int32
             public var prevTopic: Api.ForumTopic?
             public var newTopic: Api.ForumTopic?
@@ -758,91 +900,136 @@ public extension Api {
                 self.prevTopic = prevTopic
                 self.newTopic = newTopic
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionPinTopic", [("flags", ConstructorParameterDescription(self.flags)), ("prevTopic", ConstructorParameterDescription(self.prevTopic)), ("newTopic", ConstructorParameterDescription(self.newTopic))])
+            }
         }
-        public class Cons_channelAdminLogEventActionSendMessage {
+        public class Cons_channelAdminLogEventActionSendMessage: TypeConstructorDescription {
             public var message: Api.Message
             public init(message: Api.Message) {
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionSendMessage", [("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_channelAdminLogEventActionStartGroupCall {
+        public class Cons_channelAdminLogEventActionStartGroupCall: TypeConstructorDescription {
             public var call: Api.InputGroupCall
             public init(call: Api.InputGroupCall) {
                 self.call = call
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionStartGroupCall", [("call", ConstructorParameterDescription(self.call))])
+            }
         }
-        public class Cons_channelAdminLogEventActionStopPoll {
+        public class Cons_channelAdminLogEventActionStopPoll: TypeConstructorDescription {
             public var message: Api.Message
             public init(message: Api.Message) {
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionStopPoll", [("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleAntiSpam {
+        public class Cons_channelAdminLogEventActionToggleAntiSpam: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleAntiSpam", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleAutotranslation {
+        public class Cons_channelAdminLogEventActionToggleAutotranslation: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleAutotranslation", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleForum {
+        public class Cons_channelAdminLogEventActionToggleForum: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleForum", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleGroupCallSetting {
+        public class Cons_channelAdminLogEventActionToggleGroupCallSetting: TypeConstructorDescription {
             public var joinMuted: Api.Bool
             public init(joinMuted: Api.Bool) {
                 self.joinMuted = joinMuted
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleGroupCallSetting", [("joinMuted", ConstructorParameterDescription(self.joinMuted))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleInvites {
+        public class Cons_channelAdminLogEventActionToggleInvites: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleInvites", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleNoForwards {
+        public class Cons_channelAdminLogEventActionToggleNoForwards: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleNoForwards", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionTogglePreHistoryHidden {
+        public class Cons_channelAdminLogEventActionTogglePreHistoryHidden: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionTogglePreHistoryHidden", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleSignatureProfiles {
+        public class Cons_channelAdminLogEventActionToggleSignatureProfiles: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleSignatureProfiles", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleSignatures {
+        public class Cons_channelAdminLogEventActionToggleSignatures: TypeConstructorDescription {
             public var newValue: Api.Bool
             public init(newValue: Api.Bool) {
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleSignatures", [("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionToggleSlowMode {
+        public class Cons_channelAdminLogEventActionToggleSlowMode: TypeConstructorDescription {
             public var prevValue: Int32
             public var newValue: Int32
             public init(prevValue: Int32, newValue: Int32) {
                 self.prevValue = prevValue
                 self.newValue = newValue
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionToggleSlowMode", [("prevValue", ConstructorParameterDescription(self.prevValue)), ("newValue", ConstructorParameterDescription(self.newValue))])
+            }
         }
-        public class Cons_channelAdminLogEventActionUpdatePinned {
+        public class Cons_channelAdminLogEventActionUpdatePinned: TypeConstructorDescription {
             public var message: Api.Message
             public init(message: Api.Message) {
                 self.message = message
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelAdminLogEventActionUpdatePinned", [("message", ConstructorParameterDescription(self.message))])
             }
         }
         case channelAdminLogEventActionChangeAbout(Cons_channelAdminLogEventActionChangeAbout)
@@ -870,6 +1057,7 @@ public extension Api {
         case channelAdminLogEventActionExportedInviteDelete(Cons_channelAdminLogEventActionExportedInviteDelete)
         case channelAdminLogEventActionExportedInviteEdit(Cons_channelAdminLogEventActionExportedInviteEdit)
         case channelAdminLogEventActionExportedInviteRevoke(Cons_channelAdminLogEventActionExportedInviteRevoke)
+        case channelAdminLogEventActionParticipantEditRank(Cons_channelAdminLogEventActionParticipantEditRank)
         case channelAdminLogEventActionParticipantInvite(Cons_channelAdminLogEventActionParticipantInvite)
         case channelAdminLogEventActionParticipantJoin
         case channelAdminLogEventActionParticipantJoinByInvite(Cons_channelAdminLogEventActionParticipantJoinByInvite)
@@ -1076,6 +1264,14 @@ public extension Api {
                 }
                 _data.invite.serialize(buffer, true)
                 break
+            case .channelAdminLogEventActionParticipantEditRank(let _data):
+                if boxed {
+                    buffer.appendInt32(1476834540)
+                }
+                serializeInt64(_data.userId, buffer: buffer, boxed: false)
+                serializeString(_data.prevRank, buffer: buffer, boxed: false)
+                serializeString(_data.newRank, buffer: buffer, boxed: false)
+                break
             case .channelAdminLogEventActionParticipantInvite(let _data):
                 if boxed {
                     buffer.appendInt32(-484690728)
@@ -1245,110 +1441,112 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .channelAdminLogEventActionChangeAbout(let _data):
-                return ("channelAdminLogEventActionChangeAbout", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeAbout", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeAvailableReactions(let _data):
-                return ("channelAdminLogEventActionChangeAvailableReactions", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeAvailableReactions", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeEmojiStatus(let _data):
-                return ("channelAdminLogEventActionChangeEmojiStatus", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeEmojiStatus", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeEmojiStickerSet(let _data):
-                return ("channelAdminLogEventActionChangeEmojiStickerSet", [("prevStickerset", _data.prevStickerset as Any), ("newStickerset", _data.newStickerset as Any)])
+                return ("channelAdminLogEventActionChangeEmojiStickerSet", [("prevStickerset", ConstructorParameterDescription(_data.prevStickerset)), ("newStickerset", ConstructorParameterDescription(_data.newStickerset))])
             case .channelAdminLogEventActionChangeHistoryTTL(let _data):
-                return ("channelAdminLogEventActionChangeHistoryTTL", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeHistoryTTL", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeLinkedChat(let _data):
-                return ("channelAdminLogEventActionChangeLinkedChat", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeLinkedChat", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeLocation(let _data):
-                return ("channelAdminLogEventActionChangeLocation", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeLocation", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangePeerColor(let _data):
-                return ("channelAdminLogEventActionChangePeerColor", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangePeerColor", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangePhoto(let _data):
-                return ("channelAdminLogEventActionChangePhoto", [("prevPhoto", _data.prevPhoto as Any), ("newPhoto", _data.newPhoto as Any)])
+                return ("channelAdminLogEventActionChangePhoto", [("prevPhoto", ConstructorParameterDescription(_data.prevPhoto)), ("newPhoto", ConstructorParameterDescription(_data.newPhoto))])
             case .channelAdminLogEventActionChangeProfilePeerColor(let _data):
-                return ("channelAdminLogEventActionChangeProfilePeerColor", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeProfilePeerColor", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeStickerSet(let _data):
-                return ("channelAdminLogEventActionChangeStickerSet", [("prevStickerset", _data.prevStickerset as Any), ("newStickerset", _data.newStickerset as Any)])
+                return ("channelAdminLogEventActionChangeStickerSet", [("prevStickerset", ConstructorParameterDescription(_data.prevStickerset)), ("newStickerset", ConstructorParameterDescription(_data.newStickerset))])
             case .channelAdminLogEventActionChangeTitle(let _data):
-                return ("channelAdminLogEventActionChangeTitle", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeTitle", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeUsername(let _data):
-                return ("channelAdminLogEventActionChangeUsername", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeUsername", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeUsernames(let _data):
-                return ("channelAdminLogEventActionChangeUsernames", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeUsernames", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionChangeWallpaper(let _data):
-                return ("channelAdminLogEventActionChangeWallpaper", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionChangeWallpaper", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionCreateTopic(let _data):
-                return ("channelAdminLogEventActionCreateTopic", [("topic", _data.topic as Any)])
+                return ("channelAdminLogEventActionCreateTopic", [("topic", ConstructorParameterDescription(_data.topic))])
             case .channelAdminLogEventActionDefaultBannedRights(let _data):
-                return ("channelAdminLogEventActionDefaultBannedRights", [("prevBannedRights", _data.prevBannedRights as Any), ("newBannedRights", _data.newBannedRights as Any)])
+                return ("channelAdminLogEventActionDefaultBannedRights", [("prevBannedRights", ConstructorParameterDescription(_data.prevBannedRights)), ("newBannedRights", ConstructorParameterDescription(_data.newBannedRights))])
             case .channelAdminLogEventActionDeleteMessage(let _data):
-                return ("channelAdminLogEventActionDeleteMessage", [("message", _data.message as Any)])
+                return ("channelAdminLogEventActionDeleteMessage", [("message", ConstructorParameterDescription(_data.message))])
             case .channelAdminLogEventActionDeleteTopic(let _data):
-                return ("channelAdminLogEventActionDeleteTopic", [("topic", _data.topic as Any)])
+                return ("channelAdminLogEventActionDeleteTopic", [("topic", ConstructorParameterDescription(_data.topic))])
             case .channelAdminLogEventActionDiscardGroupCall(let _data):
-                return ("channelAdminLogEventActionDiscardGroupCall", [("call", _data.call as Any)])
+                return ("channelAdminLogEventActionDiscardGroupCall", [("call", ConstructorParameterDescription(_data.call))])
             case .channelAdminLogEventActionEditMessage(let _data):
-                return ("channelAdminLogEventActionEditMessage", [("prevMessage", _data.prevMessage as Any), ("newMessage", _data.newMessage as Any)])
+                return ("channelAdminLogEventActionEditMessage", [("prevMessage", ConstructorParameterDescription(_data.prevMessage)), ("newMessage", ConstructorParameterDescription(_data.newMessage))])
             case .channelAdminLogEventActionEditTopic(let _data):
-                return ("channelAdminLogEventActionEditTopic", [("prevTopic", _data.prevTopic as Any), ("newTopic", _data.newTopic as Any)])
+                return ("channelAdminLogEventActionEditTopic", [("prevTopic", ConstructorParameterDescription(_data.prevTopic)), ("newTopic", ConstructorParameterDescription(_data.newTopic))])
             case .channelAdminLogEventActionExportedInviteDelete(let _data):
-                return ("channelAdminLogEventActionExportedInviteDelete", [("invite", _data.invite as Any)])
+                return ("channelAdminLogEventActionExportedInviteDelete", [("invite", ConstructorParameterDescription(_data.invite))])
             case .channelAdminLogEventActionExportedInviteEdit(let _data):
-                return ("channelAdminLogEventActionExportedInviteEdit", [("prevInvite", _data.prevInvite as Any), ("newInvite", _data.newInvite as Any)])
+                return ("channelAdminLogEventActionExportedInviteEdit", [("prevInvite", ConstructorParameterDescription(_data.prevInvite)), ("newInvite", ConstructorParameterDescription(_data.newInvite))])
             case .channelAdminLogEventActionExportedInviteRevoke(let _data):
-                return ("channelAdminLogEventActionExportedInviteRevoke", [("invite", _data.invite as Any)])
+                return ("channelAdminLogEventActionExportedInviteRevoke", [("invite", ConstructorParameterDescription(_data.invite))])
+            case .channelAdminLogEventActionParticipantEditRank(let _data):
+                return ("channelAdminLogEventActionParticipantEditRank", [("userId", ConstructorParameterDescription(_data.userId)), ("prevRank", ConstructorParameterDescription(_data.prevRank)), ("newRank", ConstructorParameterDescription(_data.newRank))])
             case .channelAdminLogEventActionParticipantInvite(let _data):
-                return ("channelAdminLogEventActionParticipantInvite", [("participant", _data.participant as Any)])
+                return ("channelAdminLogEventActionParticipantInvite", [("participant", ConstructorParameterDescription(_data.participant))])
             case .channelAdminLogEventActionParticipantJoin:
                 return ("channelAdminLogEventActionParticipantJoin", [])
             case .channelAdminLogEventActionParticipantJoinByInvite(let _data):
-                return ("channelAdminLogEventActionParticipantJoinByInvite", [("flags", _data.flags as Any), ("invite", _data.invite as Any)])
+                return ("channelAdminLogEventActionParticipantJoinByInvite", [("flags", ConstructorParameterDescription(_data.flags)), ("invite", ConstructorParameterDescription(_data.invite))])
             case .channelAdminLogEventActionParticipantJoinByRequest(let _data):
-                return ("channelAdminLogEventActionParticipantJoinByRequest", [("invite", _data.invite as Any), ("approvedBy", _data.approvedBy as Any)])
+                return ("channelAdminLogEventActionParticipantJoinByRequest", [("invite", ConstructorParameterDescription(_data.invite)), ("approvedBy", ConstructorParameterDescription(_data.approvedBy))])
             case .channelAdminLogEventActionParticipantLeave:
                 return ("channelAdminLogEventActionParticipantLeave", [])
             case .channelAdminLogEventActionParticipantMute(let _data):
-                return ("channelAdminLogEventActionParticipantMute", [("participant", _data.participant as Any)])
+                return ("channelAdminLogEventActionParticipantMute", [("participant", ConstructorParameterDescription(_data.participant))])
             case .channelAdminLogEventActionParticipantSubExtend(let _data):
-                return ("channelAdminLogEventActionParticipantSubExtend", [("prevParticipant", _data.prevParticipant as Any), ("newParticipant", _data.newParticipant as Any)])
+                return ("channelAdminLogEventActionParticipantSubExtend", [("prevParticipant", ConstructorParameterDescription(_data.prevParticipant)), ("newParticipant", ConstructorParameterDescription(_data.newParticipant))])
             case .channelAdminLogEventActionParticipantToggleAdmin(let _data):
-                return ("channelAdminLogEventActionParticipantToggleAdmin", [("prevParticipant", _data.prevParticipant as Any), ("newParticipant", _data.newParticipant as Any)])
+                return ("channelAdminLogEventActionParticipantToggleAdmin", [("prevParticipant", ConstructorParameterDescription(_data.prevParticipant)), ("newParticipant", ConstructorParameterDescription(_data.newParticipant))])
             case .channelAdminLogEventActionParticipantToggleBan(let _data):
-                return ("channelAdminLogEventActionParticipantToggleBan", [("prevParticipant", _data.prevParticipant as Any), ("newParticipant", _data.newParticipant as Any)])
+                return ("channelAdminLogEventActionParticipantToggleBan", [("prevParticipant", ConstructorParameterDescription(_data.prevParticipant)), ("newParticipant", ConstructorParameterDescription(_data.newParticipant))])
             case .channelAdminLogEventActionParticipantUnmute(let _data):
-                return ("channelAdminLogEventActionParticipantUnmute", [("participant", _data.participant as Any)])
+                return ("channelAdminLogEventActionParticipantUnmute", [("participant", ConstructorParameterDescription(_data.participant))])
             case .channelAdminLogEventActionParticipantVolume(let _data):
-                return ("channelAdminLogEventActionParticipantVolume", [("participant", _data.participant as Any)])
+                return ("channelAdminLogEventActionParticipantVolume", [("participant", ConstructorParameterDescription(_data.participant))])
             case .channelAdminLogEventActionPinTopic(let _data):
-                return ("channelAdminLogEventActionPinTopic", [("flags", _data.flags as Any), ("prevTopic", _data.prevTopic as Any), ("newTopic", _data.newTopic as Any)])
+                return ("channelAdminLogEventActionPinTopic", [("flags", ConstructorParameterDescription(_data.flags)), ("prevTopic", ConstructorParameterDescription(_data.prevTopic)), ("newTopic", ConstructorParameterDescription(_data.newTopic))])
             case .channelAdminLogEventActionSendMessage(let _data):
-                return ("channelAdminLogEventActionSendMessage", [("message", _data.message as Any)])
+                return ("channelAdminLogEventActionSendMessage", [("message", ConstructorParameterDescription(_data.message))])
             case .channelAdminLogEventActionStartGroupCall(let _data):
-                return ("channelAdminLogEventActionStartGroupCall", [("call", _data.call as Any)])
+                return ("channelAdminLogEventActionStartGroupCall", [("call", ConstructorParameterDescription(_data.call))])
             case .channelAdminLogEventActionStopPoll(let _data):
-                return ("channelAdminLogEventActionStopPoll", [("message", _data.message as Any)])
+                return ("channelAdminLogEventActionStopPoll", [("message", ConstructorParameterDescription(_data.message))])
             case .channelAdminLogEventActionToggleAntiSpam(let _data):
-                return ("channelAdminLogEventActionToggleAntiSpam", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleAntiSpam", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionToggleAutotranslation(let _data):
-                return ("channelAdminLogEventActionToggleAutotranslation", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleAutotranslation", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionToggleForum(let _data):
-                return ("channelAdminLogEventActionToggleForum", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleForum", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionToggleGroupCallSetting(let _data):
-                return ("channelAdminLogEventActionToggleGroupCallSetting", [("joinMuted", _data.joinMuted as Any)])
+                return ("channelAdminLogEventActionToggleGroupCallSetting", [("joinMuted", ConstructorParameterDescription(_data.joinMuted))])
             case .channelAdminLogEventActionToggleInvites(let _data):
-                return ("channelAdminLogEventActionToggleInvites", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleInvites", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionToggleNoForwards(let _data):
-                return ("channelAdminLogEventActionToggleNoForwards", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleNoForwards", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionTogglePreHistoryHidden(let _data):
-                return ("channelAdminLogEventActionTogglePreHistoryHidden", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionTogglePreHistoryHidden", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionToggleSignatureProfiles(let _data):
-                return ("channelAdminLogEventActionToggleSignatureProfiles", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleSignatureProfiles", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionToggleSignatures(let _data):
-                return ("channelAdminLogEventActionToggleSignatures", [("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleSignatures", [("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionToggleSlowMode(let _data):
-                return ("channelAdminLogEventActionToggleSlowMode", [("prevValue", _data.prevValue as Any), ("newValue", _data.newValue as Any)])
+                return ("channelAdminLogEventActionToggleSlowMode", [("prevValue", ConstructorParameterDescription(_data.prevValue)), ("newValue", ConstructorParameterDescription(_data.newValue))])
             case .channelAdminLogEventActionUpdatePinned(let _data):
-                return ("channelAdminLogEventActionUpdatePinned", [("message", _data.message as Any)])
+                return ("channelAdminLogEventActionUpdatePinned", [("message", ConstructorParameterDescription(_data.message))])
             }
         }
 
@@ -1747,6 +1945,23 @@ public extension Api {
             let _c1 = _1 != nil
             if _c1 {
                 return Api.ChannelAdminLogEventAction.channelAdminLogEventActionExportedInviteRevoke(Cons_channelAdminLogEventActionExportedInviteRevoke(invite: _1!))
+            }
+            else {
+                return nil
+            }
+        }
+        public static func parse_channelAdminLogEventActionParticipantEditRank(_ reader: BufferReader) -> ChannelAdminLogEventAction? {
+            var _1: Int64?
+            _1 = reader.readInt64()
+            var _2: String?
+            _2 = parseString(reader)
+            var _3: String?
+            _3 = parseString(reader)
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            if _c1 && _c2 && _c3 {
+                return Api.ChannelAdminLogEventAction.channelAdminLogEventActionParticipantEditRank(Cons_channelAdminLogEventActionParticipantEditRank(userId: _1!, prevRank: _2!, newRank: _3!))
             }
             else {
                 return nil

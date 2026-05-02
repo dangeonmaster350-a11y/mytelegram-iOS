@@ -34,6 +34,8 @@ swift_library(
         "//submodules/TextSelectionNode",
         "//submodules/UIKitRuntimeUtils",
         "//submodules/UndoUI",
+        "//submodules/TelegramUI/Components/LensTransition",
+        "//submodules/Components/BalancedTextComponent",
     ],
     visibility = [
         "//visibility:public",

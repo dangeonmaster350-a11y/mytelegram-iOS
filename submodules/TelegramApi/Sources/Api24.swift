@@ -1,15 +1,21 @@
 public extension Api {
     enum SecurePlainData: TypeConstructorDescription {
-        public class Cons_securePlainEmail {
+        public class Cons_securePlainEmail: TypeConstructorDescription {
             public var email: String
             public init(email: String) {
                 self.email = email
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("securePlainEmail", [("email", ConstructorParameterDescription(self.email))])
+            }
         }
-        public class Cons_securePlainPhone {
+        public class Cons_securePlainPhone: TypeConstructorDescription {
             public var phone: String
             public init(phone: String) {
                 self.phone = phone
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("securePlainPhone", [("phone", ConstructorParameterDescription(self.phone))])
             }
         }
         case securePlainEmail(Cons_securePlainEmail)
@@ -32,12 +38,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .securePlainEmail(let _data):
-                return ("securePlainEmail", [("email", _data.email as Any)])
+                return ("securePlainEmail", [("email", ConstructorParameterDescription(_data.email))])
             case .securePlainPhone(let _data):
-                return ("securePlainPhone", [("phone", _data.phone as Any)])
+                return ("securePlainPhone", [("phone", ConstructorParameterDescription(_data.phone))])
             }
         }
 
@@ -67,18 +73,24 @@ public extension Api {
 }
 public extension Api {
     enum SecureRequiredType: TypeConstructorDescription {
-        public class Cons_secureRequiredType {
+        public class Cons_secureRequiredType: TypeConstructorDescription {
             public var flags: Int32
             public var type: Api.SecureValueType
             public init(flags: Int32, type: Api.SecureValueType) {
                 self.flags = flags
                 self.type = type
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureRequiredType", [("flags", ConstructorParameterDescription(self.flags)), ("type", ConstructorParameterDescription(self.type))])
+            }
         }
-        public class Cons_secureRequiredTypeOneOf {
+        public class Cons_secureRequiredTypeOneOf: TypeConstructorDescription {
             public var types: [Api.SecureRequiredType]
             public init(types: [Api.SecureRequiredType]) {
                 self.types = types
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureRequiredTypeOneOf", [("types", ConstructorParameterDescription(self.types))])
             }
         }
         case secureRequiredType(Cons_secureRequiredType)
@@ -106,12 +118,12 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .secureRequiredType(let _data):
-                return ("secureRequiredType", [("flags", _data.flags as Any), ("type", _data.type as Any)])
+                return ("secureRequiredType", [("flags", ConstructorParameterDescription(_data.flags)), ("type", ConstructorParameterDescription(_data.type))])
             case .secureRequiredTypeOneOf(let _data):
-                return ("secureRequiredTypeOneOf", [("types", _data.types as Any)])
+                return ("secureRequiredTypeOneOf", [("types", ConstructorParameterDescription(_data.types))])
             }
         }
 
@@ -148,7 +160,7 @@ public extension Api {
 }
 public extension Api {
     enum SecureSecretSettings: TypeConstructorDescription {
-        public class Cons_secureSecretSettings {
+        public class Cons_secureSecretSettings: TypeConstructorDescription {
             public var secureAlgo: Api.SecurePasswordKdfAlgo
             public var secureSecret: Buffer
             public var secureSecretId: Int64
@@ -156,6 +168,9 @@ public extension Api {
                 self.secureAlgo = secureAlgo
                 self.secureSecret = secureSecret
                 self.secureSecretId = secureSecretId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureSecretSettings", [("secureAlgo", ConstructorParameterDescription(self.secureAlgo)), ("secureSecret", ConstructorParameterDescription(self.secureSecret)), ("secureSecretId", ConstructorParameterDescription(self.secureSecretId))])
             }
         }
         case secureSecretSettings(Cons_secureSecretSettings)
@@ -173,10 +188,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .secureSecretSettings(let _data):
-                return ("secureSecretSettings", [("secureAlgo", _data.secureAlgo as Any), ("secureSecret", _data.secureSecret as Any), ("secureSecretId", _data.secureSecretId as Any)])
+                return ("secureSecretSettings", [("secureAlgo", ConstructorParameterDescription(_data.secureAlgo)), ("secureSecret", ConstructorParameterDescription(_data.secureSecret)), ("secureSecretId", ConstructorParameterDescription(_data.secureSecretId))])
             }
         }
 
@@ -203,7 +218,7 @@ public extension Api {
 }
 public extension Api {
     enum SecureValue: TypeConstructorDescription {
-        public class Cons_secureValue {
+        public class Cons_secureValue: TypeConstructorDescription {
             public var flags: Int32
             public var type: Api.SecureValueType
             public var data: Api.SecureData?
@@ -225,6 +240,9 @@ public extension Api {
                 self.files = files
                 self.plainData = plainData
                 self.hash = hash
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValue", [("flags", ConstructorParameterDescription(self.flags)), ("type", ConstructorParameterDescription(self.type)), ("data", ConstructorParameterDescription(self.data)), ("frontSide", ConstructorParameterDescription(self.frontSide)), ("reverseSide", ConstructorParameterDescription(self.reverseSide)), ("selfie", ConstructorParameterDescription(self.selfie)), ("translation", ConstructorParameterDescription(self.translation)), ("files", ConstructorParameterDescription(self.files)), ("plainData", ConstructorParameterDescription(self.plainData)), ("hash", ConstructorParameterDescription(self.hash))])
             }
         }
         case secureValue(Cons_secureValue)
@@ -271,10 +289,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .secureValue(let _data):
-                return ("secureValue", [("flags", _data.flags as Any), ("type", _data.type as Any), ("data", _data.data as Any), ("frontSide", _data.frontSide as Any), ("reverseSide", _data.reverseSide as Any), ("selfie", _data.selfie as Any), ("translation", _data.translation as Any), ("files", _data.files as Any), ("plainData", _data.plainData as Any), ("hash", _data.hash as Any)])
+                return ("secureValue", [("flags", ConstructorParameterDescription(_data.flags)), ("type", ConstructorParameterDescription(_data.type)), ("data", ConstructorParameterDescription(_data.data)), ("frontSide", ConstructorParameterDescription(_data.frontSide)), ("reverseSide", ConstructorParameterDescription(_data.reverseSide)), ("selfie", ConstructorParameterDescription(_data.selfie)), ("translation", ConstructorParameterDescription(_data.translation)), ("files", ConstructorParameterDescription(_data.files)), ("plainData", ConstructorParameterDescription(_data.plainData)), ("hash", ConstructorParameterDescription(_data.hash))])
             }
         }
 
@@ -350,7 +368,7 @@ public extension Api {
 }
 public extension Api {
     enum SecureValueError: TypeConstructorDescription {
-        public class Cons_secureValueError {
+        public class Cons_secureValueError: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var hash: Buffer
             public var text: String
@@ -359,8 +377,11 @@ public extension Api {
                 self.hash = hash
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueError", [("type", ConstructorParameterDescription(self.type)), ("hash", ConstructorParameterDescription(self.hash)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorData {
+        public class Cons_secureValueErrorData: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var dataHash: Buffer
             public var field: String
@@ -371,8 +392,11 @@ public extension Api {
                 self.field = field
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorData", [("type", ConstructorParameterDescription(self.type)), ("dataHash", ConstructorParameterDescription(self.dataHash)), ("field", ConstructorParameterDescription(self.field)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorFile {
+        public class Cons_secureValueErrorFile: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var fileHash: Buffer
             public var text: String
@@ -381,8 +405,11 @@ public extension Api {
                 self.fileHash = fileHash
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorFile", [("type", ConstructorParameterDescription(self.type)), ("fileHash", ConstructorParameterDescription(self.fileHash)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorFiles {
+        public class Cons_secureValueErrorFiles: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var fileHash: [Buffer]
             public var text: String
@@ -391,8 +418,11 @@ public extension Api {
                 self.fileHash = fileHash
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorFiles", [("type", ConstructorParameterDescription(self.type)), ("fileHash", ConstructorParameterDescription(self.fileHash)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorFrontSide {
+        public class Cons_secureValueErrorFrontSide: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var fileHash: Buffer
             public var text: String
@@ -401,8 +431,11 @@ public extension Api {
                 self.fileHash = fileHash
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorFrontSide", [("type", ConstructorParameterDescription(self.type)), ("fileHash", ConstructorParameterDescription(self.fileHash)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorReverseSide {
+        public class Cons_secureValueErrorReverseSide: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var fileHash: Buffer
             public var text: String
@@ -411,8 +444,11 @@ public extension Api {
                 self.fileHash = fileHash
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorReverseSide", [("type", ConstructorParameterDescription(self.type)), ("fileHash", ConstructorParameterDescription(self.fileHash)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorSelfie {
+        public class Cons_secureValueErrorSelfie: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var fileHash: Buffer
             public var text: String
@@ -421,8 +457,11 @@ public extension Api {
                 self.fileHash = fileHash
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorSelfie", [("type", ConstructorParameterDescription(self.type)), ("fileHash", ConstructorParameterDescription(self.fileHash)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorTranslationFile {
+        public class Cons_secureValueErrorTranslationFile: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var fileHash: Buffer
             public var text: String
@@ -431,8 +470,11 @@ public extension Api {
                 self.fileHash = fileHash
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorTranslationFile", [("type", ConstructorParameterDescription(self.type)), ("fileHash", ConstructorParameterDescription(self.fileHash)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_secureValueErrorTranslationFiles {
+        public class Cons_secureValueErrorTranslationFiles: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var fileHash: [Buffer]
             public var text: String
@@ -440,6 +482,9 @@ public extension Api {
                 self.type = type
                 self.fileHash = fileHash
                 self.text = text
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueErrorTranslationFiles", [("type", ConstructorParameterDescription(self.type)), ("fileHash", ConstructorParameterDescription(self.fileHash)), ("text", ConstructorParameterDescription(self.text))])
             }
         }
         case secureValueError(Cons_secureValueError)
@@ -538,26 +583,26 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .secureValueError(let _data):
-                return ("secureValueError", [("type", _data.type as Any), ("hash", _data.hash as Any), ("text", _data.text as Any)])
+                return ("secureValueError", [("type", ConstructorParameterDescription(_data.type)), ("hash", ConstructorParameterDescription(_data.hash)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorData(let _data):
-                return ("secureValueErrorData", [("type", _data.type as Any), ("dataHash", _data.dataHash as Any), ("field", _data.field as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorData", [("type", ConstructorParameterDescription(_data.type)), ("dataHash", ConstructorParameterDescription(_data.dataHash)), ("field", ConstructorParameterDescription(_data.field)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorFile(let _data):
-                return ("secureValueErrorFile", [("type", _data.type as Any), ("fileHash", _data.fileHash as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorFile", [("type", ConstructorParameterDescription(_data.type)), ("fileHash", ConstructorParameterDescription(_data.fileHash)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorFiles(let _data):
-                return ("secureValueErrorFiles", [("type", _data.type as Any), ("fileHash", _data.fileHash as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorFiles", [("type", ConstructorParameterDescription(_data.type)), ("fileHash", ConstructorParameterDescription(_data.fileHash)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorFrontSide(let _data):
-                return ("secureValueErrorFrontSide", [("type", _data.type as Any), ("fileHash", _data.fileHash as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorFrontSide", [("type", ConstructorParameterDescription(_data.type)), ("fileHash", ConstructorParameterDescription(_data.fileHash)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorReverseSide(let _data):
-                return ("secureValueErrorReverseSide", [("type", _data.type as Any), ("fileHash", _data.fileHash as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorReverseSide", [("type", ConstructorParameterDescription(_data.type)), ("fileHash", ConstructorParameterDescription(_data.fileHash)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorSelfie(let _data):
-                return ("secureValueErrorSelfie", [("type", _data.type as Any), ("fileHash", _data.fileHash as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorSelfie", [("type", ConstructorParameterDescription(_data.type)), ("fileHash", ConstructorParameterDescription(_data.fileHash)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorTranslationFile(let _data):
-                return ("secureValueErrorTranslationFile", [("type", _data.type as Any), ("fileHash", _data.fileHash as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorTranslationFile", [("type", ConstructorParameterDescription(_data.type)), ("fileHash", ConstructorParameterDescription(_data.fileHash)), ("text", ConstructorParameterDescription(_data.text))])
             case .secureValueErrorTranslationFiles(let _data):
-                return ("secureValueErrorTranslationFiles", [("type", _data.type as Any), ("fileHash", _data.fileHash as Any), ("text", _data.text as Any)])
+                return ("secureValueErrorTranslationFiles", [("type", ConstructorParameterDescription(_data.type)), ("fileHash", ConstructorParameterDescription(_data.fileHash)), ("text", ConstructorParameterDescription(_data.text))])
             }
         }
 
@@ -743,12 +788,15 @@ public extension Api {
 }
 public extension Api {
     enum SecureValueHash: TypeConstructorDescription {
-        public class Cons_secureValueHash {
+        public class Cons_secureValueHash: TypeConstructorDescription {
             public var type: Api.SecureValueType
             public var hash: Buffer
             public init(type: Api.SecureValueType, hash: Buffer) {
                 self.type = type
                 self.hash = hash
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("secureValueHash", [("type", ConstructorParameterDescription(self.type)), ("hash", ConstructorParameterDescription(self.hash))])
             }
         }
         case secureValueHash(Cons_secureValueHash)
@@ -765,10 +813,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .secureValueHash(let _data):
-                return ("secureValueHash", [("type", _data.type as Any), ("hash", _data.hash as Any)])
+                return ("secureValueHash", [("type", ConstructorParameterDescription(_data.type)), ("hash", ConstructorParameterDescription(_data.hash))])
             }
         }
 
@@ -876,7 +924,7 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .secureValueTypeAddress:
                 return ("secureValueTypeAddress", [])
@@ -950,12 +998,15 @@ public extension Api {
 }
 public extension Api {
     enum SendAsPeer: TypeConstructorDescription {
-        public class Cons_sendAsPeer {
+        public class Cons_sendAsPeer: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public init(flags: Int32, peer: Api.Peer) {
                 self.flags = flags
                 self.peer = peer
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendAsPeer", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer))])
             }
         }
         case sendAsPeer(Cons_sendAsPeer)
@@ -972,10 +1023,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sendAsPeer(let _data):
-                return ("sendAsPeer", [("flags", _data.flags as Any), ("peer", _data.peer as Any)])
+                return ("sendAsPeer", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer))])
             }
         }
 
@@ -999,7 +1050,7 @@ public extension Api {
 }
 public extension Api {
     enum SendMessageAction: TypeConstructorDescription {
-        public class Cons_sendMessageEmojiInteraction {
+        public class Cons_sendMessageEmojiInteraction: TypeConstructorDescription {
             public var emoticon: String
             public var msgId: Int32
             public var interaction: Api.DataJSON
@@ -1008,55 +1059,82 @@ public extension Api {
                 self.msgId = msgId
                 self.interaction = interaction
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageEmojiInteraction", [("emoticon", ConstructorParameterDescription(self.emoticon)), ("msgId", ConstructorParameterDescription(self.msgId)), ("interaction", ConstructorParameterDescription(self.interaction))])
+            }
         }
-        public class Cons_sendMessageEmojiInteractionSeen {
+        public class Cons_sendMessageEmojiInteractionSeen: TypeConstructorDescription {
             public var emoticon: String
             public init(emoticon: String) {
                 self.emoticon = emoticon
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageEmojiInteractionSeen", [("emoticon", ConstructorParameterDescription(self.emoticon))])
+            }
         }
-        public class Cons_sendMessageHistoryImportAction {
+        public class Cons_sendMessageHistoryImportAction: TypeConstructorDescription {
             public var progress: Int32
             public init(progress: Int32) {
                 self.progress = progress
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageHistoryImportAction", [("progress", ConstructorParameterDescription(self.progress))])
+            }
         }
-        public class Cons_sendMessageTextDraftAction {
+        public class Cons_sendMessageTextDraftAction: TypeConstructorDescription {
             public var randomId: Int64
             public var text: Api.TextWithEntities
             public init(randomId: Int64, text: Api.TextWithEntities) {
                 self.randomId = randomId
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageTextDraftAction", [("randomId", ConstructorParameterDescription(self.randomId)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_sendMessageUploadAudioAction {
+        public class Cons_sendMessageUploadAudioAction: TypeConstructorDescription {
             public var progress: Int32
             public init(progress: Int32) {
                 self.progress = progress
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageUploadAudioAction", [("progress", ConstructorParameterDescription(self.progress))])
+            }
         }
-        public class Cons_sendMessageUploadDocumentAction {
+        public class Cons_sendMessageUploadDocumentAction: TypeConstructorDescription {
             public var progress: Int32
             public init(progress: Int32) {
                 self.progress = progress
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageUploadDocumentAction", [("progress", ConstructorParameterDescription(self.progress))])
+            }
         }
-        public class Cons_sendMessageUploadPhotoAction {
+        public class Cons_sendMessageUploadPhotoAction: TypeConstructorDescription {
             public var progress: Int32
             public init(progress: Int32) {
                 self.progress = progress
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageUploadPhotoAction", [("progress", ConstructorParameterDescription(self.progress))])
+            }
         }
-        public class Cons_sendMessageUploadRoundAction {
+        public class Cons_sendMessageUploadRoundAction: TypeConstructorDescription {
             public var progress: Int32
             public init(progress: Int32) {
                 self.progress = progress
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageUploadRoundAction", [("progress", ConstructorParameterDescription(self.progress))])
+            }
         }
-        public class Cons_sendMessageUploadVideoAction {
+        public class Cons_sendMessageUploadVideoAction: TypeConstructorDescription {
             public var progress: Int32
             public init(progress: Int32) {
                 self.progress = progress
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sendMessageUploadVideoAction", [("progress", ConstructorParameterDescription(self.progress))])
             }
         }
         case sendMessageCancelAction
@@ -1191,7 +1269,7 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sendMessageCancelAction:
                 return ("sendMessageCancelAction", [])
@@ -1200,15 +1278,15 @@ public extension Api {
             case .sendMessageChooseStickerAction:
                 return ("sendMessageChooseStickerAction", [])
             case .sendMessageEmojiInteraction(let _data):
-                return ("sendMessageEmojiInteraction", [("emoticon", _data.emoticon as Any), ("msgId", _data.msgId as Any), ("interaction", _data.interaction as Any)])
+                return ("sendMessageEmojiInteraction", [("emoticon", ConstructorParameterDescription(_data.emoticon)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("interaction", ConstructorParameterDescription(_data.interaction))])
             case .sendMessageEmojiInteractionSeen(let _data):
-                return ("sendMessageEmojiInteractionSeen", [("emoticon", _data.emoticon as Any)])
+                return ("sendMessageEmojiInteractionSeen", [("emoticon", ConstructorParameterDescription(_data.emoticon))])
             case .sendMessageGamePlayAction:
                 return ("sendMessageGamePlayAction", [])
             case .sendMessageGeoLocationAction:
                 return ("sendMessageGeoLocationAction", [])
             case .sendMessageHistoryImportAction(let _data):
-                return ("sendMessageHistoryImportAction", [("progress", _data.progress as Any)])
+                return ("sendMessageHistoryImportAction", [("progress", ConstructorParameterDescription(_data.progress))])
             case .sendMessageRecordAudioAction:
                 return ("sendMessageRecordAudioAction", [])
             case .sendMessageRecordRoundAction:
@@ -1216,19 +1294,19 @@ public extension Api {
             case .sendMessageRecordVideoAction:
                 return ("sendMessageRecordVideoAction", [])
             case .sendMessageTextDraftAction(let _data):
-                return ("sendMessageTextDraftAction", [("randomId", _data.randomId as Any), ("text", _data.text as Any)])
+                return ("sendMessageTextDraftAction", [("randomId", ConstructorParameterDescription(_data.randomId)), ("text", ConstructorParameterDescription(_data.text))])
             case .sendMessageTypingAction:
                 return ("sendMessageTypingAction", [])
             case .sendMessageUploadAudioAction(let _data):
-                return ("sendMessageUploadAudioAction", [("progress", _data.progress as Any)])
+                return ("sendMessageUploadAudioAction", [("progress", ConstructorParameterDescription(_data.progress))])
             case .sendMessageUploadDocumentAction(let _data):
-                return ("sendMessageUploadDocumentAction", [("progress", _data.progress as Any)])
+                return ("sendMessageUploadDocumentAction", [("progress", ConstructorParameterDescription(_data.progress))])
             case .sendMessageUploadPhotoAction(let _data):
-                return ("sendMessageUploadPhotoAction", [("progress", _data.progress as Any)])
+                return ("sendMessageUploadPhotoAction", [("progress", ConstructorParameterDescription(_data.progress))])
             case .sendMessageUploadRoundAction(let _data):
-                return ("sendMessageUploadRoundAction", [("progress", _data.progress as Any)])
+                return ("sendMessageUploadRoundAction", [("progress", ConstructorParameterDescription(_data.progress))])
             case .sendMessageUploadVideoAction(let _data):
-                return ("sendMessageUploadVideoAction", [("progress", _data.progress as Any)])
+                return ("sendMessageUploadVideoAction", [("progress", ConstructorParameterDescription(_data.progress))])
             case .speakingInGroupCallAction:
                 return ("speakingInGroupCallAction", [])
             }

@@ -36,9 +36,12 @@ swift_library(
         "//submodules/TelegramUI/Components/TelegramUIDeclareEncodables",
         "//submodules/TelegramUI/Components/AnimationCache",
         "//submodules/TelegramUI/Components/MultiAnimationRenderer",
+        "//submodules/TelegramUI/Components/DCTAnimationCacheImpl:DCTAnimationCacheImpl",
+        "//submodules/TelegramUI/Components/DCTMultiAnimationRendererImpl:DCTMultiAnimationRendererImpl",
         "//submodules/TelegramUI/Components/TelegramAccountAuxiliaryMethods",
         "//submodules/TelegramUI/Components/PeerSelectionController",
         "//submodules/TelegramUI/Components/ContextMenuScreen",
+        "//submodules/TelegramUI/Components/NavigationBarImpl",
     ],
     visibility = [
         "//visibility:public",

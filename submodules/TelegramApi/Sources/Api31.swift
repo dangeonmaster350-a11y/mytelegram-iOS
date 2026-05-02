@@ -1,9 +1,12 @@
 public extension Api.account {
     enum SavedMusicIds: TypeConstructorDescription {
-        public class Cons_savedMusicIds {
+        public class Cons_savedMusicIds: TypeConstructorDescription {
             public var ids: [Int64]
             public init(ids: [Int64]) {
                 self.ids = ids
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("savedMusicIds", [("ids", ConstructorParameterDescription(self.ids))])
             }
         }
         case savedMusicIds(Cons_savedMusicIds)
@@ -29,10 +32,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .savedMusicIds(let _data):
-                return ("savedMusicIds", [("ids", _data.ids as Any)])
+                return ("savedMusicIds", [("ids", ConstructorParameterDescription(_data.ids))])
             case .savedMusicIdsNotModified:
                 return ("savedMusicIdsNotModified", [])
             }
@@ -58,10 +61,13 @@ public extension Api.account {
 }
 public extension Api.account {
     enum SavedRingtone: TypeConstructorDescription {
-        public class Cons_savedRingtoneConverted {
+        public class Cons_savedRingtoneConverted: TypeConstructorDescription {
             public var document: Api.Document
             public init(document: Api.Document) {
                 self.document = document
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("savedRingtoneConverted", [("document", ConstructorParameterDescription(self.document))])
             }
         }
         case savedRingtone
@@ -83,12 +89,12 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .savedRingtone:
                 return ("savedRingtone", [])
             case .savedRingtoneConverted(let _data):
-                return ("savedRingtoneConverted", [("document", _data.document as Any)])
+                return ("savedRingtoneConverted", [("document", ConstructorParameterDescription(_data.document))])
             }
         }
 
@@ -112,12 +118,15 @@ public extension Api.account {
 }
 public extension Api.account {
     enum SavedRingtones: TypeConstructorDescription {
-        public class Cons_savedRingtones {
+        public class Cons_savedRingtones: TypeConstructorDescription {
             public var hash: Int64
             public var ringtones: [Api.Document]
             public init(hash: Int64, ringtones: [Api.Document]) {
                 self.hash = hash
                 self.ringtones = ringtones
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("savedRingtones", [("hash", ConstructorParameterDescription(self.hash)), ("ringtones", ConstructorParameterDescription(self.ringtones))])
             }
         }
         case savedRingtones(Cons_savedRingtones)
@@ -144,10 +153,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .savedRingtones(let _data):
-                return ("savedRingtones", [("hash", _data.hash as Any), ("ringtones", _data.ringtones as Any)])
+                return ("savedRingtones", [("hash", ConstructorParameterDescription(_data.hash)), ("ringtones", ConstructorParameterDescription(_data.ringtones))])
             case .savedRingtonesNotModified:
                 return ("savedRingtonesNotModified", [])
             }
@@ -176,12 +185,15 @@ public extension Api.account {
 }
 public extension Api.account {
     enum SentEmailCode: TypeConstructorDescription {
-        public class Cons_sentEmailCode {
+        public class Cons_sentEmailCode: TypeConstructorDescription {
             public var emailPattern: String
             public var length: Int32
             public init(emailPattern: String, length: Int32) {
                 self.emailPattern = emailPattern
                 self.length = length
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentEmailCode", [("emailPattern", ConstructorParameterDescription(self.emailPattern)), ("length", ConstructorParameterDescription(self.length))])
             }
         }
         case sentEmailCode(Cons_sentEmailCode)
@@ -198,10 +210,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sentEmailCode(let _data):
-                return ("sentEmailCode", [("emailPattern", _data.emailPattern as Any), ("length", _data.length as Any)])
+                return ("sentEmailCode", [("emailPattern", ConstructorParameterDescription(_data.emailPattern)), ("length", ConstructorParameterDescription(_data.length))])
             }
         }
 
@@ -223,10 +235,13 @@ public extension Api.account {
 }
 public extension Api.account {
     enum Takeout: TypeConstructorDescription {
-        public class Cons_takeout {
+        public class Cons_takeout: TypeConstructorDescription {
             public var id: Int64
             public init(id: Int64) {
                 self.id = id
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("takeout", [("id", ConstructorParameterDescription(self.id))])
             }
         }
         case takeout(Cons_takeout)
@@ -242,10 +257,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .takeout(let _data):
-                return ("takeout", [("id", _data.id as Any)])
+                return ("takeout", [("id", ConstructorParameterDescription(_data.id))])
             }
         }
 
@@ -264,12 +279,15 @@ public extension Api.account {
 }
 public extension Api.account {
     enum Themes: TypeConstructorDescription {
-        public class Cons_themes {
+        public class Cons_themes: TypeConstructorDescription {
             public var hash: Int64
             public var themes: [Api.Theme]
             public init(hash: Int64, themes: [Api.Theme]) {
                 self.hash = hash
                 self.themes = themes
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("themes", [("hash", ConstructorParameterDescription(self.hash)), ("themes", ConstructorParameterDescription(self.themes))])
             }
         }
         case themes(Cons_themes)
@@ -296,10 +314,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .themes(let _data):
-                return ("themes", [("hash", _data.hash as Any), ("themes", _data.themes as Any)])
+                return ("themes", [("hash", ConstructorParameterDescription(_data.hash)), ("themes", ConstructorParameterDescription(_data.themes))])
             case .themesNotModified:
                 return ("themesNotModified", [])
             }
@@ -328,12 +346,15 @@ public extension Api.account {
 }
 public extension Api.account {
     enum TmpPassword: TypeConstructorDescription {
-        public class Cons_tmpPassword {
+        public class Cons_tmpPassword: TypeConstructorDescription {
             public var tmpPassword: Buffer
             public var validUntil: Int32
             public init(tmpPassword: Buffer, validUntil: Int32) {
                 self.tmpPassword = tmpPassword
                 self.validUntil = validUntil
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("tmpPassword", [("tmpPassword", ConstructorParameterDescription(self.tmpPassword)), ("validUntil", ConstructorParameterDescription(self.validUntil))])
             }
         }
         case tmpPassword(Cons_tmpPassword)
@@ -350,10 +371,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .tmpPassword(let _data):
-                return ("tmpPassword", [("tmpPassword", _data.tmpPassword as Any), ("validUntil", _data.validUntil as Any)])
+                return ("tmpPassword", [("tmpPassword", ConstructorParameterDescription(_data.tmpPassword)), ("validUntil", ConstructorParameterDescription(_data.validUntil))])
             }
         }
 
@@ -375,12 +396,15 @@ public extension Api.account {
 }
 public extension Api.account {
     enum WallPapers: TypeConstructorDescription {
-        public class Cons_wallPapers {
+        public class Cons_wallPapers: TypeConstructorDescription {
             public var hash: Int64
             public var wallpapers: [Api.WallPaper]
             public init(hash: Int64, wallpapers: [Api.WallPaper]) {
                 self.hash = hash
                 self.wallpapers = wallpapers
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("wallPapers", [("hash", ConstructorParameterDescription(self.hash)), ("wallpapers", ConstructorParameterDescription(self.wallpapers))])
             }
         }
         case wallPapers(Cons_wallPapers)
@@ -407,10 +431,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .wallPapers(let _data):
-                return ("wallPapers", [("hash", _data.hash as Any), ("wallpapers", _data.wallpapers as Any)])
+                return ("wallPapers", [("hash", ConstructorParameterDescription(_data.hash)), ("wallpapers", ConstructorParameterDescription(_data.wallpapers))])
             case .wallPapersNotModified:
                 return ("wallPapersNotModified", [])
             }
@@ -439,12 +463,15 @@ public extension Api.account {
 }
 public extension Api.account {
     enum WebAuthorizations: TypeConstructorDescription {
-        public class Cons_webAuthorizations {
+        public class Cons_webAuthorizations: TypeConstructorDescription {
             public var authorizations: [Api.WebAuthorization]
             public var users: [Api.User]
             public init(authorizations: [Api.WebAuthorization], users: [Api.User]) {
                 self.authorizations = authorizations
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("webAuthorizations", [("authorizations", ConstructorParameterDescription(self.authorizations)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case webAuthorizations(Cons_webAuthorizations)
@@ -469,10 +496,10 @@ public extension Api.account {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .webAuthorizations(let _data):
-                return ("webAuthorizations", [("authorizations", _data.authorizations as Any), ("users", _data.users as Any)])
+                return ("webAuthorizations", [("authorizations", ConstructorParameterDescription(_data.authorizations)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -498,7 +525,7 @@ public extension Api.account {
 }
 public extension Api.auth {
     enum Authorization: TypeConstructorDescription {
-        public class Cons_authorization {
+        public class Cons_authorization: TypeConstructorDescription {
             public var flags: Int32
             public var otherwiseReloginDays: Int32?
             public var tmpSessions: Int32?
@@ -511,13 +538,19 @@ public extension Api.auth {
                 self.futureAuthToken = futureAuthToken
                 self.user = user
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("authorization", [("flags", ConstructorParameterDescription(self.flags)), ("otherwiseReloginDays", ConstructorParameterDescription(self.otherwiseReloginDays)), ("tmpSessions", ConstructorParameterDescription(self.tmpSessions)), ("futureAuthToken", ConstructorParameterDescription(self.futureAuthToken)), ("user", ConstructorParameterDescription(self.user))])
+            }
         }
-        public class Cons_authorizationSignUpRequired {
+        public class Cons_authorizationSignUpRequired: TypeConstructorDescription {
             public var flags: Int32
             public var termsOfService: Api.help.TermsOfService?
             public init(flags: Int32, termsOfService: Api.help.TermsOfService?) {
                 self.flags = flags
                 self.termsOfService = termsOfService
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("authorizationSignUpRequired", [("flags", ConstructorParameterDescription(self.flags)), ("termsOfService", ConstructorParameterDescription(self.termsOfService))])
             }
         }
         case authorization(Cons_authorization)
@@ -553,12 +586,12 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .authorization(let _data):
-                return ("authorization", [("flags", _data.flags as Any), ("otherwiseReloginDays", _data.otherwiseReloginDays as Any), ("tmpSessions", _data.tmpSessions as Any), ("futureAuthToken", _data.futureAuthToken as Any), ("user", _data.user as Any)])
+                return ("authorization", [("flags", ConstructorParameterDescription(_data.flags)), ("otherwiseReloginDays", ConstructorParameterDescription(_data.otherwiseReloginDays)), ("tmpSessions", ConstructorParameterDescription(_data.tmpSessions)), ("futureAuthToken", ConstructorParameterDescription(_data.futureAuthToken)), ("user", ConstructorParameterDescription(_data.user))])
             case .authorizationSignUpRequired(let _data):
-                return ("authorizationSignUpRequired", [("flags", _data.flags as Any), ("termsOfService", _data.termsOfService as Any)])
+                return ("authorizationSignUpRequired", [("flags", ConstructorParameterDescription(_data.flags)), ("termsOfService", ConstructorParameterDescription(_data.termsOfService))])
             }
         }
 
@@ -651,7 +684,7 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .codeTypeCall:
                 return ("codeTypeCall", [])
@@ -685,12 +718,15 @@ public extension Api.auth {
 }
 public extension Api.auth {
     enum ExportedAuthorization: TypeConstructorDescription {
-        public class Cons_exportedAuthorization {
+        public class Cons_exportedAuthorization: TypeConstructorDescription {
             public var id: Int64
             public var bytes: Buffer
             public init(id: Int64, bytes: Buffer) {
                 self.id = id
                 self.bytes = bytes
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("exportedAuthorization", [("id", ConstructorParameterDescription(self.id)), ("bytes", ConstructorParameterDescription(self.bytes))])
             }
         }
         case exportedAuthorization(Cons_exportedAuthorization)
@@ -707,10 +743,10 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .exportedAuthorization(let _data):
-                return ("exportedAuthorization", [("id", _data.id as Any), ("bytes", _data.bytes as Any)])
+                return ("exportedAuthorization", [("id", ConstructorParameterDescription(_data.id)), ("bytes", ConstructorParameterDescription(_data.bytes))])
             }
         }
 
@@ -732,12 +768,15 @@ public extension Api.auth {
 }
 public extension Api.auth {
     enum LoggedOut: TypeConstructorDescription {
-        public class Cons_loggedOut {
+        public class Cons_loggedOut: TypeConstructorDescription {
             public var flags: Int32
             public var futureAuthToken: Buffer?
             public init(flags: Int32, futureAuthToken: Buffer?) {
                 self.flags = flags
                 self.futureAuthToken = futureAuthToken
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("loggedOut", [("flags", ConstructorParameterDescription(self.flags)), ("futureAuthToken", ConstructorParameterDescription(self.futureAuthToken))])
             }
         }
         case loggedOut(Cons_loggedOut)
@@ -756,10 +795,10 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .loggedOut(let _data):
-                return ("loggedOut", [("flags", _data.flags as Any), ("futureAuthToken", _data.futureAuthToken as Any)])
+                return ("loggedOut", [("flags", ConstructorParameterDescription(_data.flags)), ("futureAuthToken", ConstructorParameterDescription(_data.futureAuthToken))])
             }
         }
 
@@ -783,26 +822,35 @@ public extension Api.auth {
 }
 public extension Api.auth {
     enum LoginToken: TypeConstructorDescription {
-        public class Cons_loginToken {
+        public class Cons_loginToken: TypeConstructorDescription {
             public var expires: Int32
             public var token: Buffer
             public init(expires: Int32, token: Buffer) {
                 self.expires = expires
                 self.token = token
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("loginToken", [("expires", ConstructorParameterDescription(self.expires)), ("token", ConstructorParameterDescription(self.token))])
+            }
         }
-        public class Cons_loginTokenMigrateTo {
+        public class Cons_loginTokenMigrateTo: TypeConstructorDescription {
             public var dcId: Int32
             public var token: Buffer
             public init(dcId: Int32, token: Buffer) {
                 self.dcId = dcId
                 self.token = token
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("loginTokenMigrateTo", [("dcId", ConstructorParameterDescription(self.dcId)), ("token", ConstructorParameterDescription(self.token))])
+            }
         }
-        public class Cons_loginTokenSuccess {
+        public class Cons_loginTokenSuccess: TypeConstructorDescription {
             public var authorization: Api.auth.Authorization
             public init(authorization: Api.auth.Authorization) {
                 self.authorization = authorization
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("loginTokenSuccess", [("authorization", ConstructorParameterDescription(self.authorization))])
             }
         }
         case loginToken(Cons_loginToken)
@@ -834,14 +882,14 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .loginToken(let _data):
-                return ("loginToken", [("expires", _data.expires as Any), ("token", _data.token as Any)])
+                return ("loginToken", [("expires", ConstructorParameterDescription(_data.expires)), ("token", ConstructorParameterDescription(_data.token))])
             case .loginTokenMigrateTo(let _data):
-                return ("loginTokenMigrateTo", [("dcId", _data.dcId as Any), ("token", _data.token as Any)])
+                return ("loginTokenMigrateTo", [("dcId", ConstructorParameterDescription(_data.dcId)), ("token", ConstructorParameterDescription(_data.token))])
             case .loginTokenSuccess(let _data):
-                return ("loginTokenSuccess", [("authorization", _data.authorization as Any)])
+                return ("loginTokenSuccess", [("authorization", ConstructorParameterDescription(_data.authorization))])
             }
         }
 
@@ -890,10 +938,13 @@ public extension Api.auth {
 }
 public extension Api.auth {
     enum PasskeyLoginOptions: TypeConstructorDescription {
-        public class Cons_passkeyLoginOptions {
+        public class Cons_passkeyLoginOptions: TypeConstructorDescription {
             public var options: Api.DataJSON
             public init(options: Api.DataJSON) {
                 self.options = options
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("passkeyLoginOptions", [("options", ConstructorParameterDescription(self.options))])
             }
         }
         case passkeyLoginOptions(Cons_passkeyLoginOptions)
@@ -909,10 +960,10 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .passkeyLoginOptions(let _data):
-                return ("passkeyLoginOptions", [("options", _data.options as Any)])
+                return ("passkeyLoginOptions", [("options", ConstructorParameterDescription(_data.options))])
             }
         }
 
@@ -933,10 +984,13 @@ public extension Api.auth {
 }
 public extension Api.auth {
     enum PasswordRecovery: TypeConstructorDescription {
-        public class Cons_passwordRecovery {
+        public class Cons_passwordRecovery: TypeConstructorDescription {
             public var emailPattern: String
             public init(emailPattern: String) {
                 self.emailPattern = emailPattern
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("passwordRecovery", [("emailPattern", ConstructorParameterDescription(self.emailPattern))])
             }
         }
         case passwordRecovery(Cons_passwordRecovery)
@@ -952,10 +1006,10 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .passwordRecovery(let _data):
-                return ("passwordRecovery", [("emailPattern", _data.emailPattern as Any)])
+                return ("passwordRecovery", [("emailPattern", ConstructorParameterDescription(_data.emailPattern))])
             }
         }
 
@@ -974,7 +1028,7 @@ public extension Api.auth {
 }
 public extension Api.auth {
     enum SentCode: TypeConstructorDescription {
-        public class Cons_sentCode {
+        public class Cons_sentCode: TypeConstructorDescription {
             public var flags: Int32
             public var type: Api.auth.SentCodeType
             public var phoneCodeHash: String
@@ -987,8 +1041,11 @@ public extension Api.auth {
                 self.nextType = nextType
                 self.timeout = timeout
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCode", [("flags", ConstructorParameterDescription(self.flags)), ("type", ConstructorParameterDescription(self.type)), ("phoneCodeHash", ConstructorParameterDescription(self.phoneCodeHash)), ("nextType", ConstructorParameterDescription(self.nextType)), ("timeout", ConstructorParameterDescription(self.timeout))])
+            }
         }
-        public class Cons_sentCodePaymentRequired {
+        public class Cons_sentCodePaymentRequired: TypeConstructorDescription {
             public var storeProduct: String
             public var phoneCodeHash: String
             public var supportEmailAddress: String
@@ -1003,11 +1060,17 @@ public extension Api.auth {
                 self.currency = currency
                 self.amount = amount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodePaymentRequired", [("storeProduct", ConstructorParameterDescription(self.storeProduct)), ("phoneCodeHash", ConstructorParameterDescription(self.phoneCodeHash)), ("supportEmailAddress", ConstructorParameterDescription(self.supportEmailAddress)), ("supportEmailSubject", ConstructorParameterDescription(self.supportEmailSubject)), ("currency", ConstructorParameterDescription(self.currency)), ("amount", ConstructorParameterDescription(self.amount))])
+            }
         }
-        public class Cons_sentCodeSuccess {
+        public class Cons_sentCodeSuccess: TypeConstructorDescription {
             public var authorization: Api.auth.Authorization
             public init(authorization: Api.auth.Authorization) {
                 self.authorization = authorization
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeSuccess", [("authorization", ConstructorParameterDescription(self.authorization))])
             }
         }
         case sentCode(Cons_sentCode)
@@ -1050,14 +1113,14 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sentCode(let _data):
-                return ("sentCode", [("flags", _data.flags as Any), ("type", _data.type as Any), ("phoneCodeHash", _data.phoneCodeHash as Any), ("nextType", _data.nextType as Any), ("timeout", _data.timeout as Any)])
+                return ("sentCode", [("flags", ConstructorParameterDescription(_data.flags)), ("type", ConstructorParameterDescription(_data.type)), ("phoneCodeHash", ConstructorParameterDescription(_data.phoneCodeHash)), ("nextType", ConstructorParameterDescription(_data.nextType)), ("timeout", ConstructorParameterDescription(_data.timeout))])
             case .sentCodePaymentRequired(let _data):
-                return ("sentCodePaymentRequired", [("storeProduct", _data.storeProduct as Any), ("phoneCodeHash", _data.phoneCodeHash as Any), ("supportEmailAddress", _data.supportEmailAddress as Any), ("supportEmailSubject", _data.supportEmailSubject as Any), ("currency", _data.currency as Any), ("amount", _data.amount as Any)])
+                return ("sentCodePaymentRequired", [("storeProduct", ConstructorParameterDescription(_data.storeProduct)), ("phoneCodeHash", ConstructorParameterDescription(_data.phoneCodeHash)), ("supportEmailAddress", ConstructorParameterDescription(_data.supportEmailAddress)), ("supportEmailSubject", ConstructorParameterDescription(_data.supportEmailSubject)), ("currency", ConstructorParameterDescription(_data.currency)), ("amount", ConstructorParameterDescription(_data.amount))])
             case .sentCodeSuccess(let _data):
-                return ("sentCodeSuccess", [("authorization", _data.authorization as Any)])
+                return ("sentCodeSuccess", [("authorization", ConstructorParameterDescription(_data.authorization))])
             }
         }
 
@@ -1135,19 +1198,25 @@ public extension Api.auth {
 }
 public extension Api.auth {
     enum SentCodeType: TypeConstructorDescription {
-        public class Cons_sentCodeTypeApp {
+        public class Cons_sentCodeTypeApp: TypeConstructorDescription {
             public var length: Int32
             public init(length: Int32) {
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeApp", [("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_sentCodeTypeCall {
+        public class Cons_sentCodeTypeCall: TypeConstructorDescription {
             public var length: Int32
             public init(length: Int32) {
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeCall", [("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_sentCodeTypeEmailCode {
+        public class Cons_sentCodeTypeEmailCode: TypeConstructorDescription {
             public var flags: Int32
             public var emailPattern: String
             public var length: Int32
@@ -1160,8 +1229,11 @@ public extension Api.auth {
                 self.resetAvailablePeriod = resetAvailablePeriod
                 self.resetPendingDate = resetPendingDate
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeEmailCode", [("flags", ConstructorParameterDescription(self.flags)), ("emailPattern", ConstructorParameterDescription(self.emailPattern)), ("length", ConstructorParameterDescription(self.length)), ("resetAvailablePeriod", ConstructorParameterDescription(self.resetAvailablePeriod)), ("resetPendingDate", ConstructorParameterDescription(self.resetPendingDate))])
+            }
         }
-        public class Cons_sentCodeTypeFirebaseSms {
+        public class Cons_sentCodeTypeFirebaseSms: TypeConstructorDescription {
             public var flags: Int32
             public var nonce: Buffer?
             public var playIntegrityProjectId: Int64?
@@ -1178,55 +1250,79 @@ public extension Api.auth {
                 self.pushTimeout = pushTimeout
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeFirebaseSms", [("flags", ConstructorParameterDescription(self.flags)), ("nonce", ConstructorParameterDescription(self.nonce)), ("playIntegrityProjectId", ConstructorParameterDescription(self.playIntegrityProjectId)), ("playIntegrityNonce", ConstructorParameterDescription(self.playIntegrityNonce)), ("receipt", ConstructorParameterDescription(self.receipt)), ("pushTimeout", ConstructorParameterDescription(self.pushTimeout)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_sentCodeTypeFlashCall {
+        public class Cons_sentCodeTypeFlashCall: TypeConstructorDescription {
             public var pattern: String
             public init(pattern: String) {
                 self.pattern = pattern
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeFlashCall", [("pattern", ConstructorParameterDescription(self.pattern))])
+            }
         }
-        public class Cons_sentCodeTypeFragmentSms {
+        public class Cons_sentCodeTypeFragmentSms: TypeConstructorDescription {
             public var url: String
             public var length: Int32
             public init(url: String, length: Int32) {
                 self.url = url
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeFragmentSms", [("url", ConstructorParameterDescription(self.url)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_sentCodeTypeMissedCall {
+        public class Cons_sentCodeTypeMissedCall: TypeConstructorDescription {
             public var prefix: String
             public var length: Int32
             public init(prefix: String, length: Int32) {
                 self.prefix = prefix
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeMissedCall", [("prefix", ConstructorParameterDescription(self.prefix)), ("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_sentCodeTypeSetUpEmailRequired {
+        public class Cons_sentCodeTypeSetUpEmailRequired: TypeConstructorDescription {
             public var flags: Int32
             public init(flags: Int32) {
                 self.flags = flags
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeSetUpEmailRequired", [("flags", ConstructorParameterDescription(self.flags))])
+            }
         }
-        public class Cons_sentCodeTypeSms {
+        public class Cons_sentCodeTypeSms: TypeConstructorDescription {
             public var length: Int32
             public init(length: Int32) {
                 self.length = length
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeSms", [("length", ConstructorParameterDescription(self.length))])
+            }
         }
-        public class Cons_sentCodeTypeSmsPhrase {
+        public class Cons_sentCodeTypeSmsPhrase: TypeConstructorDescription {
             public var flags: Int32
             public var beginning: String?
             public init(flags: Int32, beginning: String?) {
                 self.flags = flags
                 self.beginning = beginning
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeSmsPhrase", [("flags", ConstructorParameterDescription(self.flags)), ("beginning", ConstructorParameterDescription(self.beginning))])
+            }
         }
-        public class Cons_sentCodeTypeSmsWord {
+        public class Cons_sentCodeTypeSmsWord: TypeConstructorDescription {
             public var flags: Int32
             public var beginning: String?
             public init(flags: Int32, beginning: String?) {
                 self.flags = flags
                 self.beginning = beginning
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("sentCodeTypeSmsWord", [("flags", ConstructorParameterDescription(self.flags)), ("beginning", ConstructorParameterDescription(self.beginning))])
             }
         }
         case sentCodeTypeApp(Cons_sentCodeTypeApp)
@@ -1344,30 +1440,30 @@ public extension Api.auth {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .sentCodeTypeApp(let _data):
-                return ("sentCodeTypeApp", [("length", _data.length as Any)])
+                return ("sentCodeTypeApp", [("length", ConstructorParameterDescription(_data.length))])
             case .sentCodeTypeCall(let _data):
-                return ("sentCodeTypeCall", [("length", _data.length as Any)])
+                return ("sentCodeTypeCall", [("length", ConstructorParameterDescription(_data.length))])
             case .sentCodeTypeEmailCode(let _data):
-                return ("sentCodeTypeEmailCode", [("flags", _data.flags as Any), ("emailPattern", _data.emailPattern as Any), ("length", _data.length as Any), ("resetAvailablePeriod", _data.resetAvailablePeriod as Any), ("resetPendingDate", _data.resetPendingDate as Any)])
+                return ("sentCodeTypeEmailCode", [("flags", ConstructorParameterDescription(_data.flags)), ("emailPattern", ConstructorParameterDescription(_data.emailPattern)), ("length", ConstructorParameterDescription(_data.length)), ("resetAvailablePeriod", ConstructorParameterDescription(_data.resetAvailablePeriod)), ("resetPendingDate", ConstructorParameterDescription(_data.resetPendingDate))])
             case .sentCodeTypeFirebaseSms(let _data):
-                return ("sentCodeTypeFirebaseSms", [("flags", _data.flags as Any), ("nonce", _data.nonce as Any), ("playIntegrityProjectId", _data.playIntegrityProjectId as Any), ("playIntegrityNonce", _data.playIntegrityNonce as Any), ("receipt", _data.receipt as Any), ("pushTimeout", _data.pushTimeout as Any), ("length", _data.length as Any)])
+                return ("sentCodeTypeFirebaseSms", [("flags", ConstructorParameterDescription(_data.flags)), ("nonce", ConstructorParameterDescription(_data.nonce)), ("playIntegrityProjectId", ConstructorParameterDescription(_data.playIntegrityProjectId)), ("playIntegrityNonce", ConstructorParameterDescription(_data.playIntegrityNonce)), ("receipt", ConstructorParameterDescription(_data.receipt)), ("pushTimeout", ConstructorParameterDescription(_data.pushTimeout)), ("length", ConstructorParameterDescription(_data.length))])
             case .sentCodeTypeFlashCall(let _data):
-                return ("sentCodeTypeFlashCall", [("pattern", _data.pattern as Any)])
+                return ("sentCodeTypeFlashCall", [("pattern", ConstructorParameterDescription(_data.pattern))])
             case .sentCodeTypeFragmentSms(let _data):
-                return ("sentCodeTypeFragmentSms", [("url", _data.url as Any), ("length", _data.length as Any)])
+                return ("sentCodeTypeFragmentSms", [("url", ConstructorParameterDescription(_data.url)), ("length", ConstructorParameterDescription(_data.length))])
             case .sentCodeTypeMissedCall(let _data):
-                return ("sentCodeTypeMissedCall", [("prefix", _data.prefix as Any), ("length", _data.length as Any)])
+                return ("sentCodeTypeMissedCall", [("prefix", ConstructorParameterDescription(_data.prefix)), ("length", ConstructorParameterDescription(_data.length))])
             case .sentCodeTypeSetUpEmailRequired(let _data):
-                return ("sentCodeTypeSetUpEmailRequired", [("flags", _data.flags as Any)])
+                return ("sentCodeTypeSetUpEmailRequired", [("flags", ConstructorParameterDescription(_data.flags))])
             case .sentCodeTypeSms(let _data):
-                return ("sentCodeTypeSms", [("length", _data.length as Any)])
+                return ("sentCodeTypeSms", [("length", ConstructorParameterDescription(_data.length))])
             case .sentCodeTypeSmsPhrase(let _data):
-                return ("sentCodeTypeSmsPhrase", [("flags", _data.flags as Any), ("beginning", _data.beginning as Any)])
+                return ("sentCodeTypeSmsPhrase", [("flags", ConstructorParameterDescription(_data.flags)), ("beginning", ConstructorParameterDescription(_data.beginning))])
             case .sentCodeTypeSmsWord(let _data):
-                return ("sentCodeTypeSmsWord", [("flags", _data.flags as Any), ("beginning", _data.beginning as Any)])
+                return ("sentCodeTypeSmsWord", [("flags", ConstructorParameterDescription(_data.flags)), ("beginning", ConstructorParameterDescription(_data.beginning))])
             }
         }
 

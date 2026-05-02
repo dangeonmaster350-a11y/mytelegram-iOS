@@ -102,6 +102,7 @@ final class PeerInfoSelectionPanelNode: ASDisplayNode {
         }, setupMessageAutoremoveTimeout: {
         }, sendSticker: { _, _, _, _, _, _ in
             return false
+        }, editSticker: { _ in
         }, unblockPeer: {
         }, pinMessage: { _, _ in
         }, unpinMessage: { _, _, _ in
@@ -127,6 +128,7 @@ final class PeerInfoSelectionPanelNode: ASDisplayNode {
         }, updateInputLanguage: { _ in
         }, unarchiveChat: {
         }, openLinkEditing: {
+        }, openDateEditing: {  
         }, displaySlowmodeTooltip: { _, _ in
         }, displaySendMessageOptions: { _, _ in
         }, openScheduledMessages: {
@@ -170,7 +172,10 @@ final class PeerInfoSelectionPanelNode: ASDisplayNode {
         }, dismissForwardMessages: {
         }, dismissSuggestPost: {
         }, displayUndo: { _ in
+        }, presentInputTextTranslation: { _, _ in
         }, sendEmoji: { _, _, _ in
+        }, openAICompose: {
+        }, openSetPeerAvatar: {
         }, updateHistoryFilter: { _ in
         }, updateChatLocationThread: { _, _ in
         }, toggleChatSidebarMode: {
@@ -184,8 +189,8 @@ final class PeerInfoSelectionPanelNode: ASDisplayNode {
         
         super.init()
         
-        self.addSubnode(self.backgroundNode)
-        self.addSubnode(self.separatorNode)
+        //self.addSubnode(self.backgroundNode)
+        //self.addSubnode(self.separatorNode)
         self.addSubnode(self.selectionPanel)
     }
     

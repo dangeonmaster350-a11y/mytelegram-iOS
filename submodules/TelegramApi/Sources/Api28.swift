@@ -1,6 +1,6 @@
 public extension Api {
     enum TopPeerCategoryPeers: TypeConstructorDescription {
-        public class Cons_topPeerCategoryPeers {
+        public class Cons_topPeerCategoryPeers: TypeConstructorDescription {
             public var category: Api.TopPeerCategory
             public var count: Int32
             public var peers: [Api.TopPeer]
@@ -8,6 +8,9 @@ public extension Api {
                 self.category = category
                 self.count = count
                 self.peers = peers
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("topPeerCategoryPeers", [("category", ConstructorParameterDescription(self.category)), ("count", ConstructorParameterDescription(self.count)), ("peers", ConstructorParameterDescription(self.peers))])
             }
         }
         case topPeerCategoryPeers(Cons_topPeerCategoryPeers)
@@ -29,10 +32,10 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .topPeerCategoryPeers(let _data):
-                return ("topPeerCategoryPeers", [("category", _data.category as Any), ("count", _data.count as Any), ("peers", _data.peers as Any)])
+                return ("topPeerCategoryPeers", [("category", ConstructorParameterDescription(_data.category)), ("count", ConstructorParameterDescription(_data.count)), ("peers", ConstructorParameterDescription(_data.peers))])
             }
         }
 
@@ -61,15 +64,18 @@ public extension Api {
 }
 public extension Api {
     indirect enum Update: TypeConstructorDescription {
-        public class Cons_updateBotBusinessConnect {
+        public class Cons_updateBotBusinessConnect: TypeConstructorDescription {
             public var connection: Api.BotBusinessConnection
             public var qts: Int32
             public init(connection: Api.BotBusinessConnection, qts: Int32) {
                 self.connection = connection
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotBusinessConnect", [("connection", ConstructorParameterDescription(self.connection)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotCallbackQuery {
+        public class Cons_updateBotCallbackQuery: TypeConstructorDescription {
             public var flags: Int32
             public var queryId: Int64
             public var userId: Int64
@@ -88,8 +94,11 @@ public extension Api {
                 self.data = data
                 self.gameShortName = gameShortName
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotCallbackQuery", [("flags", ConstructorParameterDescription(self.flags)), ("queryId", ConstructorParameterDescription(self.queryId)), ("userId", ConstructorParameterDescription(self.userId)), ("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("chatInstance", ConstructorParameterDescription(self.chatInstance)), ("data", ConstructorParameterDescription(self.data)), ("gameShortName", ConstructorParameterDescription(self.gameShortName))])
+            }
         }
-        public class Cons_updateBotChatBoost {
+        public class Cons_updateBotChatBoost: TypeConstructorDescription {
             public var peer: Api.Peer
             public var boost: Api.Boost
             public var qts: Int32
@@ -98,8 +107,11 @@ public extension Api {
                 self.boost = boost
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotChatBoost", [("peer", ConstructorParameterDescription(self.peer)), ("boost", ConstructorParameterDescription(self.boost)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotChatInviteRequester {
+        public class Cons_updateBotChatInviteRequester: TypeConstructorDescription {
             public var peer: Api.Peer
             public var date: Int32
             public var userId: Int64
@@ -114,8 +126,11 @@ public extension Api {
                 self.invite = invite
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotChatInviteRequester", [("peer", ConstructorParameterDescription(self.peer)), ("date", ConstructorParameterDescription(self.date)), ("userId", ConstructorParameterDescription(self.userId)), ("about", ConstructorParameterDescription(self.about)), ("invite", ConstructorParameterDescription(self.invite)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotCommands {
+        public class Cons_updateBotCommands: TypeConstructorDescription {
             public var peer: Api.Peer
             public var botId: Int64
             public var commands: [Api.BotCommand]
@@ -124,8 +139,11 @@ public extension Api {
                 self.botId = botId
                 self.commands = commands
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotCommands", [("peer", ConstructorParameterDescription(self.peer)), ("botId", ConstructorParameterDescription(self.botId)), ("commands", ConstructorParameterDescription(self.commands))])
+            }
         }
-        public class Cons_updateBotDeleteBusinessMessage {
+        public class Cons_updateBotDeleteBusinessMessage: TypeConstructorDescription {
             public var connectionId: String
             public var peer: Api.Peer
             public var messages: [Int32]
@@ -136,8 +154,11 @@ public extension Api {
                 self.messages = messages
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotDeleteBusinessMessage", [("connectionId", ConstructorParameterDescription(self.connectionId)), ("peer", ConstructorParameterDescription(self.peer)), ("messages", ConstructorParameterDescription(self.messages)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotEditBusinessMessage {
+        public class Cons_updateBotEditBusinessMessage: TypeConstructorDescription {
             public var flags: Int32
             public var connectionId: String
             public var message: Api.Message
@@ -150,8 +171,11 @@ public extension Api {
                 self.replyToMessage = replyToMessage
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotEditBusinessMessage", [("flags", ConstructorParameterDescription(self.flags)), ("connectionId", ConstructorParameterDescription(self.connectionId)), ("message", ConstructorParameterDescription(self.message)), ("replyToMessage", ConstructorParameterDescription(self.replyToMessage)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotInlineQuery {
+        public class Cons_updateBotInlineQuery: TypeConstructorDescription {
             public var flags: Int32
             public var queryId: Int64
             public var userId: Int64
@@ -168,8 +192,11 @@ public extension Api {
                 self.peerType = peerType
                 self.offset = offset
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotInlineQuery", [("flags", ConstructorParameterDescription(self.flags)), ("queryId", ConstructorParameterDescription(self.queryId)), ("userId", ConstructorParameterDescription(self.userId)), ("query", ConstructorParameterDescription(self.query)), ("geo", ConstructorParameterDescription(self.geo)), ("peerType", ConstructorParameterDescription(self.peerType)), ("offset", ConstructorParameterDescription(self.offset))])
+            }
         }
-        public class Cons_updateBotInlineSend {
+        public class Cons_updateBotInlineSend: TypeConstructorDescription {
             public var flags: Int32
             public var userId: Int64
             public var query: String
@@ -184,16 +211,22 @@ public extension Api {
                 self.id = id
                 self.msgId = msgId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotInlineSend", [("flags", ConstructorParameterDescription(self.flags)), ("userId", ConstructorParameterDescription(self.userId)), ("query", ConstructorParameterDescription(self.query)), ("geo", ConstructorParameterDescription(self.geo)), ("id", ConstructorParameterDescription(self.id)), ("msgId", ConstructorParameterDescription(self.msgId))])
+            }
         }
-        public class Cons_updateBotMenuButton {
+        public class Cons_updateBotMenuButton: TypeConstructorDescription {
             public var botId: Int64
             public var button: Api.BotMenuButton
             public init(botId: Int64, button: Api.BotMenuButton) {
                 self.botId = botId
                 self.button = button
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotMenuButton", [("botId", ConstructorParameterDescription(self.botId)), ("button", ConstructorParameterDescription(self.button))])
+            }
         }
-        public class Cons_updateBotMessageReaction {
+        public class Cons_updateBotMessageReaction: TypeConstructorDescription {
             public var peer: Api.Peer
             public var msgId: Int32
             public var date: Int32
@@ -210,8 +243,11 @@ public extension Api {
                 self.newReactions = newReactions
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotMessageReaction", [("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("date", ConstructorParameterDescription(self.date)), ("actor", ConstructorParameterDescription(self.actor)), ("oldReactions", ConstructorParameterDescription(self.oldReactions)), ("newReactions", ConstructorParameterDescription(self.newReactions)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotMessageReactions {
+        public class Cons_updateBotMessageReactions: TypeConstructorDescription {
             public var peer: Api.Peer
             public var msgId: Int32
             public var date: Int32
@@ -224,8 +260,11 @@ public extension Api {
                 self.reactions = reactions
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotMessageReactions", [("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("date", ConstructorParameterDescription(self.date)), ("reactions", ConstructorParameterDescription(self.reactions)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotNewBusinessMessage {
+        public class Cons_updateBotNewBusinessMessage: TypeConstructorDescription {
             public var flags: Int32
             public var connectionId: String
             public var message: Api.Message
@@ -238,8 +277,11 @@ public extension Api {
                 self.replyToMessage = replyToMessage
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotNewBusinessMessage", [("flags", ConstructorParameterDescription(self.flags)), ("connectionId", ConstructorParameterDescription(self.connectionId)), ("message", ConstructorParameterDescription(self.message)), ("replyToMessage", ConstructorParameterDescription(self.replyToMessage)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotPrecheckoutQuery {
+        public class Cons_updateBotPrecheckoutQuery: TypeConstructorDescription {
             public var flags: Int32
             public var queryId: Int64
             public var userId: Int64
@@ -258,8 +300,11 @@ public extension Api {
                 self.currency = currency
                 self.totalAmount = totalAmount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotPrecheckoutQuery", [("flags", ConstructorParameterDescription(self.flags)), ("queryId", ConstructorParameterDescription(self.queryId)), ("userId", ConstructorParameterDescription(self.userId)), ("payload", ConstructorParameterDescription(self.payload)), ("info", ConstructorParameterDescription(self.info)), ("shippingOptionId", ConstructorParameterDescription(self.shippingOptionId)), ("currency", ConstructorParameterDescription(self.currency)), ("totalAmount", ConstructorParameterDescription(self.totalAmount))])
+            }
         }
-        public class Cons_updateBotPurchasedPaidMedia {
+        public class Cons_updateBotPurchasedPaidMedia: TypeConstructorDescription {
             public var userId: Int64
             public var payload: String
             public var qts: Int32
@@ -268,8 +313,11 @@ public extension Api {
                 self.payload = payload
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotPurchasedPaidMedia", [("userId", ConstructorParameterDescription(self.userId)), ("payload", ConstructorParameterDescription(self.payload)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotShippingQuery {
+        public class Cons_updateBotShippingQuery: TypeConstructorDescription {
             public var queryId: Int64
             public var userId: Int64
             public var payload: Buffer
@@ -280,8 +328,11 @@ public extension Api {
                 self.payload = payload
                 self.shippingAddress = shippingAddress
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotShippingQuery", [("queryId", ConstructorParameterDescription(self.queryId)), ("userId", ConstructorParameterDescription(self.userId)), ("payload", ConstructorParameterDescription(self.payload)), ("shippingAddress", ConstructorParameterDescription(self.shippingAddress))])
+            }
         }
-        public class Cons_updateBotStopped {
+        public class Cons_updateBotStopped: TypeConstructorDescription {
             public var userId: Int64
             public var date: Int32
             public var stopped: Api.Bool
@@ -292,14 +343,20 @@ public extension Api {
                 self.stopped = stopped
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotStopped", [("userId", ConstructorParameterDescription(self.userId)), ("date", ConstructorParameterDescription(self.date)), ("stopped", ConstructorParameterDescription(self.stopped)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateBotWebhookJSON {
+        public class Cons_updateBotWebhookJSON: TypeConstructorDescription {
             public var data: Api.DataJSON
             public init(data: Api.DataJSON) {
                 self.data = data
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotWebhookJSON", [("data", ConstructorParameterDescription(self.data))])
+            }
         }
-        public class Cons_updateBotWebhookJSONQuery {
+        public class Cons_updateBotWebhookJSONQuery: TypeConstructorDescription {
             public var queryId: Int64
             public var data: Api.DataJSON
             public var timeout: Int32
@@ -308,8 +365,11 @@ public extension Api {
                 self.data = data
                 self.timeout = timeout
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBotWebhookJSONQuery", [("queryId", ConstructorParameterDescription(self.queryId)), ("data", ConstructorParameterDescription(self.data)), ("timeout", ConstructorParameterDescription(self.timeout))])
+            }
         }
-        public class Cons_updateBusinessBotCallbackQuery {
+        public class Cons_updateBusinessBotCallbackQuery: TypeConstructorDescription {
             public var flags: Int32
             public var queryId: Int64
             public var userId: Int64
@@ -328,22 +388,31 @@ public extension Api {
                 self.chatInstance = chatInstance
                 self.data = data
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateBusinessBotCallbackQuery", [("flags", ConstructorParameterDescription(self.flags)), ("queryId", ConstructorParameterDescription(self.queryId)), ("userId", ConstructorParameterDescription(self.userId)), ("connectionId", ConstructorParameterDescription(self.connectionId)), ("message", ConstructorParameterDescription(self.message)), ("replyToMessage", ConstructorParameterDescription(self.replyToMessage)), ("chatInstance", ConstructorParameterDescription(self.chatInstance)), ("data", ConstructorParameterDescription(self.data))])
+            }
         }
-        public class Cons_updateChannel {
+        public class Cons_updateChannel: TypeConstructorDescription {
             public var channelId: Int64
             public init(channelId: Int64) {
                 self.channelId = channelId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannel", [("channelId", ConstructorParameterDescription(self.channelId))])
+            }
         }
-        public class Cons_updateChannelAvailableMessages {
+        public class Cons_updateChannelAvailableMessages: TypeConstructorDescription {
             public var channelId: Int64
             public var availableMinId: Int32
             public init(channelId: Int64, availableMinId: Int32) {
                 self.channelId = channelId
                 self.availableMinId = availableMinId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelAvailableMessages", [("channelId", ConstructorParameterDescription(self.channelId)), ("availableMinId", ConstructorParameterDescription(self.availableMinId))])
+            }
         }
-        public class Cons_updateChannelMessageForwards {
+        public class Cons_updateChannelMessageForwards: TypeConstructorDescription {
             public var channelId: Int64
             public var id: Int32
             public var forwards: Int32
@@ -352,8 +421,11 @@ public extension Api {
                 self.id = id
                 self.forwards = forwards
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelMessageForwards", [("channelId", ConstructorParameterDescription(self.channelId)), ("id", ConstructorParameterDescription(self.id)), ("forwards", ConstructorParameterDescription(self.forwards))])
+            }
         }
-        public class Cons_updateChannelMessageViews {
+        public class Cons_updateChannelMessageViews: TypeConstructorDescription {
             public var channelId: Int64
             public var id: Int32
             public var views: Int32
@@ -362,8 +434,11 @@ public extension Api {
                 self.id = id
                 self.views = views
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelMessageViews", [("channelId", ConstructorParameterDescription(self.channelId)), ("id", ConstructorParameterDescription(self.id)), ("views", ConstructorParameterDescription(self.views))])
+            }
         }
-        public class Cons_updateChannelParticipant {
+        public class Cons_updateChannelParticipant: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var date: Int32
@@ -384,8 +459,11 @@ public extension Api {
                 self.invite = invite
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelParticipant", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("date", ConstructorParameterDescription(self.date)), ("actorId", ConstructorParameterDescription(self.actorId)), ("userId", ConstructorParameterDescription(self.userId)), ("prevParticipant", ConstructorParameterDescription(self.prevParticipant)), ("newParticipant", ConstructorParameterDescription(self.newParticipant)), ("invite", ConstructorParameterDescription(self.invite)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateChannelReadMessagesContents {
+        public class Cons_updateChannelReadMessagesContents: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var topMsgId: Int32?
@@ -398,8 +476,11 @@ public extension Api {
                 self.savedPeerId = savedPeerId
                 self.messages = messages
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelReadMessagesContents", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("savedPeerId", ConstructorParameterDescription(self.savedPeerId)), ("messages", ConstructorParameterDescription(self.messages))])
+            }
         }
-        public class Cons_updateChannelTooLong {
+        public class Cons_updateChannelTooLong: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var pts: Int32?
@@ -408,8 +489,11 @@ public extension Api {
                 self.channelId = channelId
                 self.pts = pts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelTooLong", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("pts", ConstructorParameterDescription(self.pts))])
+            }
         }
-        public class Cons_updateChannelUserTyping {
+        public class Cons_updateChannelUserTyping: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var topMsgId: Int32?
@@ -422,16 +506,22 @@ public extension Api {
                 self.fromId = fromId
                 self.action = action
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelUserTyping", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("fromId", ConstructorParameterDescription(self.fromId)), ("action", ConstructorParameterDescription(self.action))])
+            }
         }
-        public class Cons_updateChannelViewForumAsMessages {
+        public class Cons_updateChannelViewForumAsMessages: TypeConstructorDescription {
             public var channelId: Int64
             public var enabled: Api.Bool
             public init(channelId: Int64, enabled: Api.Bool) {
                 self.channelId = channelId
                 self.enabled = enabled
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelViewForumAsMessages", [("channelId", ConstructorParameterDescription(self.channelId)), ("enabled", ConstructorParameterDescription(self.enabled))])
+            }
         }
-        public class Cons_updateChannelWebPage {
+        public class Cons_updateChannelWebPage: TypeConstructorDescription {
             public var channelId: Int64
             public var webpage: Api.WebPage
             public var pts: Int32
@@ -442,14 +532,20 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChannelWebPage", [("channelId", ConstructorParameterDescription(self.channelId)), ("webpage", ConstructorParameterDescription(self.webpage)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateChat {
+        public class Cons_updateChat: TypeConstructorDescription {
             public var chatId: Int64
             public init(chatId: Int64) {
                 self.chatId = chatId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChat", [("chatId", ConstructorParameterDescription(self.chatId))])
+            }
         }
-        public class Cons_updateChatDefaultBannedRights {
+        public class Cons_updateChatDefaultBannedRights: TypeConstructorDescription {
             public var peer: Api.Peer
             public var defaultBannedRights: Api.ChatBannedRights
             public var version: Int32
@@ -458,8 +554,11 @@ public extension Api {
                 self.defaultBannedRights = defaultBannedRights
                 self.version = version
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatDefaultBannedRights", [("peer", ConstructorParameterDescription(self.peer)), ("defaultBannedRights", ConstructorParameterDescription(self.defaultBannedRights)), ("version", ConstructorParameterDescription(self.version))])
+            }
         }
-        public class Cons_updateChatParticipant {
+        public class Cons_updateChatParticipant: TypeConstructorDescription {
             public var flags: Int32
             public var chatId: Int64
             public var date: Int32
@@ -480,8 +579,11 @@ public extension Api {
                 self.invite = invite
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatParticipant", [("flags", ConstructorParameterDescription(self.flags)), ("chatId", ConstructorParameterDescription(self.chatId)), ("date", ConstructorParameterDescription(self.date)), ("actorId", ConstructorParameterDescription(self.actorId)), ("userId", ConstructorParameterDescription(self.userId)), ("prevParticipant", ConstructorParameterDescription(self.prevParticipant)), ("newParticipant", ConstructorParameterDescription(self.newParticipant)), ("invite", ConstructorParameterDescription(self.invite)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateChatParticipantAdd {
+        public class Cons_updateChatParticipantAdd: TypeConstructorDescription {
             public var chatId: Int64
             public var userId: Int64
             public var inviterId: Int64
@@ -494,8 +596,11 @@ public extension Api {
                 self.date = date
                 self.version = version
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatParticipantAdd", [("chatId", ConstructorParameterDescription(self.chatId)), ("userId", ConstructorParameterDescription(self.userId)), ("inviterId", ConstructorParameterDescription(self.inviterId)), ("date", ConstructorParameterDescription(self.date)), ("version", ConstructorParameterDescription(self.version))])
+            }
         }
-        public class Cons_updateChatParticipantAdmin {
+        public class Cons_updateChatParticipantAdmin: TypeConstructorDescription {
             public var chatId: Int64
             public var userId: Int64
             public var isAdmin: Api.Bool
@@ -506,8 +611,11 @@ public extension Api {
                 self.isAdmin = isAdmin
                 self.version = version
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatParticipantAdmin", [("chatId", ConstructorParameterDescription(self.chatId)), ("userId", ConstructorParameterDescription(self.userId)), ("isAdmin", ConstructorParameterDescription(self.isAdmin)), ("version", ConstructorParameterDescription(self.version))])
+            }
         }
-        public class Cons_updateChatParticipantDelete {
+        public class Cons_updateChatParticipantDelete: TypeConstructorDescription {
             public var chatId: Int64
             public var userId: Int64
             public var version: Int32
@@ -516,14 +624,35 @@ public extension Api {
                 self.userId = userId
                 self.version = version
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatParticipantDelete", [("chatId", ConstructorParameterDescription(self.chatId)), ("userId", ConstructorParameterDescription(self.userId)), ("version", ConstructorParameterDescription(self.version))])
+            }
         }
-        public class Cons_updateChatParticipants {
+        public class Cons_updateChatParticipantRank: TypeConstructorDescription {
+            public var chatId: Int64
+            public var userId: Int64
+            public var rank: String
+            public var version: Int32
+            public init(chatId: Int64, userId: Int64, rank: String, version: Int32) {
+                self.chatId = chatId
+                self.userId = userId
+                self.rank = rank
+                self.version = version
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatParticipantRank", [("chatId", ConstructorParameterDescription(self.chatId)), ("userId", ConstructorParameterDescription(self.userId)), ("rank", ConstructorParameterDescription(self.rank)), ("version", ConstructorParameterDescription(self.version))])
+            }
+        }
+        public class Cons_updateChatParticipants: TypeConstructorDescription {
             public var participants: Api.ChatParticipants
             public init(participants: Api.ChatParticipants) {
                 self.participants = participants
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatParticipants", [("participants", ConstructorParameterDescription(self.participants))])
+            }
         }
-        public class Cons_updateChatUserTyping {
+        public class Cons_updateChatUserTyping: TypeConstructorDescription {
             public var chatId: Int64
             public var fromId: Api.Peer
             public var action: Api.SendMessageAction
@@ -532,14 +661,20 @@ public extension Api {
                 self.fromId = fromId
                 self.action = action
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateChatUserTyping", [("chatId", ConstructorParameterDescription(self.chatId)), ("fromId", ConstructorParameterDescription(self.fromId)), ("action", ConstructorParameterDescription(self.action))])
+            }
         }
-        public class Cons_updateDcOptions {
+        public class Cons_updateDcOptions: TypeConstructorDescription {
             public var dcOptions: [Api.DcOption]
             public init(dcOptions: [Api.DcOption]) {
                 self.dcOptions = dcOptions
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDcOptions", [("dcOptions", ConstructorParameterDescription(self.dcOptions))])
+            }
         }
-        public class Cons_updateDeleteChannelMessages {
+        public class Cons_updateDeleteChannelMessages: TypeConstructorDescription {
             public var channelId: Int64
             public var messages: [Int32]
             public var pts: Int32
@@ -550,16 +685,22 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDeleteChannelMessages", [("channelId", ConstructorParameterDescription(self.channelId)), ("messages", ConstructorParameterDescription(self.messages)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateDeleteGroupCallMessages {
+        public class Cons_updateDeleteGroupCallMessages: TypeConstructorDescription {
             public var call: Api.InputGroupCall
             public var messages: [Int32]
             public init(call: Api.InputGroupCall, messages: [Int32]) {
                 self.call = call
                 self.messages = messages
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDeleteGroupCallMessages", [("call", ConstructorParameterDescription(self.call)), ("messages", ConstructorParameterDescription(self.messages))])
+            }
         }
-        public class Cons_updateDeleteMessages {
+        public class Cons_updateDeleteMessages: TypeConstructorDescription {
             public var messages: [Int32]
             public var pts: Int32
             public var ptsCount: Int32
@@ -568,22 +709,31 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDeleteMessages", [("messages", ConstructorParameterDescription(self.messages)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateDeleteQuickReply {
+        public class Cons_updateDeleteQuickReply: TypeConstructorDescription {
             public var shortcutId: Int32
             public init(shortcutId: Int32) {
                 self.shortcutId = shortcutId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDeleteQuickReply", [("shortcutId", ConstructorParameterDescription(self.shortcutId))])
+            }
         }
-        public class Cons_updateDeleteQuickReplyMessages {
+        public class Cons_updateDeleteQuickReplyMessages: TypeConstructorDescription {
             public var shortcutId: Int32
             public var messages: [Int32]
             public init(shortcutId: Int32, messages: [Int32]) {
                 self.shortcutId = shortcutId
                 self.messages = messages
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDeleteQuickReplyMessages", [("shortcutId", ConstructorParameterDescription(self.shortcutId)), ("messages", ConstructorParameterDescription(self.messages))])
+            }
         }
-        public class Cons_updateDeleteScheduledMessages {
+        public class Cons_updateDeleteScheduledMessages: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var messages: [Int32]
@@ -594,8 +744,11 @@ public extension Api {
                 self.messages = messages
                 self.sentMessages = sentMessages
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDeleteScheduledMessages", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("messages", ConstructorParameterDescription(self.messages)), ("sentMessages", ConstructorParameterDescription(self.sentMessages))])
+            }
         }
-        public class Cons_updateDialogFilter {
+        public class Cons_updateDialogFilter: TypeConstructorDescription {
             public var flags: Int32
             public var id: Int32
             public var filter: Api.DialogFilter?
@@ -604,14 +757,20 @@ public extension Api {
                 self.id = id
                 self.filter = filter
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDialogFilter", [("flags", ConstructorParameterDescription(self.flags)), ("id", ConstructorParameterDescription(self.id)), ("filter", ConstructorParameterDescription(self.filter))])
+            }
         }
-        public class Cons_updateDialogFilterOrder {
+        public class Cons_updateDialogFilterOrder: TypeConstructorDescription {
             public var order: [Int32]
             public init(order: [Int32]) {
                 self.order = order
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDialogFilterOrder", [("order", ConstructorParameterDescription(self.order))])
+            }
         }
-        public class Cons_updateDialogPinned {
+        public class Cons_updateDialogPinned: TypeConstructorDescription {
             public var flags: Int32
             public var folderId: Int32?
             public var peer: Api.DialogPeer
@@ -620,8 +779,11 @@ public extension Api {
                 self.folderId = folderId
                 self.peer = peer
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDialogPinned", [("flags", ConstructorParameterDescription(self.flags)), ("folderId", ConstructorParameterDescription(self.folderId)), ("peer", ConstructorParameterDescription(self.peer))])
+            }
         }
-        public class Cons_updateDialogUnreadMark {
+        public class Cons_updateDialogUnreadMark: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.DialogPeer
             public var savedPeerId: Api.Peer?
@@ -630,8 +792,11 @@ public extension Api {
                 self.peer = peer
                 self.savedPeerId = savedPeerId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDialogUnreadMark", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("savedPeerId", ConstructorParameterDescription(self.savedPeerId))])
+            }
         }
-        public class Cons_updateDraftMessage {
+        public class Cons_updateDraftMessage: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var topMsgId: Int32?
@@ -644,8 +809,11 @@ public extension Api {
                 self.savedPeerId = savedPeerId
                 self.draft = draft
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateDraftMessage", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("savedPeerId", ConstructorParameterDescription(self.savedPeerId)), ("draft", ConstructorParameterDescription(self.draft))])
+            }
         }
-        public class Cons_updateEditChannelMessage {
+        public class Cons_updateEditChannelMessage: TypeConstructorDescription {
             public var message: Api.Message
             public var pts: Int32
             public var ptsCount: Int32
@@ -654,8 +822,11 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateEditChannelMessage", [("message", ConstructorParameterDescription(self.message)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateEditMessage {
+        public class Cons_updateEditMessage: TypeConstructorDescription {
             public var message: Api.Message
             public var pts: Int32
             public var ptsCount: Int32
@@ -664,20 +835,29 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateEditMessage", [("message", ConstructorParameterDescription(self.message)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateEmojiGameInfo {
+        public class Cons_updateEmojiGameInfo: TypeConstructorDescription {
             public var info: Api.messages.EmojiGameInfo
             public init(info: Api.messages.EmojiGameInfo) {
                 self.info = info
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateEmojiGameInfo", [("info", ConstructorParameterDescription(self.info))])
+            }
         }
-        public class Cons_updateEncryptedChatTyping {
+        public class Cons_updateEncryptedChatTyping: TypeConstructorDescription {
             public var chatId: Int32
             public init(chatId: Int32) {
                 self.chatId = chatId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateEncryptedChatTyping", [("chatId", ConstructorParameterDescription(self.chatId))])
+            }
         }
-        public class Cons_updateEncryptedMessagesRead {
+        public class Cons_updateEncryptedMessagesRead: TypeConstructorDescription {
             public var chatId: Int32
             public var maxDate: Int32
             public var date: Int32
@@ -686,16 +866,22 @@ public extension Api {
                 self.maxDate = maxDate
                 self.date = date
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateEncryptedMessagesRead", [("chatId", ConstructorParameterDescription(self.chatId)), ("maxDate", ConstructorParameterDescription(self.maxDate)), ("date", ConstructorParameterDescription(self.date))])
+            }
         }
-        public class Cons_updateEncryption {
+        public class Cons_updateEncryption: TypeConstructorDescription {
             public var chat: Api.EncryptedChat
             public var date: Int32
             public init(chat: Api.EncryptedChat, date: Int32) {
                 self.chat = chat
                 self.date = date
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateEncryption", [("chat", ConstructorParameterDescription(self.chat)), ("date", ConstructorParameterDescription(self.date))])
+            }
         }
-        public class Cons_updateFolderPeers {
+        public class Cons_updateFolderPeers: TypeConstructorDescription {
             public var folderPeers: [Api.FolderPeer]
             public var pts: Int32
             public var ptsCount: Int32
@@ -704,16 +890,22 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateFolderPeers", [("folderPeers", ConstructorParameterDescription(self.folderPeers)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateGeoLiveViewed {
+        public class Cons_updateGeoLiveViewed: TypeConstructorDescription {
             public var peer: Api.Peer
             public var msgId: Int32
             public init(peer: Api.Peer, msgId: Int32) {
                 self.peer = peer
                 self.msgId = msgId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateGeoLiveViewed", [("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId))])
+            }
         }
-        public class Cons_updateGroupCall {
+        public class Cons_updateGroupCall: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer?
             public var call: Api.GroupCall
@@ -722,8 +914,11 @@ public extension Api {
                 self.peer = peer
                 self.call = call
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateGroupCall", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("call", ConstructorParameterDescription(self.call))])
+            }
         }
-        public class Cons_updateGroupCallChainBlocks {
+        public class Cons_updateGroupCallChainBlocks: TypeConstructorDescription {
             public var call: Api.InputGroupCall
             public var subChainId: Int32
             public var blocks: [Buffer]
@@ -734,16 +929,22 @@ public extension Api {
                 self.blocks = blocks
                 self.nextOffset = nextOffset
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateGroupCallChainBlocks", [("call", ConstructorParameterDescription(self.call)), ("subChainId", ConstructorParameterDescription(self.subChainId)), ("blocks", ConstructorParameterDescription(self.blocks)), ("nextOffset", ConstructorParameterDescription(self.nextOffset))])
+            }
         }
-        public class Cons_updateGroupCallConnection {
+        public class Cons_updateGroupCallConnection: TypeConstructorDescription {
             public var flags: Int32
             public var params: Api.DataJSON
             public init(flags: Int32, params: Api.DataJSON) {
                 self.flags = flags
                 self.params = params
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateGroupCallConnection", [("flags", ConstructorParameterDescription(self.flags)), ("params", ConstructorParameterDescription(self.params))])
+            }
         }
-        public class Cons_updateGroupCallEncryptedMessage {
+        public class Cons_updateGroupCallEncryptedMessage: TypeConstructorDescription {
             public var call: Api.InputGroupCall
             public var fromId: Api.Peer
             public var encryptedMessage: Buffer
@@ -752,16 +953,22 @@ public extension Api {
                 self.fromId = fromId
                 self.encryptedMessage = encryptedMessage
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateGroupCallEncryptedMessage", [("call", ConstructorParameterDescription(self.call)), ("fromId", ConstructorParameterDescription(self.fromId)), ("encryptedMessage", ConstructorParameterDescription(self.encryptedMessage))])
+            }
         }
-        public class Cons_updateGroupCallMessage {
+        public class Cons_updateGroupCallMessage: TypeConstructorDescription {
             public var call: Api.InputGroupCall
             public var message: Api.GroupCallMessage
             public init(call: Api.InputGroupCall, message: Api.GroupCallMessage) {
                 self.call = call
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateGroupCallMessage", [("call", ConstructorParameterDescription(self.call)), ("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_updateGroupCallParticipants {
+        public class Cons_updateGroupCallParticipants: TypeConstructorDescription {
             public var call: Api.InputGroupCall
             public var participants: [Api.GroupCallParticipant]
             public var version: Int32
@@ -770,8 +977,11 @@ public extension Api {
                 self.participants = participants
                 self.version = version
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateGroupCallParticipants", [("call", ConstructorParameterDescription(self.call)), ("participants", ConstructorParameterDescription(self.participants)), ("version", ConstructorParameterDescription(self.version))])
+            }
         }
-        public class Cons_updateInlineBotCallbackQuery {
+        public class Cons_updateInlineBotCallbackQuery: TypeConstructorDescription {
             public var flags: Int32
             public var queryId: Int64
             public var userId: Int64
@@ -788,20 +998,42 @@ public extension Api {
                 self.data = data
                 self.gameShortName = gameShortName
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateInlineBotCallbackQuery", [("flags", ConstructorParameterDescription(self.flags)), ("queryId", ConstructorParameterDescription(self.queryId)), ("userId", ConstructorParameterDescription(self.userId)), ("msgId", ConstructorParameterDescription(self.msgId)), ("chatInstance", ConstructorParameterDescription(self.chatInstance)), ("data", ConstructorParameterDescription(self.data)), ("gameShortName", ConstructorParameterDescription(self.gameShortName))])
+            }
         }
-        public class Cons_updateLangPack {
+        public class Cons_updateLangPack: TypeConstructorDescription {
             public var difference: Api.LangPackDifference
             public init(difference: Api.LangPackDifference) {
                 self.difference = difference
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateLangPack", [("difference", ConstructorParameterDescription(self.difference))])
+            }
         }
-        public class Cons_updateLangPackTooLong {
+        public class Cons_updateLangPackTooLong: TypeConstructorDescription {
             public var langCode: String
             public init(langCode: String) {
                 self.langCode = langCode
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateLangPackTooLong", [("langCode", ConstructorParameterDescription(self.langCode))])
+            }
         }
-        public class Cons_updateMessageExtendedMedia {
+        public class Cons_updateManagedBot: TypeConstructorDescription {
+            public var userId: Int64
+            public var botId: Int64
+            public var qts: Int32
+            public init(userId: Int64, botId: Int64, qts: Int32) {
+                self.userId = userId
+                self.botId = botId
+                self.qts = qts
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateManagedBot", [("userId", ConstructorParameterDescription(self.userId)), ("botId", ConstructorParameterDescription(self.botId)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
+        }
+        public class Cons_updateMessageExtendedMedia: TypeConstructorDescription {
             public var peer: Api.Peer
             public var msgId: Int32
             public var extendedMedia: [Api.MessageExtendedMedia]
@@ -810,40 +1042,60 @@ public extension Api {
                 self.msgId = msgId
                 self.extendedMedia = extendedMedia
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateMessageExtendedMedia", [("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("extendedMedia", ConstructorParameterDescription(self.extendedMedia))])
+            }
         }
-        public class Cons_updateMessageID {
+        public class Cons_updateMessageID: TypeConstructorDescription {
             public var id: Int32
             public var randomId: Int64
             public init(id: Int32, randomId: Int64) {
                 self.id = id
                 self.randomId = randomId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateMessageID", [("id", ConstructorParameterDescription(self.id)), ("randomId", ConstructorParameterDescription(self.randomId))])
+            }
         }
-        public class Cons_updateMessagePoll {
+        public class Cons_updateMessagePoll: TypeConstructorDescription {
             public var flags: Int32
+            public var peer: Api.Peer?
+            public var msgId: Int32?
+            public var topMsgId: Int32?
             public var pollId: Int64
             public var poll: Api.Poll?
             public var results: Api.PollResults
-            public init(flags: Int32, pollId: Int64, poll: Api.Poll?, results: Api.PollResults) {
+            public init(flags: Int32, peer: Api.Peer?, msgId: Int32?, topMsgId: Int32?, pollId: Int64, poll: Api.Poll?, results: Api.PollResults) {
                 self.flags = flags
+                self.peer = peer
+                self.msgId = msgId
+                self.topMsgId = topMsgId
                 self.pollId = pollId
                 self.poll = poll
                 self.results = results
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateMessagePoll", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("pollId", ConstructorParameterDescription(self.pollId)), ("poll", ConstructorParameterDescription(self.poll)), ("results", ConstructorParameterDescription(self.results))])
+            }
         }
-        public class Cons_updateMessagePollVote {
+        public class Cons_updateMessagePollVote: TypeConstructorDescription {
             public var pollId: Int64
             public var peer: Api.Peer
             public var options: [Buffer]
+            public var positions: [Int32]
             public var qts: Int32
-            public init(pollId: Int64, peer: Api.Peer, options: [Buffer], qts: Int32) {
+            public init(pollId: Int64, peer: Api.Peer, options: [Buffer], positions: [Int32], qts: Int32) {
                 self.pollId = pollId
                 self.peer = peer
                 self.options = options
+                self.positions = positions
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateMessagePollVote", [("pollId", ConstructorParameterDescription(self.pollId)), ("peer", ConstructorParameterDescription(self.peer)), ("options", ConstructorParameterDescription(self.options)), ("positions", ConstructorParameterDescription(self.positions)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateMessageReactions {
+        public class Cons_updateMessageReactions: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var msgId: Int32
@@ -858,8 +1110,11 @@ public extension Api {
                 self.savedPeerId = savedPeerId
                 self.reactions = reactions
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateMessageReactions", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("savedPeerId", ConstructorParameterDescription(self.savedPeerId)), ("reactions", ConstructorParameterDescription(self.reactions))])
+            }
         }
-        public class Cons_updateMonoForumNoPaidException {
+        public class Cons_updateMonoForumNoPaidException: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var savedPeerId: Api.Peer
@@ -868,16 +1123,22 @@ public extension Api {
                 self.channelId = channelId
                 self.savedPeerId = savedPeerId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateMonoForumNoPaidException", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("savedPeerId", ConstructorParameterDescription(self.savedPeerId))])
+            }
         }
-        public class Cons_updateMoveStickerSetToTop {
+        public class Cons_updateMoveStickerSetToTop: TypeConstructorDescription {
             public var flags: Int32
             public var stickerset: Int64
             public init(flags: Int32, stickerset: Int64) {
                 self.flags = flags
                 self.stickerset = stickerset
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateMoveStickerSetToTop", [("flags", ConstructorParameterDescription(self.flags)), ("stickerset", ConstructorParameterDescription(self.stickerset))])
+            }
         }
-        public class Cons_updateNewAuthorization {
+        public class Cons_updateNewAuthorization: TypeConstructorDescription {
             public var flags: Int32
             public var hash: Int64
             public var date: Int32?
@@ -890,8 +1151,11 @@ public extension Api {
                 self.device = device
                 self.location = location
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewAuthorization", [("flags", ConstructorParameterDescription(self.flags)), ("hash", ConstructorParameterDescription(self.hash)), ("date", ConstructorParameterDescription(self.date)), ("device", ConstructorParameterDescription(self.device)), ("location", ConstructorParameterDescription(self.location))])
+            }
         }
-        public class Cons_updateNewChannelMessage {
+        public class Cons_updateNewChannelMessage: TypeConstructorDescription {
             public var message: Api.Message
             public var pts: Int32
             public var ptsCount: Int32
@@ -900,16 +1164,22 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewChannelMessage", [("message", ConstructorParameterDescription(self.message)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateNewEncryptedMessage {
+        public class Cons_updateNewEncryptedMessage: TypeConstructorDescription {
             public var message: Api.EncryptedMessage
             public var qts: Int32
             public init(message: Api.EncryptedMessage, qts: Int32) {
                 self.message = message
                 self.qts = qts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewEncryptedMessage", [("message", ConstructorParameterDescription(self.message)), ("qts", ConstructorParameterDescription(self.qts))])
+            }
         }
-        public class Cons_updateNewMessage {
+        public class Cons_updateNewMessage: TypeConstructorDescription {
             public var message: Api.Message
             public var pts: Int32
             public var ptsCount: Int32
@@ -918,26 +1188,38 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewMessage", [("message", ConstructorParameterDescription(self.message)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateNewQuickReply {
+        public class Cons_updateNewQuickReply: TypeConstructorDescription {
             public var quickReply: Api.QuickReply
             public init(quickReply: Api.QuickReply) {
                 self.quickReply = quickReply
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewQuickReply", [("quickReply", ConstructorParameterDescription(self.quickReply))])
+            }
         }
-        public class Cons_updateNewScheduledMessage {
+        public class Cons_updateNewScheduledMessage: TypeConstructorDescription {
             public var message: Api.Message
             public init(message: Api.Message) {
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewScheduledMessage", [("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_updateNewStickerSet {
+        public class Cons_updateNewStickerSet: TypeConstructorDescription {
             public var stickerset: Api.messages.StickerSet
             public init(stickerset: Api.messages.StickerSet) {
                 self.stickerset = stickerset
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewStickerSet", [("stickerset", ConstructorParameterDescription(self.stickerset))])
+            }
         }
-        public class Cons_updateNewStoryReaction {
+        public class Cons_updateNewStoryReaction: TypeConstructorDescription {
             public var storyId: Int32
             public var peer: Api.Peer
             public var reaction: Api.Reaction
@@ -946,30 +1228,42 @@ public extension Api {
                 self.peer = peer
                 self.reaction = reaction
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNewStoryReaction", [("storyId", ConstructorParameterDescription(self.storyId)), ("peer", ConstructorParameterDescription(self.peer)), ("reaction", ConstructorParameterDescription(self.reaction))])
+            }
         }
-        public class Cons_updateNotifySettings {
+        public class Cons_updateNotifySettings: TypeConstructorDescription {
             public var peer: Api.NotifyPeer
             public var notifySettings: Api.PeerNotifySettings
             public init(peer: Api.NotifyPeer, notifySettings: Api.PeerNotifySettings) {
                 self.peer = peer
                 self.notifySettings = notifySettings
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateNotifySettings", [("peer", ConstructorParameterDescription(self.peer)), ("notifySettings", ConstructorParameterDescription(self.notifySettings))])
+            }
         }
-        public class Cons_updatePaidReactionPrivacy {
+        public class Cons_updatePaidReactionPrivacy: TypeConstructorDescription {
             public var `private`: Api.PaidReactionPrivacy
             public init(`private`: Api.PaidReactionPrivacy) {
                 self.`private` = `private`
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePaidReactionPrivacy", [("`private`", ConstructorParameterDescription(self.`private`))])
+            }
         }
-        public class Cons_updatePeerBlocked {
+        public class Cons_updatePeerBlocked: TypeConstructorDescription {
             public var flags: Int32
             public var peerId: Api.Peer
             public init(flags: Int32, peerId: Api.Peer) {
                 self.flags = flags
                 self.peerId = peerId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePeerBlocked", [("flags", ConstructorParameterDescription(self.flags)), ("peerId", ConstructorParameterDescription(self.peerId))])
+            }
         }
-        public class Cons_updatePeerHistoryTTL {
+        public class Cons_updatePeerHistoryTTL: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var ttlPeriod: Int32?
@@ -978,22 +1272,31 @@ public extension Api {
                 self.peer = peer
                 self.ttlPeriod = ttlPeriod
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePeerHistoryTTL", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("ttlPeriod", ConstructorParameterDescription(self.ttlPeriod))])
+            }
         }
-        public class Cons_updatePeerLocated {
+        public class Cons_updatePeerLocated: TypeConstructorDescription {
             public var peers: [Api.PeerLocated]
             public init(peers: [Api.PeerLocated]) {
                 self.peers = peers
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePeerLocated", [("peers", ConstructorParameterDescription(self.peers))])
+            }
         }
-        public class Cons_updatePeerSettings {
+        public class Cons_updatePeerSettings: TypeConstructorDescription {
             public var peer: Api.Peer
             public var settings: Api.PeerSettings
             public init(peer: Api.Peer, settings: Api.PeerSettings) {
                 self.peer = peer
                 self.settings = settings
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePeerSettings", [("peer", ConstructorParameterDescription(self.peer)), ("settings", ConstructorParameterDescription(self.settings))])
+            }
         }
-        public class Cons_updatePeerWallpaper {
+        public class Cons_updatePeerWallpaper: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var wallpaper: Api.WallPaper?
@@ -1002,8 +1305,11 @@ public extension Api {
                 self.peer = peer
                 self.wallpaper = wallpaper
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePeerWallpaper", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("wallpaper", ConstructorParameterDescription(self.wallpaper))])
+            }
         }
-        public class Cons_updatePendingJoinRequests {
+        public class Cons_updatePendingJoinRequests: TypeConstructorDescription {
             public var peer: Api.Peer
             public var requestsPending: Int32
             public var recentRequesters: [Int64]
@@ -1012,22 +1318,31 @@ public extension Api {
                 self.requestsPending = requestsPending
                 self.recentRequesters = recentRequesters
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePendingJoinRequests", [("peer", ConstructorParameterDescription(self.peer)), ("requestsPending", ConstructorParameterDescription(self.requestsPending)), ("recentRequesters", ConstructorParameterDescription(self.recentRequesters))])
+            }
         }
-        public class Cons_updatePhoneCall {
+        public class Cons_updatePhoneCall: TypeConstructorDescription {
             public var phoneCall: Api.PhoneCall
             public init(phoneCall: Api.PhoneCall) {
                 self.phoneCall = phoneCall
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePhoneCall", [("phoneCall", ConstructorParameterDescription(self.phoneCall))])
+            }
         }
-        public class Cons_updatePhoneCallSignalingData {
+        public class Cons_updatePhoneCallSignalingData: TypeConstructorDescription {
             public var phoneCallId: Int64
             public var data: Buffer
             public init(phoneCallId: Int64, data: Buffer) {
                 self.phoneCallId = phoneCallId
                 self.data = data
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePhoneCallSignalingData", [("phoneCallId", ConstructorParameterDescription(self.phoneCallId)), ("data", ConstructorParameterDescription(self.data))])
+            }
         }
-        public class Cons_updatePinnedChannelMessages {
+        public class Cons_updatePinnedChannelMessages: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var messages: [Int32]
@@ -1040,8 +1355,11 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePinnedChannelMessages", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("messages", ConstructorParameterDescription(self.messages)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updatePinnedDialogs {
+        public class Cons_updatePinnedDialogs: TypeConstructorDescription {
             public var flags: Int32
             public var folderId: Int32?
             public var order: [Api.DialogPeer]?
@@ -1050,8 +1368,11 @@ public extension Api {
                 self.folderId = folderId
                 self.order = order
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePinnedDialogs", [("flags", ConstructorParameterDescription(self.flags)), ("folderId", ConstructorParameterDescription(self.folderId)), ("order", ConstructorParameterDescription(self.order))])
+            }
         }
-        public class Cons_updatePinnedForumTopic {
+        public class Cons_updatePinnedForumTopic: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var topicId: Int32
@@ -1060,8 +1381,11 @@ public extension Api {
                 self.peer = peer
                 self.topicId = topicId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePinnedForumTopic", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("topicId", ConstructorParameterDescription(self.topicId))])
+            }
         }
-        public class Cons_updatePinnedForumTopics {
+        public class Cons_updatePinnedForumTopics: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var order: [Int32]?
@@ -1070,8 +1394,11 @@ public extension Api {
                 self.peer = peer
                 self.order = order
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePinnedForumTopics", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("order", ConstructorParameterDescription(self.order))])
+            }
         }
-        public class Cons_updatePinnedMessages {
+        public class Cons_updatePinnedMessages: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var messages: [Int32]
@@ -1084,36 +1411,51 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePinnedMessages", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("messages", ConstructorParameterDescription(self.messages)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updatePinnedSavedDialogs {
+        public class Cons_updatePinnedSavedDialogs: TypeConstructorDescription {
             public var flags: Int32
             public var order: [Api.DialogPeer]?
             public init(flags: Int32, order: [Api.DialogPeer]?) {
                 self.flags = flags
                 self.order = order
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePinnedSavedDialogs", [("flags", ConstructorParameterDescription(self.flags)), ("order", ConstructorParameterDescription(self.order))])
+            }
         }
-        public class Cons_updatePrivacy {
+        public class Cons_updatePrivacy: TypeConstructorDescription {
             public var key: Api.PrivacyKey
             public var rules: [Api.PrivacyRule]
             public init(key: Api.PrivacyKey, rules: [Api.PrivacyRule]) {
                 self.key = key
                 self.rules = rules
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updatePrivacy", [("key", ConstructorParameterDescription(self.key)), ("rules", ConstructorParameterDescription(self.rules))])
+            }
         }
-        public class Cons_updateQuickReplies {
+        public class Cons_updateQuickReplies: TypeConstructorDescription {
             public var quickReplies: [Api.QuickReply]
             public init(quickReplies: [Api.QuickReply]) {
                 self.quickReplies = quickReplies
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateQuickReplies", [("quickReplies", ConstructorParameterDescription(self.quickReplies))])
+            }
         }
-        public class Cons_updateQuickReplyMessage {
+        public class Cons_updateQuickReplyMessage: TypeConstructorDescription {
             public var message: Api.Message
             public init(message: Api.Message) {
                 self.message = message
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateQuickReplyMessage", [("message", ConstructorParameterDescription(self.message))])
+            }
         }
-        public class Cons_updateReadChannelDiscussionInbox {
+        public class Cons_updateReadChannelDiscussionInbox: TypeConstructorDescription {
             public var flags: Int32
             public var channelId: Int64
             public var topMsgId: Int32
@@ -1128,8 +1470,11 @@ public extension Api {
                 self.broadcastId = broadcastId
                 self.broadcastPost = broadcastPost
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadChannelDiscussionInbox", [("flags", ConstructorParameterDescription(self.flags)), ("channelId", ConstructorParameterDescription(self.channelId)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("readMaxId", ConstructorParameterDescription(self.readMaxId)), ("broadcastId", ConstructorParameterDescription(self.broadcastId)), ("broadcastPost", ConstructorParameterDescription(self.broadcastPost))])
+            }
         }
-        public class Cons_updateReadChannelDiscussionOutbox {
+        public class Cons_updateReadChannelDiscussionOutbox: TypeConstructorDescription {
             public var channelId: Int64
             public var topMsgId: Int32
             public var readMaxId: Int32
@@ -1138,8 +1483,11 @@ public extension Api {
                 self.topMsgId = topMsgId
                 self.readMaxId = readMaxId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadChannelDiscussionOutbox", [("channelId", ConstructorParameterDescription(self.channelId)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("readMaxId", ConstructorParameterDescription(self.readMaxId))])
+            }
         }
-        public class Cons_updateReadChannelInbox {
+        public class Cons_updateReadChannelInbox: TypeConstructorDescription {
             public var flags: Int32
             public var folderId: Int32?
             public var channelId: Int64
@@ -1154,16 +1502,22 @@ public extension Api {
                 self.stillUnreadCount = stillUnreadCount
                 self.pts = pts
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadChannelInbox", [("flags", ConstructorParameterDescription(self.flags)), ("folderId", ConstructorParameterDescription(self.folderId)), ("channelId", ConstructorParameterDescription(self.channelId)), ("maxId", ConstructorParameterDescription(self.maxId)), ("stillUnreadCount", ConstructorParameterDescription(self.stillUnreadCount)), ("pts", ConstructorParameterDescription(self.pts))])
+            }
         }
-        public class Cons_updateReadChannelOutbox {
+        public class Cons_updateReadChannelOutbox: TypeConstructorDescription {
             public var channelId: Int64
             public var maxId: Int32
             public init(channelId: Int64, maxId: Int32) {
                 self.channelId = channelId
                 self.maxId = maxId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadChannelOutbox", [("channelId", ConstructorParameterDescription(self.channelId)), ("maxId", ConstructorParameterDescription(self.maxId))])
+            }
         }
-        public class Cons_updateReadHistoryInbox {
+        public class Cons_updateReadHistoryInbox: TypeConstructorDescription {
             public var flags: Int32
             public var folderId: Int32?
             public var peer: Api.Peer
@@ -1182,8 +1536,11 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadHistoryInbox", [("flags", ConstructorParameterDescription(self.flags)), ("folderId", ConstructorParameterDescription(self.folderId)), ("peer", ConstructorParameterDescription(self.peer)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("maxId", ConstructorParameterDescription(self.maxId)), ("stillUnreadCount", ConstructorParameterDescription(self.stillUnreadCount)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateReadHistoryOutbox {
+        public class Cons_updateReadHistoryOutbox: TypeConstructorDescription {
             public var peer: Api.Peer
             public var maxId: Int32
             public var pts: Int32
@@ -1194,8 +1551,11 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadHistoryOutbox", [("peer", ConstructorParameterDescription(self.peer)), ("maxId", ConstructorParameterDescription(self.maxId)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateReadMessagesContents {
+        public class Cons_updateReadMessagesContents: TypeConstructorDescription {
             public var flags: Int32
             public var messages: [Int32]
             public var pts: Int32
@@ -1208,8 +1568,11 @@ public extension Api {
                 self.ptsCount = ptsCount
                 self.date = date
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadMessagesContents", [("flags", ConstructorParameterDescription(self.flags)), ("messages", ConstructorParameterDescription(self.messages)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount)), ("date", ConstructorParameterDescription(self.date))])
+            }
         }
-        public class Cons_updateReadMonoForumInbox {
+        public class Cons_updateReadMonoForumInbox: TypeConstructorDescription {
             public var channelId: Int64
             public var savedPeerId: Api.Peer
             public var readMaxId: Int32
@@ -1218,8 +1581,11 @@ public extension Api {
                 self.savedPeerId = savedPeerId
                 self.readMaxId = readMaxId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadMonoForumInbox", [("channelId", ConstructorParameterDescription(self.channelId)), ("savedPeerId", ConstructorParameterDescription(self.savedPeerId)), ("readMaxId", ConstructorParameterDescription(self.readMaxId))])
+            }
         }
-        public class Cons_updateReadMonoForumOutbox {
+        public class Cons_updateReadMonoForumOutbox: TypeConstructorDescription {
             public var channelId: Int64
             public var savedPeerId: Api.Peer
             public var readMaxId: Int32
@@ -1228,30 +1594,42 @@ public extension Api {
                 self.savedPeerId = savedPeerId
                 self.readMaxId = readMaxId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadMonoForumOutbox", [("channelId", ConstructorParameterDescription(self.channelId)), ("savedPeerId", ConstructorParameterDescription(self.savedPeerId)), ("readMaxId", ConstructorParameterDescription(self.readMaxId))])
+            }
         }
-        public class Cons_updateReadStories {
+        public class Cons_updateReadStories: TypeConstructorDescription {
             public var peer: Api.Peer
             public var maxId: Int32
             public init(peer: Api.Peer, maxId: Int32) {
                 self.peer = peer
                 self.maxId = maxId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateReadStories", [("peer", ConstructorParameterDescription(self.peer)), ("maxId", ConstructorParameterDescription(self.maxId))])
+            }
         }
-        public class Cons_updateSavedDialogPinned {
+        public class Cons_updateSavedDialogPinned: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.DialogPeer
             public init(flags: Int32, peer: Api.DialogPeer) {
                 self.flags = flags
                 self.peer = peer
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateSavedDialogPinned", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer))])
+            }
         }
-        public class Cons_updateSentPhoneCode {
+        public class Cons_updateSentPhoneCode: TypeConstructorDescription {
             public var sentCode: Api.auth.SentCode
             public init(sentCode: Api.auth.SentCode) {
                 self.sentCode = sentCode
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateSentPhoneCode", [("sentCode", ConstructorParameterDescription(self.sentCode))])
+            }
         }
-        public class Cons_updateSentStoryReaction {
+        public class Cons_updateSentStoryReaction: TypeConstructorDescription {
             public var peer: Api.Peer
             public var storyId: Int32
             public var reaction: Api.Reaction
@@ -1260,8 +1638,11 @@ public extension Api {
                 self.storyId = storyId
                 self.reaction = reaction
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateSentStoryReaction", [("peer", ConstructorParameterDescription(self.peer)), ("storyId", ConstructorParameterDescription(self.storyId)), ("reaction", ConstructorParameterDescription(self.reaction))])
+            }
         }
-        public class Cons_updateServiceNotification {
+        public class Cons_updateServiceNotification: TypeConstructorDescription {
             public var flags: Int32
             public var inboxDate: Int32?
             public var type: String
@@ -1276,86 +1657,122 @@ public extension Api {
                 self.media = media
                 self.entities = entities
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateServiceNotification", [("flags", ConstructorParameterDescription(self.flags)), ("inboxDate", ConstructorParameterDescription(self.inboxDate)), ("type", ConstructorParameterDescription(self.type)), ("message", ConstructorParameterDescription(self.message)), ("media", ConstructorParameterDescription(self.media)), ("entities", ConstructorParameterDescription(self.entities))])
+            }
         }
-        public class Cons_updateSmsJob {
+        public class Cons_updateSmsJob: TypeConstructorDescription {
             public var jobId: String
             public init(jobId: String) {
                 self.jobId = jobId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateSmsJob", [("jobId", ConstructorParameterDescription(self.jobId))])
+            }
         }
-        public class Cons_updateStarGiftAuctionState {
+        public class Cons_updateStarGiftAuctionState: TypeConstructorDescription {
             public var giftId: Int64
             public var state: Api.StarGiftAuctionState
             public init(giftId: Int64, state: Api.StarGiftAuctionState) {
                 self.giftId = giftId
                 self.state = state
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStarGiftAuctionState", [("giftId", ConstructorParameterDescription(self.giftId)), ("state", ConstructorParameterDescription(self.state))])
+            }
         }
-        public class Cons_updateStarGiftAuctionUserState {
+        public class Cons_updateStarGiftAuctionUserState: TypeConstructorDescription {
             public var giftId: Int64
             public var userState: Api.StarGiftAuctionUserState
             public init(giftId: Int64, userState: Api.StarGiftAuctionUserState) {
                 self.giftId = giftId
                 self.userState = userState
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStarGiftAuctionUserState", [("giftId", ConstructorParameterDescription(self.giftId)), ("userState", ConstructorParameterDescription(self.userState))])
+            }
         }
-        public class Cons_updateStarsBalance {
+        public class Cons_updateStarsBalance: TypeConstructorDescription {
             public var balance: Api.StarsAmount
             public init(balance: Api.StarsAmount) {
                 self.balance = balance
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStarsBalance", [("balance", ConstructorParameterDescription(self.balance))])
+            }
         }
-        public class Cons_updateStarsRevenueStatus {
+        public class Cons_updateStarsRevenueStatus: TypeConstructorDescription {
             public var peer: Api.Peer
             public var status: Api.StarsRevenueStatus
             public init(peer: Api.Peer, status: Api.StarsRevenueStatus) {
                 self.peer = peer
                 self.status = status
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStarsRevenueStatus", [("peer", ConstructorParameterDescription(self.peer)), ("status", ConstructorParameterDescription(self.status))])
+            }
         }
-        public class Cons_updateStickerSets {
+        public class Cons_updateStickerSets: TypeConstructorDescription {
             public var flags: Int32
             public init(flags: Int32) {
                 self.flags = flags
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStickerSets", [("flags", ConstructorParameterDescription(self.flags))])
+            }
         }
-        public class Cons_updateStickerSetsOrder {
+        public class Cons_updateStickerSetsOrder: TypeConstructorDescription {
             public var flags: Int32
             public var order: [Int64]
             public init(flags: Int32, order: [Int64]) {
                 self.flags = flags
                 self.order = order
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStickerSetsOrder", [("flags", ConstructorParameterDescription(self.flags)), ("order", ConstructorParameterDescription(self.order))])
+            }
         }
-        public class Cons_updateStoriesStealthMode {
+        public class Cons_updateStoriesStealthMode: TypeConstructorDescription {
             public var stealthMode: Api.StoriesStealthMode
             public init(stealthMode: Api.StoriesStealthMode) {
                 self.stealthMode = stealthMode
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStoriesStealthMode", [("stealthMode", ConstructorParameterDescription(self.stealthMode))])
+            }
         }
-        public class Cons_updateStory {
+        public class Cons_updateStory: TypeConstructorDescription {
             public var peer: Api.Peer
             public var story: Api.StoryItem
             public init(peer: Api.Peer, story: Api.StoryItem) {
                 self.peer = peer
                 self.story = story
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStory", [("peer", ConstructorParameterDescription(self.peer)), ("story", ConstructorParameterDescription(self.story))])
+            }
         }
-        public class Cons_updateStoryID {
+        public class Cons_updateStoryID: TypeConstructorDescription {
             public var id: Int32
             public var randomId: Int64
             public init(id: Int32, randomId: Int64) {
                 self.id = id
                 self.randomId = randomId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateStoryID", [("id", ConstructorParameterDescription(self.id)), ("randomId", ConstructorParameterDescription(self.randomId))])
+            }
         }
-        public class Cons_updateTheme {
+        public class Cons_updateTheme: TypeConstructorDescription {
             public var theme: Api.Theme
             public init(theme: Api.Theme) {
                 self.theme = theme
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateTheme", [("theme", ConstructorParameterDescription(self.theme))])
+            }
         }
-        public class Cons_updateTranscribedAudio {
+        public class Cons_updateTranscribedAudio: TypeConstructorDescription {
             public var flags: Int32
             public var peer: Api.Peer
             public var msgId: Int32
@@ -1368,22 +1785,31 @@ public extension Api {
                 self.transcriptionId = transcriptionId
                 self.text = text
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateTranscribedAudio", [("flags", ConstructorParameterDescription(self.flags)), ("peer", ConstructorParameterDescription(self.peer)), ("msgId", ConstructorParameterDescription(self.msgId)), ("transcriptionId", ConstructorParameterDescription(self.transcriptionId)), ("text", ConstructorParameterDescription(self.text))])
+            }
         }
-        public class Cons_updateUser {
+        public class Cons_updateUser: TypeConstructorDescription {
             public var userId: Int64
             public init(userId: Int64) {
                 self.userId = userId
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateUser", [("userId", ConstructorParameterDescription(self.userId))])
+            }
         }
-        public class Cons_updateUserEmojiStatus {
+        public class Cons_updateUserEmojiStatus: TypeConstructorDescription {
             public var userId: Int64
             public var emojiStatus: Api.EmojiStatus
             public init(userId: Int64, emojiStatus: Api.EmojiStatus) {
                 self.userId = userId
                 self.emojiStatus = emojiStatus
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateUserEmojiStatus", [("userId", ConstructorParameterDescription(self.userId)), ("emojiStatus", ConstructorParameterDescription(self.emojiStatus))])
+            }
         }
-        public class Cons_updateUserName {
+        public class Cons_updateUserName: TypeConstructorDescription {
             public var userId: Int64
             public var firstName: String
             public var lastName: String
@@ -1394,24 +1820,33 @@ public extension Api {
                 self.lastName = lastName
                 self.usernames = usernames
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateUserName", [("userId", ConstructorParameterDescription(self.userId)), ("firstName", ConstructorParameterDescription(self.firstName)), ("lastName", ConstructorParameterDescription(self.lastName)), ("usernames", ConstructorParameterDescription(self.usernames))])
+            }
         }
-        public class Cons_updateUserPhone {
+        public class Cons_updateUserPhone: TypeConstructorDescription {
             public var userId: Int64
             public var phone: String
             public init(userId: Int64, phone: String) {
                 self.userId = userId
                 self.phone = phone
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateUserPhone", [("userId", ConstructorParameterDescription(self.userId)), ("phone", ConstructorParameterDescription(self.phone))])
+            }
         }
-        public class Cons_updateUserStatus {
+        public class Cons_updateUserStatus: TypeConstructorDescription {
             public var userId: Int64
             public var status: Api.UserStatus
             public init(userId: Int64, status: Api.UserStatus) {
                 self.userId = userId
                 self.status = status
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateUserStatus", [("userId", ConstructorParameterDescription(self.userId)), ("status", ConstructorParameterDescription(self.status))])
+            }
         }
-        public class Cons_updateUserTyping {
+        public class Cons_updateUserTyping: TypeConstructorDescription {
             public var flags: Int32
             public var userId: Int64
             public var topMsgId: Int32?
@@ -1422,8 +1857,11 @@ public extension Api {
                 self.topMsgId = topMsgId
                 self.action = action
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateUserTyping", [("flags", ConstructorParameterDescription(self.flags)), ("userId", ConstructorParameterDescription(self.userId)), ("topMsgId", ConstructorParameterDescription(self.topMsgId)), ("action", ConstructorParameterDescription(self.action))])
+            }
         }
-        public class Cons_updateWebPage {
+        public class Cons_updateWebPage: TypeConstructorDescription {
             public var webpage: Api.WebPage
             public var pts: Int32
             public var ptsCount: Int32
@@ -1432,11 +1870,17 @@ public extension Api {
                 self.pts = pts
                 self.ptsCount = ptsCount
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateWebPage", [("webpage", ConstructorParameterDescription(self.webpage)), ("pts", ConstructorParameterDescription(self.pts)), ("ptsCount", ConstructorParameterDescription(self.ptsCount))])
+            }
         }
-        public class Cons_updateWebViewResultSent {
+        public class Cons_updateWebViewResultSent: TypeConstructorDescription {
             public var queryId: Int64
             public init(queryId: Int64) {
                 self.queryId = queryId
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("updateWebViewResultSent", [("queryId", ConstructorParameterDescription(self.queryId))])
             }
         }
         case updateAttachMenuBots
@@ -1477,6 +1921,7 @@ public extension Api {
         case updateChatParticipantAdd(Cons_updateChatParticipantAdd)
         case updateChatParticipantAdmin(Cons_updateChatParticipantAdmin)
         case updateChatParticipantDelete(Cons_updateChatParticipantDelete)
+        case updateChatParticipantRank(Cons_updateChatParticipantRank)
         case updateChatParticipants(Cons_updateChatParticipants)
         case updateChatUserTyping(Cons_updateChatUserTyping)
         case updateConfig
@@ -1513,6 +1958,7 @@ public extension Api {
         case updateLangPack(Cons_updateLangPack)
         case updateLangPackTooLong(Cons_updateLangPackTooLong)
         case updateLoginToken
+        case updateManagedBot(Cons_updateManagedBot)
         case updateMessageExtendedMedia(Cons_updateMessageExtendedMedia)
         case updateMessageID(Cons_updateMessageID)
         case updateMessagePoll(Cons_updateMessagePoll)
@@ -2008,6 +2454,15 @@ public extension Api {
                 serializeInt64(_data.userId, buffer: buffer, boxed: false)
                 serializeInt32(_data.version, buffer: buffer, boxed: false)
                 break
+            case .updateChatParticipantRank(let _data):
+                if boxed {
+                    buffer.appendInt32(-1115461703)
+                }
+                serializeInt64(_data.chatId, buffer: buffer, boxed: false)
+                serializeInt64(_data.userId, buffer: buffer, boxed: false)
+                serializeString(_data.rank, buffer: buffer, boxed: false)
+                serializeInt32(_data.version, buffer: buffer, boxed: false)
+                break
             case .updateChatParticipants(let _data):
                 if boxed {
                     buffer.appendInt32(125178264)
@@ -2330,6 +2785,14 @@ public extension Api {
                     buffer.appendInt32(1448076945)
                 }
                 break
+            case .updateManagedBot(let _data):
+                if boxed {
+                    buffer.appendInt32(1216408986)
+                }
+                serializeInt64(_data.userId, buffer: buffer, boxed: false)
+                serializeInt64(_data.botId, buffer: buffer, boxed: false)
+                serializeInt32(_data.qts, buffer: buffer, boxed: false)
+                break
             case .updateMessageExtendedMedia(let _data):
                 if boxed {
                     buffer.appendInt32(-710666460)
@@ -2351,9 +2814,18 @@ public extension Api {
                 break
             case .updateMessagePoll(let _data):
                 if boxed {
-                    buffer.appendInt32(-1398708869)
+                    buffer.appendInt32(-699641301)
                 }
                 serializeInt32(_data.flags, buffer: buffer, boxed: false)
+                if Int(_data.flags) & Int(1 << 1) != 0 {
+                    _data.peer!.serialize(buffer, true)
+                }
+                if Int(_data.flags) & Int(1 << 1) != 0 {
+                    serializeInt32(_data.msgId!, buffer: buffer, boxed: false)
+                }
+                if Int(_data.flags) & Int(1 << 2) != 0 {
+                    serializeInt32(_data.topMsgId!, buffer: buffer, boxed: false)
+                }
                 serializeInt64(_data.pollId, buffer: buffer, boxed: false)
                 if Int(_data.flags) & Int(1 << 0) != 0 {
                     _data.poll!.serialize(buffer, true)
@@ -2362,7 +2834,7 @@ public extension Api {
                 break
             case .updateMessagePollVote(let _data):
                 if boxed {
-                    buffer.appendInt32(619974263)
+                    buffer.appendInt32(1989799956)
                 }
                 serializeInt64(_data.pollId, buffer: buffer, boxed: false)
                 _data.peer.serialize(buffer, true)
@@ -2370,6 +2842,11 @@ public extension Api {
                 buffer.appendInt32(Int32(_data.options.count))
                 for item in _data.options {
                     serializeBytes(item, buffer: buffer, boxed: false)
+                }
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.positions.count))
+                for item in _data.positions {
+                    serializeInt32(item, buffer: buffer, boxed: false)
                 }
                 serializeInt32(_data.qts, buffer: buffer, boxed: false)
                 break
@@ -3006,250 +3483,254 @@ public extension Api {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .updateAttachMenuBots:
                 return ("updateAttachMenuBots", [])
             case .updateAutoSaveSettings:
                 return ("updateAutoSaveSettings", [])
             case .updateBotBusinessConnect(let _data):
-                return ("updateBotBusinessConnect", [("connection", _data.connection as Any), ("qts", _data.qts as Any)])
+                return ("updateBotBusinessConnect", [("connection", ConstructorParameterDescription(_data.connection)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotCallbackQuery(let _data):
-                return ("updateBotCallbackQuery", [("flags", _data.flags as Any), ("queryId", _data.queryId as Any), ("userId", _data.userId as Any), ("peer", _data.peer as Any), ("msgId", _data.msgId as Any), ("chatInstance", _data.chatInstance as Any), ("data", _data.data as Any), ("gameShortName", _data.gameShortName as Any)])
+                return ("updateBotCallbackQuery", [("flags", ConstructorParameterDescription(_data.flags)), ("queryId", ConstructorParameterDescription(_data.queryId)), ("userId", ConstructorParameterDescription(_data.userId)), ("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("chatInstance", ConstructorParameterDescription(_data.chatInstance)), ("data", ConstructorParameterDescription(_data.data)), ("gameShortName", ConstructorParameterDescription(_data.gameShortName))])
             case .updateBotChatBoost(let _data):
-                return ("updateBotChatBoost", [("peer", _data.peer as Any), ("boost", _data.boost as Any), ("qts", _data.qts as Any)])
+                return ("updateBotChatBoost", [("peer", ConstructorParameterDescription(_data.peer)), ("boost", ConstructorParameterDescription(_data.boost)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotChatInviteRequester(let _data):
-                return ("updateBotChatInviteRequester", [("peer", _data.peer as Any), ("date", _data.date as Any), ("userId", _data.userId as Any), ("about", _data.about as Any), ("invite", _data.invite as Any), ("qts", _data.qts as Any)])
+                return ("updateBotChatInviteRequester", [("peer", ConstructorParameterDescription(_data.peer)), ("date", ConstructorParameterDescription(_data.date)), ("userId", ConstructorParameterDescription(_data.userId)), ("about", ConstructorParameterDescription(_data.about)), ("invite", ConstructorParameterDescription(_data.invite)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotCommands(let _data):
-                return ("updateBotCommands", [("peer", _data.peer as Any), ("botId", _data.botId as Any), ("commands", _data.commands as Any)])
+                return ("updateBotCommands", [("peer", ConstructorParameterDescription(_data.peer)), ("botId", ConstructorParameterDescription(_data.botId)), ("commands", ConstructorParameterDescription(_data.commands))])
             case .updateBotDeleteBusinessMessage(let _data):
-                return ("updateBotDeleteBusinessMessage", [("connectionId", _data.connectionId as Any), ("peer", _data.peer as Any), ("messages", _data.messages as Any), ("qts", _data.qts as Any)])
+                return ("updateBotDeleteBusinessMessage", [("connectionId", ConstructorParameterDescription(_data.connectionId)), ("peer", ConstructorParameterDescription(_data.peer)), ("messages", ConstructorParameterDescription(_data.messages)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotEditBusinessMessage(let _data):
-                return ("updateBotEditBusinessMessage", [("flags", _data.flags as Any), ("connectionId", _data.connectionId as Any), ("message", _data.message as Any), ("replyToMessage", _data.replyToMessage as Any), ("qts", _data.qts as Any)])
+                return ("updateBotEditBusinessMessage", [("flags", ConstructorParameterDescription(_data.flags)), ("connectionId", ConstructorParameterDescription(_data.connectionId)), ("message", ConstructorParameterDescription(_data.message)), ("replyToMessage", ConstructorParameterDescription(_data.replyToMessage)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotInlineQuery(let _data):
-                return ("updateBotInlineQuery", [("flags", _data.flags as Any), ("queryId", _data.queryId as Any), ("userId", _data.userId as Any), ("query", _data.query as Any), ("geo", _data.geo as Any), ("peerType", _data.peerType as Any), ("offset", _data.offset as Any)])
+                return ("updateBotInlineQuery", [("flags", ConstructorParameterDescription(_data.flags)), ("queryId", ConstructorParameterDescription(_data.queryId)), ("userId", ConstructorParameterDescription(_data.userId)), ("query", ConstructorParameterDescription(_data.query)), ("geo", ConstructorParameterDescription(_data.geo)), ("peerType", ConstructorParameterDescription(_data.peerType)), ("offset", ConstructorParameterDescription(_data.offset))])
             case .updateBotInlineSend(let _data):
-                return ("updateBotInlineSend", [("flags", _data.flags as Any), ("userId", _data.userId as Any), ("query", _data.query as Any), ("geo", _data.geo as Any), ("id", _data.id as Any), ("msgId", _data.msgId as Any)])
+                return ("updateBotInlineSend", [("flags", ConstructorParameterDescription(_data.flags)), ("userId", ConstructorParameterDescription(_data.userId)), ("query", ConstructorParameterDescription(_data.query)), ("geo", ConstructorParameterDescription(_data.geo)), ("id", ConstructorParameterDescription(_data.id)), ("msgId", ConstructorParameterDescription(_data.msgId))])
             case .updateBotMenuButton(let _data):
-                return ("updateBotMenuButton", [("botId", _data.botId as Any), ("button", _data.button as Any)])
+                return ("updateBotMenuButton", [("botId", ConstructorParameterDescription(_data.botId)), ("button", ConstructorParameterDescription(_data.button))])
             case .updateBotMessageReaction(let _data):
-                return ("updateBotMessageReaction", [("peer", _data.peer as Any), ("msgId", _data.msgId as Any), ("date", _data.date as Any), ("actor", _data.actor as Any), ("oldReactions", _data.oldReactions as Any), ("newReactions", _data.newReactions as Any), ("qts", _data.qts as Any)])
+                return ("updateBotMessageReaction", [("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("date", ConstructorParameterDescription(_data.date)), ("actor", ConstructorParameterDescription(_data.actor)), ("oldReactions", ConstructorParameterDescription(_data.oldReactions)), ("newReactions", ConstructorParameterDescription(_data.newReactions)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotMessageReactions(let _data):
-                return ("updateBotMessageReactions", [("peer", _data.peer as Any), ("msgId", _data.msgId as Any), ("date", _data.date as Any), ("reactions", _data.reactions as Any), ("qts", _data.qts as Any)])
+                return ("updateBotMessageReactions", [("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("date", ConstructorParameterDescription(_data.date)), ("reactions", ConstructorParameterDescription(_data.reactions)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotNewBusinessMessage(let _data):
-                return ("updateBotNewBusinessMessage", [("flags", _data.flags as Any), ("connectionId", _data.connectionId as Any), ("message", _data.message as Any), ("replyToMessage", _data.replyToMessage as Any), ("qts", _data.qts as Any)])
+                return ("updateBotNewBusinessMessage", [("flags", ConstructorParameterDescription(_data.flags)), ("connectionId", ConstructorParameterDescription(_data.connectionId)), ("message", ConstructorParameterDescription(_data.message)), ("replyToMessage", ConstructorParameterDescription(_data.replyToMessage)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotPrecheckoutQuery(let _data):
-                return ("updateBotPrecheckoutQuery", [("flags", _data.flags as Any), ("queryId", _data.queryId as Any), ("userId", _data.userId as Any), ("payload", _data.payload as Any), ("info", _data.info as Any), ("shippingOptionId", _data.shippingOptionId as Any), ("currency", _data.currency as Any), ("totalAmount", _data.totalAmount as Any)])
+                return ("updateBotPrecheckoutQuery", [("flags", ConstructorParameterDescription(_data.flags)), ("queryId", ConstructorParameterDescription(_data.queryId)), ("userId", ConstructorParameterDescription(_data.userId)), ("payload", ConstructorParameterDescription(_data.payload)), ("info", ConstructorParameterDescription(_data.info)), ("shippingOptionId", ConstructorParameterDescription(_data.shippingOptionId)), ("currency", ConstructorParameterDescription(_data.currency)), ("totalAmount", ConstructorParameterDescription(_data.totalAmount))])
             case .updateBotPurchasedPaidMedia(let _data):
-                return ("updateBotPurchasedPaidMedia", [("userId", _data.userId as Any), ("payload", _data.payload as Any), ("qts", _data.qts as Any)])
+                return ("updateBotPurchasedPaidMedia", [("userId", ConstructorParameterDescription(_data.userId)), ("payload", ConstructorParameterDescription(_data.payload)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotShippingQuery(let _data):
-                return ("updateBotShippingQuery", [("queryId", _data.queryId as Any), ("userId", _data.userId as Any), ("payload", _data.payload as Any), ("shippingAddress", _data.shippingAddress as Any)])
+                return ("updateBotShippingQuery", [("queryId", ConstructorParameterDescription(_data.queryId)), ("userId", ConstructorParameterDescription(_data.userId)), ("payload", ConstructorParameterDescription(_data.payload)), ("shippingAddress", ConstructorParameterDescription(_data.shippingAddress))])
             case .updateBotStopped(let _data):
-                return ("updateBotStopped", [("userId", _data.userId as Any), ("date", _data.date as Any), ("stopped", _data.stopped as Any), ("qts", _data.qts as Any)])
+                return ("updateBotStopped", [("userId", ConstructorParameterDescription(_data.userId)), ("date", ConstructorParameterDescription(_data.date)), ("stopped", ConstructorParameterDescription(_data.stopped)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateBotWebhookJSON(let _data):
-                return ("updateBotWebhookJSON", [("data", _data.data as Any)])
+                return ("updateBotWebhookJSON", [("data", ConstructorParameterDescription(_data.data))])
             case .updateBotWebhookJSONQuery(let _data):
-                return ("updateBotWebhookJSONQuery", [("queryId", _data.queryId as Any), ("data", _data.data as Any), ("timeout", _data.timeout as Any)])
+                return ("updateBotWebhookJSONQuery", [("queryId", ConstructorParameterDescription(_data.queryId)), ("data", ConstructorParameterDescription(_data.data)), ("timeout", ConstructorParameterDescription(_data.timeout))])
             case .updateBusinessBotCallbackQuery(let _data):
-                return ("updateBusinessBotCallbackQuery", [("flags", _data.flags as Any), ("queryId", _data.queryId as Any), ("userId", _data.userId as Any), ("connectionId", _data.connectionId as Any), ("message", _data.message as Any), ("replyToMessage", _data.replyToMessage as Any), ("chatInstance", _data.chatInstance as Any), ("data", _data.data as Any)])
+                return ("updateBusinessBotCallbackQuery", [("flags", ConstructorParameterDescription(_data.flags)), ("queryId", ConstructorParameterDescription(_data.queryId)), ("userId", ConstructorParameterDescription(_data.userId)), ("connectionId", ConstructorParameterDescription(_data.connectionId)), ("message", ConstructorParameterDescription(_data.message)), ("replyToMessage", ConstructorParameterDescription(_data.replyToMessage)), ("chatInstance", ConstructorParameterDescription(_data.chatInstance)), ("data", ConstructorParameterDescription(_data.data))])
             case .updateChannel(let _data):
-                return ("updateChannel", [("channelId", _data.channelId as Any)])
+                return ("updateChannel", [("channelId", ConstructorParameterDescription(_data.channelId))])
             case .updateChannelAvailableMessages(let _data):
-                return ("updateChannelAvailableMessages", [("channelId", _data.channelId as Any), ("availableMinId", _data.availableMinId as Any)])
+                return ("updateChannelAvailableMessages", [("channelId", ConstructorParameterDescription(_data.channelId)), ("availableMinId", ConstructorParameterDescription(_data.availableMinId))])
             case .updateChannelMessageForwards(let _data):
-                return ("updateChannelMessageForwards", [("channelId", _data.channelId as Any), ("id", _data.id as Any), ("forwards", _data.forwards as Any)])
+                return ("updateChannelMessageForwards", [("channelId", ConstructorParameterDescription(_data.channelId)), ("id", ConstructorParameterDescription(_data.id)), ("forwards", ConstructorParameterDescription(_data.forwards))])
             case .updateChannelMessageViews(let _data):
-                return ("updateChannelMessageViews", [("channelId", _data.channelId as Any), ("id", _data.id as Any), ("views", _data.views as Any)])
+                return ("updateChannelMessageViews", [("channelId", ConstructorParameterDescription(_data.channelId)), ("id", ConstructorParameterDescription(_data.id)), ("views", ConstructorParameterDescription(_data.views))])
             case .updateChannelParticipant(let _data):
-                return ("updateChannelParticipant", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("date", _data.date as Any), ("actorId", _data.actorId as Any), ("userId", _data.userId as Any), ("prevParticipant", _data.prevParticipant as Any), ("newParticipant", _data.newParticipant as Any), ("invite", _data.invite as Any), ("qts", _data.qts as Any)])
+                return ("updateChannelParticipant", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("date", ConstructorParameterDescription(_data.date)), ("actorId", ConstructorParameterDescription(_data.actorId)), ("userId", ConstructorParameterDescription(_data.userId)), ("prevParticipant", ConstructorParameterDescription(_data.prevParticipant)), ("newParticipant", ConstructorParameterDescription(_data.newParticipant)), ("invite", ConstructorParameterDescription(_data.invite)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateChannelReadMessagesContents(let _data):
-                return ("updateChannelReadMessagesContents", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("topMsgId", _data.topMsgId as Any), ("savedPeerId", _data.savedPeerId as Any), ("messages", _data.messages as Any)])
+                return ("updateChannelReadMessagesContents", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("savedPeerId", ConstructorParameterDescription(_data.savedPeerId)), ("messages", ConstructorParameterDescription(_data.messages))])
             case .updateChannelTooLong(let _data):
-                return ("updateChannelTooLong", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("pts", _data.pts as Any)])
+                return ("updateChannelTooLong", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("pts", ConstructorParameterDescription(_data.pts))])
             case .updateChannelUserTyping(let _data):
-                return ("updateChannelUserTyping", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("topMsgId", _data.topMsgId as Any), ("fromId", _data.fromId as Any), ("action", _data.action as Any)])
+                return ("updateChannelUserTyping", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("fromId", ConstructorParameterDescription(_data.fromId)), ("action", ConstructorParameterDescription(_data.action))])
             case .updateChannelViewForumAsMessages(let _data):
-                return ("updateChannelViewForumAsMessages", [("channelId", _data.channelId as Any), ("enabled", _data.enabled as Any)])
+                return ("updateChannelViewForumAsMessages", [("channelId", ConstructorParameterDescription(_data.channelId)), ("enabled", ConstructorParameterDescription(_data.enabled))])
             case .updateChannelWebPage(let _data):
-                return ("updateChannelWebPage", [("channelId", _data.channelId as Any), ("webpage", _data.webpage as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateChannelWebPage", [("channelId", ConstructorParameterDescription(_data.channelId)), ("webpage", ConstructorParameterDescription(_data.webpage)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateChat(let _data):
-                return ("updateChat", [("chatId", _data.chatId as Any)])
+                return ("updateChat", [("chatId", ConstructorParameterDescription(_data.chatId))])
             case .updateChatDefaultBannedRights(let _data):
-                return ("updateChatDefaultBannedRights", [("peer", _data.peer as Any), ("defaultBannedRights", _data.defaultBannedRights as Any), ("version", _data.version as Any)])
+                return ("updateChatDefaultBannedRights", [("peer", ConstructorParameterDescription(_data.peer)), ("defaultBannedRights", ConstructorParameterDescription(_data.defaultBannedRights)), ("version", ConstructorParameterDescription(_data.version))])
             case .updateChatParticipant(let _data):
-                return ("updateChatParticipant", [("flags", _data.flags as Any), ("chatId", _data.chatId as Any), ("date", _data.date as Any), ("actorId", _data.actorId as Any), ("userId", _data.userId as Any), ("prevParticipant", _data.prevParticipant as Any), ("newParticipant", _data.newParticipant as Any), ("invite", _data.invite as Any), ("qts", _data.qts as Any)])
+                return ("updateChatParticipant", [("flags", ConstructorParameterDescription(_data.flags)), ("chatId", ConstructorParameterDescription(_data.chatId)), ("date", ConstructorParameterDescription(_data.date)), ("actorId", ConstructorParameterDescription(_data.actorId)), ("userId", ConstructorParameterDescription(_data.userId)), ("prevParticipant", ConstructorParameterDescription(_data.prevParticipant)), ("newParticipant", ConstructorParameterDescription(_data.newParticipant)), ("invite", ConstructorParameterDescription(_data.invite)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateChatParticipantAdd(let _data):
-                return ("updateChatParticipantAdd", [("chatId", _data.chatId as Any), ("userId", _data.userId as Any), ("inviterId", _data.inviterId as Any), ("date", _data.date as Any), ("version", _data.version as Any)])
+                return ("updateChatParticipantAdd", [("chatId", ConstructorParameterDescription(_data.chatId)), ("userId", ConstructorParameterDescription(_data.userId)), ("inviterId", ConstructorParameterDescription(_data.inviterId)), ("date", ConstructorParameterDescription(_data.date)), ("version", ConstructorParameterDescription(_data.version))])
             case .updateChatParticipantAdmin(let _data):
-                return ("updateChatParticipantAdmin", [("chatId", _data.chatId as Any), ("userId", _data.userId as Any), ("isAdmin", _data.isAdmin as Any), ("version", _data.version as Any)])
+                return ("updateChatParticipantAdmin", [("chatId", ConstructorParameterDescription(_data.chatId)), ("userId", ConstructorParameterDescription(_data.userId)), ("isAdmin", ConstructorParameterDescription(_data.isAdmin)), ("version", ConstructorParameterDescription(_data.version))])
             case .updateChatParticipantDelete(let _data):
-                return ("updateChatParticipantDelete", [("chatId", _data.chatId as Any), ("userId", _data.userId as Any), ("version", _data.version as Any)])
+                return ("updateChatParticipantDelete", [("chatId", ConstructorParameterDescription(_data.chatId)), ("userId", ConstructorParameterDescription(_data.userId)), ("version", ConstructorParameterDescription(_data.version))])
+            case .updateChatParticipantRank(let _data):
+                return ("updateChatParticipantRank", [("chatId", ConstructorParameterDescription(_data.chatId)), ("userId", ConstructorParameterDescription(_data.userId)), ("rank", ConstructorParameterDescription(_data.rank)), ("version", ConstructorParameterDescription(_data.version))])
             case .updateChatParticipants(let _data):
-                return ("updateChatParticipants", [("participants", _data.participants as Any)])
+                return ("updateChatParticipants", [("participants", ConstructorParameterDescription(_data.participants))])
             case .updateChatUserTyping(let _data):
-                return ("updateChatUserTyping", [("chatId", _data.chatId as Any), ("fromId", _data.fromId as Any), ("action", _data.action as Any)])
+                return ("updateChatUserTyping", [("chatId", ConstructorParameterDescription(_data.chatId)), ("fromId", ConstructorParameterDescription(_data.fromId)), ("action", ConstructorParameterDescription(_data.action))])
             case .updateConfig:
                 return ("updateConfig", [])
             case .updateContactsReset:
                 return ("updateContactsReset", [])
             case .updateDcOptions(let _data):
-                return ("updateDcOptions", [("dcOptions", _data.dcOptions as Any)])
+                return ("updateDcOptions", [("dcOptions", ConstructorParameterDescription(_data.dcOptions))])
             case .updateDeleteChannelMessages(let _data):
-                return ("updateDeleteChannelMessages", [("channelId", _data.channelId as Any), ("messages", _data.messages as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateDeleteChannelMessages", [("channelId", ConstructorParameterDescription(_data.channelId)), ("messages", ConstructorParameterDescription(_data.messages)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateDeleteGroupCallMessages(let _data):
-                return ("updateDeleteGroupCallMessages", [("call", _data.call as Any), ("messages", _data.messages as Any)])
+                return ("updateDeleteGroupCallMessages", [("call", ConstructorParameterDescription(_data.call)), ("messages", ConstructorParameterDescription(_data.messages))])
             case .updateDeleteMessages(let _data):
-                return ("updateDeleteMessages", [("messages", _data.messages as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateDeleteMessages", [("messages", ConstructorParameterDescription(_data.messages)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateDeleteQuickReply(let _data):
-                return ("updateDeleteQuickReply", [("shortcutId", _data.shortcutId as Any)])
+                return ("updateDeleteQuickReply", [("shortcutId", ConstructorParameterDescription(_data.shortcutId))])
             case .updateDeleteQuickReplyMessages(let _data):
-                return ("updateDeleteQuickReplyMessages", [("shortcutId", _data.shortcutId as Any), ("messages", _data.messages as Any)])
+                return ("updateDeleteQuickReplyMessages", [("shortcutId", ConstructorParameterDescription(_data.shortcutId)), ("messages", ConstructorParameterDescription(_data.messages))])
             case .updateDeleteScheduledMessages(let _data):
-                return ("updateDeleteScheduledMessages", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("messages", _data.messages as Any), ("sentMessages", _data.sentMessages as Any)])
+                return ("updateDeleteScheduledMessages", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("messages", ConstructorParameterDescription(_data.messages)), ("sentMessages", ConstructorParameterDescription(_data.sentMessages))])
             case .updateDialogFilter(let _data):
-                return ("updateDialogFilter", [("flags", _data.flags as Any), ("id", _data.id as Any), ("filter", _data.filter as Any)])
+                return ("updateDialogFilter", [("flags", ConstructorParameterDescription(_data.flags)), ("id", ConstructorParameterDescription(_data.id)), ("filter", ConstructorParameterDescription(_data.filter))])
             case .updateDialogFilterOrder(let _data):
-                return ("updateDialogFilterOrder", [("order", _data.order as Any)])
+                return ("updateDialogFilterOrder", [("order", ConstructorParameterDescription(_data.order))])
             case .updateDialogFilters:
                 return ("updateDialogFilters", [])
             case .updateDialogPinned(let _data):
-                return ("updateDialogPinned", [("flags", _data.flags as Any), ("folderId", _data.folderId as Any), ("peer", _data.peer as Any)])
+                return ("updateDialogPinned", [("flags", ConstructorParameterDescription(_data.flags)), ("folderId", ConstructorParameterDescription(_data.folderId)), ("peer", ConstructorParameterDescription(_data.peer))])
             case .updateDialogUnreadMark(let _data):
-                return ("updateDialogUnreadMark", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("savedPeerId", _data.savedPeerId as Any)])
+                return ("updateDialogUnreadMark", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("savedPeerId", ConstructorParameterDescription(_data.savedPeerId))])
             case .updateDraftMessage(let _data):
-                return ("updateDraftMessage", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("topMsgId", _data.topMsgId as Any), ("savedPeerId", _data.savedPeerId as Any), ("draft", _data.draft as Any)])
+                return ("updateDraftMessage", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("savedPeerId", ConstructorParameterDescription(_data.savedPeerId)), ("draft", ConstructorParameterDescription(_data.draft))])
             case .updateEditChannelMessage(let _data):
-                return ("updateEditChannelMessage", [("message", _data.message as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateEditChannelMessage", [("message", ConstructorParameterDescription(_data.message)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateEditMessage(let _data):
-                return ("updateEditMessage", [("message", _data.message as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateEditMessage", [("message", ConstructorParameterDescription(_data.message)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateEmojiGameInfo(let _data):
-                return ("updateEmojiGameInfo", [("info", _data.info as Any)])
+                return ("updateEmojiGameInfo", [("info", ConstructorParameterDescription(_data.info))])
             case .updateEncryptedChatTyping(let _data):
-                return ("updateEncryptedChatTyping", [("chatId", _data.chatId as Any)])
+                return ("updateEncryptedChatTyping", [("chatId", ConstructorParameterDescription(_data.chatId))])
             case .updateEncryptedMessagesRead(let _data):
-                return ("updateEncryptedMessagesRead", [("chatId", _data.chatId as Any), ("maxDate", _data.maxDate as Any), ("date", _data.date as Any)])
+                return ("updateEncryptedMessagesRead", [("chatId", ConstructorParameterDescription(_data.chatId)), ("maxDate", ConstructorParameterDescription(_data.maxDate)), ("date", ConstructorParameterDescription(_data.date))])
             case .updateEncryption(let _data):
-                return ("updateEncryption", [("chat", _data.chat as Any), ("date", _data.date as Any)])
+                return ("updateEncryption", [("chat", ConstructorParameterDescription(_data.chat)), ("date", ConstructorParameterDescription(_data.date))])
             case .updateFavedStickers:
                 return ("updateFavedStickers", [])
             case .updateFolderPeers(let _data):
-                return ("updateFolderPeers", [("folderPeers", _data.folderPeers as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateFolderPeers", [("folderPeers", ConstructorParameterDescription(_data.folderPeers)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateGeoLiveViewed(let _data):
-                return ("updateGeoLiveViewed", [("peer", _data.peer as Any), ("msgId", _data.msgId as Any)])
+                return ("updateGeoLiveViewed", [("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId))])
             case .updateGroupCall(let _data):
-                return ("updateGroupCall", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("call", _data.call as Any)])
+                return ("updateGroupCall", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("call", ConstructorParameterDescription(_data.call))])
             case .updateGroupCallChainBlocks(let _data):
-                return ("updateGroupCallChainBlocks", [("call", _data.call as Any), ("subChainId", _data.subChainId as Any), ("blocks", _data.blocks as Any), ("nextOffset", _data.nextOffset as Any)])
+                return ("updateGroupCallChainBlocks", [("call", ConstructorParameterDescription(_data.call)), ("subChainId", ConstructorParameterDescription(_data.subChainId)), ("blocks", ConstructorParameterDescription(_data.blocks)), ("nextOffset", ConstructorParameterDescription(_data.nextOffset))])
             case .updateGroupCallConnection(let _data):
-                return ("updateGroupCallConnection", [("flags", _data.flags as Any), ("params", _data.params as Any)])
+                return ("updateGroupCallConnection", [("flags", ConstructorParameterDescription(_data.flags)), ("params", ConstructorParameterDescription(_data.params))])
             case .updateGroupCallEncryptedMessage(let _data):
-                return ("updateGroupCallEncryptedMessage", [("call", _data.call as Any), ("fromId", _data.fromId as Any), ("encryptedMessage", _data.encryptedMessage as Any)])
+                return ("updateGroupCallEncryptedMessage", [("call", ConstructorParameterDescription(_data.call)), ("fromId", ConstructorParameterDescription(_data.fromId)), ("encryptedMessage", ConstructorParameterDescription(_data.encryptedMessage))])
             case .updateGroupCallMessage(let _data):
-                return ("updateGroupCallMessage", [("call", _data.call as Any), ("message", _data.message as Any)])
+                return ("updateGroupCallMessage", [("call", ConstructorParameterDescription(_data.call)), ("message", ConstructorParameterDescription(_data.message))])
             case .updateGroupCallParticipants(let _data):
-                return ("updateGroupCallParticipants", [("call", _data.call as Any), ("participants", _data.participants as Any), ("version", _data.version as Any)])
+                return ("updateGroupCallParticipants", [("call", ConstructorParameterDescription(_data.call)), ("participants", ConstructorParameterDescription(_data.participants)), ("version", ConstructorParameterDescription(_data.version))])
             case .updateInlineBotCallbackQuery(let _data):
-                return ("updateInlineBotCallbackQuery", [("flags", _data.flags as Any), ("queryId", _data.queryId as Any), ("userId", _data.userId as Any), ("msgId", _data.msgId as Any), ("chatInstance", _data.chatInstance as Any), ("data", _data.data as Any), ("gameShortName", _data.gameShortName as Any)])
+                return ("updateInlineBotCallbackQuery", [("flags", ConstructorParameterDescription(_data.flags)), ("queryId", ConstructorParameterDescription(_data.queryId)), ("userId", ConstructorParameterDescription(_data.userId)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("chatInstance", ConstructorParameterDescription(_data.chatInstance)), ("data", ConstructorParameterDescription(_data.data)), ("gameShortName", ConstructorParameterDescription(_data.gameShortName))])
             case .updateLangPack(let _data):
-                return ("updateLangPack", [("difference", _data.difference as Any)])
+                return ("updateLangPack", [("difference", ConstructorParameterDescription(_data.difference))])
             case .updateLangPackTooLong(let _data):
-                return ("updateLangPackTooLong", [("langCode", _data.langCode as Any)])
+                return ("updateLangPackTooLong", [("langCode", ConstructorParameterDescription(_data.langCode))])
             case .updateLoginToken:
                 return ("updateLoginToken", [])
+            case .updateManagedBot(let _data):
+                return ("updateManagedBot", [("userId", ConstructorParameterDescription(_data.userId)), ("botId", ConstructorParameterDescription(_data.botId)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateMessageExtendedMedia(let _data):
-                return ("updateMessageExtendedMedia", [("peer", _data.peer as Any), ("msgId", _data.msgId as Any), ("extendedMedia", _data.extendedMedia as Any)])
+                return ("updateMessageExtendedMedia", [("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("extendedMedia", ConstructorParameterDescription(_data.extendedMedia))])
             case .updateMessageID(let _data):
-                return ("updateMessageID", [("id", _data.id as Any), ("randomId", _data.randomId as Any)])
+                return ("updateMessageID", [("id", ConstructorParameterDescription(_data.id)), ("randomId", ConstructorParameterDescription(_data.randomId))])
             case .updateMessagePoll(let _data):
-                return ("updateMessagePoll", [("flags", _data.flags as Any), ("pollId", _data.pollId as Any), ("poll", _data.poll as Any), ("results", _data.results as Any)])
+                return ("updateMessagePoll", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("pollId", ConstructorParameterDescription(_data.pollId)), ("poll", ConstructorParameterDescription(_data.poll)), ("results", ConstructorParameterDescription(_data.results))])
             case .updateMessagePollVote(let _data):
-                return ("updateMessagePollVote", [("pollId", _data.pollId as Any), ("peer", _data.peer as Any), ("options", _data.options as Any), ("qts", _data.qts as Any)])
+                return ("updateMessagePollVote", [("pollId", ConstructorParameterDescription(_data.pollId)), ("peer", ConstructorParameterDescription(_data.peer)), ("options", ConstructorParameterDescription(_data.options)), ("positions", ConstructorParameterDescription(_data.positions)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateMessageReactions(let _data):
-                return ("updateMessageReactions", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("msgId", _data.msgId as Any), ("topMsgId", _data.topMsgId as Any), ("savedPeerId", _data.savedPeerId as Any), ("reactions", _data.reactions as Any)])
+                return ("updateMessageReactions", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("savedPeerId", ConstructorParameterDescription(_data.savedPeerId)), ("reactions", ConstructorParameterDescription(_data.reactions))])
             case .updateMonoForumNoPaidException(let _data):
-                return ("updateMonoForumNoPaidException", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("savedPeerId", _data.savedPeerId as Any)])
+                return ("updateMonoForumNoPaidException", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("savedPeerId", ConstructorParameterDescription(_data.savedPeerId))])
             case .updateMoveStickerSetToTop(let _data):
-                return ("updateMoveStickerSetToTop", [("flags", _data.flags as Any), ("stickerset", _data.stickerset as Any)])
+                return ("updateMoveStickerSetToTop", [("flags", ConstructorParameterDescription(_data.flags)), ("stickerset", ConstructorParameterDescription(_data.stickerset))])
             case .updateNewAuthorization(let _data):
-                return ("updateNewAuthorization", [("flags", _data.flags as Any), ("hash", _data.hash as Any), ("date", _data.date as Any), ("device", _data.device as Any), ("location", _data.location as Any)])
+                return ("updateNewAuthorization", [("flags", ConstructorParameterDescription(_data.flags)), ("hash", ConstructorParameterDescription(_data.hash)), ("date", ConstructorParameterDescription(_data.date)), ("device", ConstructorParameterDescription(_data.device)), ("location", ConstructorParameterDescription(_data.location))])
             case .updateNewChannelMessage(let _data):
-                return ("updateNewChannelMessage", [("message", _data.message as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateNewChannelMessage", [("message", ConstructorParameterDescription(_data.message)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateNewEncryptedMessage(let _data):
-                return ("updateNewEncryptedMessage", [("message", _data.message as Any), ("qts", _data.qts as Any)])
+                return ("updateNewEncryptedMessage", [("message", ConstructorParameterDescription(_data.message)), ("qts", ConstructorParameterDescription(_data.qts))])
             case .updateNewMessage(let _data):
-                return ("updateNewMessage", [("message", _data.message as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateNewMessage", [("message", ConstructorParameterDescription(_data.message)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateNewQuickReply(let _data):
-                return ("updateNewQuickReply", [("quickReply", _data.quickReply as Any)])
+                return ("updateNewQuickReply", [("quickReply", ConstructorParameterDescription(_data.quickReply))])
             case .updateNewScheduledMessage(let _data):
-                return ("updateNewScheduledMessage", [("message", _data.message as Any)])
+                return ("updateNewScheduledMessage", [("message", ConstructorParameterDescription(_data.message))])
             case .updateNewStickerSet(let _data):
-                return ("updateNewStickerSet", [("stickerset", _data.stickerset as Any)])
+                return ("updateNewStickerSet", [("stickerset", ConstructorParameterDescription(_data.stickerset))])
             case .updateNewStoryReaction(let _data):
-                return ("updateNewStoryReaction", [("storyId", _data.storyId as Any), ("peer", _data.peer as Any), ("reaction", _data.reaction as Any)])
+                return ("updateNewStoryReaction", [("storyId", ConstructorParameterDescription(_data.storyId)), ("peer", ConstructorParameterDescription(_data.peer)), ("reaction", ConstructorParameterDescription(_data.reaction))])
             case .updateNotifySettings(let _data):
-                return ("updateNotifySettings", [("peer", _data.peer as Any), ("notifySettings", _data.notifySettings as Any)])
+                return ("updateNotifySettings", [("peer", ConstructorParameterDescription(_data.peer)), ("notifySettings", ConstructorParameterDescription(_data.notifySettings))])
             case .updatePaidReactionPrivacy(let _data):
-                return ("updatePaidReactionPrivacy", [("`private`", _data.`private` as Any)])
+                return ("updatePaidReactionPrivacy", [("`private`", ConstructorParameterDescription(_data.`private`))])
             case .updatePeerBlocked(let _data):
-                return ("updatePeerBlocked", [("flags", _data.flags as Any), ("peerId", _data.peerId as Any)])
+                return ("updatePeerBlocked", [("flags", ConstructorParameterDescription(_data.flags)), ("peerId", ConstructorParameterDescription(_data.peerId))])
             case .updatePeerHistoryTTL(let _data):
-                return ("updatePeerHistoryTTL", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("ttlPeriod", _data.ttlPeriod as Any)])
+                return ("updatePeerHistoryTTL", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("ttlPeriod", ConstructorParameterDescription(_data.ttlPeriod))])
             case .updatePeerLocated(let _data):
-                return ("updatePeerLocated", [("peers", _data.peers as Any)])
+                return ("updatePeerLocated", [("peers", ConstructorParameterDescription(_data.peers))])
             case .updatePeerSettings(let _data):
-                return ("updatePeerSettings", [("peer", _data.peer as Any), ("settings", _data.settings as Any)])
+                return ("updatePeerSettings", [("peer", ConstructorParameterDescription(_data.peer)), ("settings", ConstructorParameterDescription(_data.settings))])
             case .updatePeerWallpaper(let _data):
-                return ("updatePeerWallpaper", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("wallpaper", _data.wallpaper as Any)])
+                return ("updatePeerWallpaper", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("wallpaper", ConstructorParameterDescription(_data.wallpaper))])
             case .updatePendingJoinRequests(let _data):
-                return ("updatePendingJoinRequests", [("peer", _data.peer as Any), ("requestsPending", _data.requestsPending as Any), ("recentRequesters", _data.recentRequesters as Any)])
+                return ("updatePendingJoinRequests", [("peer", ConstructorParameterDescription(_data.peer)), ("requestsPending", ConstructorParameterDescription(_data.requestsPending)), ("recentRequesters", ConstructorParameterDescription(_data.recentRequesters))])
             case .updatePhoneCall(let _data):
-                return ("updatePhoneCall", [("phoneCall", _data.phoneCall as Any)])
+                return ("updatePhoneCall", [("phoneCall", ConstructorParameterDescription(_data.phoneCall))])
             case .updatePhoneCallSignalingData(let _data):
-                return ("updatePhoneCallSignalingData", [("phoneCallId", _data.phoneCallId as Any), ("data", _data.data as Any)])
+                return ("updatePhoneCallSignalingData", [("phoneCallId", ConstructorParameterDescription(_data.phoneCallId)), ("data", ConstructorParameterDescription(_data.data))])
             case .updatePinnedChannelMessages(let _data):
-                return ("updatePinnedChannelMessages", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("messages", _data.messages as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updatePinnedChannelMessages", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("messages", ConstructorParameterDescription(_data.messages)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updatePinnedDialogs(let _data):
-                return ("updatePinnedDialogs", [("flags", _data.flags as Any), ("folderId", _data.folderId as Any), ("order", _data.order as Any)])
+                return ("updatePinnedDialogs", [("flags", ConstructorParameterDescription(_data.flags)), ("folderId", ConstructorParameterDescription(_data.folderId)), ("order", ConstructorParameterDescription(_data.order))])
             case .updatePinnedForumTopic(let _data):
-                return ("updatePinnedForumTopic", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("topicId", _data.topicId as Any)])
+                return ("updatePinnedForumTopic", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("topicId", ConstructorParameterDescription(_data.topicId))])
             case .updatePinnedForumTopics(let _data):
-                return ("updatePinnedForumTopics", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("order", _data.order as Any)])
+                return ("updatePinnedForumTopics", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("order", ConstructorParameterDescription(_data.order))])
             case .updatePinnedMessages(let _data):
-                return ("updatePinnedMessages", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("messages", _data.messages as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updatePinnedMessages", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("messages", ConstructorParameterDescription(_data.messages)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updatePinnedSavedDialogs(let _data):
-                return ("updatePinnedSavedDialogs", [("flags", _data.flags as Any), ("order", _data.order as Any)])
+                return ("updatePinnedSavedDialogs", [("flags", ConstructorParameterDescription(_data.flags)), ("order", ConstructorParameterDescription(_data.order))])
             case .updatePrivacy(let _data):
-                return ("updatePrivacy", [("key", _data.key as Any), ("rules", _data.rules as Any)])
+                return ("updatePrivacy", [("key", ConstructorParameterDescription(_data.key)), ("rules", ConstructorParameterDescription(_data.rules))])
             case .updatePtsChanged:
                 return ("updatePtsChanged", [])
             case .updateQuickReplies(let _data):
-                return ("updateQuickReplies", [("quickReplies", _data.quickReplies as Any)])
+                return ("updateQuickReplies", [("quickReplies", ConstructorParameterDescription(_data.quickReplies))])
             case .updateQuickReplyMessage(let _data):
-                return ("updateQuickReplyMessage", [("message", _data.message as Any)])
+                return ("updateQuickReplyMessage", [("message", ConstructorParameterDescription(_data.message))])
             case .updateReadChannelDiscussionInbox(let _data):
-                return ("updateReadChannelDiscussionInbox", [("flags", _data.flags as Any), ("channelId", _data.channelId as Any), ("topMsgId", _data.topMsgId as Any), ("readMaxId", _data.readMaxId as Any), ("broadcastId", _data.broadcastId as Any), ("broadcastPost", _data.broadcastPost as Any)])
+                return ("updateReadChannelDiscussionInbox", [("flags", ConstructorParameterDescription(_data.flags)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("readMaxId", ConstructorParameterDescription(_data.readMaxId)), ("broadcastId", ConstructorParameterDescription(_data.broadcastId)), ("broadcastPost", ConstructorParameterDescription(_data.broadcastPost))])
             case .updateReadChannelDiscussionOutbox(let _data):
-                return ("updateReadChannelDiscussionOutbox", [("channelId", _data.channelId as Any), ("topMsgId", _data.topMsgId as Any), ("readMaxId", _data.readMaxId as Any)])
+                return ("updateReadChannelDiscussionOutbox", [("channelId", ConstructorParameterDescription(_data.channelId)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("readMaxId", ConstructorParameterDescription(_data.readMaxId))])
             case .updateReadChannelInbox(let _data):
-                return ("updateReadChannelInbox", [("flags", _data.flags as Any), ("folderId", _data.folderId as Any), ("channelId", _data.channelId as Any), ("maxId", _data.maxId as Any), ("stillUnreadCount", _data.stillUnreadCount as Any), ("pts", _data.pts as Any)])
+                return ("updateReadChannelInbox", [("flags", ConstructorParameterDescription(_data.flags)), ("folderId", ConstructorParameterDescription(_data.folderId)), ("channelId", ConstructorParameterDescription(_data.channelId)), ("maxId", ConstructorParameterDescription(_data.maxId)), ("stillUnreadCount", ConstructorParameterDescription(_data.stillUnreadCount)), ("pts", ConstructorParameterDescription(_data.pts))])
             case .updateReadChannelOutbox(let _data):
-                return ("updateReadChannelOutbox", [("channelId", _data.channelId as Any), ("maxId", _data.maxId as Any)])
+                return ("updateReadChannelOutbox", [("channelId", ConstructorParameterDescription(_data.channelId)), ("maxId", ConstructorParameterDescription(_data.maxId))])
             case .updateReadFeaturedEmojiStickers:
                 return ("updateReadFeaturedEmojiStickers", [])
             case .updateReadFeaturedStickers:
                 return ("updateReadFeaturedStickers", [])
             case .updateReadHistoryInbox(let _data):
-                return ("updateReadHistoryInbox", [("flags", _data.flags as Any), ("folderId", _data.folderId as Any), ("peer", _data.peer as Any), ("topMsgId", _data.topMsgId as Any), ("maxId", _data.maxId as Any), ("stillUnreadCount", _data.stillUnreadCount as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateReadHistoryInbox", [("flags", ConstructorParameterDescription(_data.flags)), ("folderId", ConstructorParameterDescription(_data.folderId)), ("peer", ConstructorParameterDescription(_data.peer)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("maxId", ConstructorParameterDescription(_data.maxId)), ("stillUnreadCount", ConstructorParameterDescription(_data.stillUnreadCount)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateReadHistoryOutbox(let _data):
-                return ("updateReadHistoryOutbox", [("peer", _data.peer as Any), ("maxId", _data.maxId as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateReadHistoryOutbox", [("peer", ConstructorParameterDescription(_data.peer)), ("maxId", ConstructorParameterDescription(_data.maxId)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateReadMessagesContents(let _data):
-                return ("updateReadMessagesContents", [("flags", _data.flags as Any), ("messages", _data.messages as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any), ("date", _data.date as Any)])
+                return ("updateReadMessagesContents", [("flags", ConstructorParameterDescription(_data.flags)), ("messages", ConstructorParameterDescription(_data.messages)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount)), ("date", ConstructorParameterDescription(_data.date))])
             case .updateReadMonoForumInbox(let _data):
-                return ("updateReadMonoForumInbox", [("channelId", _data.channelId as Any), ("savedPeerId", _data.savedPeerId as Any), ("readMaxId", _data.readMaxId as Any)])
+                return ("updateReadMonoForumInbox", [("channelId", ConstructorParameterDescription(_data.channelId)), ("savedPeerId", ConstructorParameterDescription(_data.savedPeerId)), ("readMaxId", ConstructorParameterDescription(_data.readMaxId))])
             case .updateReadMonoForumOutbox(let _data):
-                return ("updateReadMonoForumOutbox", [("channelId", _data.channelId as Any), ("savedPeerId", _data.savedPeerId as Any), ("readMaxId", _data.readMaxId as Any)])
+                return ("updateReadMonoForumOutbox", [("channelId", ConstructorParameterDescription(_data.channelId)), ("savedPeerId", ConstructorParameterDescription(_data.savedPeerId)), ("readMaxId", ConstructorParameterDescription(_data.readMaxId))])
             case .updateReadStories(let _data):
-                return ("updateReadStories", [("peer", _data.peer as Any), ("maxId", _data.maxId as Any)])
+                return ("updateReadStories", [("peer", ConstructorParameterDescription(_data.peer)), ("maxId", ConstructorParameterDescription(_data.maxId))])
             case .updateRecentEmojiStatuses:
                 return ("updateRecentEmojiStatuses", [])
             case .updateRecentReactions:
@@ -3257,7 +3738,7 @@ public extension Api {
             case .updateRecentStickers:
                 return ("updateRecentStickers", [])
             case .updateSavedDialogPinned(let _data):
-                return ("updateSavedDialogPinned", [("flags", _data.flags as Any), ("peer", _data.peer as Any)])
+                return ("updateSavedDialogPinned", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer))])
             case .updateSavedGifs:
                 return ("updateSavedGifs", [])
             case .updateSavedReactionTags:
@@ -3265,53 +3746,53 @@ public extension Api {
             case .updateSavedRingtones:
                 return ("updateSavedRingtones", [])
             case .updateSentPhoneCode(let _data):
-                return ("updateSentPhoneCode", [("sentCode", _data.sentCode as Any)])
+                return ("updateSentPhoneCode", [("sentCode", ConstructorParameterDescription(_data.sentCode))])
             case .updateSentStoryReaction(let _data):
-                return ("updateSentStoryReaction", [("peer", _data.peer as Any), ("storyId", _data.storyId as Any), ("reaction", _data.reaction as Any)])
+                return ("updateSentStoryReaction", [("peer", ConstructorParameterDescription(_data.peer)), ("storyId", ConstructorParameterDescription(_data.storyId)), ("reaction", ConstructorParameterDescription(_data.reaction))])
             case .updateServiceNotification(let _data):
-                return ("updateServiceNotification", [("flags", _data.flags as Any), ("inboxDate", _data.inboxDate as Any), ("type", _data.type as Any), ("message", _data.message as Any), ("media", _data.media as Any), ("entities", _data.entities as Any)])
+                return ("updateServiceNotification", [("flags", ConstructorParameterDescription(_data.flags)), ("inboxDate", ConstructorParameterDescription(_data.inboxDate)), ("type", ConstructorParameterDescription(_data.type)), ("message", ConstructorParameterDescription(_data.message)), ("media", ConstructorParameterDescription(_data.media)), ("entities", ConstructorParameterDescription(_data.entities))])
             case .updateSmsJob(let _data):
-                return ("updateSmsJob", [("jobId", _data.jobId as Any)])
+                return ("updateSmsJob", [("jobId", ConstructorParameterDescription(_data.jobId))])
             case .updateStarGiftAuctionState(let _data):
-                return ("updateStarGiftAuctionState", [("giftId", _data.giftId as Any), ("state", _data.state as Any)])
+                return ("updateStarGiftAuctionState", [("giftId", ConstructorParameterDescription(_data.giftId)), ("state", ConstructorParameterDescription(_data.state))])
             case .updateStarGiftAuctionUserState(let _data):
-                return ("updateStarGiftAuctionUserState", [("giftId", _data.giftId as Any), ("userState", _data.userState as Any)])
+                return ("updateStarGiftAuctionUserState", [("giftId", ConstructorParameterDescription(_data.giftId)), ("userState", ConstructorParameterDescription(_data.userState))])
             case .updateStarGiftCraftFail:
                 return ("updateStarGiftCraftFail", [])
             case .updateStarsBalance(let _data):
-                return ("updateStarsBalance", [("balance", _data.balance as Any)])
+                return ("updateStarsBalance", [("balance", ConstructorParameterDescription(_data.balance))])
             case .updateStarsRevenueStatus(let _data):
-                return ("updateStarsRevenueStatus", [("peer", _data.peer as Any), ("status", _data.status as Any)])
+                return ("updateStarsRevenueStatus", [("peer", ConstructorParameterDescription(_data.peer)), ("status", ConstructorParameterDescription(_data.status))])
             case .updateStickerSets(let _data):
-                return ("updateStickerSets", [("flags", _data.flags as Any)])
+                return ("updateStickerSets", [("flags", ConstructorParameterDescription(_data.flags))])
             case .updateStickerSetsOrder(let _data):
-                return ("updateStickerSetsOrder", [("flags", _data.flags as Any), ("order", _data.order as Any)])
+                return ("updateStickerSetsOrder", [("flags", ConstructorParameterDescription(_data.flags)), ("order", ConstructorParameterDescription(_data.order))])
             case .updateStoriesStealthMode(let _data):
-                return ("updateStoriesStealthMode", [("stealthMode", _data.stealthMode as Any)])
+                return ("updateStoriesStealthMode", [("stealthMode", ConstructorParameterDescription(_data.stealthMode))])
             case .updateStory(let _data):
-                return ("updateStory", [("peer", _data.peer as Any), ("story", _data.story as Any)])
+                return ("updateStory", [("peer", ConstructorParameterDescription(_data.peer)), ("story", ConstructorParameterDescription(_data.story))])
             case .updateStoryID(let _data):
-                return ("updateStoryID", [("id", _data.id as Any), ("randomId", _data.randomId as Any)])
+                return ("updateStoryID", [("id", ConstructorParameterDescription(_data.id)), ("randomId", ConstructorParameterDescription(_data.randomId))])
             case .updateTheme(let _data):
-                return ("updateTheme", [("theme", _data.theme as Any)])
+                return ("updateTheme", [("theme", ConstructorParameterDescription(_data.theme))])
             case .updateTranscribedAudio(let _data):
-                return ("updateTranscribedAudio", [("flags", _data.flags as Any), ("peer", _data.peer as Any), ("msgId", _data.msgId as Any), ("transcriptionId", _data.transcriptionId as Any), ("text", _data.text as Any)])
+                return ("updateTranscribedAudio", [("flags", ConstructorParameterDescription(_data.flags)), ("peer", ConstructorParameterDescription(_data.peer)), ("msgId", ConstructorParameterDescription(_data.msgId)), ("transcriptionId", ConstructorParameterDescription(_data.transcriptionId)), ("text", ConstructorParameterDescription(_data.text))])
             case .updateUser(let _data):
-                return ("updateUser", [("userId", _data.userId as Any)])
+                return ("updateUser", [("userId", ConstructorParameterDescription(_data.userId))])
             case .updateUserEmojiStatus(let _data):
-                return ("updateUserEmojiStatus", [("userId", _data.userId as Any), ("emojiStatus", _data.emojiStatus as Any)])
+                return ("updateUserEmojiStatus", [("userId", ConstructorParameterDescription(_data.userId)), ("emojiStatus", ConstructorParameterDescription(_data.emojiStatus))])
             case .updateUserName(let _data):
-                return ("updateUserName", [("userId", _data.userId as Any), ("firstName", _data.firstName as Any), ("lastName", _data.lastName as Any), ("usernames", _data.usernames as Any)])
+                return ("updateUserName", [("userId", ConstructorParameterDescription(_data.userId)), ("firstName", ConstructorParameterDescription(_data.firstName)), ("lastName", ConstructorParameterDescription(_data.lastName)), ("usernames", ConstructorParameterDescription(_data.usernames))])
             case .updateUserPhone(let _data):
-                return ("updateUserPhone", [("userId", _data.userId as Any), ("phone", _data.phone as Any)])
+                return ("updateUserPhone", [("userId", ConstructorParameterDescription(_data.userId)), ("phone", ConstructorParameterDescription(_data.phone))])
             case .updateUserStatus(let _data):
-                return ("updateUserStatus", [("userId", _data.userId as Any), ("status", _data.status as Any)])
+                return ("updateUserStatus", [("userId", ConstructorParameterDescription(_data.userId)), ("status", ConstructorParameterDescription(_data.status))])
             case .updateUserTyping(let _data):
-                return ("updateUserTyping", [("flags", _data.flags as Any), ("userId", _data.userId as Any), ("topMsgId", _data.topMsgId as Any), ("action", _data.action as Any)])
+                return ("updateUserTyping", [("flags", ConstructorParameterDescription(_data.flags)), ("userId", ConstructorParameterDescription(_data.userId)), ("topMsgId", ConstructorParameterDescription(_data.topMsgId)), ("action", ConstructorParameterDescription(_data.action))])
             case .updateWebPage(let _data):
-                return ("updateWebPage", [("webpage", _data.webpage as Any), ("pts", _data.pts as Any), ("ptsCount", _data.ptsCount as Any)])
+                return ("updateWebPage", [("webpage", ConstructorParameterDescription(_data.webpage)), ("pts", ConstructorParameterDescription(_data.pts)), ("ptsCount", ConstructorParameterDescription(_data.ptsCount))])
             case .updateWebViewResultSent(let _data):
-                return ("updateWebViewResultSent", [("queryId", _data.queryId as Any)])
+                return ("updateWebViewResultSent", [("queryId", ConstructorParameterDescription(_data.queryId))])
             }
         }
 
@@ -4215,6 +4696,26 @@ public extension Api {
                 return nil
             }
         }
+        public static func parse_updateChatParticipantRank(_ reader: BufferReader) -> Update? {
+            var _1: Int64?
+            _1 = reader.readInt64()
+            var _2: Int64?
+            _2 = reader.readInt64()
+            var _3: String?
+            _3 = parseString(reader)
+            var _4: Int32?
+            _4 = reader.readInt32()
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            let _c4 = _4 != nil
+            if _c1 && _c2 && _c3 && _c4 {
+                return Api.Update.updateChatParticipantRank(Cons_updateChatParticipantRank(chatId: _1!, userId: _2!, rank: _3!, version: _4!))
+            }
+            else {
+                return nil
+            }
+        }
         public static func parse_updateChatParticipants(_ reader: BufferReader) -> Update? {
             var _1: Api.ChatParticipants?
             if let signature = reader.readInt32() {
@@ -4814,6 +5315,23 @@ public extension Api {
         public static func parse_updateLoginToken(_ reader: BufferReader) -> Update? {
             return Api.Update.updateLoginToken
         }
+        public static func parse_updateManagedBot(_ reader: BufferReader) -> Update? {
+            var _1: Int64?
+            _1 = reader.readInt64()
+            var _2: Int64?
+            _2 = reader.readInt64()
+            var _3: Int32?
+            _3 = reader.readInt32()
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            if _c1 && _c2 && _c3 {
+                return Api.Update.updateManagedBot(Cons_updateManagedBot(userId: _1!, botId: _2!, qts: _3!))
+            }
+            else {
+                return nil
+            }
+        }
         public static func parse_updateMessageExtendedMedia(_ reader: BufferReader) -> Update? {
             var _1: Api.Peer?
             if let signature = reader.readInt32() {
@@ -4852,24 +5370,41 @@ public extension Api {
         public static func parse_updateMessagePoll(_ reader: BufferReader) -> Update? {
             var _1: Int32?
             _1 = reader.readInt32()
-            var _2: Int64?
-            _2 = reader.readInt64()
-            var _3: Api.Poll?
-            if Int(_1!) & Int(1 << 0) != 0 {
+            var _2: Api.Peer?
+            if Int(_1!) & Int(1 << 1) != 0 {
                 if let signature = reader.readInt32() {
-                    _3 = Api.parse(reader, signature: signature) as? Api.Poll
+                    _2 = Api.parse(reader, signature: signature) as? Api.Peer
                 }
             }
-            var _4: Api.PollResults?
+            var _3: Int32?
+            if Int(_1!) & Int(1 << 1) != 0 {
+                _3 = reader.readInt32()
+            }
+            var _4: Int32?
+            if Int(_1!) & Int(1 << 2) != 0 {
+                _4 = reader.readInt32()
+            }
+            var _5: Int64?
+            _5 = reader.readInt64()
+            var _6: Api.Poll?
+            if Int(_1!) & Int(1 << 0) != 0 {
+                if let signature = reader.readInt32() {
+                    _6 = Api.parse(reader, signature: signature) as? Api.Poll
+                }
+            }
+            var _7: Api.PollResults?
             if let signature = reader.readInt32() {
-                _4 = Api.parse(reader, signature: signature) as? Api.PollResults
+                _7 = Api.parse(reader, signature: signature) as? Api.PollResults
             }
             let _c1 = _1 != nil
-            let _c2 = _2 != nil
-            let _c3 = (Int(_1!) & Int(1 << 0) == 0) || _3 != nil
-            let _c4 = _4 != nil
-            if _c1 && _c2 && _c3 && _c4 {
-                return Api.Update.updateMessagePoll(Cons_updateMessagePoll(flags: _1!, pollId: _2!, poll: _3, results: _4!))
+            let _c2 = (Int(_1!) & Int(1 << 1) == 0) || _2 != nil
+            let _c3 = (Int(_1!) & Int(1 << 1) == 0) || _3 != nil
+            let _c4 = (Int(_1!) & Int(1 << 2) == 0) || _4 != nil
+            let _c5 = _5 != nil
+            let _c6 = (Int(_1!) & Int(1 << 0) == 0) || _6 != nil
+            let _c7 = _7 != nil
+            if _c1 && _c2 && _c3 && _c4 && _c5 && _c6 && _c7 {
+                return Api.Update.updateMessagePoll(Cons_updateMessagePoll(flags: _1!, peer: _2, msgId: _3, topMsgId: _4, pollId: _5!, poll: _6, results: _7!))
             }
             else {
                 return nil
@@ -4886,14 +5421,19 @@ public extension Api {
             if let _ = reader.readInt32() {
                 _3 = Api.parseVector(reader, elementSignature: -1255641564, elementType: Buffer.self)
             }
-            var _4: Int32?
-            _4 = reader.readInt32()
+            var _4: [Int32]?
+            if let _ = reader.readInt32() {
+                _4 = Api.parseVector(reader, elementSignature: -1471112230, elementType: Int32.self)
+            }
+            var _5: Int32?
+            _5 = reader.readInt32()
             let _c1 = _1 != nil
             let _c2 = _2 != nil
             let _c3 = _3 != nil
             let _c4 = _4 != nil
-            if _c1 && _c2 && _c3 && _c4 {
-                return Api.Update.updateMessagePollVote(Cons_updateMessagePollVote(pollId: _1!, peer: _2!, options: _3!, qts: _4!))
+            let _c5 = _5 != nil
+            if _c1 && _c2 && _c3 && _c4 && _c5 {
+                return Api.Update.updateMessagePollVote(Cons_updateMessagePollVote(pollId: _1!, peer: _2!, options: _3!, positions: _4!, qts: _5!))
             }
             else {
                 return nil

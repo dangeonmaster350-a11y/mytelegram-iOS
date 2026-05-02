@@ -1011,6 +1011,8 @@ private final class GiftSetupScreenComponent: Component {
                     sendBotContextResultAsGif: { _, _ , _, _, _, _ in
                         return false
                     },
+                    editGif: { _, _ in
+                    },
                     updateChoosingSticker: { _ in
                     },
                     switchToTextInput: { [weak self] in
@@ -1447,7 +1449,7 @@ private final class GiftSetupScreenComponent: Component {
             switch component.subject {
             case let .premium(product):
                 let balance = component.context.starsContext?.currentState?.balance.value ?? 0
-                if let starsPrice = product.starsPrice, balance >= starsPrice {
+                if let starsPrice = product.starsPrice { //}, balance >= starsPrice {
                     let balanceString = presentationStringsFormattedNumber(Int32(balance), environment.dateTimeFormat.groupingSeparator)
                     
                     let starsFooterRawString = environment.strings.Gift_Send_PayWithStars_Info("# \(balanceString)").string

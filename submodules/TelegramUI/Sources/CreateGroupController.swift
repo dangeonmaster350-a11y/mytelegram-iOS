@@ -364,7 +364,7 @@ private enum CreateGroupEntry: ItemListNodeEntry {
             case let .usernameInfo(_, text):
                 return ItemListTextItem(presentationData: presentationData, text: .markdown(text), sectionId: self.section)
             case let .topics(_, text):
-                return ItemListSwitchItem(presentationData: presentationData, systemStyle: .glass, icon: UIImage(bundleImageName: "Settings/Menu/Topics")?.precomposed(), title: text, value: true, enabled: false, sectionId: self.section, style: .blocks, updated: { _ in })
+                return ItemListSwitchItem(presentationData: presentationData, systemStyle: .glass, icon: PresentationResourcesSettings.topics, title: text, value: true, enabled: false, sectionId: self.section, style: .blocks, updated: { _ in })
             case let .topicsInfo(_, text):
                 return ItemListTextItem(presentationData: presentationData, text: .plain(text), sectionId: self.section)
             case let .autoDelete(text, value):
@@ -1185,7 +1185,7 @@ public func createGroupControllerImpl(context: AccountContext, peerIds: [PeerId]
                 if currentValue == 0 {
                     return generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor)
                 } else {
-                    return nil
+                    return UIImage()
                 }
             }, action: { _, f in
                 applyValue(0)
@@ -1208,7 +1208,7 @@ public func createGroupControllerImpl(context: AccountContext, peerIds: [PeerId]
                     if currentValue == value {
                         return generateTintedImage(image: UIImage(bundleImageName: "Chat/Context Menu/Check"), color: theme.contextMenu.primaryColor)
                     } else {
-                        return nil
+                        return UIImage()
                     }
                 }, action: { _, f in
                     applyValue(value)

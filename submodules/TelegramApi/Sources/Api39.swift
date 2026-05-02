@@ -1,6 +1,356 @@
 public extension Api.stories {
+    enum Albums: TypeConstructorDescription {
+        public class Cons_albums: TypeConstructorDescription {
+            public var hash: Int64
+            public var albums: [Api.StoryAlbum]
+            public init(hash: Int64, albums: [Api.StoryAlbum]) {
+                self.hash = hash
+                self.albums = albums
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("albums", [("hash", ConstructorParameterDescription(self.hash)), ("albums", ConstructorParameterDescription(self.albums))])
+            }
+        }
+        case albums(Cons_albums)
+        case albumsNotModified
+
+        public func serialize(_ buffer: Buffer, _ boxed: Swift.Bool) {
+            switch self {
+            case .albums(let _data):
+                if boxed {
+                    buffer.appendInt32(-1013417414)
+                }
+                serializeInt64(_data.hash, buffer: buffer, boxed: false)
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.albums.count))
+                for item in _data.albums {
+                    item.serialize(buffer, true)
+                }
+                break
+            case .albumsNotModified:
+                if boxed {
+                    buffer.appendInt32(1448008427)
+                }
+                break
+            }
+        }
+
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+            switch self {
+            case .albums(let _data):
+                return ("albums", [("hash", ConstructorParameterDescription(_data.hash)), ("albums", ConstructorParameterDescription(_data.albums))])
+            case .albumsNotModified:
+                return ("albumsNotModified", [])
+            }
+        }
+
+        public static func parse_albums(_ reader: BufferReader) -> Albums? {
+            var _1: Int64?
+            _1 = reader.readInt64()
+            var _2: [Api.StoryAlbum]?
+            if let _ = reader.readInt32() {
+                _2 = Api.parseVector(reader, elementSignature: 0, elementType: Api.StoryAlbum.self)
+            }
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            if _c1 && _c2 {
+                return Api.stories.Albums.albums(Cons_albums(hash: _1!, albums: _2!))
+            }
+            else {
+                return nil
+            }
+        }
+        public static func parse_albumsNotModified(_ reader: BufferReader) -> Albums? {
+            return Api.stories.Albums.albumsNotModified
+        }
+    }
+}
+public extension Api.stories {
+    enum AllStories: TypeConstructorDescription {
+        public class Cons_allStories: TypeConstructorDescription {
+            public var flags: Int32
+            public var count: Int32
+            public var state: String
+            public var peerStories: [Api.PeerStories]
+            public var chats: [Api.Chat]
+            public var users: [Api.User]
+            public var stealthMode: Api.StoriesStealthMode
+            public init(flags: Int32, count: Int32, state: String, peerStories: [Api.PeerStories], chats: [Api.Chat], users: [Api.User], stealthMode: Api.StoriesStealthMode) {
+                self.flags = flags
+                self.count = count
+                self.state = state
+                self.peerStories = peerStories
+                self.chats = chats
+                self.users = users
+                self.stealthMode = stealthMode
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("allStories", [("flags", ConstructorParameterDescription(self.flags)), ("count", ConstructorParameterDescription(self.count)), ("state", ConstructorParameterDescription(self.state)), ("peerStories", ConstructorParameterDescription(self.peerStories)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users)), ("stealthMode", ConstructorParameterDescription(self.stealthMode))])
+            }
+        }
+        public class Cons_allStoriesNotModified: TypeConstructorDescription {
+            public var flags: Int32
+            public var state: String
+            public var stealthMode: Api.StoriesStealthMode
+            public init(flags: Int32, state: String, stealthMode: Api.StoriesStealthMode) {
+                self.flags = flags
+                self.state = state
+                self.stealthMode = stealthMode
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("allStoriesNotModified", [("flags", ConstructorParameterDescription(self.flags)), ("state", ConstructorParameterDescription(self.state)), ("stealthMode", ConstructorParameterDescription(self.stealthMode))])
+            }
+        }
+        case allStories(Cons_allStories)
+        case allStoriesNotModified(Cons_allStoriesNotModified)
+
+        public func serialize(_ buffer: Buffer, _ boxed: Swift.Bool) {
+            switch self {
+            case .allStories(let _data):
+                if boxed {
+                    buffer.appendInt32(1862033025)
+                }
+                serializeInt32(_data.flags, buffer: buffer, boxed: false)
+                serializeInt32(_data.count, buffer: buffer, boxed: false)
+                serializeString(_data.state, buffer: buffer, boxed: false)
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.peerStories.count))
+                for item in _data.peerStories {
+                    item.serialize(buffer, true)
+                }
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.chats.count))
+                for item in _data.chats {
+                    item.serialize(buffer, true)
+                }
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.users.count))
+                for item in _data.users {
+                    item.serialize(buffer, true)
+                }
+                _data.stealthMode.serialize(buffer, true)
+                break
+            case .allStoriesNotModified(let _data):
+                if boxed {
+                    buffer.appendInt32(291044926)
+                }
+                serializeInt32(_data.flags, buffer: buffer, boxed: false)
+                serializeString(_data.state, buffer: buffer, boxed: false)
+                _data.stealthMode.serialize(buffer, true)
+                break
+            }
+        }
+
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+            switch self {
+            case .allStories(let _data):
+                return ("allStories", [("flags", ConstructorParameterDescription(_data.flags)), ("count", ConstructorParameterDescription(_data.count)), ("state", ConstructorParameterDescription(_data.state)), ("peerStories", ConstructorParameterDescription(_data.peerStories)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users)), ("stealthMode", ConstructorParameterDescription(_data.stealthMode))])
+            case .allStoriesNotModified(let _data):
+                return ("allStoriesNotModified", [("flags", ConstructorParameterDescription(_data.flags)), ("state", ConstructorParameterDescription(_data.state)), ("stealthMode", ConstructorParameterDescription(_data.stealthMode))])
+            }
+        }
+
+        public static func parse_allStories(_ reader: BufferReader) -> AllStories? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: Int32?
+            _2 = reader.readInt32()
+            var _3: String?
+            _3 = parseString(reader)
+            var _4: [Api.PeerStories]?
+            if let _ = reader.readInt32() {
+                _4 = Api.parseVector(reader, elementSignature: 0, elementType: Api.PeerStories.self)
+            }
+            var _5: [Api.Chat]?
+            if let _ = reader.readInt32() {
+                _5 = Api.parseVector(reader, elementSignature: 0, elementType: Api.Chat.self)
+            }
+            var _6: [Api.User]?
+            if let _ = reader.readInt32() {
+                _6 = Api.parseVector(reader, elementSignature: 0, elementType: Api.User.self)
+            }
+            var _7: Api.StoriesStealthMode?
+            if let signature = reader.readInt32() {
+                _7 = Api.parse(reader, signature: signature) as? Api.StoriesStealthMode
+            }
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            let _c4 = _4 != nil
+            let _c5 = _5 != nil
+            let _c6 = _6 != nil
+            let _c7 = _7 != nil
+            if _c1 && _c2 && _c3 && _c4 && _c5 && _c6 && _c7 {
+                return Api.stories.AllStories.allStories(Cons_allStories(flags: _1!, count: _2!, state: _3!, peerStories: _4!, chats: _5!, users: _6!, stealthMode: _7!))
+            }
+            else {
+                return nil
+            }
+        }
+        public static func parse_allStoriesNotModified(_ reader: BufferReader) -> AllStories? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: String?
+            _2 = parseString(reader)
+            var _3: Api.StoriesStealthMode?
+            if let signature = reader.readInt32() {
+                _3 = Api.parse(reader, signature: signature) as? Api.StoriesStealthMode
+            }
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            if _c1 && _c2 && _c3 {
+                return Api.stories.AllStories.allStoriesNotModified(Cons_allStoriesNotModified(flags: _1!, state: _2!, stealthMode: _3!))
+            }
+            else {
+                return nil
+            }
+        }
+    }
+}
+public extension Api.stories {
+    enum CanSendStoryCount: TypeConstructorDescription {
+        public class Cons_canSendStoryCount: TypeConstructorDescription {
+            public var countRemains: Int32
+            public init(countRemains: Int32) {
+                self.countRemains = countRemains
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("canSendStoryCount", [("countRemains", ConstructorParameterDescription(self.countRemains))])
+            }
+        }
+        case canSendStoryCount(Cons_canSendStoryCount)
+
+        public func serialize(_ buffer: Buffer, _ boxed: Swift.Bool) {
+            switch self {
+            case .canSendStoryCount(let _data):
+                if boxed {
+                    buffer.appendInt32(-1014513586)
+                }
+                serializeInt32(_data.countRemains, buffer: buffer, boxed: false)
+                break
+            }
+        }
+
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+            switch self {
+            case .canSendStoryCount(let _data):
+                return ("canSendStoryCount", [("countRemains", ConstructorParameterDescription(_data.countRemains))])
+            }
+        }
+
+        public static func parse_canSendStoryCount(_ reader: BufferReader) -> CanSendStoryCount? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            let _c1 = _1 != nil
+            if _c1 {
+                return Api.stories.CanSendStoryCount.canSendStoryCount(Cons_canSendStoryCount(countRemains: _1!))
+            }
+            else {
+                return nil
+            }
+        }
+    }
+}
+public extension Api.stories {
+    enum FoundStories: TypeConstructorDescription {
+        public class Cons_foundStories: TypeConstructorDescription {
+            public var flags: Int32
+            public var count: Int32
+            public var stories: [Api.FoundStory]
+            public var nextOffset: String?
+            public var chats: [Api.Chat]
+            public var users: [Api.User]
+            public init(flags: Int32, count: Int32, stories: [Api.FoundStory], nextOffset: String?, chats: [Api.Chat], users: [Api.User]) {
+                self.flags = flags
+                self.count = count
+                self.stories = stories
+                self.nextOffset = nextOffset
+                self.chats = chats
+                self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("foundStories", [("flags", ConstructorParameterDescription(self.flags)), ("count", ConstructorParameterDescription(self.count)), ("stories", ConstructorParameterDescription(self.stories)), ("nextOffset", ConstructorParameterDescription(self.nextOffset)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users))])
+            }
+        }
+        case foundStories(Cons_foundStories)
+
+        public func serialize(_ buffer: Buffer, _ boxed: Swift.Bool) {
+            switch self {
+            case .foundStories(let _data):
+                if boxed {
+                    buffer.appendInt32(-488736969)
+                }
+                serializeInt32(_data.flags, buffer: buffer, boxed: false)
+                serializeInt32(_data.count, buffer: buffer, boxed: false)
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.stories.count))
+                for item in _data.stories {
+                    item.serialize(buffer, true)
+                }
+                if Int(_data.flags) & Int(1 << 0) != 0 {
+                    serializeString(_data.nextOffset!, buffer: buffer, boxed: false)
+                }
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.chats.count))
+                for item in _data.chats {
+                    item.serialize(buffer, true)
+                }
+                buffer.appendInt32(481674261)
+                buffer.appendInt32(Int32(_data.users.count))
+                for item in _data.users {
+                    item.serialize(buffer, true)
+                }
+                break
+            }
+        }
+
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+            switch self {
+            case .foundStories(let _data):
+                return ("foundStories", [("flags", ConstructorParameterDescription(_data.flags)), ("count", ConstructorParameterDescription(_data.count)), ("stories", ConstructorParameterDescription(_data.stories)), ("nextOffset", ConstructorParameterDescription(_data.nextOffset)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users))])
+            }
+        }
+
+        public static func parse_foundStories(_ reader: BufferReader) -> FoundStories? {
+            var _1: Int32?
+            _1 = reader.readInt32()
+            var _2: Int32?
+            _2 = reader.readInt32()
+            var _3: [Api.FoundStory]?
+            if let _ = reader.readInt32() {
+                _3 = Api.parseVector(reader, elementSignature: 0, elementType: Api.FoundStory.self)
+            }
+            var _4: String?
+            if Int(_1!) & Int(1 << 0) != 0 {
+                _4 = parseString(reader)
+            }
+            var _5: [Api.Chat]?
+            if let _ = reader.readInt32() {
+                _5 = Api.parseVector(reader, elementSignature: 0, elementType: Api.Chat.self)
+            }
+            var _6: [Api.User]?
+            if let _ = reader.readInt32() {
+                _6 = Api.parseVector(reader, elementSignature: 0, elementType: Api.User.self)
+            }
+            let _c1 = _1 != nil
+            let _c2 = _2 != nil
+            let _c3 = _3 != nil
+            let _c4 = (Int(_1!) & Int(1 << 0) == 0) || _4 != nil
+            let _c5 = _5 != nil
+            let _c6 = _6 != nil
+            if _c1 && _c2 && _c3 && _c4 && _c5 && _c6 {
+                return Api.stories.FoundStories.foundStories(Cons_foundStories(flags: _1!, count: _2!, stories: _3!, nextOffset: _4, chats: _5!, users: _6!))
+            }
+            else {
+                return nil
+            }
+        }
+    }
+}
+public extension Api.stories {
     enum PeerStories: TypeConstructorDescription {
-        public class Cons_peerStories {
+        public class Cons_peerStories: TypeConstructorDescription {
             public var stories: Api.PeerStories
             public var chats: [Api.Chat]
             public var users: [Api.User]
@@ -8,6 +358,9 @@ public extension Api.stories {
                 self.stories = stories
                 self.chats = chats
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("peerStories", [("stories", ConstructorParameterDescription(self.stories)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case peerStories(Cons_peerStories)
@@ -33,10 +386,10 @@ public extension Api.stories {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .peerStories(let _data):
-                return ("peerStories", [("stories", _data.stories as Any), ("chats", _data.chats as Any), ("users", _data.users as Any)])
+                return ("peerStories", [("stories", ConstructorParameterDescription(_data.stories)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -67,7 +420,7 @@ public extension Api.stories {
 }
 public extension Api.stories {
     enum Stories: TypeConstructorDescription {
-        public class Cons_stories {
+        public class Cons_stories: TypeConstructorDescription {
             public var flags: Int32
             public var count: Int32
             public var stories: [Api.StoryItem]
@@ -81,6 +434,9 @@ public extension Api.stories {
                 self.pinnedToTop = pinnedToTop
                 self.chats = chats
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("stories", [("flags", ConstructorParameterDescription(self.flags)), ("count", ConstructorParameterDescription(self.count)), ("stories", ConstructorParameterDescription(self.stories)), ("pinnedToTop", ConstructorParameterDescription(self.pinnedToTop)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case stories(Cons_stories)
@@ -119,10 +475,10 @@ public extension Api.stories {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .stories(let _data):
-                return ("stories", [("flags", _data.flags as Any), ("count", _data.count as Any), ("stories", _data.stories as Any), ("pinnedToTop", _data.pinnedToTop as Any), ("chats", _data.chats as Any), ("users", _data.users as Any)])
+                return ("stories", [("flags", ConstructorParameterDescription(_data.flags)), ("count", ConstructorParameterDescription(_data.count)), ("stories", ConstructorParameterDescription(_data.stories)), ("pinnedToTop", ConstructorParameterDescription(_data.pinnedToTop)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -166,7 +522,7 @@ public extension Api.stories {
 }
 public extension Api.stories {
     enum StoryReactionsList: TypeConstructorDescription {
-        public class Cons_storyReactionsList {
+        public class Cons_storyReactionsList: TypeConstructorDescription {
             public var flags: Int32
             public var count: Int32
             public var reactions: [Api.StoryReaction]
@@ -180,6 +536,9 @@ public extension Api.stories {
                 self.chats = chats
                 self.users = users
                 self.nextOffset = nextOffset
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("storyReactionsList", [("flags", ConstructorParameterDescription(self.flags)), ("count", ConstructorParameterDescription(self.count)), ("reactions", ConstructorParameterDescription(self.reactions)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users)), ("nextOffset", ConstructorParameterDescription(self.nextOffset))])
             }
         }
         case storyReactionsList(Cons_storyReactionsList)
@@ -214,10 +573,10 @@ public extension Api.stories {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .storyReactionsList(let _data):
-                return ("storyReactionsList", [("flags", _data.flags as Any), ("count", _data.count as Any), ("reactions", _data.reactions as Any), ("chats", _data.chats as Any), ("users", _data.users as Any), ("nextOffset", _data.nextOffset as Any)])
+                return ("storyReactionsList", [("flags", ConstructorParameterDescription(_data.flags)), ("count", ConstructorParameterDescription(_data.count)), ("reactions", ConstructorParameterDescription(_data.reactions)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users)), ("nextOffset", ConstructorParameterDescription(_data.nextOffset))])
             }
         }
 
@@ -259,12 +618,15 @@ public extension Api.stories {
 }
 public extension Api.stories {
     enum StoryViews: TypeConstructorDescription {
-        public class Cons_storyViews {
+        public class Cons_storyViews: TypeConstructorDescription {
             public var views: [Api.StoryViews]
             public var users: [Api.User]
             public init(views: [Api.StoryViews], users: [Api.User]) {
                 self.views = views
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("storyViews", [("views", ConstructorParameterDescription(self.views)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case storyViews(Cons_storyViews)
@@ -289,10 +651,10 @@ public extension Api.stories {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .storyViews(let _data):
-                return ("storyViews", [("views", _data.views as Any), ("users", _data.users as Any)])
+                return ("storyViews", [("views", ConstructorParameterDescription(_data.views)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -318,7 +680,7 @@ public extension Api.stories {
 }
 public extension Api.stories {
     enum StoryViewsList: TypeConstructorDescription {
-        public class Cons_storyViewsList {
+        public class Cons_storyViewsList: TypeConstructorDescription {
             public var flags: Int32
             public var count: Int32
             public var viewsCount: Int32
@@ -338,6 +700,9 @@ public extension Api.stories {
                 self.chats = chats
                 self.users = users
                 self.nextOffset = nextOffset
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("storyViewsList", [("flags", ConstructorParameterDescription(self.flags)), ("count", ConstructorParameterDescription(self.count)), ("viewsCount", ConstructorParameterDescription(self.viewsCount)), ("forwardsCount", ConstructorParameterDescription(self.forwardsCount)), ("reactionsCount", ConstructorParameterDescription(self.reactionsCount)), ("views", ConstructorParameterDescription(self.views)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users)), ("nextOffset", ConstructorParameterDescription(self.nextOffset))])
             }
         }
         case storyViewsList(Cons_storyViewsList)
@@ -375,10 +740,10 @@ public extension Api.stories {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .storyViewsList(let _data):
-                return ("storyViewsList", [("flags", _data.flags as Any), ("count", _data.count as Any), ("viewsCount", _data.viewsCount as Any), ("forwardsCount", _data.forwardsCount as Any), ("reactionsCount", _data.reactionsCount as Any), ("views", _data.views as Any), ("chats", _data.chats as Any), ("users", _data.users as Any), ("nextOffset", _data.nextOffset as Any)])
+                return ("storyViewsList", [("flags", ConstructorParameterDescription(_data.flags)), ("count", ConstructorParameterDescription(_data.count)), ("viewsCount", ConstructorParameterDescription(_data.viewsCount)), ("forwardsCount", ConstructorParameterDescription(_data.forwardsCount)), ("reactionsCount", ConstructorParameterDescription(_data.reactionsCount)), ("views", ConstructorParameterDescription(_data.views)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users)), ("nextOffset", ConstructorParameterDescription(_data.nextOffset))])
             }
         }
 
@@ -429,7 +794,7 @@ public extension Api.stories {
 }
 public extension Api.updates {
     indirect enum ChannelDifference: TypeConstructorDescription {
-        public class Cons_channelDifference {
+        public class Cons_channelDifference: TypeConstructorDescription {
             public var flags: Int32
             public var pts: Int32
             public var timeout: Int32?
@@ -446,8 +811,11 @@ public extension Api.updates {
                 self.chats = chats
                 self.users = users
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelDifference", [("flags", ConstructorParameterDescription(self.flags)), ("pts", ConstructorParameterDescription(self.pts)), ("timeout", ConstructorParameterDescription(self.timeout)), ("newMessages", ConstructorParameterDescription(self.newMessages)), ("otherUpdates", ConstructorParameterDescription(self.otherUpdates)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users))])
+            }
         }
-        public class Cons_channelDifferenceEmpty {
+        public class Cons_channelDifferenceEmpty: TypeConstructorDescription {
             public var flags: Int32
             public var pts: Int32
             public var timeout: Int32?
@@ -456,8 +824,11 @@ public extension Api.updates {
                 self.pts = pts
                 self.timeout = timeout
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelDifferenceEmpty", [("flags", ConstructorParameterDescription(self.flags)), ("pts", ConstructorParameterDescription(self.pts)), ("timeout", ConstructorParameterDescription(self.timeout))])
+            }
         }
-        public class Cons_channelDifferenceTooLong {
+        public class Cons_channelDifferenceTooLong: TypeConstructorDescription {
             public var flags: Int32
             public var timeout: Int32?
             public var dialog: Api.Dialog
@@ -471,6 +842,9 @@ public extension Api.updates {
                 self.messages = messages
                 self.chats = chats
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("channelDifferenceTooLong", [("flags", ConstructorParameterDescription(self.flags)), ("timeout", ConstructorParameterDescription(self.timeout)), ("dialog", ConstructorParameterDescription(self.dialog)), ("messages", ConstructorParameterDescription(self.messages)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case channelDifference(Cons_channelDifference)
@@ -547,14 +921,14 @@ public extension Api.updates {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .channelDifference(let _data):
-                return ("channelDifference", [("flags", _data.flags as Any), ("pts", _data.pts as Any), ("timeout", _data.timeout as Any), ("newMessages", _data.newMessages as Any), ("otherUpdates", _data.otherUpdates as Any), ("chats", _data.chats as Any), ("users", _data.users as Any)])
+                return ("channelDifference", [("flags", ConstructorParameterDescription(_data.flags)), ("pts", ConstructorParameterDescription(_data.pts)), ("timeout", ConstructorParameterDescription(_data.timeout)), ("newMessages", ConstructorParameterDescription(_data.newMessages)), ("otherUpdates", ConstructorParameterDescription(_data.otherUpdates)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users))])
             case .channelDifferenceEmpty(let _data):
-                return ("channelDifferenceEmpty", [("flags", _data.flags as Any), ("pts", _data.pts as Any), ("timeout", _data.timeout as Any)])
+                return ("channelDifferenceEmpty", [("flags", ConstructorParameterDescription(_data.flags)), ("pts", ConstructorParameterDescription(_data.pts)), ("timeout", ConstructorParameterDescription(_data.timeout))])
             case .channelDifferenceTooLong(let _data):
-                return ("channelDifferenceTooLong", [("flags", _data.flags as Any), ("timeout", _data.timeout as Any), ("dialog", _data.dialog as Any), ("messages", _data.messages as Any), ("chats", _data.chats as Any), ("users", _data.users as Any)])
+                return ("channelDifferenceTooLong", [("flags", ConstructorParameterDescription(_data.flags)), ("timeout", ConstructorParameterDescription(_data.timeout)), ("dialog", ConstructorParameterDescription(_data.dialog)), ("messages", ConstructorParameterDescription(_data.messages)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -656,7 +1030,7 @@ public extension Api.updates {
 }
 public extension Api.updates {
     enum Difference: TypeConstructorDescription {
-        public class Cons_difference {
+        public class Cons_difference: TypeConstructorDescription {
             public var newMessages: [Api.Message]
             public var newEncryptedMessages: [Api.EncryptedMessage]
             public var otherUpdates: [Api.Update]
@@ -671,16 +1045,22 @@ public extension Api.updates {
                 self.users = users
                 self.state = state
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("difference", [("newMessages", ConstructorParameterDescription(self.newMessages)), ("newEncryptedMessages", ConstructorParameterDescription(self.newEncryptedMessages)), ("otherUpdates", ConstructorParameterDescription(self.otherUpdates)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users)), ("state", ConstructorParameterDescription(self.state))])
+            }
         }
-        public class Cons_differenceEmpty {
+        public class Cons_differenceEmpty: TypeConstructorDescription {
             public var date: Int32
             public var seq: Int32
             public init(date: Int32, seq: Int32) {
                 self.date = date
                 self.seq = seq
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("differenceEmpty", [("date", ConstructorParameterDescription(self.date)), ("seq", ConstructorParameterDescription(self.seq))])
+            }
         }
-        public class Cons_differenceSlice {
+        public class Cons_differenceSlice: TypeConstructorDescription {
             public var newMessages: [Api.Message]
             public var newEncryptedMessages: [Api.EncryptedMessage]
             public var otherUpdates: [Api.Update]
@@ -695,11 +1075,17 @@ public extension Api.updates {
                 self.users = users
                 self.intermediateState = intermediateState
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("differenceSlice", [("newMessages", ConstructorParameterDescription(self.newMessages)), ("newEncryptedMessages", ConstructorParameterDescription(self.newEncryptedMessages)), ("otherUpdates", ConstructorParameterDescription(self.otherUpdates)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users)), ("intermediateState", ConstructorParameterDescription(self.intermediateState))])
+            }
         }
-        public class Cons_differenceTooLong {
+        public class Cons_differenceTooLong: TypeConstructorDescription {
             public var pts: Int32
             public init(pts: Int32) {
                 self.pts = pts
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("differenceTooLong", [("pts", ConstructorParameterDescription(self.pts))])
             }
         }
         case difference(Cons_difference)
@@ -787,16 +1173,16 @@ public extension Api.updates {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .difference(let _data):
-                return ("difference", [("newMessages", _data.newMessages as Any), ("newEncryptedMessages", _data.newEncryptedMessages as Any), ("otherUpdates", _data.otherUpdates as Any), ("chats", _data.chats as Any), ("users", _data.users as Any), ("state", _data.state as Any)])
+                return ("difference", [("newMessages", ConstructorParameterDescription(_data.newMessages)), ("newEncryptedMessages", ConstructorParameterDescription(_data.newEncryptedMessages)), ("otherUpdates", ConstructorParameterDescription(_data.otherUpdates)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users)), ("state", ConstructorParameterDescription(_data.state))])
             case .differenceEmpty(let _data):
-                return ("differenceEmpty", [("date", _data.date as Any), ("seq", _data.seq as Any)])
+                return ("differenceEmpty", [("date", ConstructorParameterDescription(_data.date)), ("seq", ConstructorParameterDescription(_data.seq))])
             case .differenceSlice(let _data):
-                return ("differenceSlice", [("newMessages", _data.newMessages as Any), ("newEncryptedMessages", _data.newEncryptedMessages as Any), ("otherUpdates", _data.otherUpdates as Any), ("chats", _data.chats as Any), ("users", _data.users as Any), ("intermediateState", _data.intermediateState as Any)])
+                return ("differenceSlice", [("newMessages", ConstructorParameterDescription(_data.newMessages)), ("newEncryptedMessages", ConstructorParameterDescription(_data.newEncryptedMessages)), ("otherUpdates", ConstructorParameterDescription(_data.otherUpdates)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users)), ("intermediateState", ConstructorParameterDescription(_data.intermediateState))])
             case .differenceTooLong(let _data):
-                return ("differenceTooLong", [("pts", _data.pts as Any)])
+                return ("differenceTooLong", [("pts", ConstructorParameterDescription(_data.pts))])
             }
         }
 
@@ -905,7 +1291,7 @@ public extension Api.updates {
 }
 public extension Api.updates {
     enum State: TypeConstructorDescription {
-        public class Cons_state {
+        public class Cons_state: TypeConstructorDescription {
             public var pts: Int32
             public var qts: Int32
             public var date: Int32
@@ -917,6 +1303,9 @@ public extension Api.updates {
                 self.date = date
                 self.seq = seq
                 self.unreadCount = unreadCount
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("state", [("pts", ConstructorParameterDescription(self.pts)), ("qts", ConstructorParameterDescription(self.qts)), ("date", ConstructorParameterDescription(self.date)), ("seq", ConstructorParameterDescription(self.seq)), ("unreadCount", ConstructorParameterDescription(self.unreadCount))])
             }
         }
         case state(Cons_state)
@@ -936,10 +1325,10 @@ public extension Api.updates {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .state(let _data):
-                return ("state", [("pts", _data.pts as Any), ("qts", _data.qts as Any), ("date", _data.date as Any), ("seq", _data.seq as Any), ("unreadCount", _data.unreadCount as Any)])
+                return ("state", [("pts", ConstructorParameterDescription(_data.pts)), ("qts", ConstructorParameterDescription(_data.qts)), ("date", ConstructorParameterDescription(_data.date)), ("seq", ConstructorParameterDescription(_data.seq)), ("unreadCount", ConstructorParameterDescription(_data.unreadCount))])
             }
         }
 
@@ -970,16 +1359,22 @@ public extension Api.updates {
 }
 public extension Api.upload {
     enum CdnFile: TypeConstructorDescription {
-        public class Cons_cdnFile {
+        public class Cons_cdnFile: TypeConstructorDescription {
             public var bytes: Buffer
             public init(bytes: Buffer) {
                 self.bytes = bytes
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("cdnFile", [("bytes", ConstructorParameterDescription(self.bytes))])
+            }
         }
-        public class Cons_cdnFileReuploadNeeded {
+        public class Cons_cdnFileReuploadNeeded: TypeConstructorDescription {
             public var requestToken: Buffer
             public init(requestToken: Buffer) {
                 self.requestToken = requestToken
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("cdnFileReuploadNeeded", [("requestToken", ConstructorParameterDescription(self.requestToken))])
             }
         }
         case cdnFile(Cons_cdnFile)
@@ -1002,12 +1397,12 @@ public extension Api.upload {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .cdnFile(let _data):
-                return ("cdnFile", [("bytes", _data.bytes as Any)])
+                return ("cdnFile", [("bytes", ConstructorParameterDescription(_data.bytes))])
             case .cdnFileReuploadNeeded(let _data):
-                return ("cdnFileReuploadNeeded", [("requestToken", _data.requestToken as Any)])
+                return ("cdnFileReuploadNeeded", [("requestToken", ConstructorParameterDescription(_data.requestToken))])
             }
         }
 
@@ -1037,7 +1432,7 @@ public extension Api.upload {
 }
 public extension Api.upload {
     enum File: TypeConstructorDescription {
-        public class Cons_file {
+        public class Cons_file: TypeConstructorDescription {
             public var type: Api.storage.FileType
             public var mtime: Int32
             public var bytes: Buffer
@@ -1046,8 +1441,11 @@ public extension Api.upload {
                 self.mtime = mtime
                 self.bytes = bytes
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("file", [("type", ConstructorParameterDescription(self.type)), ("mtime", ConstructorParameterDescription(self.mtime)), ("bytes", ConstructorParameterDescription(self.bytes))])
+            }
         }
-        public class Cons_fileCdnRedirect {
+        public class Cons_fileCdnRedirect: TypeConstructorDescription {
             public var dcId: Int32
             public var fileToken: Buffer
             public var encryptionKey: Buffer
@@ -1059,6 +1457,9 @@ public extension Api.upload {
                 self.encryptionKey = encryptionKey
                 self.encryptionIv = encryptionIv
                 self.fileHashes = fileHashes
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("fileCdnRedirect", [("dcId", ConstructorParameterDescription(self.dcId)), ("fileToken", ConstructorParameterDescription(self.fileToken)), ("encryptionKey", ConstructorParameterDescription(self.encryptionKey)), ("encryptionIv", ConstructorParameterDescription(self.encryptionIv)), ("fileHashes", ConstructorParameterDescription(self.fileHashes))])
             }
         }
         case file(Cons_file)
@@ -1091,12 +1492,12 @@ public extension Api.upload {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .file(let _data):
-                return ("file", [("type", _data.type as Any), ("mtime", _data.mtime as Any), ("bytes", _data.bytes as Any)])
+                return ("file", [("type", ConstructorParameterDescription(_data.type)), ("mtime", ConstructorParameterDescription(_data.mtime)), ("bytes", ConstructorParameterDescription(_data.bytes))])
             case .fileCdnRedirect(let _data):
-                return ("fileCdnRedirect", [("dcId", _data.dcId as Any), ("fileToken", _data.fileToken as Any), ("encryptionKey", _data.encryptionKey as Any), ("encryptionIv", _data.encryptionIv as Any), ("fileHashes", _data.fileHashes as Any)])
+                return ("fileCdnRedirect", [("dcId", ConstructorParameterDescription(_data.dcId)), ("fileToken", ConstructorParameterDescription(_data.fileToken)), ("encryptionKey", ConstructorParameterDescription(_data.encryptionKey)), ("encryptionIv", ConstructorParameterDescription(_data.encryptionIv)), ("fileHashes", ConstructorParameterDescription(_data.fileHashes))])
             }
         }
 
@@ -1148,7 +1549,7 @@ public extension Api.upload {
 }
 public extension Api.upload {
     enum WebFile: TypeConstructorDescription {
-        public class Cons_webFile {
+        public class Cons_webFile: TypeConstructorDescription {
             public var size: Int32
             public var mimeType: String
             public var fileType: Api.storage.FileType
@@ -1160,6 +1561,9 @@ public extension Api.upload {
                 self.fileType = fileType
                 self.mtime = mtime
                 self.bytes = bytes
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("webFile", [("size", ConstructorParameterDescription(self.size)), ("mimeType", ConstructorParameterDescription(self.mimeType)), ("fileType", ConstructorParameterDescription(self.fileType)), ("mtime", ConstructorParameterDescription(self.mtime)), ("bytes", ConstructorParameterDescription(self.bytes))])
             }
         }
         case webFile(Cons_webFile)
@@ -1179,10 +1583,10 @@ public extension Api.upload {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .webFile(let _data):
-                return ("webFile", [("size", _data.size as Any), ("mimeType", _data.mimeType as Any), ("fileType", _data.fileType as Any), ("mtime", _data.mtime as Any), ("bytes", _data.bytes as Any)])
+                return ("webFile", [("size", ConstructorParameterDescription(_data.size)), ("mimeType", ConstructorParameterDescription(_data.mimeType)), ("fileType", ConstructorParameterDescription(_data.fileType)), ("mtime", ConstructorParameterDescription(_data.mtime)), ("bytes", ConstructorParameterDescription(_data.bytes))])
             }
         }
 
@@ -1215,18 +1619,24 @@ public extension Api.upload {
 }
 public extension Api.users {
     enum SavedMusic: TypeConstructorDescription {
-        public class Cons_savedMusic {
+        public class Cons_savedMusic: TypeConstructorDescription {
             public var count: Int32
             public var documents: [Api.Document]
             public init(count: Int32, documents: [Api.Document]) {
                 self.count = count
                 self.documents = documents
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("savedMusic", [("count", ConstructorParameterDescription(self.count)), ("documents", ConstructorParameterDescription(self.documents))])
+            }
         }
-        public class Cons_savedMusicNotModified {
+        public class Cons_savedMusicNotModified: TypeConstructorDescription {
             public var count: Int32
             public init(count: Int32) {
                 self.count = count
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("savedMusicNotModified", [("count", ConstructorParameterDescription(self.count))])
             }
         }
         case savedMusic(Cons_savedMusic)
@@ -1254,12 +1664,12 @@ public extension Api.users {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .savedMusic(let _data):
-                return ("savedMusic", [("count", _data.count as Any), ("documents", _data.documents as Any)])
+                return ("savedMusic", [("count", ConstructorParameterDescription(_data.count)), ("documents", ConstructorParameterDescription(_data.documents))])
             case .savedMusicNotModified(let _data):
-                return ("savedMusicNotModified", [("count", _data.count as Any)])
+                return ("savedMusicNotModified", [("count", ConstructorParameterDescription(_data.count))])
             }
         }
 
@@ -1294,7 +1704,7 @@ public extension Api.users {
 }
 public extension Api.users {
     enum UserFull: TypeConstructorDescription {
-        public class Cons_userFull {
+        public class Cons_userFull: TypeConstructorDescription {
             public var fullUser: Api.UserFull
             public var chats: [Api.Chat]
             public var users: [Api.User]
@@ -1302,6 +1712,9 @@ public extension Api.users {
                 self.fullUser = fullUser
                 self.chats = chats
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("userFull", [("fullUser", ConstructorParameterDescription(self.fullUser)), ("chats", ConstructorParameterDescription(self.chats)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case userFull(Cons_userFull)
@@ -1327,10 +1740,10 @@ public extension Api.users {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .userFull(let _data):
-                return ("userFull", [("fullUser", _data.fullUser as Any), ("chats", _data.chats as Any), ("users", _data.users as Any)])
+                return ("userFull", [("fullUser", ConstructorParameterDescription(_data.fullUser)), ("chats", ConstructorParameterDescription(_data.chats)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 
@@ -1361,18 +1774,24 @@ public extension Api.users {
 }
 public extension Api.users {
     enum Users: TypeConstructorDescription {
-        public class Cons_users {
+        public class Cons_users: TypeConstructorDescription {
             public var users: [Api.User]
             public init(users: [Api.User]) {
                 self.users = users
             }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("users", [("users", ConstructorParameterDescription(self.users))])
+            }
         }
-        public class Cons_usersSlice {
+        public class Cons_usersSlice: TypeConstructorDescription {
             public var count: Int32
             public var users: [Api.User]
             public init(count: Int32, users: [Api.User]) {
                 self.count = count
                 self.users = users
+            }
+            public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
+                return ("usersSlice", [("count", ConstructorParameterDescription(self.count)), ("users", ConstructorParameterDescription(self.users))])
             }
         }
         case users(Cons_users)
@@ -1404,12 +1823,12 @@ public extension Api.users {
             }
         }
 
-        public func descriptionFields() -> (String, [(String, Any)]) {
+        public func descriptionFields() -> (String, [(String, ConstructorParameterDescription)]) {
             switch self {
             case .users(let _data):
-                return ("users", [("users", _data.users as Any)])
+                return ("users", [("users", ConstructorParameterDescription(_data.users))])
             case .usersSlice(let _data):
-                return ("usersSlice", [("count", _data.count as Any), ("users", _data.users as Any)])
+                return ("usersSlice", [("count", ConstructorParameterDescription(_data.count)), ("users", ConstructorParameterDescription(_data.users))])
             }
         }
 

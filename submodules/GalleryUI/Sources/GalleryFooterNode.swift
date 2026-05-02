@@ -35,7 +35,7 @@ public final class GalleryFooterNode: ASDisplayNode {
         self.visibilityAlpha = alpha
         let transition: ComponentTransition = animated ? .easeInOut(duration: 0.2) : .immediate
         transition.setAlpha(view: self.edgeEffectView, alpha: alpha * self.defaultEdgeEffectAlpha)
-        self.currentFooterContentNode?.setVisibilityAlpha(alpha, animated: true)
+        self.currentFooterContentNode?.setVisibilityAlpha(alpha, animated: animated)
         self.currentOverlayContentNode?.setVisibilityAlpha(alpha)
     }
     
@@ -78,7 +78,7 @@ public final class GalleryFooterNode: ASDisplayNode {
             self.currentThumbnailPanelHeight = thumbnailPanelHeight
             self.currentFooterContentNode = footerContentNode
             if let footerContentNode = footerContentNode {
-                footerContentNode.setVisibilityAlpha(self.visibilityAlpha, animated: transition.isAnimated)
+                footerContentNode.setVisibilityAlpha(self.visibilityAlpha, animated: false)
                 footerContentNode.controllerInteraction = self.controllerInteraction
                 footerContentNode.requestLayout = { [weak self] transition in
                     if let strongSelf = self, let (currentLayout, navigationBarHeight, currentThumbnailPanelHeight, isHidden) = strongSelf.currentLayout {

@@ -385,7 +385,8 @@ plist_fragment(
     """
     <key>CFBundleVersion</key>
     <string>{buildNumber}</string>
-    """
+    """,
+    defaults = {"buildNumber": "1"},
 )
 
 plist_fragment(
@@ -487,7 +488,7 @@ icloud_fragment = "" if not telegram_enable_icloud else """
     <string>iCloud.{telegram_bundle_id}</string>
 </array>
 <key>com.apple.developer.ubiquity-kvstore-identifier</key>
-<string>{telegram_team_id}.*</string>
+<string>{telegram_team_id}.{telegram_bundle_id}</string>
 <key>com.apple.developer.icloud-container-environment</key>
 <string>{telegram_icloud_environment}</string>
 """.format(
@@ -549,6 +550,12 @@ store_signin_fragment = """
 """
 signin_fragment = store_signin_fragment if telegram_bundle_id in store_bundle_ids else ""
 
+official_background_gpu_fragment = """
+<key>com.apple.developer.background-tasks.continued-processing.gpu</key>
+<true/>
+"""
+background_gpu_fragment = official_background_gpu_fragment if telegram_bundle_id == "ph.telegra.Telegraph" else ""
+
 plist_fragment(
     name = "TelegramEntitlements",
     extension = "entitlements",
@@ -564,17 +571,27 @@ plist_fragment(
         communication_notifications_fragment,
         notification_filtering_fragment,
         signin_fragment,
+        background_gpu_fragment,
     ])
 )
 
-plist_fragment(
+genrule(
     name = "VersionInfoPlist",
-    extension = "plist",
-    template =
-    """
+    srcs = ["//:versions.json"],
+    outs = ["VersionInfoPlist.plist"],
+    cmd = """
+        version=$$(python3 -c "import json; print(json.load(open('$(location //:versions.json)'))['app'])")
+        cat > $@ <<PLIST
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
     <key>CFBundleShortVersionString</key>
-    <string>{telegramVersion}</string>
-    """
+    <string>$$version</string>
+</dict>
+</plist>
+PLIST
+    """,
 )
 
 plist_fragment(
@@ -1527,6 +1544,7 @@ plist_fragment(
     <array>
         <string>{telegram_bundle_id}.refresh</string>
         <string>{telegram_bundle_id}.cleanup</string>
+        <string>{telegram_bundle_id}.upload.*</string>
     </array>
     <key>CFBundleAllowMixedLocalizations</key>
     <true/>
@@ -1805,7 +1823,7 @@ swift_library(
 ios_ui_test_suite(
     name = "iOSAppUITestSuite",
     bundle_id = "org.telegram.Telegram-iOS-uitests",
-    minimum_os_version = "13.0",
+    minimum_os_version = minimum_os_version,
     runners = [
         ":iPhone-17__26.2",
     ],
