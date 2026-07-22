@@ -41,6 +41,7 @@ jobs:
       - name: Generate Xcode project
         run: |
           python3 build-system/Make/Make.py \
+            --overrideXcodeVersion \
             --cacheDir="$HOME/telegram-bazel-cache" \
             generateProject \
             --configurationPath=build-system/my_configuration.json \
@@ -63,3 +64,4 @@ jobs:
           path: |
             **/*.log
           if-no-files-found: ignore
+          
