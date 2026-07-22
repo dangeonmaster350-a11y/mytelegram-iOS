@@ -27,6 +27,9 @@ jobs:
           echo "Проверка оставшихся совпадений:"
           grep -rl '192\.168\.1\.100' . 2>/dev/null || echo "всё заменено"
 
+      - name: Select Xcode 26.4.1
+        run: sudo xcode-select -s "/Applications/Xcode_26.4.1.app"
+
       - name: Install Bazelisk
         run: brew install bazelisk
 
