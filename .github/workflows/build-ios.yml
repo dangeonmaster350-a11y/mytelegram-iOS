@@ -1,0 +1,48 @@
+name: Build iOS (test, unsigned)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 300
+    steps:
+      - name: Checkout with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Bazelisk
+        run: brew install bazelisk
+
+      - name: Prepare minimal config
+        run: |
+          cp build-system/template_minimal_development_configuration.json build-system/my_configuration.json
+          cat build-system/my_configuration.json
+
+      - name: Generate Xcode project
+        run: |
+          python3 build-system/Make/Make.py \
+            --cacheDir="$HOME/telegram-bazel-cache" \
+            generateProject \
+            --configurationPath=build-system/my_configuration.json \
+            --xcodeManagedCodesigning
+
+      - name: Build (no signing, compile test only)
+        run: |
+          xcodebuild -workspace Telegram.xcworkspace \
+            -scheme Telegram \
+            -configuration Debug \
+            -sdk iphoneos \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs
+          path: |
+            **/*.log
+          if-no-files-found: ignore
