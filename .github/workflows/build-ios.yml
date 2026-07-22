@@ -8,10 +8,16 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 300
     steps:
-      - name: Checkout with submodules
+      - name: Checkout (no submodules yet)
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: false
+
+      - name: Fix submodule URLs and fetch them
+        run: |
+          git config --global url."https://github.com/TelegramMessenger/".insteadOf "https://github.com/dangeonmaster350-a11y/"
+          git submodule sync --recursive
+          git submodule update --init --recursive
 
       - name: Replace server IP
         run: |
@@ -54,4 +60,3 @@ jobs:
           path: |
             **/*.log
           if-no-files-found: ignore
-          
