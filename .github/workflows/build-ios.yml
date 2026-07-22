@@ -60,6 +60,7 @@ jobs:
             --cacheDir="$HOME/telegram-bazel-cache" \
             generateProject \
             --configurationPath=build-system/my_configuration.json \
+            --xcodeManagedCodesigning \
             --disableProvisioningProfiles
 
       - name: Build (no signing, compile test only)
