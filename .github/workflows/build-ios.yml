@@ -13,6 +13,14 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Replace server IP
+        run: |
+          echo "Заменяю IP на 31.77.148.109"
+          grep -rl '192\.168\.1\.100' . --include=*.swift --include=*.m --include=*.h --include=*.cpp --include=*.plist --include=*.json 2>/dev/null \
+            | xargs -r sed -i '' "s/192\.168\.1\.100/31.77.148.109/g"
+          echo "Проверка оставшихся совпадений:"
+          grep -rl '192\.168\.1\.100' . 2>/dev/null || echo "всё заменено"
+
       - name: Install Bazelisk
         run: brew install bazelisk
 
@@ -46,3 +54,4 @@ jobs:
           path: |
             **/*.log
           if-no-files-found: ignore
+          
